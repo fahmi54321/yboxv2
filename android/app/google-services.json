@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "243472863404",
+    "project_id": "yboxv2",
+    "storage_bucket": "yboxv2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243472863404:android:5c917f609375f845644f09",
+        "android_client_info": {
+          "package_name": "com.example.yboxv2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOr1Uv1LzvSrDXWY67FvKVik91sJPO9G8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
