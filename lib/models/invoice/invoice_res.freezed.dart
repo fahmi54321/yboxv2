@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'invoice_res.dart';
 
@@ -12,67 +12,11 @@ part of 'invoice_res.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 InvoiceRes _$InvoiceResFromJson(Map<String, dynamic> json) {
   return _InvoiceRes.fromJson(json);
 }
-
-/// @nodoc
-class _$InvoiceResTearOff {
-  const _$InvoiceResTearOff();
-
-  _InvoiceRes call(
-      {@JsonKey(name: 'label_image', defaultValue: '')
-          required String labelImage,
-      @JsonKey(name: 'label_name', defaultValue: '')
-          required String labelName,
-      @JsonKey(name: 'inv_no', defaultValue: 0)
-          required int invNo,
-      @JsonKey(name: 'payment_method', defaultValue: '')
-          required String paymentMethod,
-      @JsonKey(name: 'account_name', defaultValue: '')
-          required String accountName,
-      @JsonKey(name: 'email', defaultValue: '')
-          required String email,
-      @JsonKey(name: 'bank', defaultValue: '')
-          required String bank,
-      @JsonKey(name: 'name_on_bank', defaultValue: '')
-          required String nameOnBank,
-      @JsonKey(name: 'no_rek', defaultValue: '')
-          required String noRek,
-      @JsonKey(name: 'invoice_date', defaultValue: '')
-          required String invoiceDate,
-      @JsonKey(name: 'invoice_create', defaultValue: '')
-          required String invoiceCreate,
-      @JsonKey(name: 'amount', defaultValue: '')
-          required String amount,
-      @JsonKey(name: 'id', defaultValue: '')
-          required String id}) {
-    return _InvoiceRes(
-      labelImage: labelImage,
-      labelName: labelName,
-      invNo: invNo,
-      paymentMethod: paymentMethod,
-      accountName: accountName,
-      email: email,
-      bank: bank,
-      nameOnBank: nameOnBank,
-      noRek: noRek,
-      invoiceDate: invoiceDate,
-      invoiceCreate: invoiceCreate,
-      amount: amount,
-      id: id,
-    );
-  }
-
-  InvoiceRes fromJson(Map<String, Object?> json) {
-    return InvoiceRes.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $InvoiceRes = _$InvoiceResTearOff();
 
 /// @nodoc
 mixin _$InvoiceRes {
@@ -113,7 +57,8 @@ mixin _$InvoiceRes {
 abstract class $InvoiceResCopyWith<$Res> {
   factory $InvoiceResCopyWith(
           InvoiceRes value, $Res Function(InvoiceRes) then) =
-      _$InvoiceResCopyWithImpl<$Res>;
+      _$InvoiceResCopyWithImpl<$Res, InvoiceRes>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'label_image', defaultValue: '') String labelImage,
       @JsonKey(name: 'label_name', defaultValue: '') String labelName,
@@ -131,92 +76,97 @@ abstract class $InvoiceResCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InvoiceResCopyWithImpl<$Res> implements $InvoiceResCopyWith<$Res> {
+class _$InvoiceResCopyWithImpl<$Res, $Val extends InvoiceRes>
+    implements $InvoiceResCopyWith<$Res> {
   _$InvoiceResCopyWithImpl(this._value, this._then);
 
-  final InvoiceRes _value;
   // ignore: unused_field
-  final $Res Function(InvoiceRes) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? labelImage = freezed,
-    Object? labelName = freezed,
-    Object? invNo = freezed,
-    Object? paymentMethod = freezed,
-    Object? accountName = freezed,
-    Object? email = freezed,
-    Object? bank = freezed,
-    Object? nameOnBank = freezed,
-    Object? noRek = freezed,
-    Object? invoiceDate = freezed,
-    Object? invoiceCreate = freezed,
-    Object? amount = freezed,
-    Object? id = freezed,
+    Object? labelImage = null,
+    Object? labelName = null,
+    Object? invNo = null,
+    Object? paymentMethod = null,
+    Object? accountName = null,
+    Object? email = null,
+    Object? bank = null,
+    Object? nameOnBank = null,
+    Object? noRek = null,
+    Object? invoiceDate = null,
+    Object? invoiceCreate = null,
+    Object? amount = null,
+    Object? id = null,
   }) {
     return _then(_value.copyWith(
-      labelImage: labelImage == freezed
+      labelImage: null == labelImage
           ? _value.labelImage
           : labelImage // ignore: cast_nullable_to_non_nullable
               as String,
-      labelName: labelName == freezed
+      labelName: null == labelName
           ? _value.labelName
           : labelName // ignore: cast_nullable_to_non_nullable
               as String,
-      invNo: invNo == freezed
+      invNo: null == invNo
           ? _value.invNo
           : invNo // ignore: cast_nullable_to_non_nullable
               as int,
-      paymentMethod: paymentMethod == freezed
+      paymentMethod: null == paymentMethod
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
-      accountName: accountName == freezed
+      accountName: null == accountName
           ? _value.accountName
           : accountName // ignore: cast_nullable_to_non_nullable
               as String,
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      bank: bank == freezed
+      bank: null == bank
           ? _value.bank
           : bank // ignore: cast_nullable_to_non_nullable
               as String,
-      nameOnBank: nameOnBank == freezed
+      nameOnBank: null == nameOnBank
           ? _value.nameOnBank
           : nameOnBank // ignore: cast_nullable_to_non_nullable
               as String,
-      noRek: noRek == freezed
+      noRek: null == noRek
           ? _value.noRek
           : noRek // ignore: cast_nullable_to_non_nullable
               as String,
-      invoiceDate: invoiceDate == freezed
+      invoiceDate: null == invoiceDate
           ? _value.invoiceDate
           : invoiceDate // ignore: cast_nullable_to_non_nullable
               as String,
-      invoiceCreate: invoiceCreate == freezed
+      invoiceCreate: null == invoiceCreate
           ? _value.invoiceCreate
           : invoiceCreate // ignore: cast_nullable_to_non_nullable
               as String,
-      amount: amount == freezed
+      amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$InvoiceResCopyWith<$Res> implements $InvoiceResCopyWith<$Res> {
-  factory _$InvoiceResCopyWith(
-          _InvoiceRes value, $Res Function(_InvoiceRes) then) =
-      __$InvoiceResCopyWithImpl<$Res>;
+abstract class _$$_InvoiceResCopyWith<$Res>
+    implements $InvoiceResCopyWith<$Res> {
+  factory _$$_InvoiceResCopyWith(
+          _$_InvoiceRes value, $Res Function(_$_InvoiceRes) then) =
+      __$$_InvoiceResCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'label_image', defaultValue: '') String labelImage,
       @JsonKey(name: 'label_name', defaultValue: '') String labelName,
@@ -234,81 +184,80 @@ abstract class _$InvoiceResCopyWith<$Res> implements $InvoiceResCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$InvoiceResCopyWithImpl<$Res> extends _$InvoiceResCopyWithImpl<$Res>
-    implements _$InvoiceResCopyWith<$Res> {
-  __$InvoiceResCopyWithImpl(
-      _InvoiceRes _value, $Res Function(_InvoiceRes) _then)
-      : super(_value, (v) => _then(v as _InvoiceRes));
+class __$$_InvoiceResCopyWithImpl<$Res>
+    extends _$InvoiceResCopyWithImpl<$Res, _$_InvoiceRes>
+    implements _$$_InvoiceResCopyWith<$Res> {
+  __$$_InvoiceResCopyWithImpl(
+      _$_InvoiceRes _value, $Res Function(_$_InvoiceRes) _then)
+      : super(_value, _then);
 
-  @override
-  _InvoiceRes get _value => super._value as _InvoiceRes;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? labelImage = freezed,
-    Object? labelName = freezed,
-    Object? invNo = freezed,
-    Object? paymentMethod = freezed,
-    Object? accountName = freezed,
-    Object? email = freezed,
-    Object? bank = freezed,
-    Object? nameOnBank = freezed,
-    Object? noRek = freezed,
-    Object? invoiceDate = freezed,
-    Object? invoiceCreate = freezed,
-    Object? amount = freezed,
-    Object? id = freezed,
+    Object? labelImage = null,
+    Object? labelName = null,
+    Object? invNo = null,
+    Object? paymentMethod = null,
+    Object? accountName = null,
+    Object? email = null,
+    Object? bank = null,
+    Object? nameOnBank = null,
+    Object? noRek = null,
+    Object? invoiceDate = null,
+    Object? invoiceCreate = null,
+    Object? amount = null,
+    Object? id = null,
   }) {
-    return _then(_InvoiceRes(
-      labelImage: labelImage == freezed
+    return _then(_$_InvoiceRes(
+      labelImage: null == labelImage
           ? _value.labelImage
           : labelImage // ignore: cast_nullable_to_non_nullable
               as String,
-      labelName: labelName == freezed
+      labelName: null == labelName
           ? _value.labelName
           : labelName // ignore: cast_nullable_to_non_nullable
               as String,
-      invNo: invNo == freezed
+      invNo: null == invNo
           ? _value.invNo
           : invNo // ignore: cast_nullable_to_non_nullable
               as int,
-      paymentMethod: paymentMethod == freezed
+      paymentMethod: null == paymentMethod
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
-      accountName: accountName == freezed
+      accountName: null == accountName
           ? _value.accountName
           : accountName // ignore: cast_nullable_to_non_nullable
               as String,
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      bank: bank == freezed
+      bank: null == bank
           ? _value.bank
           : bank // ignore: cast_nullable_to_non_nullable
               as String,
-      nameOnBank: nameOnBank == freezed
+      nameOnBank: null == nameOnBank
           ? _value.nameOnBank
           : nameOnBank // ignore: cast_nullable_to_non_nullable
               as String,
-      noRek: noRek == freezed
+      noRek: null == noRek
           ? _value.noRek
           : noRek // ignore: cast_nullable_to_non_nullable
               as String,
-      invoiceDate: invoiceDate == freezed
+      invoiceDate: null == invoiceDate
           ? _value.invoiceDate
           : invoiceDate // ignore: cast_nullable_to_non_nullable
               as String,
-      invoiceCreate: invoiceCreate == freezed
+      invoiceCreate: null == invoiceCreate
           ? _value.invoiceCreate
           : invoiceCreate // ignore: cast_nullable_to_non_nullable
               as String,
-      amount: amount == freezed
+      amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
@@ -322,32 +271,23 @@ class __$InvoiceResCopyWithImpl<$Res> extends _$InvoiceResCopyWithImpl<$Res>
     anyMap: true, explicitToJson: true, checked: true, includeIfNull: false)
 class _$_InvoiceRes extends _InvoiceRes {
   const _$_InvoiceRes(
-      {@JsonKey(name: 'label_image', defaultValue: '')
-          required this.labelImage,
-      @JsonKey(name: 'label_name', defaultValue: '')
-          required this.labelName,
-      @JsonKey(name: 'inv_no', defaultValue: 0)
-          required this.invNo,
+      {@JsonKey(name: 'label_image', defaultValue: '') required this.labelImage,
+      @JsonKey(name: 'label_name', defaultValue: '') required this.labelName,
+      @JsonKey(name: 'inv_no', defaultValue: 0) required this.invNo,
       @JsonKey(name: 'payment_method', defaultValue: '')
-          required this.paymentMethod,
+      required this.paymentMethod,
       @JsonKey(name: 'account_name', defaultValue: '')
-          required this.accountName,
-      @JsonKey(name: 'email', defaultValue: '')
-          required this.email,
-      @JsonKey(name: 'bank', defaultValue: '')
-          required this.bank,
-      @JsonKey(name: 'name_on_bank', defaultValue: '')
-          required this.nameOnBank,
-      @JsonKey(name: 'no_rek', defaultValue: '')
-          required this.noRek,
+      required this.accountName,
+      @JsonKey(name: 'email', defaultValue: '') required this.email,
+      @JsonKey(name: 'bank', defaultValue: '') required this.bank,
+      @JsonKey(name: 'name_on_bank', defaultValue: '') required this.nameOnBank,
+      @JsonKey(name: 'no_rek', defaultValue: '') required this.noRek,
       @JsonKey(name: 'invoice_date', defaultValue: '')
-          required this.invoiceDate,
+      required this.invoiceDate,
       @JsonKey(name: 'invoice_create', defaultValue: '')
-          required this.invoiceCreate,
-      @JsonKey(name: 'amount', defaultValue: '')
-          required this.amount,
-      @JsonKey(name: 'id', defaultValue: '')
-          required this.id})
+      required this.invoiceCreate,
+      @JsonKey(name: 'amount', defaultValue: '') required this.amount,
+      @JsonKey(name: 'id', defaultValue: '') required this.id})
       : super._();
 
   factory _$_InvoiceRes.fromJson(Map<String, dynamic> json) =>
@@ -402,84 +342,84 @@ class _$_InvoiceRes extends _InvoiceRes {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _InvoiceRes &&
-            const DeepCollectionEquality()
-                .equals(other.labelImage, labelImage) &&
-            const DeepCollectionEquality().equals(other.labelName, labelName) &&
-            const DeepCollectionEquality().equals(other.invNo, invNo) &&
-            const DeepCollectionEquality()
-                .equals(other.paymentMethod, paymentMethod) &&
-            const DeepCollectionEquality()
-                .equals(other.accountName, accountName) &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.bank, bank) &&
-            const DeepCollectionEquality()
-                .equals(other.nameOnBank, nameOnBank) &&
-            const DeepCollectionEquality().equals(other.noRek, noRek) &&
-            const DeepCollectionEquality()
-                .equals(other.invoiceDate, invoiceDate) &&
-            const DeepCollectionEquality()
-                .equals(other.invoiceCreate, invoiceCreate) &&
-            const DeepCollectionEquality().equals(other.amount, amount) &&
-            const DeepCollectionEquality().equals(other.id, id));
+            other is _$_InvoiceRes &&
+            (identical(other.labelImage, labelImage) ||
+                other.labelImage == labelImage) &&
+            (identical(other.labelName, labelName) ||
+                other.labelName == labelName) &&
+            (identical(other.invNo, invNo) || other.invNo == invNo) &&
+            (identical(other.paymentMethod, paymentMethod) ||
+                other.paymentMethod == paymentMethod) &&
+            (identical(other.accountName, accountName) ||
+                other.accountName == accountName) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.bank, bank) || other.bank == bank) &&
+            (identical(other.nameOnBank, nameOnBank) ||
+                other.nameOnBank == nameOnBank) &&
+            (identical(other.noRek, noRek) || other.noRek == noRek) &&
+            (identical(other.invoiceDate, invoiceDate) ||
+                other.invoiceDate == invoiceDate) &&
+            (identical(other.invoiceCreate, invoiceCreate) ||
+                other.invoiceCreate == invoiceCreate) &&
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.id, id) || other.id == id));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(labelImage),
-      const DeepCollectionEquality().hash(labelName),
-      const DeepCollectionEquality().hash(invNo),
-      const DeepCollectionEquality().hash(paymentMethod),
-      const DeepCollectionEquality().hash(accountName),
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(bank),
-      const DeepCollectionEquality().hash(nameOnBank),
-      const DeepCollectionEquality().hash(noRek),
-      const DeepCollectionEquality().hash(invoiceDate),
-      const DeepCollectionEquality().hash(invoiceCreate),
-      const DeepCollectionEquality().hash(amount),
-      const DeepCollectionEquality().hash(id));
 
   @JsonKey(ignore: true)
   @override
-  _$InvoiceResCopyWith<_InvoiceRes> get copyWith =>
-      __$InvoiceResCopyWithImpl<_InvoiceRes>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      labelImage,
+      labelName,
+      invNo,
+      paymentMethod,
+      accountName,
+      email,
+      bank,
+      nameOnBank,
+      noRek,
+      invoiceDate,
+      invoiceCreate,
+      amount,
+      id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_InvoiceResCopyWith<_$_InvoiceRes> get copyWith =>
+      __$$_InvoiceResCopyWithImpl<_$_InvoiceRes>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_InvoiceResToJson(this);
+    return _$$_InvoiceResToJson(
+      this,
+    );
   }
 }
 
 abstract class _InvoiceRes extends InvoiceRes {
   const factory _InvoiceRes(
       {@JsonKey(name: 'label_image', defaultValue: '')
-          required String labelImage,
+      required final String labelImage,
       @JsonKey(name: 'label_name', defaultValue: '')
-          required String labelName,
-      @JsonKey(name: 'inv_no', defaultValue: 0)
-          required int invNo,
+      required final String labelName,
+      @JsonKey(name: 'inv_no', defaultValue: 0) required final int invNo,
       @JsonKey(name: 'payment_method', defaultValue: '')
-          required String paymentMethod,
+      required final String paymentMethod,
       @JsonKey(name: 'account_name', defaultValue: '')
-          required String accountName,
-      @JsonKey(name: 'email', defaultValue: '')
-          required String email,
-      @JsonKey(name: 'bank', defaultValue: '')
-          required String bank,
+      required final String accountName,
+      @JsonKey(name: 'email', defaultValue: '') required final String email,
+      @JsonKey(name: 'bank', defaultValue: '') required final String bank,
       @JsonKey(name: 'name_on_bank', defaultValue: '')
-          required String nameOnBank,
-      @JsonKey(name: 'no_rek', defaultValue: '')
-          required String noRek,
+      required final String nameOnBank,
+      @JsonKey(name: 'no_rek', defaultValue: '') required final String noRek,
       @JsonKey(name: 'invoice_date', defaultValue: '')
-          required String invoiceDate,
+      required final String invoiceDate,
       @JsonKey(name: 'invoice_create', defaultValue: '')
-          required String invoiceCreate,
-      @JsonKey(name: 'amount', defaultValue: '')
-          required String amount,
+      required final String invoiceCreate,
+      @JsonKey(name: 'amount', defaultValue: '') required final String amount,
       @JsonKey(name: 'id', defaultValue: '')
-          required String id}) = _$_InvoiceRes;
+      required final String id}) = _$_InvoiceRes;
   const _InvoiceRes._() : super._();
 
   factory _InvoiceRes.fromJson(Map<String, dynamic> json) =
@@ -526,6 +466,6 @@ abstract class _InvoiceRes extends InvoiceRes {
   String get id;
   @override
   @JsonKey(ignore: true)
-  _$InvoiceResCopyWith<_InvoiceRes> get copyWith =>
+  _$$_InvoiceResCopyWith<_$_InvoiceRes> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'grafik_res.dart';
 
@@ -12,31 +12,11 @@ part of 'grafik_res.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 GrafikRes _$GrafikResFromJson(Map<String, dynamic> json) {
   return _GrafikRes.fromJson(json);
 }
-
-/// @nodoc
-class _$GrafikResTearOff {
-  const _$GrafikResTearOff();
-
-  _GrafikRes call(
-      {@JsonKey(name: 'series', defaultValue: [])
-          required List<DataSeries> series}) {
-    return _GrafikRes(
-      series: series,
-    );
-  }
-
-  GrafikRes fromJson(Map<String, Object?> json) {
-    return GrafikRes.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $GrafikRes = _$GrafikResTearOff();
 
 /// @nodoc
 mixin _$GrafikRes {
@@ -52,58 +32,63 @@ mixin _$GrafikRes {
 /// @nodoc
 abstract class $GrafikResCopyWith<$Res> {
   factory $GrafikResCopyWith(GrafikRes value, $Res Function(GrafikRes) then) =
-      _$GrafikResCopyWithImpl<$Res>;
+      _$GrafikResCopyWithImpl<$Res, GrafikRes>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'series', defaultValue: []) List<DataSeries> series});
 }
 
 /// @nodoc
-class _$GrafikResCopyWithImpl<$Res> implements $GrafikResCopyWith<$Res> {
+class _$GrafikResCopyWithImpl<$Res, $Val extends GrafikRes>
+    implements $GrafikResCopyWith<$Res> {
   _$GrafikResCopyWithImpl(this._value, this._then);
 
-  final GrafikRes _value;
   // ignore: unused_field
-  final $Res Function(GrafikRes) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? series = freezed,
+    Object? series = null,
   }) {
     return _then(_value.copyWith(
-      series: series == freezed
+      series: null == series
           ? _value.series
           : series // ignore: cast_nullable_to_non_nullable
               as List<DataSeries>,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$GrafikResCopyWith<$Res> implements $GrafikResCopyWith<$Res> {
-  factory _$GrafikResCopyWith(
-          _GrafikRes value, $Res Function(_GrafikRes) then) =
-      __$GrafikResCopyWithImpl<$Res>;
+abstract class _$$_GrafikResCopyWith<$Res> implements $GrafikResCopyWith<$Res> {
+  factory _$$_GrafikResCopyWith(
+          _$_GrafikRes value, $Res Function(_$_GrafikRes) then) =
+      __$$_GrafikResCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'series', defaultValue: []) List<DataSeries> series});
 }
 
 /// @nodoc
-class __$GrafikResCopyWithImpl<$Res> extends _$GrafikResCopyWithImpl<$Res>
-    implements _$GrafikResCopyWith<$Res> {
-  __$GrafikResCopyWithImpl(_GrafikRes _value, $Res Function(_GrafikRes) _then)
-      : super(_value, (v) => _then(v as _GrafikRes));
+class __$$_GrafikResCopyWithImpl<$Res>
+    extends _$GrafikResCopyWithImpl<$Res, _$_GrafikRes>
+    implements _$$_GrafikResCopyWith<$Res> {
+  __$$_GrafikResCopyWithImpl(
+      _$_GrafikRes _value, $Res Function(_$_GrafikRes) _then)
+      : super(_value, _then);
 
-  @override
-  _GrafikRes get _value => super._value as _GrafikRes;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? series = freezed,
+    Object? series = null,
   }) {
-    return _then(_GrafikRes(
-      series: series == freezed
-          ? _value.series
+    return _then(_$_GrafikRes(
+      series: null == series
+          ? _value._series
           : series // ignore: cast_nullable_to_non_nullable
               as List<DataSeries>,
     ));
@@ -116,15 +101,22 @@ class __$GrafikResCopyWithImpl<$Res> extends _$GrafikResCopyWithImpl<$Res>
     anyMap: true, explicitToJson: true, checked: true, includeIfNull: false)
 class _$_GrafikRes extends _GrafikRes {
   const _$_GrafikRes(
-      {@JsonKey(name: 'series', defaultValue: []) required this.series})
-      : super._();
+      {@JsonKey(name: 'series', defaultValue: [])
+      required final List<DataSeries> series})
+      : _series = series,
+        super._();
 
   factory _$_GrafikRes.fromJson(Map<String, dynamic> json) =>
       _$$_GrafikResFromJson(json);
 
+  final List<DataSeries> _series;
   @override
   @JsonKey(name: 'series', defaultValue: [])
-  final List<DataSeries> series;
+  List<DataSeries> get series {
+    if (_series is EqualUnmodifiableListView) return _series;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_series);
+  }
 
   @override
   String toString() {
@@ -135,29 +127,33 @@ class _$_GrafikRes extends _GrafikRes {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _GrafikRes &&
-            const DeepCollectionEquality().equals(other.series, series));
+            other is _$_GrafikRes &&
+            const DeepCollectionEquality().equals(other._series, _series));
   }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(series));
 
   @JsonKey(ignore: true)
   @override
-  _$GrafikResCopyWith<_GrafikRes> get copyWith =>
-      __$GrafikResCopyWithImpl<_GrafikRes>(this, _$identity);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_series));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_GrafikResCopyWith<_$_GrafikRes> get copyWith =>
+      __$$_GrafikResCopyWithImpl<_$_GrafikRes>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GrafikResToJson(this);
+    return _$$_GrafikResToJson(
+      this,
+    );
   }
 }
 
 abstract class _GrafikRes extends GrafikRes {
   const factory _GrafikRes(
       {@JsonKey(name: 'series', defaultValue: [])
-          required List<DataSeries> series}) = _$_GrafikRes;
+      required final List<DataSeries> series}) = _$_GrafikRes;
   const _GrafikRes._() : super._();
 
   factory _GrafikRes.fromJson(Map<String, dynamic> json) =
@@ -168,34 +164,13 @@ abstract class _GrafikRes extends GrafikRes {
   List<DataSeries> get series;
   @override
   @JsonKey(ignore: true)
-  _$GrafikResCopyWith<_GrafikRes> get copyWith =>
+  _$$_GrafikResCopyWith<_$_GrafikRes> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 DataSeries _$DataSeriesFromJson(Map<String, dynamic> json) {
   return _DataSeries.fromJson(json);
 }
-
-/// @nodoc
-class _$DataSeriesTearOff {
-  const _$DataSeriesTearOff();
-
-  _DataSeries call(
-      {@JsonKey(name: 'name', defaultValue: '') required String name,
-      @JsonKey(name: 'data', defaultValue: []) required List<int> data}) {
-    return _DataSeries(
-      name: name,
-      data: data,
-    );
-  }
-
-  DataSeries fromJson(Map<String, Object?> json) {
-    return DataSeries.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $DataSeries = _$DataSeriesTearOff();
 
 /// @nodoc
 mixin _$DataSeries {
@@ -214,71 +189,76 @@ mixin _$DataSeries {
 abstract class $DataSeriesCopyWith<$Res> {
   factory $DataSeriesCopyWith(
           DataSeries value, $Res Function(DataSeries) then) =
-      _$DataSeriesCopyWithImpl<$Res>;
+      _$DataSeriesCopyWithImpl<$Res, DataSeries>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'name', defaultValue: '') String name,
       @JsonKey(name: 'data', defaultValue: []) List<int> data});
 }
 
 /// @nodoc
-class _$DataSeriesCopyWithImpl<$Res> implements $DataSeriesCopyWith<$Res> {
+class _$DataSeriesCopyWithImpl<$Res, $Val extends DataSeries>
+    implements $DataSeriesCopyWith<$Res> {
   _$DataSeriesCopyWithImpl(this._value, this._then);
 
-  final DataSeries _value;
   // ignore: unused_field
-  final $Res Function(DataSeries) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? data = freezed,
+    Object? name = null,
+    Object? data = null,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      data: data == freezed
+      data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as List<int>,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$DataSeriesCopyWith<$Res> implements $DataSeriesCopyWith<$Res> {
-  factory _$DataSeriesCopyWith(
-          _DataSeries value, $Res Function(_DataSeries) then) =
-      __$DataSeriesCopyWithImpl<$Res>;
+abstract class _$$_DataSeriesCopyWith<$Res>
+    implements $DataSeriesCopyWith<$Res> {
+  factory _$$_DataSeriesCopyWith(
+          _$_DataSeries value, $Res Function(_$_DataSeries) then) =
+      __$$_DataSeriesCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'name', defaultValue: '') String name,
       @JsonKey(name: 'data', defaultValue: []) List<int> data});
 }
 
 /// @nodoc
-class __$DataSeriesCopyWithImpl<$Res> extends _$DataSeriesCopyWithImpl<$Res>
-    implements _$DataSeriesCopyWith<$Res> {
-  __$DataSeriesCopyWithImpl(
-      _DataSeries _value, $Res Function(_DataSeries) _then)
-      : super(_value, (v) => _then(v as _DataSeries));
+class __$$_DataSeriesCopyWithImpl<$Res>
+    extends _$DataSeriesCopyWithImpl<$Res, _$_DataSeries>
+    implements _$$_DataSeriesCopyWith<$Res> {
+  __$$_DataSeriesCopyWithImpl(
+      _$_DataSeries _value, $Res Function(_$_DataSeries) _then)
+      : super(_value, _then);
 
-  @override
-  _DataSeries get _value => super._value as _DataSeries;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? data = freezed,
+    Object? name = null,
+    Object? data = null,
   }) {
-    return _then(_DataSeries(
-      name: name == freezed
+    return _then(_$_DataSeries(
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      data: data == freezed
-          ? _value.data
+      data: null == data
+          ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
               as List<int>,
     ));
@@ -292,8 +272,9 @@ class __$DataSeriesCopyWithImpl<$Res> extends _$DataSeriesCopyWithImpl<$Res>
 class _$_DataSeries extends _DataSeries {
   const _$_DataSeries(
       {@JsonKey(name: 'name', defaultValue: '') required this.name,
-      @JsonKey(name: 'data', defaultValue: []) required this.data})
-      : super._();
+      @JsonKey(name: 'data', defaultValue: []) required final List<int> data})
+      : _data = data,
+        super._();
 
   factory _$_DataSeries.fromJson(Map<String, dynamic> json) =>
       _$$_DataSeriesFromJson(json);
@@ -301,9 +282,14 @@ class _$_DataSeries extends _DataSeries {
   @override
   @JsonKey(name: 'name', defaultValue: '')
   final String name;
+  final List<int> _data;
   @override
   @JsonKey(name: 'data', defaultValue: [])
-  final List<int> data;
+  List<int> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
 
   @override
   String toString() {
@@ -314,33 +300,35 @@ class _$_DataSeries extends _DataSeries {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DataSeries &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.data, data));
+            other is _$_DataSeries &&
+            (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality().equals(other._data, _data));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
-  _$DataSeriesCopyWith<_DataSeries> get copyWith =>
-      __$DataSeriesCopyWithImpl<_DataSeries>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType, name, const DeepCollectionEquality().hash(_data));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_DataSeriesCopyWith<_$_DataSeries> get copyWith =>
+      __$$_DataSeriesCopyWithImpl<_$_DataSeries>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DataSeriesToJson(this);
+    return _$$_DataSeriesToJson(
+      this,
+    );
   }
 }
 
 abstract class _DataSeries extends DataSeries {
   const factory _DataSeries(
-          {@JsonKey(name: 'name', defaultValue: '') required String name,
-          @JsonKey(name: 'data', defaultValue: []) required List<int> data}) =
-      _$_DataSeries;
+      {@JsonKey(name: 'name', defaultValue: '') required final String name,
+      @JsonKey(name: 'data', defaultValue: [])
+      required final List<int> data}) = _$_DataSeries;
   const _DataSeries._() : super._();
 
   factory _DataSeries.fromJson(Map<String, dynamic> json) =
@@ -354,6 +342,6 @@ abstract class _DataSeries extends DataSeries {
   List<int> get data;
   @override
   @JsonKey(ignore: true)
-  _$DataSeriesCopyWith<_DataSeries> get copyWith =>
+  _$$_DataSeriesCopyWith<_$_DataSeries> get copyWith =>
       throw _privateConstructorUsedError;
 }

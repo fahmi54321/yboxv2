@@ -50,7 +50,7 @@ class DialogPilihLeader extends StatelessWidget {
                   ),
                 ),
                 child: vText(
-                  'Ubah'.toUpperCase(),
+                  'batal'.toUpperCase(),
                   fontSize: 14.0,
                   fontWeight: FontWeight.w700,
                   color: primaryColor,

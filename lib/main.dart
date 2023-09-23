@@ -1,10 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:yboxv2/pages/onboarding/onboarding_page.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:yboxv2/pages/loading_page.dart';
 import 'package:yboxv2/resource/color_schemes.g.dart';
 import 'package:yboxv2/router/router.dart' as router;
 
 void main() {
   runApp(const MyApp());
+  configLoading();
+}
+
+void configLoading() {
+  EasyLoading.instance
+    ..displayDuration = const Duration(milliseconds: 2000)
+    ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+    ..loadingStyle = EasyLoadingStyle.dark
+    ..indicatorSize = 45.0
+    ..radius = 10.0
+    ..progressColor = const Color(0xFFFFFFFF)
+    ..backgroundColor = const Color(0xFF000000).withOpacity(0.5)
+    ..indicatorColor = const Color(0xFFFFFFFF)
+    ..textColor = const Color(0xFFFFFFFF)
+    ..maskColor = Colors.blue.withOpacity(0.5)
+    ..userInteractions = true
+    ..dismissOnTap = false;
 }
 
 class MyApp extends StatelessWidget {
@@ -13,7 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: OnboardingPage.route,
+      initialRoute: LoadingPage.route,
       onGenerateRoute: router.generateRoute,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -21,7 +39,8 @@ class MyApp extends StatelessWidget {
         colorScheme: yboxLightColorScheme,
         useMaterial3: true,
       ),
-      home: OnboardingPage(),
+      home: const LoadingPage(),
+      builder: EasyLoading.init(),
     );
   }
 }

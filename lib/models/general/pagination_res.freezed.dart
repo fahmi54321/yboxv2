@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'pagination_res.dart';
 
@@ -12,34 +12,11 @@ part of 'pagination_res.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 PaginationRes _$PaginationResFromJson(Map<String, dynamic> json) {
   return _PaginationRes.fromJson(json);
 }
-
-/// @nodoc
-class _$PaginationResTearOff {
-  const _$PaginationResTearOff();
-
-  _PaginationRes call(
-      {@JsonKey(name: 'last_page', defaultValue: 0) required int lastPage,
-      @JsonKey(name: 'per_page', defaultValue: 0) required int perPage,
-      @JsonKey(name: 'total', defaultValue: 0) required int total}) {
-    return _PaginationRes(
-      lastPage: lastPage,
-      perPage: perPage,
-      total: total,
-    );
-  }
-
-  PaginationRes fromJson(Map<String, Object?> json) {
-    return PaginationRes.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $PaginationRes = _$PaginationResTearOff();
 
 /// @nodoc
 mixin _$PaginationRes {
@@ -60,7 +37,8 @@ mixin _$PaginationRes {
 abstract class $PaginationResCopyWith<$Res> {
   factory $PaginationResCopyWith(
           PaginationRes value, $Res Function(PaginationRes) then) =
-      _$PaginationResCopyWithImpl<$Res>;
+      _$PaginationResCopyWithImpl<$Res, PaginationRes>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'last_page', defaultValue: 0) int lastPage,
       @JsonKey(name: 'per_page', defaultValue: 0) int perPage,
@@ -68,44 +46,47 @@ abstract class $PaginationResCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PaginationResCopyWithImpl<$Res>
+class _$PaginationResCopyWithImpl<$Res, $Val extends PaginationRes>
     implements $PaginationResCopyWith<$Res> {
   _$PaginationResCopyWithImpl(this._value, this._then);
 
-  final PaginationRes _value;
   // ignore: unused_field
-  final $Res Function(PaginationRes) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? lastPage = freezed,
-    Object? perPage = freezed,
-    Object? total = freezed,
+    Object? lastPage = null,
+    Object? perPage = null,
+    Object? total = null,
   }) {
     return _then(_value.copyWith(
-      lastPage: lastPage == freezed
+      lastPage: null == lastPage
           ? _value.lastPage
           : lastPage // ignore: cast_nullable_to_non_nullable
               as int,
-      perPage: perPage == freezed
+      perPage: null == perPage
           ? _value.perPage
           : perPage // ignore: cast_nullable_to_non_nullable
               as int,
-      total: total == freezed
+      total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$PaginationResCopyWith<$Res>
+abstract class _$$_PaginationResCopyWith<$Res>
     implements $PaginationResCopyWith<$Res> {
-  factory _$PaginationResCopyWith(
-          _PaginationRes value, $Res Function(_PaginationRes) then) =
-      __$PaginationResCopyWithImpl<$Res>;
+  factory _$$_PaginationResCopyWith(
+          _$_PaginationRes value, $Res Function(_$_PaginationRes) then) =
+      __$$_PaginationResCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'last_page', defaultValue: 0) int lastPage,
       @JsonKey(name: 'per_page', defaultValue: 0) int perPage,
@@ -113,32 +94,30 @@ abstract class _$PaginationResCopyWith<$Res>
 }
 
 /// @nodoc
-class __$PaginationResCopyWithImpl<$Res>
-    extends _$PaginationResCopyWithImpl<$Res>
-    implements _$PaginationResCopyWith<$Res> {
-  __$PaginationResCopyWithImpl(
-      _PaginationRes _value, $Res Function(_PaginationRes) _then)
-      : super(_value, (v) => _then(v as _PaginationRes));
+class __$$_PaginationResCopyWithImpl<$Res>
+    extends _$PaginationResCopyWithImpl<$Res, _$_PaginationRes>
+    implements _$$_PaginationResCopyWith<$Res> {
+  __$$_PaginationResCopyWithImpl(
+      _$_PaginationRes _value, $Res Function(_$_PaginationRes) _then)
+      : super(_value, _then);
 
-  @override
-  _PaginationRes get _value => super._value as _PaginationRes;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? lastPage = freezed,
-    Object? perPage = freezed,
-    Object? total = freezed,
+    Object? lastPage = null,
+    Object? perPage = null,
+    Object? total = null,
   }) {
-    return _then(_PaginationRes(
-      lastPage: lastPage == freezed
+    return _then(_$_PaginationRes(
+      lastPage: null == lastPage
           ? _value.lastPage
           : lastPage // ignore: cast_nullable_to_non_nullable
               as int,
-      perPage: perPage == freezed
+      perPage: null == perPage
           ? _value.perPage
           : perPage // ignore: cast_nullable_to_non_nullable
               as int,
-      total: total == freezed
+      total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as int,
@@ -179,36 +158,37 @@ class _$_PaginationRes extends _PaginationRes {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PaginationRes &&
-            const DeepCollectionEquality().equals(other.lastPage, lastPage) &&
-            const DeepCollectionEquality().equals(other.perPage, perPage) &&
-            const DeepCollectionEquality().equals(other.total, total));
+            other is _$_PaginationRes &&
+            (identical(other.lastPage, lastPage) ||
+                other.lastPage == lastPage) &&
+            (identical(other.perPage, perPage) || other.perPage == perPage) &&
+            (identical(other.total, total) || other.total == total));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(lastPage),
-      const DeepCollectionEquality().hash(perPage),
-      const DeepCollectionEquality().hash(total));
 
   @JsonKey(ignore: true)
   @override
-  _$PaginationResCopyWith<_PaginationRes> get copyWith =>
-      __$PaginationResCopyWithImpl<_PaginationRes>(this, _$identity);
+  int get hashCode => Object.hash(runtimeType, lastPage, perPage, total);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PaginationResCopyWith<_$_PaginationRes> get copyWith =>
+      __$$_PaginationResCopyWithImpl<_$_PaginationRes>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PaginationResToJson(this);
+    return _$$_PaginationResToJson(
+      this,
+    );
   }
 }
 
 abstract class _PaginationRes extends PaginationRes {
   const factory _PaginationRes(
-          {@JsonKey(name: 'last_page', defaultValue: 0) required int lastPage,
-          @JsonKey(name: 'per_page', defaultValue: 0) required int perPage,
-          @JsonKey(name: 'total', defaultValue: 0) required int total}) =
-      _$_PaginationRes;
+      {@JsonKey(name: 'last_page', defaultValue: 0) required final int lastPage,
+      @JsonKey(name: 'per_page', defaultValue: 0) required final int perPage,
+      @JsonKey(name: 'total', defaultValue: 0)
+      required final int total}) = _$_PaginationRes;
   const _PaginationRes._() : super._();
 
   factory _PaginationRes.fromJson(Map<String, dynamic> json) =
@@ -225,6 +205,6 @@ abstract class _PaginationRes extends PaginationRes {
   int get total;
   @override
   @JsonKey(ignore: true)
-  _$PaginationResCopyWith<_PaginationRes> get copyWith =>
+  _$$_PaginationResCopyWith<_$_PaginationRes> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'profile_res.dart';
 
@@ -12,40 +12,11 @@ part of 'profile_res.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ProfileRes _$ProfileResFromJson(Map<String, dynamic> json) {
   return _ProfileRes.fromJson(json);
 }
-
-/// @nodoc
-class _$ProfileResTearOff {
-  const _$ProfileResTearOff();
-
-  _ProfileRes call(
-      {@JsonKey(name: 'id', defaultValue: 0) required int id,
-      @JsonKey(name: 'image', defaultValue: '') required String image,
-      @JsonKey(name: 'first_name', defaultValue: '') required String firstName,
-      @JsonKey(name: 'last_name', defaultValue: '') required String lastName,
-      @JsonKey(name: 'level_id', defaultValue: 0) required int levelId,
-      @JsonKey(name: 'username', defaultValue: '') required String username}) {
-    return _ProfileRes(
-      id: id,
-      image: image,
-      firstName: firstName,
-      lastName: lastName,
-      levelId: levelId,
-      username: username,
-    );
-  }
-
-  ProfileRes fromJson(Map<String, Object?> json) {
-    return ProfileRes.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ProfileRes = _$ProfileResTearOff();
 
 /// @nodoc
 mixin _$ProfileRes {
@@ -72,7 +43,8 @@ mixin _$ProfileRes {
 abstract class $ProfileResCopyWith<$Res> {
   factory $ProfileResCopyWith(
           ProfileRes value, $Res Function(ProfileRes) then) =
-      _$ProfileResCopyWithImpl<$Res>;
+      _$ProfileResCopyWithImpl<$Res, ProfileRes>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'id', defaultValue: 0) int id,
       @JsonKey(name: 'image', defaultValue: '') String image,
@@ -83,57 +55,62 @@ abstract class $ProfileResCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProfileResCopyWithImpl<$Res> implements $ProfileResCopyWith<$Res> {
+class _$ProfileResCopyWithImpl<$Res, $Val extends ProfileRes>
+    implements $ProfileResCopyWith<$Res> {
   _$ProfileResCopyWithImpl(this._value, this._then);
 
-  final ProfileRes _value;
   // ignore: unused_field
-  final $Res Function(ProfileRes) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? image = freezed,
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? levelId = freezed,
-    Object? username = freezed,
+    Object? id = null,
+    Object? image = null,
+    Object? firstName = null,
+    Object? lastName = null,
+    Object? levelId = null,
+    Object? username = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      image: image == freezed
+      image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
-      firstName: firstName == freezed
+      firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: lastName == freezed
+      lastName: null == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
-      levelId: levelId == freezed
+      levelId: null == levelId
           ? _value.levelId
           : levelId // ignore: cast_nullable_to_non_nullable
               as int,
-      username: username == freezed
+      username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$ProfileResCopyWith<$Res> implements $ProfileResCopyWith<$Res> {
-  factory _$ProfileResCopyWith(
-          _ProfileRes value, $Res Function(_ProfileRes) then) =
-      __$ProfileResCopyWithImpl<$Res>;
+abstract class _$$_ProfileResCopyWith<$Res>
+    implements $ProfileResCopyWith<$Res> {
+  factory _$$_ProfileResCopyWith(
+          _$_ProfileRes value, $Res Function(_$_ProfileRes) then) =
+      __$$_ProfileResCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'id', defaultValue: 0) int id,
       @JsonKey(name: 'image', defaultValue: '') String image,
@@ -144,46 +121,45 @@ abstract class _$ProfileResCopyWith<$Res> implements $ProfileResCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$ProfileResCopyWithImpl<$Res> extends _$ProfileResCopyWithImpl<$Res>
-    implements _$ProfileResCopyWith<$Res> {
-  __$ProfileResCopyWithImpl(
-      _ProfileRes _value, $Res Function(_ProfileRes) _then)
-      : super(_value, (v) => _then(v as _ProfileRes));
+class __$$_ProfileResCopyWithImpl<$Res>
+    extends _$ProfileResCopyWithImpl<$Res, _$_ProfileRes>
+    implements _$$_ProfileResCopyWith<$Res> {
+  __$$_ProfileResCopyWithImpl(
+      _$_ProfileRes _value, $Res Function(_$_ProfileRes) _then)
+      : super(_value, _then);
 
-  @override
-  _ProfileRes get _value => super._value as _ProfileRes;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? image = freezed,
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? levelId = freezed,
-    Object? username = freezed,
+    Object? id = null,
+    Object? image = null,
+    Object? firstName = null,
+    Object? lastName = null,
+    Object? levelId = null,
+    Object? username = null,
   }) {
-    return _then(_ProfileRes(
-      id: id == freezed
+    return _then(_$_ProfileRes(
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      image: image == freezed
+      image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
-      firstName: firstName == freezed
+      firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: lastName == freezed
+      lastName: null == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
-      levelId: levelId == freezed
+      levelId: null == levelId
           ? _value.levelId
           : levelId // ignore: cast_nullable_to_non_nullable
               as int,
-      username: username == freezed
+      username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
@@ -236,50 +212,48 @@ class _$_ProfileRes extends _ProfileRes {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ProfileRes &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.image, image) &&
-            const DeepCollectionEquality().equals(other.firstName, firstName) &&
-            const DeepCollectionEquality().equals(other.lastName, lastName) &&
-            const DeepCollectionEquality().equals(other.levelId, levelId) &&
-            const DeepCollectionEquality().equals(other.username, username));
+            other is _$_ProfileRes &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.levelId, levelId) || other.levelId == levelId) &&
+            (identical(other.username, username) ||
+                other.username == username));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(image),
-      const DeepCollectionEquality().hash(firstName),
-      const DeepCollectionEquality().hash(lastName),
-      const DeepCollectionEquality().hash(levelId),
-      const DeepCollectionEquality().hash(username));
 
   @JsonKey(ignore: true)
   @override
-  _$ProfileResCopyWith<_ProfileRes> get copyWith =>
-      __$ProfileResCopyWithImpl<_ProfileRes>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType, id, image, firstName, lastName, levelId, username);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ProfileResCopyWith<_$_ProfileRes> get copyWith =>
+      __$$_ProfileResCopyWithImpl<_$_ProfileRes>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProfileResToJson(this);
+    return _$$_ProfileResToJson(
+      this,
+    );
   }
 }
 
 abstract class _ProfileRes extends ProfileRes {
   const factory _ProfileRes(
-      {@JsonKey(name: 'id', defaultValue: 0)
-          required int id,
-      @JsonKey(name: 'image', defaultValue: '')
-          required String image,
+      {@JsonKey(name: 'id', defaultValue: 0) required final int id,
+      @JsonKey(name: 'image', defaultValue: '') required final String image,
       @JsonKey(name: 'first_name', defaultValue: '')
-          required String firstName,
+      required final String firstName,
       @JsonKey(name: 'last_name', defaultValue: '')
-          required String lastName,
-      @JsonKey(name: 'level_id', defaultValue: 0)
-          required int levelId,
+      required final String lastName,
+      @JsonKey(name: 'level_id', defaultValue: 0) required final int levelId,
       @JsonKey(name: 'username', defaultValue: '')
-          required String username}) = _$_ProfileRes;
+      required final String username}) = _$_ProfileRes;
   const _ProfileRes._() : super._();
 
   factory _ProfileRes.fromJson(Map<String, dynamic> json) =
@@ -305,6 +279,6 @@ abstract class _ProfileRes extends ProfileRes {
   String get username;
   @override
   @JsonKey(ignore: true)
-  _$ProfileResCopyWith<_ProfileRes> get copyWith =>
+  _$$_ProfileResCopyWith<_$_ProfileRes> get copyWith =>
       throw _privateConstructorUsedError;
 }

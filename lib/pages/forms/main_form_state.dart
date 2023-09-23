@@ -1647,7 +1647,7 @@ class MainFormState extends ChangeNotifier {
   }) {
     if (editCover.isNotEmpty && inputCover == null) {
       String image = editCover.replaceAll('public', 'storage');
-      String urlImage = APP_URL + image;
+      String urlImage = appUrl + image;
 
       return Container(
         height: 100,

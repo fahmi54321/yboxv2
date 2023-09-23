@@ -1,11 +1,12 @@
 import 'package:intl/intl.dart';
+import 'package:yboxv2/resource/strings.dart';
 
 class Utils {
-  static String DISPLAY_DATE_FORMAT = "dd MMMM yyyy";
-  static String DISPLAY_HOUR_FORMAT = "hh:mm:ss";
-  static String DISPLAY_DATE_FORMAT2 = "dd MMM yyyy";
-  static String SEND_DATE_FORMAT = "dd-MM-yyyy";
-  static String SEND_DATE_FORMAT2 = "yyyy-MM-dd";
+  static String displayDateFormat = "dd MMMM yyyy";
+  static String displayHourFormat = "hh:mm:ss";
+  static String displayDateFormat2 = "dd MMM yyyy";
+  static String sendDateFormat = "dd-MM-yyyy";
+  static String sendDateFormat2 = "yyyy-MM-dd";
 
   // static String dateToString(DateTime time, String format) {
   //   if (time == null) return "";
@@ -19,6 +20,11 @@ class Utils {
     String result = formatCurrency.format(value);
     var rupiah = "Rp. $result,-";
     return rupiah;
+  }
+
+  static String displayImage(String url) {
+    String urlValid = url.replaceAll('public', 'storage');
+    return '$appUrl$urlValid';
   }
 
   // static Future<bool> checkAndRequestCameraPermissions() async {

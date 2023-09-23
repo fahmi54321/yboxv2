@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'transaction_res.dart';
 
@@ -12,34 +12,11 @@ part of 'transaction_res.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 TransactionRes _$TransactionResFromJson(Map<String, dynamic> json) {
   return _TransactionRes.fromJson(json);
 }
-
-/// @nodoc
-class _$TransactionResTearOff {
-  const _$TransactionResTearOff();
-
-  _TransactionRes call(
-      {@JsonKey(name: 'data', defaultValue: [])
-          required List<DataTransactionRes> data,
-      @JsonKey(name: 'pagination')
-          required PaginationRes pagination}) {
-    return _TransactionRes(
-      data: data,
-      pagination: pagination,
-    );
-  }
-
-  TransactionRes fromJson(Map<String, Object?> json) {
-    return TransactionRes.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $TransactionRes = _$TransactionResTearOff();
 
 /// @nodoc
 mixin _$TransactionRes {
@@ -58,7 +35,8 @@ mixin _$TransactionRes {
 abstract class $TransactionResCopyWith<$Res> {
   factory $TransactionResCopyWith(
           TransactionRes value, $Res Function(TransactionRes) then) =
-      _$TransactionResCopyWithImpl<$Res>;
+      _$TransactionResCopyWithImpl<$Res, TransactionRes>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'data', defaultValue: []) List<DataTransactionRes> data,
       @JsonKey(name: 'pagination') PaginationRes pagination});
@@ -67,46 +45,50 @@ abstract class $TransactionResCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TransactionResCopyWithImpl<$Res>
+class _$TransactionResCopyWithImpl<$Res, $Val extends TransactionRes>
     implements $TransactionResCopyWith<$Res> {
   _$TransactionResCopyWithImpl(this._value, this._then);
 
-  final TransactionRes _value;
   // ignore: unused_field
-  final $Res Function(TransactionRes) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = freezed,
-    Object? pagination = freezed,
+    Object? data = null,
+    Object? pagination = null,
   }) {
     return _then(_value.copyWith(
-      data: data == freezed
+      data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as List<DataTransactionRes>,
-      pagination: pagination == freezed
+      pagination: null == pagination
           ? _value.pagination
           : pagination // ignore: cast_nullable_to_non_nullable
               as PaginationRes,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $PaginationResCopyWith<$Res> get pagination {
     return $PaginationResCopyWith<$Res>(_value.pagination, (value) {
-      return _then(_value.copyWith(pagination: value));
+      return _then(_value.copyWith(pagination: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$TransactionResCopyWith<$Res>
+abstract class _$$_TransactionResCopyWith<$Res>
     implements $TransactionResCopyWith<$Res> {
-  factory _$TransactionResCopyWith(
-          _TransactionRes value, $Res Function(_TransactionRes) then) =
-      __$TransactionResCopyWithImpl<$Res>;
+  factory _$$_TransactionResCopyWith(
+          _$_TransactionRes value, $Res Function(_$_TransactionRes) then) =
+      __$$_TransactionResCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'data', defaultValue: []) List<DataTransactionRes> data,
       @JsonKey(name: 'pagination') PaginationRes pagination});
@@ -116,27 +98,25 @@ abstract class _$TransactionResCopyWith<$Res>
 }
 
 /// @nodoc
-class __$TransactionResCopyWithImpl<$Res>
-    extends _$TransactionResCopyWithImpl<$Res>
-    implements _$TransactionResCopyWith<$Res> {
-  __$TransactionResCopyWithImpl(
-      _TransactionRes _value, $Res Function(_TransactionRes) _then)
-      : super(_value, (v) => _then(v as _TransactionRes));
+class __$$_TransactionResCopyWithImpl<$Res>
+    extends _$TransactionResCopyWithImpl<$Res, _$_TransactionRes>
+    implements _$$_TransactionResCopyWith<$Res> {
+  __$$_TransactionResCopyWithImpl(
+      _$_TransactionRes _value, $Res Function(_$_TransactionRes) _then)
+      : super(_value, _then);
 
-  @override
-  _TransactionRes get _value => super._value as _TransactionRes;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = freezed,
-    Object? pagination = freezed,
+    Object? data = null,
+    Object? pagination = null,
   }) {
-    return _then(_TransactionRes(
-      data: data == freezed
-          ? _value.data
+    return _then(_$_TransactionRes(
+      data: null == data
+          ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
               as List<DataTransactionRes>,
-      pagination: pagination == freezed
+      pagination: null == pagination
           ? _value.pagination
           : pagination // ignore: cast_nullable_to_non_nullable
               as PaginationRes,
@@ -150,16 +130,24 @@ class __$TransactionResCopyWithImpl<$Res>
     anyMap: true, explicitToJson: true, checked: true, includeIfNull: false)
 class _$_TransactionRes extends _TransactionRes {
   const _$_TransactionRes(
-      {@JsonKey(name: 'data', defaultValue: []) required this.data,
+      {@JsonKey(name: 'data', defaultValue: [])
+      required final List<DataTransactionRes> data,
       @JsonKey(name: 'pagination') required this.pagination})
-      : super._();
+      : _data = data,
+        super._();
 
   factory _$_TransactionRes.fromJson(Map<String, dynamic> json) =>
       _$$_TransactionResFromJson(json);
 
+  final List<DataTransactionRes> _data;
   @override
   @JsonKey(name: 'data', defaultValue: [])
-  final List<DataTransactionRes> data;
+  List<DataTransactionRes> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
   @override
   @JsonKey(name: 'pagination')
   final PaginationRes pagination;
@@ -173,35 +161,37 @@ class _$_TransactionRes extends _TransactionRes {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TransactionRes &&
-            const DeepCollectionEquality().equals(other.data, data) &&
-            const DeepCollectionEquality()
-                .equals(other.pagination, pagination));
+            other is _$_TransactionRes &&
+            const DeepCollectionEquality().equals(other._data, _data) &&
+            (identical(other.pagination, pagination) ||
+                other.pagination == pagination));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(data),
-      const DeepCollectionEquality().hash(pagination));
 
   @JsonKey(ignore: true)
   @override
-  _$TransactionResCopyWith<_TransactionRes> get copyWith =>
-      __$TransactionResCopyWithImpl<_TransactionRes>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_data), pagination);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_TransactionResCopyWith<_$_TransactionRes> get copyWith =>
+      __$$_TransactionResCopyWithImpl<_$_TransactionRes>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionResToJson(this);
+    return _$$_TransactionResToJson(
+      this,
+    );
   }
 }
 
 abstract class _TransactionRes extends TransactionRes {
   const factory _TransactionRes(
       {@JsonKey(name: 'data', defaultValue: [])
-          required List<DataTransactionRes> data,
+      required final List<DataTransactionRes> data,
       @JsonKey(name: 'pagination')
-          required PaginationRes pagination}) = _$_TransactionRes;
+      required final PaginationRes pagination}) = _$_TransactionRes;
   const _TransactionRes._() : super._();
 
   factory _TransactionRes.fromJson(Map<String, dynamic> json) =
@@ -215,48 +205,13 @@ abstract class _TransactionRes extends TransactionRes {
   PaginationRes get pagination;
   @override
   @JsonKey(ignore: true)
-  _$TransactionResCopyWith<_TransactionRes> get copyWith =>
+  _$$_TransactionResCopyWith<_$_TransactionRes> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 DataTransactionRes _$DataTransactionResFromJson(Map<String, dynamic> json) {
   return _DataTransactionRes.fromJson(json);
 }
-
-/// @nodoc
-class _$DataTransactionResTearOff {
-  const _$DataTransactionResTearOff();
-
-  _DataTransactionRes call(
-      {@JsonKey(name: 'id', defaultValue: 0)
-          required int id,
-      @JsonKey(name: 'member', defaultValue: '')
-          required String member,
-      @JsonKey(name: 'name_on_bank', defaultValue: '')
-          required String nameOnBank,
-      @JsonKey(name: 'request_date', defaultValue: '')
-          required String requestDate,
-      @JsonKey(name: 'status', defaultValue: 0)
-          required int status,
-      @JsonKey(name: 'amount', defaultValue: '')
-          required String amount}) {
-    return _DataTransactionRes(
-      id: id,
-      member: member,
-      nameOnBank: nameOnBank,
-      requestDate: requestDate,
-      status: status,
-      amount: amount,
-    );
-  }
-
-  DataTransactionRes fromJson(Map<String, Object?> json) {
-    return DataTransactionRes.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $DataTransactionRes = _$DataTransactionResTearOff();
 
 /// @nodoc
 mixin _$DataTransactionRes {
@@ -283,7 +238,8 @@ mixin _$DataTransactionRes {
 abstract class $DataTransactionResCopyWith<$Res> {
   factory $DataTransactionResCopyWith(
           DataTransactionRes value, $Res Function(DataTransactionRes) then) =
-      _$DataTransactionResCopyWithImpl<$Res>;
+      _$DataTransactionResCopyWithImpl<$Res, DataTransactionRes>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'id', defaultValue: 0) int id,
       @JsonKey(name: 'member', defaultValue: '') String member,
@@ -294,59 +250,62 @@ abstract class $DataTransactionResCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DataTransactionResCopyWithImpl<$Res>
+class _$DataTransactionResCopyWithImpl<$Res, $Val extends DataTransactionRes>
     implements $DataTransactionResCopyWith<$Res> {
   _$DataTransactionResCopyWithImpl(this._value, this._then);
 
-  final DataTransactionRes _value;
   // ignore: unused_field
-  final $Res Function(DataTransactionRes) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? member = freezed,
-    Object? nameOnBank = freezed,
-    Object? requestDate = freezed,
-    Object? status = freezed,
-    Object? amount = freezed,
+    Object? id = null,
+    Object? member = null,
+    Object? nameOnBank = null,
+    Object? requestDate = null,
+    Object? status = null,
+    Object? amount = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      member: member == freezed
+      member: null == member
           ? _value.member
           : member // ignore: cast_nullable_to_non_nullable
               as String,
-      nameOnBank: nameOnBank == freezed
+      nameOnBank: null == nameOnBank
           ? _value.nameOnBank
           : nameOnBank // ignore: cast_nullable_to_non_nullable
               as String,
-      requestDate: requestDate == freezed
+      requestDate: null == requestDate
           ? _value.requestDate
           : requestDate // ignore: cast_nullable_to_non_nullable
               as String,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as int,
-      amount: amount == freezed
+      amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$DataTransactionResCopyWith<$Res>
+abstract class _$$_DataTransactionResCopyWith<$Res>
     implements $DataTransactionResCopyWith<$Res> {
-  factory _$DataTransactionResCopyWith(
-          _DataTransactionRes value, $Res Function(_DataTransactionRes) then) =
-      __$DataTransactionResCopyWithImpl<$Res>;
+  factory _$$_DataTransactionResCopyWith(_$_DataTransactionRes value,
+          $Res Function(_$_DataTransactionRes) then) =
+      __$$_DataTransactionResCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'id', defaultValue: 0) int id,
       @JsonKey(name: 'member', defaultValue: '') String member,
@@ -357,47 +316,45 @@ abstract class _$DataTransactionResCopyWith<$Res>
 }
 
 /// @nodoc
-class __$DataTransactionResCopyWithImpl<$Res>
-    extends _$DataTransactionResCopyWithImpl<$Res>
-    implements _$DataTransactionResCopyWith<$Res> {
-  __$DataTransactionResCopyWithImpl(
-      _DataTransactionRes _value, $Res Function(_DataTransactionRes) _then)
-      : super(_value, (v) => _then(v as _DataTransactionRes));
+class __$$_DataTransactionResCopyWithImpl<$Res>
+    extends _$DataTransactionResCopyWithImpl<$Res, _$_DataTransactionRes>
+    implements _$$_DataTransactionResCopyWith<$Res> {
+  __$$_DataTransactionResCopyWithImpl(
+      _$_DataTransactionRes _value, $Res Function(_$_DataTransactionRes) _then)
+      : super(_value, _then);
 
-  @override
-  _DataTransactionRes get _value => super._value as _DataTransactionRes;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? member = freezed,
-    Object? nameOnBank = freezed,
-    Object? requestDate = freezed,
-    Object? status = freezed,
-    Object? amount = freezed,
+    Object? id = null,
+    Object? member = null,
+    Object? nameOnBank = null,
+    Object? requestDate = null,
+    Object? status = null,
+    Object? amount = null,
   }) {
-    return _then(_DataTransactionRes(
-      id: id == freezed
+    return _then(_$_DataTransactionRes(
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      member: member == freezed
+      member: null == member
           ? _value.member
           : member // ignore: cast_nullable_to_non_nullable
               as String,
-      nameOnBank: nameOnBank == freezed
+      nameOnBank: null == nameOnBank
           ? _value.nameOnBank
           : nameOnBank // ignore: cast_nullable_to_non_nullable
               as String,
-      requestDate: requestDate == freezed
+      requestDate: null == requestDate
           ? _value.requestDate
           : requestDate // ignore: cast_nullable_to_non_nullable
               as String,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as int,
-      amount: amount == freezed
+      amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as String,
@@ -411,18 +368,13 @@ class __$DataTransactionResCopyWithImpl<$Res>
     anyMap: true, explicitToJson: true, checked: true, includeIfNull: false)
 class _$_DataTransactionRes extends _DataTransactionRes {
   const _$_DataTransactionRes(
-      {@JsonKey(name: 'id', defaultValue: 0)
-          required this.id,
-      @JsonKey(name: 'member', defaultValue: '')
-          required this.member,
-      @JsonKey(name: 'name_on_bank', defaultValue: '')
-          required this.nameOnBank,
+      {@JsonKey(name: 'id', defaultValue: 0) required this.id,
+      @JsonKey(name: 'member', defaultValue: '') required this.member,
+      @JsonKey(name: 'name_on_bank', defaultValue: '') required this.nameOnBank,
       @JsonKey(name: 'request_date', defaultValue: '')
-          required this.requestDate,
-      @JsonKey(name: 'status', defaultValue: 0)
-          required this.status,
-      @JsonKey(name: 'amount', defaultValue: '')
-          required this.amount})
+      required this.requestDate,
+      @JsonKey(name: 'status', defaultValue: 0) required this.status,
+      @JsonKey(name: 'amount', defaultValue: '') required this.amount})
       : super._();
 
   factory _$_DataTransactionRes.fromJson(Map<String, dynamic> json) =>
@@ -456,52 +408,48 @@ class _$_DataTransactionRes extends _DataTransactionRes {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DataTransactionRes &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.member, member) &&
-            const DeepCollectionEquality()
-                .equals(other.nameOnBank, nameOnBank) &&
-            const DeepCollectionEquality()
-                .equals(other.requestDate, requestDate) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other.amount, amount));
+            other is _$_DataTransactionRes &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.member, member) || other.member == member) &&
+            (identical(other.nameOnBank, nameOnBank) ||
+                other.nameOnBank == nameOnBank) &&
+            (identical(other.requestDate, requestDate) ||
+                other.requestDate == requestDate) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.amount, amount) || other.amount == amount));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(member),
-      const DeepCollectionEquality().hash(nameOnBank),
-      const DeepCollectionEquality().hash(requestDate),
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(amount));
 
   @JsonKey(ignore: true)
   @override
-  _$DataTransactionResCopyWith<_DataTransactionRes> get copyWith =>
-      __$DataTransactionResCopyWithImpl<_DataTransactionRes>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType, id, member, nameOnBank, requestDate, status, amount);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_DataTransactionResCopyWith<_$_DataTransactionRes> get copyWith =>
+      __$$_DataTransactionResCopyWithImpl<_$_DataTransactionRes>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DataTransactionResToJson(this);
+    return _$$_DataTransactionResToJson(
+      this,
+    );
   }
 }
 
 abstract class _DataTransactionRes extends DataTransactionRes {
   const factory _DataTransactionRes(
-      {@JsonKey(name: 'id', defaultValue: 0)
-          required int id,
-      @JsonKey(name: 'member', defaultValue: '')
-          required String member,
+      {@JsonKey(name: 'id', defaultValue: 0) required final int id,
+      @JsonKey(name: 'member', defaultValue: '') required final String member,
       @JsonKey(name: 'name_on_bank', defaultValue: '')
-          required String nameOnBank,
+      required final String nameOnBank,
       @JsonKey(name: 'request_date', defaultValue: '')
-          required String requestDate,
-      @JsonKey(name: 'status', defaultValue: 0)
-          required int status,
+      required final String requestDate,
+      @JsonKey(name: 'status', defaultValue: 0) required final int status,
       @JsonKey(name: 'amount', defaultValue: '')
-          required String amount}) = _$_DataTransactionRes;
+      required final String amount}) = _$_DataTransactionRes;
   const _DataTransactionRes._() : super._();
 
   factory _DataTransactionRes.fromJson(Map<String, dynamic> json) =
@@ -527,6 +475,6 @@ abstract class _DataTransactionRes extends DataTransactionRes {
   String get amount;
   @override
   @JsonKey(ignore: true)
-  _$DataTransactionResCopyWith<_DataTransactionRes> get copyWith =>
+  _$$_DataTransactionResCopyWith<_$_DataTransactionRes> get copyWith =>
       throw _privateConstructorUsedError;
 }

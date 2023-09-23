@@ -7,6 +7,7 @@ import 'package:yboxv2/pages/home/details/details_video_page.dart';
 import 'package:yboxv2/pages/home/fragment/audio_fragment.dart';
 import 'package:yboxv2/pages/home/fragment/transaction_fragment.dart';
 import 'package:yboxv2/pages/home/home_page.dart';
+import 'package:yboxv2/pages/loading_page.dart';
 import 'package:yboxv2/pages/login/login_page.dart';
 import 'package:yboxv2/pages/register/register_page.dart';
 import 'package:yboxv2/pages/started/started_page.dart';
@@ -202,6 +203,23 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const MainFormPage(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(0.0, 1.0);
+          const end = Offset.zero;
+          final tween = Tween(begin: begin, end: end);
+          final offsetAnimation = animation.drive(tween);
+
+          return SlideTransition(
+            position: offsetAnimation,
+            child: child,
+          );
+        },
+      );
+
+    case LoadingPage.route:
+      return PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const LoadingPage(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           const begin = Offset(0.0, 1.0);
           const end = Offset.zero;

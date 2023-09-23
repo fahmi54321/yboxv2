@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'constributor_res.dart';
 
@@ -12,49 +12,11 @@ part of 'constributor_res.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ConstributorRes _$ConstributorResFromJson(Map<String, dynamic> json) {
   return _ConstributorRes.fromJson(json);
 }
-
-/// @nodoc
-class _$ConstributorResTearOff {
-  const _$ConstributorResTearOff();
-
-  _ConstributorRes call(
-      {@JsonKey(name: 'id', defaultValue: 0)
-          required int id,
-      @JsonKey(name: 'name', defaultValue: '')
-          required String name,
-      @JsonKey(name: 'role_id', defaultValue: 0)
-          required int roleId,
-      @JsonKey(name: 'share', defaultValue: 0)
-          required int share,
-      @JsonKey(name: 'publishing_id', defaultValue: 0)
-          required int publishingId,
-      @JsonKey(name: 'role_track')
-          RolesRes? roleTrack,
-      @JsonKey(name: 'publising')
-          PublishingRes? publising}) {
-    return _ConstributorRes(
-      id: id,
-      name: name,
-      roleId: roleId,
-      share: share,
-      publishingId: publishingId,
-      roleTrack: roleTrack,
-      publising: publising,
-    );
-  }
-
-  ConstributorRes fromJson(Map<String, Object?> json) {
-    return ConstributorRes.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ConstributorRes = _$ConstributorResTearOff();
 
 /// @nodoc
 mixin _$ConstributorRes {
@@ -83,7 +45,8 @@ mixin _$ConstributorRes {
 abstract class $ConstributorResCopyWith<$Res> {
   factory $ConstributorResCopyWith(
           ConstributorRes value, $Res Function(ConstributorRes) then) =
-      _$ConstributorResCopyWithImpl<$Res>;
+      _$ConstributorResCopyWithImpl<$Res, ConstributorRes>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'id', defaultValue: 0) int id,
       @JsonKey(name: 'name', defaultValue: '') String name,
@@ -98,86 +61,91 @@ abstract class $ConstributorResCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ConstributorResCopyWithImpl<$Res>
+class _$ConstributorResCopyWithImpl<$Res, $Val extends ConstributorRes>
     implements $ConstributorResCopyWith<$Res> {
   _$ConstributorResCopyWithImpl(this._value, this._then);
 
-  final ConstributorRes _value;
   // ignore: unused_field
-  final $Res Function(ConstributorRes) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? roleId = freezed,
-    Object? share = freezed,
-    Object? publishingId = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? roleId = null,
+    Object? share = null,
+    Object? publishingId = null,
     Object? roleTrack = freezed,
     Object? publising = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      roleId: roleId == freezed
+      roleId: null == roleId
           ? _value.roleId
           : roleId // ignore: cast_nullable_to_non_nullable
               as int,
-      share: share == freezed
+      share: null == share
           ? _value.share
           : share // ignore: cast_nullable_to_non_nullable
               as int,
-      publishingId: publishingId == freezed
+      publishingId: null == publishingId
           ? _value.publishingId
           : publishingId // ignore: cast_nullable_to_non_nullable
               as int,
-      roleTrack: roleTrack == freezed
+      roleTrack: freezed == roleTrack
           ? _value.roleTrack
           : roleTrack // ignore: cast_nullable_to_non_nullable
               as RolesRes?,
-      publising: publising == freezed
+      publising: freezed == publising
           ? _value.publising
           : publising // ignore: cast_nullable_to_non_nullable
               as PublishingRes?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $RolesResCopyWith<$Res>? get roleTrack {
     if (_value.roleTrack == null) {
       return null;
     }
 
     return $RolesResCopyWith<$Res>(_value.roleTrack!, (value) {
-      return _then(_value.copyWith(roleTrack: value));
+      return _then(_value.copyWith(roleTrack: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $PublishingResCopyWith<$Res>? get publising {
     if (_value.publising == null) {
       return null;
     }
 
     return $PublishingResCopyWith<$Res>(_value.publising!, (value) {
-      return _then(_value.copyWith(publising: value));
+      return _then(_value.copyWith(publising: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$ConstributorResCopyWith<$Res>
+abstract class _$$_ConstributorResCopyWith<$Res>
     implements $ConstributorResCopyWith<$Res> {
-  factory _$ConstributorResCopyWith(
-          _ConstributorRes value, $Res Function(_ConstributorRes) then) =
-      __$ConstributorResCopyWithImpl<$Res>;
+  factory _$$_ConstributorResCopyWith(
+          _$_ConstributorRes value, $Res Function(_$_ConstributorRes) then) =
+      __$$_ConstributorResCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'id', defaultValue: 0) int id,
       @JsonKey(name: 'name', defaultValue: '') String name,
@@ -194,52 +162,50 @@ abstract class _$ConstributorResCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ConstributorResCopyWithImpl<$Res>
-    extends _$ConstributorResCopyWithImpl<$Res>
-    implements _$ConstributorResCopyWith<$Res> {
-  __$ConstributorResCopyWithImpl(
-      _ConstributorRes _value, $Res Function(_ConstributorRes) _then)
-      : super(_value, (v) => _then(v as _ConstributorRes));
+class __$$_ConstributorResCopyWithImpl<$Res>
+    extends _$ConstributorResCopyWithImpl<$Res, _$_ConstributorRes>
+    implements _$$_ConstributorResCopyWith<$Res> {
+  __$$_ConstributorResCopyWithImpl(
+      _$_ConstributorRes _value, $Res Function(_$_ConstributorRes) _then)
+      : super(_value, _then);
 
-  @override
-  _ConstributorRes get _value => super._value as _ConstributorRes;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? roleId = freezed,
-    Object? share = freezed,
-    Object? publishingId = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? roleId = null,
+    Object? share = null,
+    Object? publishingId = null,
     Object? roleTrack = freezed,
     Object? publising = freezed,
   }) {
-    return _then(_ConstributorRes(
-      id: id == freezed
+    return _then(_$_ConstributorRes(
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      roleId: roleId == freezed
+      roleId: null == roleId
           ? _value.roleId
           : roleId // ignore: cast_nullable_to_non_nullable
               as int,
-      share: share == freezed
+      share: null == share
           ? _value.share
           : share // ignore: cast_nullable_to_non_nullable
               as int,
-      publishingId: publishingId == freezed
+      publishingId: null == publishingId
           ? _value.publishingId
           : publishingId // ignore: cast_nullable_to_non_nullable
               as int,
-      roleTrack: roleTrack == freezed
+      roleTrack: freezed == roleTrack
           ? _value.roleTrack
           : roleTrack // ignore: cast_nullable_to_non_nullable
               as RolesRes?,
-      publising: publising == freezed
+      publising: freezed == publising
           ? _value.publising
           : publising // ignore: cast_nullable_to_non_nullable
               as PublishingRes?,
@@ -253,20 +219,14 @@ class __$ConstributorResCopyWithImpl<$Res>
     anyMap: true, explicitToJson: true, checked: true, includeIfNull: false)
 class _$_ConstributorRes extends _ConstributorRes {
   const _$_ConstributorRes(
-      {@JsonKey(name: 'id', defaultValue: 0)
-          required this.id,
-      @JsonKey(name: 'name', defaultValue: '')
-          required this.name,
-      @JsonKey(name: 'role_id', defaultValue: 0)
-          required this.roleId,
-      @JsonKey(name: 'share', defaultValue: 0)
-          required this.share,
+      {@JsonKey(name: 'id', defaultValue: 0) required this.id,
+      @JsonKey(name: 'name', defaultValue: '') required this.name,
+      @JsonKey(name: 'role_id', defaultValue: 0) required this.roleId,
+      @JsonKey(name: 'share', defaultValue: 0) required this.share,
       @JsonKey(name: 'publishing_id', defaultValue: 0)
-          required this.publishingId,
-      @JsonKey(name: 'role_track')
-          this.roleTrack,
-      @JsonKey(name: 'publising')
-          this.publising})
+      required this.publishingId,
+      @JsonKey(name: 'role_track') this.roleTrack,
+      @JsonKey(name: 'publising') this.publising})
       : super._();
 
   factory _$_ConstributorRes.fromJson(Map<String, dynamic> json) =>
@@ -303,55 +263,49 @@ class _$_ConstributorRes extends _ConstributorRes {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ConstributorRes &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.roleId, roleId) &&
-            const DeepCollectionEquality().equals(other.share, share) &&
-            const DeepCollectionEquality()
-                .equals(other.publishingId, publishingId) &&
-            const DeepCollectionEquality().equals(other.roleTrack, roleTrack) &&
-            const DeepCollectionEquality().equals(other.publising, publising));
+            other is _$_ConstributorRes &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.roleId, roleId) || other.roleId == roleId) &&
+            (identical(other.share, share) || other.share == share) &&
+            (identical(other.publishingId, publishingId) ||
+                other.publishingId == publishingId) &&
+            (identical(other.roleTrack, roleTrack) ||
+                other.roleTrack == roleTrack) &&
+            (identical(other.publising, publising) ||
+                other.publising == publising));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(roleId),
-      const DeepCollectionEquality().hash(share),
-      const DeepCollectionEquality().hash(publishingId),
-      const DeepCollectionEquality().hash(roleTrack),
-      const DeepCollectionEquality().hash(publising));
 
   @JsonKey(ignore: true)
   @override
-  _$ConstributorResCopyWith<_ConstributorRes> get copyWith =>
-      __$ConstributorResCopyWithImpl<_ConstributorRes>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, roleId, share, publishingId, roleTrack, publising);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ConstributorResCopyWith<_$_ConstributorRes> get copyWith =>
+      __$$_ConstributorResCopyWithImpl<_$_ConstributorRes>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ConstributorResToJson(this);
+    return _$$_ConstributorResToJson(
+      this,
+    );
   }
 }
 
 abstract class _ConstributorRes extends ConstributorRes {
   const factory _ConstributorRes(
-      {@JsonKey(name: 'id', defaultValue: 0)
-          required int id,
-      @JsonKey(name: 'name', defaultValue: '')
-          required String name,
-      @JsonKey(name: 'role_id', defaultValue: 0)
-          required int roleId,
-      @JsonKey(name: 'share', defaultValue: 0)
-          required int share,
-      @JsonKey(name: 'publishing_id', defaultValue: 0)
-          required int publishingId,
-      @JsonKey(name: 'role_track')
-          RolesRes? roleTrack,
-      @JsonKey(name: 'publising')
-          PublishingRes? publising}) = _$_ConstributorRes;
+          {@JsonKey(name: 'id', defaultValue: 0) required final int id,
+          @JsonKey(name: 'name', defaultValue: '') required final String name,
+          @JsonKey(name: 'role_id', defaultValue: 0) required final int roleId,
+          @JsonKey(name: 'share', defaultValue: 0) required final int share,
+          @JsonKey(name: 'publishing_id', defaultValue: 0)
+          required final int publishingId,
+          @JsonKey(name: 'role_track') final RolesRes? roleTrack,
+          @JsonKey(name: 'publising') final PublishingRes? publising}) =
+      _$_ConstributorRes;
   const _ConstributorRes._() : super._();
 
   factory _ConstributorRes.fromJson(Map<String, dynamic> json) =
@@ -380,6 +334,6 @@ abstract class _ConstributorRes extends ConstributorRes {
   PublishingRes? get publising;
   @override
   @JsonKey(ignore: true)
-  _$ConstributorResCopyWith<_ConstributorRes> get copyWith =>
+  _$$_ConstributorResCopyWith<_$_ConstributorRes> get copyWith =>
       throw _privateConstructorUsedError;
 }

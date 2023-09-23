@@ -7,10 +7,12 @@ class FormAuth extends StatefulWidget {
   final String hint;
   final String? deskripsi;
   final bool isFormPassword;
+  final TextEditingController? controller;
   const FormAuth({
     Key? key,
     required this.label,
     required this.hint,
+    this.controller,
     this.deskripsi,
     this.isFormPassword = false,
   }) : super(key: key);
@@ -20,7 +22,7 @@ class FormAuth extends StatefulWidget {
 }
 
 class _FormAuthState extends State<FormAuth> {
-  bool obscureText = true;
+  bool obscureText = false;
 
   void changeObsureText() {
     setState(() {
@@ -51,6 +53,7 @@ class _FormAuthState extends State<FormAuth> {
           textColor: black4,
           obscureText: obscureText,
           maxLines: 1,
+          controller: widget.controller,
           suffixIcon: widget.isFormPassword
               ? InkWell(
                   onTap: () {
