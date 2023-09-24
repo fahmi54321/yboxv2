@@ -231,7 +231,7 @@ mixin _$DataAlbumRes {
   @JsonKey(name: 'released_date', defaultValue: '')
   String get releasedDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'label_name')
-  LabelRes? get labelName => throw _privateConstructorUsedError;
+  LeaderRes? get labelName => throw _privateConstructorUsedError;
   @JsonKey(name: 'released_id', defaultValue: 0)
   int get releasedId => throw _privateConstructorUsedError;
   @JsonKey(name: 'upc', defaultValue: 0)
@@ -239,7 +239,7 @@ mixin _$DataAlbumRes {
   @JsonKey(name: 'is_check', defaultValue: 0)
   int get isCheck => throw _privateConstructorUsedError;
   @JsonKey(name: 'label')
-  LabelRes? get labelMain => throw _privateConstructorUsedError;
+  LeaderRes? get labelMain => throw _privateConstructorUsedError;
   @JsonKey(name: 'lang_id')
   LanguageRes? get langId => throw _privateConstructorUsedError;
   @JsonKey(name: 'track_id')
@@ -273,19 +273,19 @@ abstract class $DataAlbumResCopyWith<$Res> {
       @JsonKey(name: 'p_copyright', defaultValue: '') String pCopyright,
       @JsonKey(name: 'c_copyright', defaultValue: '') String cCopyright,
       @JsonKey(name: 'released_date', defaultValue: '') String releasedDate,
-      @JsonKey(name: 'label_name') LabelRes? labelName,
+      @JsonKey(name: 'label_name') LeaderRes? labelName,
       @JsonKey(name: 'released_id', defaultValue: 0) int releasedId,
       @JsonKey(name: 'upc', defaultValue: 0) int upc,
       @JsonKey(name: 'is_check', defaultValue: 0) int isCheck,
-      @JsonKey(name: 'label') LabelRes? labelMain,
+      @JsonKey(name: 'label') LeaderRes? labelMain,
       @JsonKey(name: 'lang_id') LanguageRes? langId,
       @JsonKey(name: 'track_id') TrackIdRes? trackId,
       @JsonKey(name: 'genre_1') GenreRes? genre1,
       @JsonKey(name: 'genre_2') GenreRes? genre2,
       @JsonKey(name: 'user_id') UserRes? user});
 
-  $LabelResCopyWith<$Res>? get labelName;
-  $LabelResCopyWith<$Res>? get labelMain;
+  $LeaderResCopyWith<$Res>? get labelName;
+  $LeaderResCopyWith<$Res>? get labelMain;
   $LanguageResCopyWith<$Res>? get langId;
   $TrackIdResCopyWith<$Res>? get trackId;
   $GenreResCopyWith<$Res>? get genre1;
@@ -366,7 +366,7 @@ class _$DataAlbumResCopyWithImpl<$Res, $Val extends DataAlbumRes>
       labelName: freezed == labelName
           ? _value.labelName
           : labelName // ignore: cast_nullable_to_non_nullable
-              as LabelRes?,
+              as LeaderRes?,
       releasedId: null == releasedId
           ? _value.releasedId
           : releasedId // ignore: cast_nullable_to_non_nullable
@@ -382,7 +382,7 @@ class _$DataAlbumResCopyWithImpl<$Res, $Val extends DataAlbumRes>
       labelMain: freezed == labelMain
           ? _value.labelMain
           : labelMain // ignore: cast_nullable_to_non_nullable
-              as LabelRes?,
+              as LeaderRes?,
       langId: freezed == langId
           ? _value.langId
           : langId // ignore: cast_nullable_to_non_nullable
@@ -408,24 +408,24 @@ class _$DataAlbumResCopyWithImpl<$Res, $Val extends DataAlbumRes>
 
   @override
   @pragma('vm:prefer-inline')
-  $LabelResCopyWith<$Res>? get labelName {
+  $LeaderResCopyWith<$Res>? get labelName {
     if (_value.labelName == null) {
       return null;
     }
 
-    return $LabelResCopyWith<$Res>(_value.labelName!, (value) {
+    return $LeaderResCopyWith<$Res>(_value.labelName!, (value) {
       return _then(_value.copyWith(labelName: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $LabelResCopyWith<$Res>? get labelMain {
+  $LeaderResCopyWith<$Res>? get labelMain {
     if (_value.labelMain == null) {
       return null;
     }
 
-    return $LabelResCopyWith<$Res>(_value.labelMain!, (value) {
+    return $LeaderResCopyWith<$Res>(_value.labelMain!, (value) {
       return _then(_value.copyWith(labelMain: value) as $Val);
     });
   }
@@ -509,11 +509,11 @@ abstract class _$$_DataAlbumResCopyWith<$Res>
       @JsonKey(name: 'p_copyright', defaultValue: '') String pCopyright,
       @JsonKey(name: 'c_copyright', defaultValue: '') String cCopyright,
       @JsonKey(name: 'released_date', defaultValue: '') String releasedDate,
-      @JsonKey(name: 'label_name') LabelRes? labelName,
+      @JsonKey(name: 'label_name') LeaderRes? labelName,
       @JsonKey(name: 'released_id', defaultValue: 0) int releasedId,
       @JsonKey(name: 'upc', defaultValue: 0) int upc,
       @JsonKey(name: 'is_check', defaultValue: 0) int isCheck,
-      @JsonKey(name: 'label') LabelRes? labelMain,
+      @JsonKey(name: 'label') LeaderRes? labelMain,
       @JsonKey(name: 'lang_id') LanguageRes? langId,
       @JsonKey(name: 'track_id') TrackIdRes? trackId,
       @JsonKey(name: 'genre_1') GenreRes? genre1,
@@ -521,9 +521,9 @@ abstract class _$$_DataAlbumResCopyWith<$Res>
       @JsonKey(name: 'user_id') UserRes? user});
 
   @override
-  $LabelResCopyWith<$Res>? get labelName;
+  $LeaderResCopyWith<$Res>? get labelName;
   @override
-  $LabelResCopyWith<$Res>? get labelMain;
+  $LeaderResCopyWith<$Res>? get labelMain;
   @override
   $LanguageResCopyWith<$Res>? get langId;
   @override
@@ -607,7 +607,7 @@ class __$$_DataAlbumResCopyWithImpl<$Res>
       labelName: freezed == labelName
           ? _value.labelName
           : labelName // ignore: cast_nullable_to_non_nullable
-              as LabelRes?,
+              as LeaderRes?,
       releasedId: null == releasedId
           ? _value.releasedId
           : releasedId // ignore: cast_nullable_to_non_nullable
@@ -623,7 +623,7 @@ class __$$_DataAlbumResCopyWithImpl<$Res>
       labelMain: freezed == labelMain
           ? _value.labelMain
           : labelMain // ignore: cast_nullable_to_non_nullable
-              as LabelRes?,
+              as LeaderRes?,
       langId: freezed == langId
           ? _value.langId
           : langId // ignore: cast_nullable_to_non_nullable
@@ -710,7 +710,7 @@ class _$_DataAlbumRes extends _DataAlbumRes {
   final String releasedDate;
   @override
   @JsonKey(name: 'label_name')
-  final LabelRes? labelName;
+  final LeaderRes? labelName;
   @override
   @JsonKey(name: 'released_id', defaultValue: 0)
   final int releasedId;
@@ -722,7 +722,7 @@ class _$_DataAlbumRes extends _DataAlbumRes {
   final int isCheck;
   @override
   @JsonKey(name: 'label')
-  final LabelRes? labelMain;
+  final LeaderRes? labelMain;
   @override
   @JsonKey(name: 'lang_id')
   final LanguageRes? langId;
@@ -833,12 +833,12 @@ abstract class _DataAlbumRes extends DataAlbumRes {
       required final String cCopyright,
       @JsonKey(name: 'released_date', defaultValue: '')
       required final String releasedDate,
-      @JsonKey(name: 'label_name') final LabelRes? labelName,
+      @JsonKey(name: 'label_name') final LeaderRes? labelName,
       @JsonKey(name: 'released_id', defaultValue: 0)
       required final int releasedId,
       @JsonKey(name: 'upc', defaultValue: 0) required final int upc,
       @JsonKey(name: 'is_check', defaultValue: 0) required final int isCheck,
-      @JsonKey(name: 'label') final LabelRes? labelMain,
+      @JsonKey(name: 'label') final LeaderRes? labelMain,
       @JsonKey(name: 'lang_id') final LanguageRes? langId,
       @JsonKey(name: 'track_id') final TrackIdRes? trackId,
       @JsonKey(name: 'genre_1') final GenreRes? genre1,
@@ -878,7 +878,7 @@ abstract class _DataAlbumRes extends DataAlbumRes {
   String get releasedDate;
   @override
   @JsonKey(name: 'label_name')
-  LabelRes? get labelName;
+  LeaderRes? get labelName;
   @override
   @JsonKey(name: 'released_id', defaultValue: 0)
   int get releasedId;
@@ -890,7 +890,7 @@ abstract class _DataAlbumRes extends DataAlbumRes {
   int get isCheck;
   @override
   @JsonKey(name: 'label')
-  LabelRes? get labelMain;
+  LeaderRes? get labelMain;
   @override
   @JsonKey(name: 'lang_id')
   LanguageRes? get langId;

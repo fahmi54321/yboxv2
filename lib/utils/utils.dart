@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:yboxv2/resource/strings.dart';
 
@@ -8,12 +11,11 @@ class Utils {
   static String sendDateFormat = "dd-MM-yyyy";
   static String sendDateFormat2 = "yyyy-MM-dd";
 
-  // static String dateToString(DateTime time, String format) {
-  //   if (time == null) return "";
-  //   var formatter = DateFormat(format);
-  //   String formatted = formatter.format(time);
-  //   return formatted;
-  // }
+  static String dateToString(DateTime time, String format) {
+    var formatter = DateFormat(format);
+    String formatted = formatter.format(time);
+    return formatted;
+  }
 
   static String formatNumberToRupiah(int value) {
     final formatCurrency = NumberFormat("#,##0", "id_ID");
@@ -25,6 +27,23 @@ class Utils {
   static String displayImage(String url) {
     String urlValid = url.replaceAll('public', 'storage');
     return '$appUrl$urlValid';
+  }
+
+  static Future<File?> pilihFoto() async {
+    final picker = ImagePicker();
+    File? pickedImage0;
+
+    final pickedImage = await picker.pickImage(
+      source: ImageSource.gallery,
+    );
+
+    if (pickedImage != null) {
+      final pickedImageFile = File(pickedImage.path);
+      pickedImage0 = pickedImageFile;
+      return pickedImage0;
+    } else {
+      return null;
+    }
   }
 
   // static Future<bool> checkAndRequestCameraPermissions() async {

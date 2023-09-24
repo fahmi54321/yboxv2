@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yboxv2/pages/forms/main_form_state.dart';
+import 'package:yboxv2/pages/forms/main_form_state_2.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/widget/v_text.dart';
 
@@ -19,12 +19,11 @@ class _MainFormPageState extends State<MainFormPage> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => MainFormState(
+      create: (_) => MainFormState2(
         context: context,
-        formCode: '',
       ),
       child: Consumer(
-        builder: (BuildContext context, MainFormState state, _) {
+        builder: (BuildContext context, MainFormState2 state, _) {
           return Scaffold(
             appBar: AppBar(
               foregroundColor: black2,
@@ -37,8 +36,8 @@ class _MainFormPageState extends State<MainFormPage> {
               ),
               elevation: 0,
             ),
-            body: (state.isCompleted == true)
-                ? suksesInput(context: context, message: 'Berhasil')
+            body: state.isLoadingList
+                ? Container()
                 : Stepper(
                     type: StepperType.horizontal,
                     steps: state.listSteps(),
@@ -49,7 +48,7 @@ class _MainFormPageState extends State<MainFormPage> {
                           state.currentStep == state.listSteps().length - 1;
 
                       if (isLastStep) {
-                        state.cekValidasiAlbumForm();
+                        // state.cekValidasiAlbumForm();
                       } else {
                         setState(() {
                           state.currentStep += 1;

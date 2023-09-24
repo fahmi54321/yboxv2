@@ -231,13 +231,13 @@ mixin _$DataVideoRes {
   @JsonKey(name: 'released', defaultValue: '')
   String get released => throw _privateConstructorUsedError;
   @JsonKey(name: 'label_name')
-  LabelRes? get labelName => throw _privateConstructorUsedError;
+  LeaderRes? get labelName => throw _privateConstructorUsedError;
   @JsonKey(name: 'internal_released_id', defaultValue: 0)
   int get internalReleasedId => throw _privateConstructorUsedError;
   @JsonKey(name: 'upc', defaultValue: 0)
   int get upc => throw _privateConstructorUsedError;
   @JsonKey(name: 'label')
-  LabelRes? get labelMain => throw _privateConstructorUsedError;
+  LeaderRes? get labelMain => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_check', defaultValue: 0)
   int get isCheck => throw _privateConstructorUsedError;
   @JsonKey(name: 'lang_id')
@@ -273,11 +273,11 @@ abstract class $DataVideoResCopyWith<$Res> {
       @JsonKey(name: 'p_copyright', defaultValue: '') String pCopyright,
       @JsonKey(name: 'c_copyright', defaultValue: '') String cCopyright,
       @JsonKey(name: 'released', defaultValue: '') String released,
-      @JsonKey(name: 'label_name') LabelRes? labelName,
+      @JsonKey(name: 'label_name') LeaderRes? labelName,
       @JsonKey(name: 'internal_released_id', defaultValue: 0)
       int internalReleasedId,
       @JsonKey(name: 'upc', defaultValue: 0) int upc,
-      @JsonKey(name: 'label') LabelRes? labelMain,
+      @JsonKey(name: 'label') LeaderRes? labelMain,
       @JsonKey(name: 'is_check', defaultValue: 0) int isCheck,
       @JsonKey(name: 'lang_id') LanguageRes? langId,
       @JsonKey(name: 'track_id') TrackIdRes? trackId,
@@ -285,8 +285,8 @@ abstract class $DataVideoResCopyWith<$Res> {
       @JsonKey(name: 'genre_2') GenreRes? genre2,
       @JsonKey(name: 'user_id') UserRes? user});
 
-  $LabelResCopyWith<$Res>? get labelName;
-  $LabelResCopyWith<$Res>? get labelMain;
+  $LeaderResCopyWith<$Res>? get labelName;
+  $LeaderResCopyWith<$Res>? get labelMain;
   $LanguageResCopyWith<$Res>? get langId;
   $TrackIdResCopyWith<$Res>? get trackId;
   $GenreResCopyWith<$Res>? get genre1;
@@ -367,7 +367,7 @@ class _$DataVideoResCopyWithImpl<$Res, $Val extends DataVideoRes>
       labelName: freezed == labelName
           ? _value.labelName
           : labelName // ignore: cast_nullable_to_non_nullable
-              as LabelRes?,
+              as LeaderRes?,
       internalReleasedId: null == internalReleasedId
           ? _value.internalReleasedId
           : internalReleasedId // ignore: cast_nullable_to_non_nullable
@@ -379,7 +379,7 @@ class _$DataVideoResCopyWithImpl<$Res, $Val extends DataVideoRes>
       labelMain: freezed == labelMain
           ? _value.labelMain
           : labelMain // ignore: cast_nullable_to_non_nullable
-              as LabelRes?,
+              as LeaderRes?,
       isCheck: null == isCheck
           ? _value.isCheck
           : isCheck // ignore: cast_nullable_to_non_nullable
@@ -409,24 +409,24 @@ class _$DataVideoResCopyWithImpl<$Res, $Val extends DataVideoRes>
 
   @override
   @pragma('vm:prefer-inline')
-  $LabelResCopyWith<$Res>? get labelName {
+  $LeaderResCopyWith<$Res>? get labelName {
     if (_value.labelName == null) {
       return null;
     }
 
-    return $LabelResCopyWith<$Res>(_value.labelName!, (value) {
+    return $LeaderResCopyWith<$Res>(_value.labelName!, (value) {
       return _then(_value.copyWith(labelName: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $LabelResCopyWith<$Res>? get labelMain {
+  $LeaderResCopyWith<$Res>? get labelMain {
     if (_value.labelMain == null) {
       return null;
     }
 
-    return $LabelResCopyWith<$Res>(_value.labelMain!, (value) {
+    return $LeaderResCopyWith<$Res>(_value.labelMain!, (value) {
       return _then(_value.copyWith(labelMain: value) as $Val);
     });
   }
@@ -510,11 +510,11 @@ abstract class _$$_DataVideoResCopyWith<$Res>
       @JsonKey(name: 'p_copyright', defaultValue: '') String pCopyright,
       @JsonKey(name: 'c_copyright', defaultValue: '') String cCopyright,
       @JsonKey(name: 'released', defaultValue: '') String released,
-      @JsonKey(name: 'label_name') LabelRes? labelName,
+      @JsonKey(name: 'label_name') LeaderRes? labelName,
       @JsonKey(name: 'internal_released_id', defaultValue: 0)
       int internalReleasedId,
       @JsonKey(name: 'upc', defaultValue: 0) int upc,
-      @JsonKey(name: 'label') LabelRes? labelMain,
+      @JsonKey(name: 'label') LeaderRes? labelMain,
       @JsonKey(name: 'is_check', defaultValue: 0) int isCheck,
       @JsonKey(name: 'lang_id') LanguageRes? langId,
       @JsonKey(name: 'track_id') TrackIdRes? trackId,
@@ -523,9 +523,9 @@ abstract class _$$_DataVideoResCopyWith<$Res>
       @JsonKey(name: 'user_id') UserRes? user});
 
   @override
-  $LabelResCopyWith<$Res>? get labelName;
+  $LeaderResCopyWith<$Res>? get labelName;
   @override
-  $LabelResCopyWith<$Res>? get labelMain;
+  $LeaderResCopyWith<$Res>? get labelMain;
   @override
   $LanguageResCopyWith<$Res>? get langId;
   @override
@@ -609,7 +609,7 @@ class __$$_DataVideoResCopyWithImpl<$Res>
       labelName: freezed == labelName
           ? _value.labelName
           : labelName // ignore: cast_nullable_to_non_nullable
-              as LabelRes?,
+              as LeaderRes?,
       internalReleasedId: null == internalReleasedId
           ? _value.internalReleasedId
           : internalReleasedId // ignore: cast_nullable_to_non_nullable
@@ -621,7 +621,7 @@ class __$$_DataVideoResCopyWithImpl<$Res>
       labelMain: freezed == labelMain
           ? _value.labelMain
           : labelMain // ignore: cast_nullable_to_non_nullable
-              as LabelRes?,
+              as LeaderRes?,
       isCheck: null == isCheck
           ? _value.isCheck
           : isCheck // ignore: cast_nullable_to_non_nullable
@@ -711,7 +711,7 @@ class _$_DataVideoRes extends _DataVideoRes {
   final String released;
   @override
   @JsonKey(name: 'label_name')
-  final LabelRes? labelName;
+  final LeaderRes? labelName;
   @override
   @JsonKey(name: 'internal_released_id', defaultValue: 0)
   final int internalReleasedId;
@@ -720,7 +720,7 @@ class _$_DataVideoRes extends _DataVideoRes {
   final int upc;
   @override
   @JsonKey(name: 'label')
-  final LabelRes? labelMain;
+  final LeaderRes? labelMain;
   @override
   @JsonKey(name: 'is_check', defaultValue: 0)
   final int isCheck;
@@ -832,11 +832,11 @@ abstract class _DataVideoRes extends DataVideoRes {
       required final String cCopyright,
       @JsonKey(name: 'released', defaultValue: '')
       required final String released,
-      @JsonKey(name: 'label_name') final LabelRes? labelName,
+      @JsonKey(name: 'label_name') final LeaderRes? labelName,
       @JsonKey(name: 'internal_released_id', defaultValue: 0)
       required final int internalReleasedId,
       @JsonKey(name: 'upc', defaultValue: 0) required final int upc,
-      @JsonKey(name: 'label') final LabelRes? labelMain,
+      @JsonKey(name: 'label') final LeaderRes? labelMain,
       @JsonKey(name: 'is_check', defaultValue: 0) required final int isCheck,
       @JsonKey(name: 'lang_id') final LanguageRes? langId,
       @JsonKey(name: 'track_id') final TrackIdRes? trackId,
@@ -877,7 +877,7 @@ abstract class _DataVideoRes extends DataVideoRes {
   String get released;
   @override
   @JsonKey(name: 'label_name')
-  LabelRes? get labelName;
+  LeaderRes? get labelName;
   @override
   @JsonKey(name: 'internal_released_id', defaultValue: 0)
   int get internalReleasedId;
@@ -886,7 +886,7 @@ abstract class _DataVideoRes extends DataVideoRes {
   int get upc;
   @override
   @JsonKey(name: 'label')
-  LabelRes? get labelMain;
+  LeaderRes? get labelMain;
   @override
   @JsonKey(name: 'is_check', defaultValue: 0)
   int get isCheck;

@@ -4,6 +4,7 @@ import 'package:yboxv2/models/general/label_res.dart';
 import 'package:yboxv2/models/general/language_res.dart';
 import 'package:yboxv2/models/general/pagination_res.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:yboxv2/models/leader/leader_res.dart';
 
 import '../general/genre_res.dart';
 import '../general/user_res.dart';
@@ -51,12 +52,12 @@ class DataAudioRes with _$DataAudioRes {
     @JsonKey(name: 'p_copyright', defaultValue: '') required String pCopyright,
     @JsonKey(name: 'c_copyright', defaultValue: '') required String cCopyright,
     @JsonKey(name: 'released', defaultValue: '') required String released,
-    @JsonKey(name: 'label_name') LabelRes? labelName,
+    @JsonKey(name: 'label_name') LeaderRes? labelName,
     @JsonKey(name: 'internal_released_id', defaultValue: 0)
     required int internalReleasedId,
     @JsonKey(name: 'upc', defaultValue: 0) required int upc,
     @JsonKey(name: 'is_check', defaultValue: 0) required int isCheck,
-    @JsonKey(name: 'label') LabelRes? labelMain,
+    @JsonKey(name: 'label') LeaderRes? labelMain,
     @JsonKey(name: 'lang_id') LanguageRes? langId,
     @JsonKey(name: 'track_id') TrackIdRes? trackId,
     @JsonKey(name: 'genre_1') GenreRes? genre1,

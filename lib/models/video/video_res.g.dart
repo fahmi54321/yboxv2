@@ -53,7 +53,7 @@ _$_DataVideoRes _$$_DataVideoResFromJson(Map json) => $checkedCreate(
               'label_name',
               (v) => v == null
                   ? null
-                  : LabelRes.fromJson(Map<String, dynamic>.from(v as Map))),
+                  : LeaderRes.fromJson(Map<String, dynamic>.from(v as Map))),
           internalReleasedId:
               $checkedConvert('internal_released_id', (v) => v as int? ?? 0),
           upc: $checkedConvert('upc', (v) => v as int? ?? 0),
@@ -61,7 +61,7 @@ _$_DataVideoRes _$$_DataVideoResFromJson(Map json) => $checkedCreate(
               'label',
               (v) => v == null
                   ? null
-                  : LabelRes.fromJson(Map<String, dynamic>.from(v as Map))),
+                  : LeaderRes.fromJson(Map<String, dynamic>.from(v as Map))),
           isCheck: $checkedConvert('is_check', (v) => v as int? ?? 0),
           langId: $checkedConvert(
               'lang_id',

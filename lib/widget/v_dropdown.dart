@@ -6,6 +6,7 @@ import 'package:yboxv2/models/general/publishing_res.dart';
 import 'package:yboxv2/models/general/roles_res.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:yboxv2/models/leader/leader_res.dart';
 
 class VDropDownLanguage extends StatelessWidget {
   final LanguageRes? value;
@@ -248,9 +249,9 @@ class VDropDownPublishing extends StatelessWidget {
 }
 
 class VDropDownLabel extends StatelessWidget {
-  final LabelRes? value;
-  final ValueChanged<LabelRes?>? onChanged;
-  final List<DropdownMenuItem<LabelRes>> items;
+  final LeaderRes? value;
+  final ValueChanged<LeaderRes?>? onChanged;
+  final List<DropdownMenuItem<LeaderRes>> items;
   final double fontSize;
   final Color colorText;
   final FontWeight fontWeight;
@@ -290,7 +291,7 @@ class VDropDownLabel extends StatelessWidget {
           borderRadius: BorderRadius.circular(radius),
           border: Border.all(width: borderWidth, color: borderColor)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<LabelRes>(
+        child: DropdownButton<LeaderRes>(
           isExpanded: true,
           value: value,
           icon: const Icon(Icons.arrow_drop_down),
