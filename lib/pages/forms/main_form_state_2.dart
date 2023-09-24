@@ -71,10 +71,10 @@ class MainFormState2 extends ChangeNotifier {
     await getRoles();
     await getPublishing();
 
+    UtilsLoading.dismiss();
+
     isLoadingList = false;
     notifyListeners();
-
-    UtilsLoading.dismiss();
   }
 
   List<Step> listSteps() {

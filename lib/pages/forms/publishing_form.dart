@@ -21,10 +21,10 @@ class PublishingForm extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  PublishingFormState createState() => PublishingFormState();
+  State<PublishingForm> createState() => _PublishingFormState();
 }
 
-class PublishingFormState extends State<PublishingForm> {
+class _PublishingFormState extends State<PublishingForm> {
   TextEditingController tracksInputContributorName = TextEditingController();
   TextEditingController tracksInputShare = TextEditingController();
 
