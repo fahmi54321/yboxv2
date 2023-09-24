@@ -681,19 +681,20 @@ class MainFormState extends ChangeNotifier {
         content: MainForm(),
       ),
       Step(
-          state: currentStep > 1 ? StepState.complete : StepState.indexed,
-          isActive: currentStep >= 1,
-          title: vText(
-            'Tracks',
-            fontSize: 10,
-            fontWeight: FontWeight.w600,
-          ),
-          content: TrackForm()
-          // content: TrackPage(
-          //   state: this,
-          //   formCode: formCode,
-          // ),
-          ),
+        state: currentStep > 1 ? StepState.complete : StepState.indexed,
+        isActive: currentStep >= 1,
+        title: vText(
+          'Tracks',
+          fontSize: 10,
+          fontWeight: FontWeight.w600,
+        ),
+        content: Container(),
+        // content: TrackForm()
+        // content: TrackPage(
+        //   state: this,
+        //   formCode: formCode,
+        // ),
+      ),
       Step(
           state: currentStep > 2 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 2,

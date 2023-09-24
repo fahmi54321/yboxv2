@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:yboxv2/resource/strings.dart';
@@ -44,6 +45,18 @@ class Utils {
     } else {
       return null;
     }
+  }
+
+  static Future<PlatformFile?> pilihAudio() async {
+    final result = await FilePicker.platform
+        .pickFiles(type: FileType.custom, allowedExtensions: ['mp3']);
+    if (result == null) {
+      return null;
+    }
+
+    PlatformFile file = result.files.first;
+
+    return file;
   }
 
   // static Future<bool> checkAndRequestCameraPermissions() async {

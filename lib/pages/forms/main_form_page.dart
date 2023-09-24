@@ -1,14 +1,25 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:yboxv2/pages/forms/main_form_state_2.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/widget/v_text.dart';
 
+class ArgsMainFormPage {
+  final String fromCode;
+  ArgsMainFormPage({
+    required this.fromCode,
+  });
+}
+
 class MainFormPage extends StatefulWidget {
+  final ArgsMainFormPage args;
   static const route = 'main-form-page';
 
   const MainFormPage({
     Key? key,
+    required this.args,
   }) : super(key: key);
 
   @override
@@ -21,6 +32,7 @@ class _MainFormPageState extends State<MainFormPage> {
     return ChangeNotifierProvider(
       create: (_) => MainFormState2(
         context: context,
+        fromCode: widget.args.fromCode,
       ),
       child: Consumer(
         builder: (BuildContext context, MainFormState2 state, _) {

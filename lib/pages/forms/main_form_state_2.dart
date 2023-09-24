@@ -15,7 +15,8 @@ import 'package:yboxv2/widget/v_text.dart';
 import 'package:flutter/material.dart';
 
 class MainFormState2 extends ChangeNotifier {
-  BuildContext context;
+  final BuildContext context;
+  final String fromCode;
 
   int currentStep = 0;
 
@@ -34,6 +35,11 @@ class MainFormState2 extends ChangeNotifier {
     name: '',
     image: '',
   );
+  LeaderRes trackLabel = const LeaderRes(
+    id: '',
+    name: '',
+    image: '',
+  );
 
   List<LanguageRes> listLanguage = [];
   List<GenreRes> listGenre = [];
@@ -48,6 +54,7 @@ class MainFormState2 extends ChangeNotifier {
 
   MainFormState2({
     required this.context,
+    required this.fromCode,
   }) {
     init();
   }
@@ -99,23 +106,31 @@ class MainFormState2 extends ChangeNotifier {
             fontSize: 10,
             fontWeight: FontWeight.w600,
           ),
-          content: TrackForm()
-          // content: TrackPage(
-          //   state: this,
-          //   formCode: formCode,
-          // ),
-          ),
+          content: TrackForm(
+            formCode: fromCode,
+            genreRes1Tracks: genreRes1Tracks,
+            genreRes2Tracks: genreRes2Tracks,
+            trackLabel: trackLabel,
+            languageResTrack: languageResTrack,
+            listGenre: listGenre,
+            listLabelReq: listLabelReq,
+            listLanguage: listLanguage,
+          )),
       Step(
-          state: currentStep > 2 ? StepState.complete : StepState.indexed,
-          isActive: currentStep >= 2,
-          title: vText(
-            'Publishing',
-            fontSize: 10,
-            fontWeight: FontWeight.w600,
-          ),
-          content: PublishingForm()
-          // content: PublishingPage(state: this),
-          ),
+        state: currentStep > 2 ? StepState.complete : StepState.indexed,
+        isActive: currentStep >= 2,
+        title: vText(
+          'Publishing',
+          fontSize: 10,
+          fontWeight: FontWeight.w600,
+        ),
+        content: PublishingForm(
+          pubRoles: pubRoles,
+          pubPublishings: pubPublishings,
+          listPublishing: listPublishing,
+          listRole: listRole,
+        ),
+      ),
     ];
   }
 
@@ -309,12 +324,21 @@ class MainFormState2 extends ChangeNotifier {
                 name: '',
                 image: '',
               );
-          debugPrint('data album ada');
-          debugPrint(mainLabel.id);
-          debugPrint(mainLabel.name);
+          trackLabel = dataAlbumRes?.labelName ??
+              const LeaderRes(
+                id: '',
+                name: '',
+                image: '',
+              );
           notifyListeners();
         } else if (dataVideoRes?.labelName != null) {
           mainLabel = dataVideoRes?.labelName ??
+              const LeaderRes(
+                id: '',
+                name: '',
+                image: '',
+              );
+          trackLabel = dataAlbumRes?.labelName ??
               const LeaderRes(
                 id: '',
                 name: '',
@@ -328,9 +352,16 @@ class MainFormState2 extends ChangeNotifier {
                 name: '',
                 image: '',
               );
+          trackLabel = dataAlbumRes?.labelName ??
+              const LeaderRes(
+                id: '',
+                name: '',
+                image: '',
+              );
           notifyListeners();
         } else {
           mainLabel = cat[0];
+          trackLabel = cat[0];
           notifyListeners();
         }
       },

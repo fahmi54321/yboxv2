@@ -1,15 +1,33 @@
-import 'package:yboxv2/resource/CPColors.dart';
-import 'package:yboxv2/widget/v_text.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
+import 'package:yboxv2/models/general/publishing_res.dart';
+import 'package:yboxv2/models/general/roles_res.dart';
+import 'package:yboxv2/resource/CPColors.dart';
+import 'package:yboxv2/widget/v_dropdown.dart';
+import 'package:yboxv2/widget/v_text.dart';
+
 class PublishingForm extends StatefulWidget {
-  const PublishingForm({super.key});
+  RolesRes? pubRoles;
+  PublishingRes? pubPublishings;
+  final List<PublishingRes> listPublishing;
+  final List<RolesRes> listRole;
+  PublishingForm({
+    Key? key,
+    this.pubRoles,
+    this.pubPublishings,
+    this.listPublishing = const [],
+    this.listRole = const [],
+  }) : super(key: key);
 
   @override
   PublishingFormState createState() => PublishingFormState();
 }
 
 class PublishingFormState extends State<PublishingForm> {
+  TextEditingController tracksInputContributorName = TextEditingController();
+  TextEditingController tracksInputShare = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -47,23 +65,26 @@ class PublishingFormState extends State<PublishingForm> {
           color: black7,
         ),
         const SizedBox(height: 8),
-        // VDropDownPublishing(
-        //   value: widget.state.pubPublishings,
-        //   onChanged: (PublishingRes? data) {
-        //     setState(() {
-        //       widget.state.pubPublishings = data;
-        //     });
-        //   },
-        //   items: widget.state.listPublishing
-        //       .map<DropdownMenuItem<PublishingRes>>((PublishingRes value) {
-        //     return DropdownMenuItem<PublishingRes>(
-        //       value: value,
-        //       child: Text(value.name),
-        //     );
-        //   }).toList(),
-        //   borderColor: CPPrimaryColor.withOpacity(0.1),
-        //   icon: const Icon(Icons.arrow_drop_down),
-        // ),
+        VDropDownPublishing(
+          radius: 8.0,
+          fontSize: 14.0,
+          colorText: grey7,
+          borderColor: grey10,
+          value: widget.pubPublishings,
+          onChanged: (PublishingRes? data) {
+            setState(() {
+              widget.pubPublishings = data;
+            });
+          },
+          items: widget.listPublishing
+              .map<DropdownMenuItem<PublishingRes>>((PublishingRes value) {
+            return DropdownMenuItem<PublishingRes>(
+              value: value,
+              child: Text(value.name),
+            );
+          }).toList(),
+          icon: const Icon(Icons.arrow_drop_down),
+        ),
       ],
     );
   }
@@ -91,6 +112,7 @@ class PublishingFormState extends State<PublishingForm> {
           textColor: grey7,
           keyboardType: TextInputType.number,
           fillColor: Theme.of(context).colorScheme.onPrimary,
+          controller: tracksInputShare,
         ),
       ],
     );
@@ -107,23 +129,26 @@ class PublishingFormState extends State<PublishingForm> {
           color: black7,
         ),
         const SizedBox(height: 8),
-        // VDropDownRole(
-        //   value: widget.state.pubRoles,
-        //   onChanged: (RolesRes? data) {
-        //     setState(() {
-        //       widget.state.pubRoles = data;
-        //     });
-        //   },
-        //   items: widget.state.listRole
-        //       .map<DropdownMenuItem<RolesRes>>((RolesRes value) {
-        //     return DropdownMenuItem<RolesRes>(
-        //       value: value,
-        //       child: Text(value.name),
-        //     );
-        //   }).toList(),
-        //   borderColor: CPPrimaryColor.withOpacity(0.1),
-        //   icon: const Icon(Icons.arrow_drop_down),
-        // ),
+        VDropDownRole(
+          radius: 8.0,
+          fontSize: 14.0,
+          colorText: grey7,
+          borderColor: grey10,
+          value: widget.pubRoles,
+          onChanged: (RolesRes? data) {
+            setState(() {
+              widget.pubRoles = data;
+            });
+          },
+          items:
+              widget.listRole.map<DropdownMenuItem<RolesRes>>((RolesRes value) {
+            return DropdownMenuItem<RolesRes>(
+              value: value,
+              child: Text(value.name),
+            );
+          }).toList(),
+          icon: const Icon(Icons.arrow_drop_down),
+        ),
       ],
     );
   }
@@ -149,6 +174,7 @@ class PublishingFormState extends State<PublishingForm> {
           hintTextColor: grey4,
           textColor: grey7,
           fillColor: Theme.of(context).colorScheme.onPrimary,
+          controller: tracksInputContributorName,
         ),
       ],
     );

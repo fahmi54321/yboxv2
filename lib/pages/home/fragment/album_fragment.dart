@@ -47,6 +47,9 @@ class CartFragmentState extends State<AlbumFragment> {
                     Navigator.pushNamed(
                       context,
                       MainFormPage.route,
+                      arguments: ArgsMainFormPage(
+                        fromCode: 'album',
+                      ),
                     );
                   },
                   splashColor: primaryColor.withOpacity(0.50),
