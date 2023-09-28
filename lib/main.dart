@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:provider/provider.dart';
 import 'package:yboxv2/pages/loading_page.dart';
+import 'package:yboxv2/pages/provider/data_album.dart';
 import 'package:yboxv2/resource/color_schemes.g.dart';
 import 'package:yboxv2/router/router.dart' as router;
 
@@ -30,17 +32,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: LoadingPage.route,
-      onGenerateRoute: router.generateRoute,
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: yboxLightColorScheme,
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<DataAlbum>(
+          create: (_) => DataAlbum(),
+        ),
+      ],
+      child: MaterialApp(
+        initialRoute: LoadingPage.route,
+        onGenerateRoute: router.generateRoute,
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: yboxLightColorScheme,
+          useMaterial3: true,
+        ),
+        home: const LoadingPage(),
+        builder: EasyLoading.init(),
       ),
-      home: const LoadingPage(),
-      builder: EasyLoading.init(),
     );
   }
 }

@@ -85,8 +85,7 @@ class HTTPAlbumService {
     debugPrint('response getAlbum : ${response.data}');
 
     if (response.statusCode == 200) {
-      final result =
-          AlbumRes.fromJson(response.data['data'] as Map<String, dynamic>);
+      final result = AlbumRes.fromJson(response.data as Map<String, dynamic>);
       return Right(result);
     } else {
       return const Left('Terjadi kesalahan');

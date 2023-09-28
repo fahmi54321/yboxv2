@@ -1,9 +1,11 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:yboxv2/models/general/genre_res.dart';
 import 'package:yboxv2/models/general/language_res.dart';
 import 'package:yboxv2/models/leader/leader_res.dart';
+import 'package:yboxv2/pages/provider/data_album.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/utils/utils.dart';
 import 'package:yboxv2/widget/v_dropdown.dart';
@@ -20,7 +22,7 @@ class TrackForm extends StatefulWidget {
   final List<LanguageRes> listLanguage;
   final String formCode;
   TrackForm({
-    Key? key,
+    super.key,
     required this.formCode,
     this.genreRes1Tracks,
     this.genreRes2Tracks,
@@ -29,7 +31,7 @@ class TrackForm extends StatefulWidget {
     this.listGenre = const [],
     this.listLabelReq = const [],
     this.listLanguage = const [],
-  }) : super(key: key);
+  });
 
   @override
   State<TrackForm> createState() => _TrackFormState();
@@ -72,6 +74,39 @@ class _TrackFormState extends State<TrackForm> {
   int tracksSelectInputIsrcCode = 0;
   int tracksSelectInputExplicitLyrics = 0;
   int tracksSelectInputTrackSong = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    tracksInputTitleRelease.addListener(tracksInputTitleReleaseListener);
+    tracksInputTitleVersion.addListener(tracksInputTitleVersionListener);
+    tracksInputArtist.addListener(tracksInputArtistListener);
+    tracksInputArtistSpotify.addListener(tracksInputArtistSpotifyListener);
+    tracksInputArtistApple.addListener(tracksInputArtistAppleListener);
+    tracksInputLyrics.addListener(tracksInputLyricsListener);
+    tracksInputCopyrightP.addListener(tracksInputCopyrightPListener);
+    tracksInputCopyrightC.addListener(tracksInputCopyrightCListener);
+    tracksInputInternalTracksId
+        .addListener(tracksInputInternalTracksIdListener);
+    tracksInputIsrcCode.addListener(tracksInputIsrcCodeListener);
+  }
+
+  @override
+  void dispose() {
+    tracksInputTitleRelease.removeListener(tracksInputTitleReleaseListener);
+    tracksInputTitleVersion.removeListener(tracksInputTitleVersionListener);
+    tracksInputArtist.removeListener(tracksInputArtistListener);
+    tracksInputArtistSpotify.removeListener(tracksInputArtistSpotifyListener);
+    tracksInputArtistApple.removeListener(tracksInputArtistAppleListener);
+    tracksInputLyrics.removeListener(tracksInputLyricsListener);
+    tracksInputCopyrightP.removeListener(tracksInputCopyrightPListener);
+    tracksInputCopyrightC.removeListener(tracksInputCopyrightCListener);
+    tracksInputInternalTracksId
+        .removeListener(tracksInputInternalTracksIdListener);
+    tracksInputIsrcCode.removeListener(tracksInputIsrcCodeListener);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -176,6 +211,11 @@ class _TrackFormState extends State<TrackForm> {
                       setState(() {
                         widget.genreRes1Tracks = data;
                       });
+                      if (data != null) {
+                        context
+                            .read<DataAlbum>()
+                            .updateGenreInfo(data.id.toString());
+                      }
                     },
                     items: widget.listGenre
                         .map<DropdownMenuItem<GenreRes>>((GenreRes value) {
@@ -212,6 +252,11 @@ class _TrackFormState extends State<TrackForm> {
                       setState(() {
                         widget.genreRes2Tracks = data;
                       });
+                      if (data != null) {
+                        context
+                            .read<DataAlbum>()
+                            .updateGenre2Info(data.id.toString());
+                      }
                     },
                     items: widget.listGenre
                         .map<DropdownMenuItem<GenreRes>>((GenreRes value) {
@@ -323,6 +368,10 @@ class _TrackFormState extends State<TrackForm> {
                                   image: '',
                                 );
                           });
+
+                          if (data != null) {
+                            context.read<DataAlbum>().updateLabelInfo(data.id);
+                          }
                         },
                         items: widget.listLabelReq
                             .map<DropdownMenuItem<LeaderRes>>(
@@ -483,6 +532,8 @@ class _TrackFormState extends State<TrackForm> {
                     setState(() {
                       tracksSelectInputExplicitLyrics = val ?? 0;
                     });
+                    context.read<DataAlbum>().updateRdolyrics(
+                        tracksSelectInputExplicitLyrics.toString());
                   },
                   activeColor: primaryColor,
                 ),
@@ -505,6 +556,8 @@ class _TrackFormState extends State<TrackForm> {
                     setState(() {
                       tracksSelectInputExplicitLyrics = val ?? 0;
                     });
+                    context.read<DataAlbum>().updateRdolyrics(
+                        tracksSelectInputExplicitLyrics.toString());
                   },
                   activeColor: primaryColor,
                 ),
@@ -555,6 +608,9 @@ class _TrackFormState extends State<TrackForm> {
                     setState(() {
                       tracksSelectInputTrackSong = val ?? 0;
                     });
+
+                    context.read<DataAlbum>().updateRdothisTracks(
+                        tracksSelectInputTrackSong.toString());
                   },
                   activeColor: primaryColor,
                 ),
@@ -577,6 +633,8 @@ class _TrackFormState extends State<TrackForm> {
                     setState(() {
                       tracksSelectInputTrackSong = val ?? 0;
                     });
+                    context.read<DataAlbum>().updateRdothisTracks(
+                        tracksSelectInputTrackSong.toString());
                   },
                   activeColor: primaryColor,
                 ),
@@ -862,6 +920,12 @@ class _TrackFormState extends State<TrackForm> {
             setState(() {
               widget.languageResTrack = data;
             });
+
+            if (data != null) {
+              context
+                  .read<DataAlbum>()
+                  .updateLanguageTrackId(data.id.toString());
+            }
           },
           items: widget.listLanguage
               .map<DropdownMenuItem<LanguageRes>>((LanguageRes value) {
@@ -907,6 +971,10 @@ class _TrackFormState extends State<TrackForm> {
                       audio = fileAudio;
                       fileNameAudio = fileName;
                       sizeAudio = fileSize;
+                    });
+
+                    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                      context.read<DataAlbum>().updateAudio(fileAudio);
                     });
                   }
                 },
@@ -964,8 +1032,9 @@ class _TrackFormState extends State<TrackForm> {
         height: 50,
         margin: const EdgeInsets.only(right: 20),
         decoration: BoxDecoration(
-          color: primaryColor,
+          color: Theme.of(context).colorScheme.onPrimary,
           borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: primaryColor),
         ),
         child: Center(
           child: vText(
@@ -990,6 +1059,72 @@ class _TrackFormState extends State<TrackForm> {
           color: primaryColor,
         ),
       );
+    }
+  }
+
+  void tracksInputTitleReleaseListener() {
+    if (tracksInputTitleRelease.text.isNotEmpty) {
+      context.read<DataAlbum>().updateTrackTitle(tracksInputTitleRelease.text);
+    }
+  }
+
+  void tracksInputTitleVersionListener() {
+    if (tracksInputTitleVersion.text.isNotEmpty) {
+      context
+          .read<DataAlbum>()
+          .updateTitleVersionTrack(tracksInputTitleVersion.text);
+    }
+  }
+
+  void tracksInputArtistListener() {
+    if (tracksInputArtist.text.isNotEmpty) {
+      context.read<DataAlbum>().updateArtistTrack(tracksInputArtist.text);
+    }
+  }
+
+  void tracksInputArtistSpotifyListener() {
+    if (tracksInputArtistSpotify.text.isNotEmpty) {
+      context
+          .read<DataAlbum>()
+          .updateSpotifyTrack(tracksInputArtistSpotify.text);
+    }
+  }
+
+  void tracksInputArtistAppleListener() {
+    if (tracksInputArtistApple.text.isNotEmpty) {
+      context.read<DataAlbum>().updateItunesTrack(tracksInputArtistApple.text);
+    }
+  }
+
+  void tracksInputLyricsListener() {
+    if (tracksInputLyrics.text.isNotEmpty) {
+      context.read<DataAlbum>().updateLirik(tracksInputLyrics.text);
+    }
+  }
+
+  void tracksInputCopyrightPListener() {
+    if (tracksInputCopyrightP.text.isNotEmpty) {
+      context.read<DataAlbum>().updatePCopy(tracksInputCopyrightP.text);
+    }
+  }
+
+  void tracksInputCopyrightCListener() {
+    if (tracksInputCopyrightC.text.isNotEmpty) {
+      context.read<DataAlbum>().updateStartTime(tracksInputCopyrightC.text);
+    }
+  }
+
+  void tracksInputInternalTracksIdListener() {
+    if (tracksInputInternalTracksId.text.isNotEmpty) {
+      context
+          .read<DataAlbum>()
+          .updateTrackIdInfo(tracksInputInternalTracksId.text);
+    }
+  }
+
+  void tracksInputIsrcCodeListener() {
+    if (tracksInputIsrcCode.text.isNotEmpty) {
+      context.read<DataAlbum>().updateIsrc(tracksInputIsrcCode.text);
     }
   }
 }

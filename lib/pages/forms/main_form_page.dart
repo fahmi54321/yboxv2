@@ -1,8 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:yboxv2/pages/forms/main_form_state_2.dart';
+import 'package:yboxv2/pages/forms/utils_validation_form.dart';
+import 'package:yboxv2/pages/provider/data_album.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/widget/v_text.dart';
 
@@ -27,6 +30,14 @@ class MainFormPage extends StatefulWidget {
 }
 
 class _MainFormPageState extends State<MainFormPage> {
+  late DataAlbum dataAlbumProvider;
+
+  @override
+  void initState() {
+    super.initState();
+    dataAlbumProvider = context.read<DataAlbum>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -55,16 +66,31 @@ class _MainFormPageState extends State<MainFormPage> {
                     steps: state.listSteps(),
                     currentStep: state.currentStep,
                     elevation: 0.0,
-                    onStepContinue: () {
+                    onStepContinue: () async {
                       final isLastStep =
                           state.currentStep == state.listSteps().length - 1;
 
+                      debugPrint('isLastStep $isLastStep');
+                      debugPrint('currentStep ${state.currentStep}');
+
                       if (isLastStep) {
-                        // state.cekValidasiAlbumForm();
+                        // FormData? formData =
+                        //     await UtilsValidationForm.cekValidasiAlbum(
+                        //   data: dataAlbumProvider.state,
+                        //   isEdit: false,
+                        // );
+
+                        // if (formData != null) {
+                        //   state.saveAlbum(formData);
+                        // }
                       } else {
-                        setState(() {
-                          state.currentStep += 1;
-                        });
+                        try {
+                          setState(() {
+                            state.currentStep += 1;
+                          });
+                        } catch (e) {
+                          debugPrint('$e');
+                        }
                       }
                     },
                     onStepCancel: state.currentStep == 0
@@ -79,66 +105,66 @@ class _MainFormPageState extends State<MainFormPage> {
                         state.currentStep = step;
                       });
                     },
-                    controlsBuilder:
-                        (BuildContext context, ControlsDetails details) {
-                      final isLastStep =
-                          state.currentStep == state.listSteps().length - 1;
+                    // controlsBuilder:
+                    //     (BuildContext context, ControlsDetails details) {
+                    //   final isLastStep =
+                    //       state.currentStep == state.listSteps().length - 1;
 
-                      return Row(
-                        children: <Widget>[
-                          if (state.currentStep != 0)
-                            Expanded(
-                              child: OutlinedButton(
-                                onPressed: details.onStepCancel,
-                                style: OutlinedButton.styleFrom(
-                                  alignment: Alignment.center,
-                                  fixedSize: Size(
-                                      MediaQuery.of(context).size.width, 45.0),
-                                  backgroundColor: primaryColor,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                      5.0,
-                                    ),
-                                  ),
-                                  side: const BorderSide(color: primaryColor),
-                                ),
-                                child: vText(
-                                  'Sebelumnya',
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.w700,
-                                  color: white1,
-                                ),
-                              ),
-                            ),
-                          if (state.currentStep != 0) const SizedBox(width: 20),
-                          Expanded(
-                            child: OutlinedButton(
-                              onPressed: details.onStepContinue,
-                              style: OutlinedButton.styleFrom(
-                                alignment: Alignment.center,
-                                fixedSize: Size(
-                                    MediaQuery.of(context).size.width, 45.0),
-                                backgroundColor: primaryColor,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    5.0,
-                                  ),
-                                ),
-                                side: const BorderSide(color: primaryColor),
-                              ),
-                              child: vText(
-                                state.setTextButton(
-                                  isLastStep: isLastStep,
-                                ),
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.w700,
-                                color: white1,
-                              ),
-                            ),
-                          ),
-                        ],
-                      );
-                    },
+                    //   return Row(
+                    //     children: <Widget>[
+                    //       if (state.currentStep != 0)
+                    //         Expanded(
+                    //           child: OutlinedButton(
+                    //             onPressed: details.onStepCancel,
+                    //             style: OutlinedButton.styleFrom(
+                    //               alignment: Alignment.center,
+                    //               fixedSize: Size(
+                    //                   MediaQuery.of(context).size.width, 45.0),
+                    //               backgroundColor: primaryColor,
+                    //               shape: RoundedRectangleBorder(
+                    //                 borderRadius: BorderRadius.circular(
+                    //                   5.0,
+                    //                 ),
+                    //               ),
+                    //               side: const BorderSide(color: primaryColor),
+                    //             ),
+                    //             child: vText(
+                    //               'Sebelumnya',
+                    //               fontSize: 14.0,
+                    //               fontWeight: FontWeight.w700,
+                    //               color: white1,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       if (state.currentStep != 0) const SizedBox(width: 20),
+                    //       Expanded(
+                    //         child: OutlinedButton(
+                    //           onPressed: details.onStepContinue,
+                    //           style: OutlinedButton.styleFrom(
+                    //             alignment: Alignment.center,
+                    //             fixedSize: Size(
+                    //                 MediaQuery.of(context).size.width, 45.0),
+                    //             backgroundColor: primaryColor,
+                    //             shape: RoundedRectangleBorder(
+                    //               borderRadius: BorderRadius.circular(
+                    //                 5.0,
+                    //               ),
+                    //             ),
+                    //             side: const BorderSide(color: primaryColor),
+                    //           ),
+                    //           child: vText(
+                    //             state.setTextButton(
+                    //               isLastStep: isLastStep,
+                    //             ),
+                    //             fontSize: 14.0,
+                    //             fontWeight: FontWeight.w700,
+                    //             color: white1,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   );
+                    // },
                   ),
           );
         },

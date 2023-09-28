@@ -1,12 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yboxv2/anim/animation_main_form.dart';
 import 'package:yboxv2/models/general/genre_res.dart';
 
 import 'package:yboxv2/models/general/language_res.dart';
 import 'package:yboxv2/models/leader/leader_res.dart';
 import 'package:yboxv2/pages/forms/widget/cover_image.dart';
+import 'package:yboxv2/pages/provider/data_album.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/utils/utils.dart';
 import 'package:yboxv2/widget/v_dropdown.dart';
@@ -50,7 +52,6 @@ class _MainFormState extends State<MainForm>
         duration: const Duration(
           milliseconds: 1780,
         ));
-    _controller.forward();
   }
 
   @override
@@ -155,27 +156,72 @@ class _MainFormWidgetState extends State<MainFormWidget> {
     'You may not use a third-party logo or trademark without the express written permission from the trademark holder.',
   ];
 
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    setState(() {
+      isLoading = true;
+    });
+
+    inputTitleRelease.addListener(inputTitleReleaseListener);
+    inputTitleVersion.addListener(inputTitleVersionListener);
+    inputArtist.addListener(inputArtistListener);
+    inputArtistSpotify.addListener(inputArtistSpotifyListener);
+    inputArtistApple.addListener(inputArtistAppleListener);
+    inputCopyrightP.addListener(inputCopyrightPListener);
+    inputCopyrightC.addListener(inputCopyrightCListener);
+    inputPrevReleased.addListener(inputPrevReleasedListener);
+    inputReleaseId.addListener(inputReleaseIdListener);
+    inputUpc.addListener(inputUpcListener);
+
+    setState(() {
+      isLoading = false;
+    });
+
+    widget.controller.forward();
+  }
+
+  @override
+  void dispose() {
+    inputTitleRelease.removeListener(inputTitleReleaseListener);
+    inputTitleVersion.removeListener(inputTitleVersionListener);
+    inputArtist.removeListener(inputArtistListener);
+    inputArtistSpotify.removeListener(inputArtistSpotifyListener);
+    inputArtistApple.removeListener(inputArtistAppleListener);
+    inputCopyrightP.removeListener(inputCopyrightPListener);
+    inputCopyrightC.removeListener(inputCopyrightCListener);
+    inputPrevReleased.removeListener(inputPrevReleasedListener);
+    inputReleaseId.removeListener(inputReleaseIdListener);
+    inputUpc.removeListener(inputUpcListener);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-        animation: widget.animation.controller,
-        builder: (BuildContext context, Widget? child) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              coverImage(),
-              const SizedBox(height: 15),
-              languageWidget(),
-              const SizedBox(height: 15),
-              titleWidget(context),
-              const SizedBox(height: 15),
-              artistWidget(),
-              const SizedBox(height: 15),
-              infoWidget(),
-              const SizedBox(height: 15),
-            ],
-          );
-        });
+    return isLoading
+        ? Container()
+        : AnimatedBuilder(
+            animation: widget.animation.controller,
+            builder: (BuildContext context, Widget? child) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  coverImage(),
+                  const SizedBox(height: 15),
+                  languageWidget(),
+                  const SizedBox(height: 15),
+                  titleWidget(context),
+                  const SizedBox(height: 15),
+                  artistWidget(),
+                  const SizedBox(height: 15),
+                  infoWidget(),
+                  const SizedBox(height: 15),
+                ],
+              );
+            });
   }
 
   Widget titleWidget(BuildContext context) {
@@ -285,6 +331,10 @@ class _MainFormWidgetState extends State<MainFormWidget> {
               setState(() {
                 widget.languageResMain = data;
               });
+
+              if (data != null) {
+                context.read<DataAlbum>().updateLanguageId(data.id.toString());
+              }
             },
             items: widget.listLanguage
                 .map<DropdownMenuItem<LanguageRes>>((LanguageRes value) {
@@ -334,6 +384,10 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                     if (file != null) {
                       setState(() {
                         coverImageFile = file;
+                      });
+
+                      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                        context.read<DataAlbum>().updateCoverImage(file);
                       });
                     }
                   },
@@ -415,6 +469,11 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                         setState(() {
                           widget.genreRes1Main = data;
                         });
+                        if (data != null) {
+                          context
+                              .read<DataAlbum>()
+                              .updateGenre(data.id.toString());
+                        }
                       },
                       items: widget.listGenre
                           .map<DropdownMenuItem<GenreRes>>((GenreRes value) {
@@ -451,6 +510,12 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                         setState(() {
                           widget.genreRes2Main = data;
                         });
+
+                        if (data != null) {
+                          context
+                              .read<DataAlbum>()
+                              .updateGenre2(data.id.toString());
+                        }
                       },
                       items: widget.listGenre
                           .map<DropdownMenuItem<GenreRes>>((GenreRes value) {
@@ -578,40 +643,56 @@ class _MainFormWidgetState extends State<MainFormWidget> {
           ),
           Visibility(
             visible: (selectInputPrevRelease == yesInputPrevRelease),
-            child: InkWell(
-              onTap: () async {
-                DateTime? newDate = await showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime(2000),
-                  lastDate: DateTime.now(),
-                );
-
-                // if 'Cancel' => null
-                if (newDate == null) return;
-
-                //if 'Ok' => DateTime
-                setState(() {
-                  inputPrevReleased.text = Utils.dateToString(
-                    newDate,
-                    Utils.sendDateFormat2,
+            child: Container(
+              margin: const EdgeInsets.only(top: 5.0),
+              child: VInputText(
+                'mm/dd/yyyy...',
+                radius: 8,
+                outlineColor: grey10,
+                activeColor: grey10,
+                fontSize: 14,
+                hintFontSize: 14.0,
+                hintTextColor: grey4,
+                textColor: grey7,
+                readOnly: true,
+                fillColor: Theme.of(context).colorScheme.onPrimary,
+                controller: inputPrevReleased,
+                onTap: () async {
+                  DateTime? newDate = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2000),
+                    lastDate: DateTime.now(),
+                    builder: (context, child) {
+                      return Theme(
+                        data: Theme.of(context).copyWith(
+                          colorScheme: const ColorScheme.light(
+                            background: primaryColor,
+                            primary: primaryColor,
+                          ),
+                          textButtonTheme: TextButtonThemeData(
+                            style: TextButton.styleFrom(
+                              foregroundColor:
+                                  primaryColor, // button text color
+                            ),
+                          ),
+                        ),
+                        child: child!,
+                      );
+                    },
                   );
-                });
-              },
-              child: Container(
-                margin: const EdgeInsets.only(top: 5.0),
-                child: VInputText(
-                  'mm/dd/yyyy...',
-                  radius: 8,
-                  outlineColor: grey10,
-                  activeColor: grey10,
-                  fontSize: 14,
-                  hintFontSize: 14.0,
-                  hintTextColor: grey4,
-                  textColor: grey7,
-                  fillColor: Theme.of(context).colorScheme.onPrimary,
-                  controller: inputPrevReleased,
-                ),
+
+                  // if 'Cancel' => null
+                  if (newDate == null) return;
+
+                  //if 'Ok' => DateTime
+                  setState(() {
+                    inputPrevReleased.text = Utils.dateToString(
+                      newDate,
+                      Utils.sendDateFormat2,
+                    );
+                  });
+                },
               ),
             ),
           ),
@@ -703,6 +784,10 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                                     image: '',
                                   );
                             });
+
+                            if (data != null) {
+                              context.read<DataAlbum>().updateLabel(data.id);
+                            }
                           },
                           items: widget.listLabelReq
                               .map<DropdownMenuItem<LeaderRes>>(
@@ -741,6 +826,7 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                           textColor: grey7,
                           fillColor: Theme.of(context).colorScheme.onPrimary,
                           controller: inputReleaseId,
+                          keyboardType: TextInputType.number,
                         ),
                       ],
                     ),
@@ -817,6 +903,7 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                 textColor: grey7,
                 fillColor: Theme.of(context).colorScheme.onPrimary,
                 controller: inputUpc,
+                keyboardType: TextInputType.number,
               ),
             ),
           ),
@@ -907,18 +994,23 @@ class _MainFormWidgetState extends State<MainFormWidget> {
               ),
             ],
           ),
-          const SizedBox(height: 5),
-          VInputText(
-            'Input here..',
-            radius: 8,
-            outlineColor: grey10,
-            activeColor: grey10,
-            fontSize: 14,
-            hintFontSize: 14.0,
-            hintTextColor: grey4,
-            textColor: grey7,
-            fillColor: Theme.of(context).colorScheme.onPrimary,
-            controller: inputArtistSpotify,
+          Visibility(
+            visible: selectInputArtistSpotify == yesInputArtistSpotify,
+            child: Container(
+              margin: const EdgeInsets.only(top: 5.0),
+              child: VInputText(
+                'Input here..',
+                radius: 8,
+                outlineColor: grey10,
+                activeColor: grey10,
+                fontSize: 14,
+                hintFontSize: 14.0,
+                hintTextColor: grey4,
+                textColor: grey7,
+                fillColor: Theme.of(context).colorScheme.onPrimary,
+                controller: inputArtistSpotify,
+              ),
+            ),
           ),
           const SizedBox(height: 15),
           vText(
@@ -970,21 +1062,86 @@ class _MainFormWidgetState extends State<MainFormWidget> {
               ),
             ],
           ),
-          const SizedBox(height: 5),
-          VInputText(
-            'Input here...',
-            radius: 8,
-            outlineColor: grey10,
-            activeColor: grey10,
-            fontSize: 14,
-            hintFontSize: 14.0,
-            hintTextColor: grey4,
-            textColor: grey7,
-            fillColor: Theme.of(context).colorScheme.onPrimary,
-            controller: inputArtistApple,
+          Visibility(
+            visible: selectInputArtistApple == yesInputArtistApple,
+            child: Container(
+              margin: const EdgeInsets.only(top: 5.0),
+              child: VInputText(
+                'Input here...',
+                radius: 8,
+                outlineColor: grey10,
+                activeColor: grey10,
+                fontSize: 14,
+                hintFontSize: 14.0,
+                hintTextColor: grey4,
+                textColor: grey7,
+                fillColor: Theme.of(context).colorScheme.onPrimary,
+                controller: inputArtistApple,
+              ),
+            ),
           ),
         ],
       ),
     );
+  }
+
+  void inputTitleReleaseListener() {
+    if (inputTitleRelease.text.isNotEmpty) {
+      context.read<DataAlbum>().updateReleaseTitle(inputTitleRelease.text);
+    }
+  }
+
+  void inputTitleVersionListener() {
+    if (inputTitleVersion.text.isNotEmpty) {
+      context.read<DataAlbum>().updateTitleVersion(inputTitleVersion.text);
+    }
+  }
+
+  void inputArtistListener() {
+    if (inputArtist.text.isNotEmpty) {
+      context.read<DataAlbum>().updateArtist(inputArtist.text);
+    }
+  }
+
+  void inputArtistSpotifyListener() {
+    if (inputArtistSpotify.text.isNotEmpty) {
+      context.read<DataAlbum>().updateSpotify(inputArtistSpotify.text);
+    }
+  }
+
+  void inputArtistAppleListener() {
+    if (inputArtistApple.text.isNotEmpty) {
+      context.read<DataAlbum>().updateItunes(inputArtistApple.text);
+    }
+  }
+
+  void inputCopyrightPListener() {
+    if (inputCopyrightP.text.isNotEmpty) {
+      context.read<DataAlbum>().updatePCopy(inputCopyrightP.text);
+    }
+  }
+
+  void inputCopyrightCListener() {
+    if (inputCopyrightC.text.isNotEmpty) {
+      context.read<DataAlbum>().updateCCopy(inputCopyrightC.text);
+    }
+  }
+
+  void inputPrevReleasedListener() {
+    if (inputPrevReleased.text.isNotEmpty) {
+      context.read<DataAlbum>().updateRelease(inputPrevReleased.text);
+    }
+  }
+
+  void inputReleaseIdListener() {
+    if (inputReleaseId.text.isNotEmpty) {
+      context.read<DataAlbum>().updateReleaseId(inputReleaseId.text);
+    }
+  }
+
+  void inputUpcListener() {
+    if (inputUpc.text.isNotEmpty) {
+      context.read<DataAlbum>().updateUpc(inputUpc.text);
+    }
   }
 }

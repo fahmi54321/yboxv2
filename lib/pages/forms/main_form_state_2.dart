@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:yboxv2/models/album/album_res.dart';
 import 'package:yboxv2/models/audio/audio_res.dart';
 import 'package:yboxv2/models/general/genre_res.dart';
@@ -6,6 +7,7 @@ import 'package:yboxv2/models/general/publishing_res.dart';
 import 'package:yboxv2/models/general/roles_res.dart';
 import 'package:yboxv2/models/leader/leader_res.dart';
 import 'package:yboxv2/models/video/video_res.dart';
+import 'package:yboxv2/network/http_album.dart';
 import 'package:yboxv2/network/http_list.dart';
 import 'package:yboxv2/pages/forms/main_form.dart';
 import 'package:yboxv2/pages/forms/publishing_form.dart';
@@ -21,6 +23,7 @@ class MainFormState2 extends ChangeNotifier {
   int currentStep = 0;
 
   bool isLoadingList = false;
+  bool isLoadingSaveOrEdit = false;
 
   LanguageRes? languageResMain;
   LanguageRes? languageResTrack;
@@ -97,25 +100,27 @@ class MainFormState2 extends ChangeNotifier {
           listGenre: listGenre,
           listLabelReq: listLabelReq,
         ),
+        // content: Container(),
       ),
       Step(
-          state: currentStep > 1 ? StepState.complete : StepState.indexed,
-          isActive: currentStep >= 1,
-          title: vText(
-            'Tracks',
-            fontSize: 10,
-            fontWeight: FontWeight.w600,
-          ),
-          content: TrackForm(
-            formCode: fromCode,
-            genreRes1Tracks: genreRes1Tracks,
-            genreRes2Tracks: genreRes2Tracks,
-            trackLabel: trackLabel,
-            languageResTrack: languageResTrack,
-            listGenre: listGenre,
-            listLabelReq: listLabelReq,
-            listLanguage: listLanguage,
-          )),
+        state: currentStep > 1 ? StepState.complete : StepState.indexed,
+        isActive: currentStep >= 1,
+        title: vText(
+          'Tracks',
+          fontSize: 10,
+          fontWeight: FontWeight.w600,
+        ),
+        content: TrackForm(
+          formCode: fromCode,
+          genreRes1Tracks: genreRes1Tracks,
+          genreRes2Tracks: genreRes2Tracks,
+          trackLabel: trackLabel,
+          languageResTrack: languageResTrack,
+          listGenre: listGenre,
+          listLabelReq: listLabelReq,
+          listLanguage: listLanguage,
+        ),
+      ),
       Step(
         state: currentStep > 2 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 2,
@@ -418,6 +423,32 @@ class MainFormState2 extends ChangeNotifier {
           pubPublishings = cat[0];
         }
         notifyListeners();
+      },
+    );
+  }
+
+  Future<void> saveAlbum(FormData formData) async {
+    isLoadingSaveOrEdit = true;
+    notifyListeners();
+
+    UtilsLoading.showLoading(message: 'Loading');
+
+    final resStep1 = await HTTPAlbumService().uploadAlbum(data: formData);
+
+    resStep1.fold(
+      (e) async {
+        isLoadingSaveOrEdit = false;
+        notifyListeners();
+
+        UtilsLoading.dismiss();
+        UtilsLoading.showError(message: e);
+      },
+      (cat) async {
+        isLoadingSaveOrEdit = false;
+        notifyListeners();
+
+        UtilsLoading.dismiss();
+        UtilsLoading.showSuccess(message: 'Berhasil disimpan');
       },
     );
   }

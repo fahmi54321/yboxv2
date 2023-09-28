@@ -1,11 +1,32 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:yboxv2/models/general/publishing_res.dart';
 import 'package:yboxv2/models/general/roles_res.dart';
+import 'package:yboxv2/pages/provider/data_album.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/widget/v_dropdown.dart';
 import 'package:yboxv2/widget/v_text.dart';
+
+class TestHei extends StatefulWidget {
+  const TestHei({super.key});
+
+  @override
+  State<TestHei> createState() => _TestHeiState();
+}
+
+class _TestHeiState extends State<TestHei> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // buildFormTrack(),
+      ],
+    );
+  }
+}
 
 class PublishingForm extends StatefulWidget {
   RolesRes? pubRoles;
@@ -13,12 +34,12 @@ class PublishingForm extends StatefulWidget {
   final List<PublishingRes> listPublishing;
   final List<RolesRes> listRole;
   PublishingForm({
-    Key? key,
+    super.key,
     this.pubRoles,
     this.pubPublishings,
     this.listPublishing = const [],
     this.listRole = const [],
-  }) : super(key: key);
+  });
 
   @override
   State<PublishingForm> createState() => _PublishingFormState();
@@ -29,10 +50,26 @@ class _PublishingFormState extends State<PublishingForm> {
   TextEditingController tracksInputShare = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+
+    tracksInputContributorName.addListener(tracksInputContributorNameListener);
+    tracksInputShare.addListener(tracksInputShareListener);
+  }
+
+  @override
+  void dispose() {
+    tracksInputContributorName
+        .removeListener(tracksInputContributorNameListener);
+    tracksInputShare.removeListener(tracksInputShareListener);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
+      children: [
         buildFormContributor(),
       ],
     );
@@ -75,6 +112,10 @@ class _PublishingFormState extends State<PublishingForm> {
             setState(() {
               widget.pubPublishings = data;
             });
+
+            if (data != null) {
+              context.read<DataAlbum>().updatePublishing(data.id.toString());
+            }
           },
           items: widget.listPublishing
               .map<DropdownMenuItem<PublishingRes>>((PublishingRes value) {
@@ -139,6 +180,10 @@ class _PublishingFormState extends State<PublishingForm> {
             setState(() {
               widget.pubRoles = data;
             });
+
+            if (data != null) {
+              context.read<DataAlbum>().updateRoleTrack(data.id.toString());
+            }
           },
           items:
               widget.listRole.map<DropdownMenuItem<RolesRes>>((RolesRes value) {
@@ -178,5 +223,17 @@ class _PublishingFormState extends State<PublishingForm> {
         ),
       ],
     );
+  }
+
+  void tracksInputContributorNameListener() {
+    if (tracksInputContributorName.text.isNotEmpty) {
+      context.read<DataAlbum>().updateConName(tracksInputContributorName.text);
+    }
+  }
+
+  void tracksInputShareListener() {
+    if (tracksInputShare.text.isNotEmpty) {
+      context.read<DataAlbum>().updateShare(tracksInputShare.text);
+    }
   }
 }
