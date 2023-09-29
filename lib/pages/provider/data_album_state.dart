@@ -15,7 +15,6 @@ class DataAlbumState extends Equatable {
   final String pCopy;
   final String cCopy;
   final String release;
-  final String label;
   final String releaseId;
   final String upc;
   final PlatformFile audio;
@@ -32,7 +31,6 @@ class DataAlbumState extends Equatable {
   final String genre2Info;
   final String pCopyInfo;
   final String startTime;
-  final String labelInfo;
   final String trackIdInfo;
   final String lirik;
   final String conName;
@@ -52,7 +50,6 @@ class DataAlbumState extends Equatable {
     required this.pCopy,
     required this.cCopy,
     required this.release,
-    required this.label,
     required this.releaseId,
     required this.upc,
     required this.audio,
@@ -69,7 +66,6 @@ class DataAlbumState extends Equatable {
     required this.genre2Info,
     required this.pCopyInfo,
     required this.startTime,
-    required this.labelInfo,
     required this.trackIdInfo,
     required this.lirik,
     required this.conName,
@@ -92,7 +88,6 @@ class DataAlbumState extends Equatable {
       pCopy: '',
       cCopy: '',
       release: '',
-      label: '',
       releaseId: '',
       upc: '',
       audio: PlatformFile(name: '', size: 0),
@@ -109,7 +104,6 @@ class DataAlbumState extends Equatable {
       genre2Info: '',
       pCopyInfo: '',
       startTime: '',
-      labelInfo: '',
       trackIdInfo: '',
       lirik: '',
       conName: '',
@@ -132,7 +126,6 @@ class DataAlbumState extends Equatable {
     String? pCopy,
     String? cCopy,
     String? release,
-    String? label,
     String? releaseId,
     String? upc,
     PlatformFile? audio,
@@ -149,7 +142,6 @@ class DataAlbumState extends Equatable {
     String? genre2Info,
     String? pCopyInfo,
     String? startTime,
-    String? labelInfo,
     String? trackIdInfo,
     String? lirik,
     String? conName,
@@ -170,7 +162,6 @@ class DataAlbumState extends Equatable {
       pCopy: pCopy ?? this.pCopy,
       cCopy: cCopy ?? this.cCopy,
       release: release ?? this.release,
-      label: label ?? this.label,
       releaseId: releaseId ?? this.releaseId,
       upc: upc ?? this.upc,
       audio: audio ?? this.audio,
@@ -187,7 +178,6 @@ class DataAlbumState extends Equatable {
       genre2Info: genre2Info ?? this.genre2Info,
       pCopyInfo: pCopyInfo ?? this.pCopyInfo,
       startTime: startTime ?? this.startTime,
-      labelInfo: labelInfo ?? this.labelInfo,
       trackIdInfo: trackIdInfo ?? this.trackIdInfo,
       lirik: lirik ?? this.lirik,
       conName: conName ?? this.conName,
@@ -215,7 +205,6 @@ class DataAlbumState extends Equatable {
       pCopy,
       cCopy,
       release,
-      label,
       releaseId,
       upc,
       audio,
@@ -232,7 +221,6 @@ class DataAlbumState extends Equatable {
       genre2Info,
       pCopyInfo,
       startTime,
-      labelInfo,
       trackIdInfo,
       lirik,
       conName,

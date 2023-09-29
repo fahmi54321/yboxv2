@@ -5,9 +5,8 @@ import 'package:yboxv2/models/album/album_res.dart';
 import 'package:yboxv2/pages/forms/main_form_page.dart';
 import 'package:yboxv2/pages/home/details/details_album_page.dart';
 import 'package:yboxv2/pages/home/fragment/album_fragment_state.dart';
-import 'package:yboxv2/pages/home/widget/item.dart';
+import 'package:yboxv2/pages/home/widget/item_album.dart';
 import 'package:yboxv2/resource/CPColors.dart';
-import 'package:yboxv2/resource/strings.dart';
 import 'package:yboxv2/widget/v_text.dart';
 
 class AlbumFragment extends StatefulWidget {
@@ -61,7 +60,17 @@ class CartFragmentState extends State<AlbumFragment> {
                           arguments: ArgsMainFormPage(
                             fromCode: 'album',
                           ),
-                        );
+                        ).then((value) {
+                          debugPrint('is refresh $value');
+                          if (value is bool) {
+                            if (value) {
+                              WidgetsBinding.instance
+                                  .addPostFrameCallback((timeStamp) {
+                                state.pagingController.refresh();
+                              });
+                            }
+                          }
+                        });
                       },
                       splashColor: primaryColor.withOpacity(0.50),
                       borderRadius: BorderRadius.circular(10.0),
@@ -105,14 +114,13 @@ class CartFragmentState extends State<AlbumFragment> {
                       shrinkWrap: true,
                       builderDelegate: PagedChildBuilderDelegate<DataAlbumRes>(
                         itemBuilder: (context, item, index) {
-                          String image =
-                              item.cover.replaceAll('public', 'storage');
-                          String urlImage = appUrl + image;
-                          return ItemAll(
+                          return ItemAlbum(
+                            item: item,
                             onTap: () {
                               Navigator.pushNamed(
                                 context,
                                 DetailsAlbumPage.route,
+                                arguments: ArgsDetailsAlbum(id: item.id),
                               );
                             },
                           );

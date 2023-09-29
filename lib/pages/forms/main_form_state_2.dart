@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:yboxv2/models/album/album_res.dart';
+import 'package:yboxv2/models/album/details_album_res.dart';
 import 'package:yboxv2/models/audio/audio_res.dart';
 import 'package:yboxv2/models/general/genre_res.dart';
 import 'package:yboxv2/models/general/language_res.dart';
@@ -24,6 +28,7 @@ class MainFormState2 extends ChangeNotifier {
 
   bool isLoadingList = false;
   bool isLoadingSaveOrEdit = false;
+  bool isEdit = false;
 
   LanguageRes? languageResMain;
   LanguageRes? languageResTrack;
@@ -46,18 +51,109 @@ class MainFormState2 extends ChangeNotifier {
 
   List<LanguageRes> listLanguage = [];
   List<GenreRes> listGenre = [];
-  List<LeaderRes> listLabelReq = [];
   List<RolesRes> listRole = [];
   List<PublishingRes> listPublishing = [];
 
-  // edit
-  DataAlbumRes? dataAlbumRes;
-  DataVideoRes? dataVideoRes;
-  DataAudioRes? dataAudioRes;
+  // main
+  int selectInputPrevRelease = 0;
+  int yesInputPrevRelease = 1;
+  int selectInputLabel = 0;
+  int yesInputLabel = 1;
+  int selectInputUPC = 0;
+  int yesInputUPC = 1;
+  int noInputLabel = 0;
+  int noInputPrevRelease = 0;
+  int noInputUPC = 0;
+
+  File? coverImageFile;
+
+  //title
+  TextEditingController inputTitleRelease = TextEditingController();
+  TextEditingController inputTitleVersion = TextEditingController();
+
+  //artist
+  TextEditingController inputArtist = TextEditingController();
+  int yesInputArtistSpotify = 1;
+  int yesInputArtistApple = 1;
+  int noInputArtistSpotify = 0;
+  int noInputArtistApple = 0;
+  int selectInputArtistSpotify = 0;
+  int selectInputArtistApple = 0;
+  TextEditingController inputArtistSpotify = TextEditingController();
+  TextEditingController inputArtistApple = TextEditingController();
+
+  // info
+  TextEditingController inputCopyrightP = TextEditingController();
+  TextEditingController inputCopyrightC = TextEditingController();
+  TextEditingController inputPrevReleased = TextEditingController();
+  TextEditingController inputReleaseId = TextEditingController();
+  TextEditingController inputUpc = TextEditingController();
+
+  List<String> rulesOfImage = [
+    'File format: PNG, GIF, BMP, TIF, JPG or JPEG.',
+    'Color space: RGB.',
+    'Minimum dimensions: 1400x1400 pixels, but recommend 3000x3000 pixels',
+    'Square image: width and height must be the same.',
+    'Images may not contain more than 50 megapixels or be larger than 10 Mb.',
+    'Your image cannot be stretched, upscaled, or appear to be low-resolution.',
+    'The information on your cover art must match your album title and artist name.',
+    'Website addresses, social media links and contact information are not permitted on album artwork.',
+    'Your cover art may not include sexually explicit imagery.',
+    'Your cover art cannot be misleading by figuring another artists name more prominently than yours.',
+    'You may not use a third-party logo or trademark without the express written permission from the trademark holder.',
+  ];
+
+  //track
+  // audio
+  PlatformFile? audio;
+  String? fileNameAudio;
+  String? sizeAudio;
+
+  // title
+  TextEditingController tracksInputTitleRelease = TextEditingController();
+  TextEditingController tracksInputTitleVersion = TextEditingController();
+
+  // artist
+  TextEditingController tracksInputArtist = TextEditingController();
+  int tracksYesInputArtistSpotify = 1;
+  int tracksYesInputArtistApple = 1;
+  int tracksNoInputArtistSpotify = 0;
+  int tracksNoInputArtistApple = 0;
+  int tracksSelectInputArtistSpotify = 0;
+  int tracksSelectInputArtistApple = 0;
+  TextEditingController tracksInputArtistSpotify = TextEditingController();
+  TextEditingController tracksInputArtistApple = TextEditingController();
+
+  // info
+  TextEditingController tracksInputLyrics = TextEditingController();
+  TextEditingController tracksInputCopyrightP = TextEditingController();
+  TextEditingController tracksInputCopyrightC = TextEditingController();
+  TextEditingController tracksInputInternalTracksId = TextEditingController();
+  TextEditingController tracksInputIsrcCode = TextEditingController();
+  TextEditingController tracksInputExplicitLyrics = TextEditingController();
+  int tracksYesInputIsrcCode = 1;
+  int tracksPublicSong = 1;
+  int tracksYesInputExplicitLyrics = 1;
+  int tracksNoInputIsrcCode = 0;
+  int tracksOriginSong = 0;
+  int tracksNoInputExplicitLyrics = 0;
+  int tracksSelectInputIsrcCode = 0;
+  int tracksSelectInputExplicitLyrics = 0;
+  int tracksSelectInputTrackSong = 0;
+
+  // publish
+  TextEditingController tracksInputContributorName = TextEditingController();
+  TextEditingController tracksInputShare = TextEditingController();
+
+  // Data Album dari details
+  DetailsAlbumRes? dataAlbum;
+  String coverImageEdit = '';
+  String audioEdit = '';
 
   MainFormState2({
     required this.context,
     required this.fromCode,
+    this.dataAlbum,
   }) {
     init();
   }
@@ -68,9 +164,9 @@ class MainFormState2 extends ChangeNotifier {
 
     UtilsLoading.showLoading(message: 'Loading');
 
+    await initEditAlbum();
     await getLanguage();
     await getGenre();
-    await getLabelMain();
     await getRoles();
     await getPublishing();
 
@@ -95,10 +191,9 @@ class MainFormState2 extends ChangeNotifier {
           languageResTrack: languageResTrack,
           genreRes1Main: genreRes1Main,
           genreRes2Main: genreRes2Main,
-          mainLabel: mainLabel,
           listLanguage: listLanguage,
           listGenre: listGenre,
-          listLabelReq: listLabelReq,
+          state: this,
         ),
         // content: Container(),
       ),
@@ -114,11 +209,10 @@ class MainFormState2 extends ChangeNotifier {
           formCode: fromCode,
           genreRes1Tracks: genreRes1Tracks,
           genreRes2Tracks: genreRes2Tracks,
-          trackLabel: trackLabel,
           languageResTrack: languageResTrack,
           listGenre: listGenre,
-          listLabelReq: listLabelReq,
           listLanguage: listLanguage,
+          state: this,
         ),
       ),
       Step(
@@ -134,6 +228,7 @@ class MainFormState2 extends ChangeNotifier {
           pubPublishings: pubPublishings,
           listPublishing: listPublishing,
           listRole: listRole,
+          state: this,
         ),
       ),
     ];
@@ -156,41 +251,41 @@ class MainFormState2 extends ChangeNotifier {
 
         debugPrint('listLanguage $listLanguage');
 
-        if (dataAlbumRes != null ||
-            dataVideoRes != null ||
-            dataAudioRes != null) {
+        if (dataAlbum != null) {
           // edit
-          if (dataAlbumRes?.langId != null) {
+          if (dataAlbum?.langId != null) {
             languageResMain = LanguageRes(
-              id: dataAlbumRes?.langId?.id ?? 0,
-              name: dataAlbumRes?.langId?.name ?? '',
+              id: dataAlbum?.langId?.id ?? 0,
+              name: dataAlbum?.langId?.name ?? '',
             );
             languageResTrack = LanguageRes(
-              id: dataAlbumRes?.langId?.id ?? 0,
-              name: dataAlbumRes?.langId?.name ?? '',
+              id: dataAlbum?.langId?.id ?? 0,
+              name: dataAlbum?.langId?.name ?? '',
             );
             notifyListeners();
-          } else if (dataVideoRes?.langId != null) {
-            languageResMain = LanguageRes(
-              id: dataVideoRes?.langId?.id ?? 0,
-              name: dataVideoRes?.langId?.name ?? '',
-            );
-            languageResTrack = LanguageRes(
-              id: dataVideoRes?.langId?.id ?? 0,
-              name: dataVideoRes?.langId?.name ?? '',
-            );
-            notifyListeners();
-          } else if (dataAudioRes?.langId != null) {
-            languageResMain = LanguageRes(
-              id: dataAudioRes?.langId?.id ?? 0,
-              name: dataAudioRes?.langId?.name ?? '',
-            );
-            languageResTrack = LanguageRes(
-              id: dataAudioRes?.langId?.id ?? 0,
-              name: dataAudioRes?.langId?.name ?? '',
-            );
-            notifyListeners();
-          } else {
+          }
+          // else if (dataVideoRes?.langId != null) {
+          //   languageResMain = LanguageRes(
+          //     id: dataVideoRes?.langId?.id ?? 0,
+          //     name: dataVideoRes?.langId?.name ?? '',
+          //   );
+          //   languageResTrack = LanguageRes(
+          //     id: dataVideoRes?.langId?.id ?? 0,
+          //     name: dataVideoRes?.langId?.name ?? '',
+          //   );
+          //   notifyListeners();
+          // } else if (dataAudioRes?.langId != null) {
+          //   languageResMain = LanguageRes(
+          //     id: dataAudioRes?.langId?.id ?? 0,
+          //     name: dataAudioRes?.langId?.name ?? '',
+          //   );
+          //   languageResTrack = LanguageRes(
+          //     id: dataAudioRes?.langId?.id ?? 0,
+          //     name: dataAudioRes?.langId?.name ?? '',
+          //   );
+          //   notifyListeners();
+          // }
+          else {
             languageResMain = cat[0];
             languageResTrack = cat[0];
             notifyListeners();
@@ -219,82 +314,88 @@ class MainFormState2 extends ChangeNotifier {
       (cat) async {
         listGenre = cat;
 
-        if (dataAlbumRes != null ||
-            dataVideoRes != null ||
-            dataAudioRes != null) {
-          if (dataAlbumRes?.genre1 != null) {
+        if (dataAlbum != null) {
+          if (dataAlbum?.genre1 != null) {
             genreRes1Main = GenreRes(
-              id: dataAlbumRes?.genre1?.id ?? 0,
-              name: dataAlbumRes?.genre1?.name ?? '',
+              id: dataAlbum?.genre1?.id ?? 0,
+              name: dataAlbum?.genre1?.name ?? '',
             );
-          } else if (dataVideoRes?.genre1 != null) {
-            genreRes1Main = GenreRes(
-              id: dataVideoRes?.genre1?.id ?? 0,
-              name: dataVideoRes?.genre1?.name ?? '',
-            );
-          } else if (dataAudioRes?.genre1 != null) {
-            genreRes1Main = GenreRes(
-              id: dataAudioRes?.genre1?.id ?? 0,
-              name: dataAudioRes?.genre1?.name ?? '',
-            );
-          } else {
+          }
+          // else if (dataVideoRes?.genre1 != null) {
+          //   genreRes1Main = GenreRes(
+          //     id: dataVideoRes?.genre1?.id ?? 0,
+          //     name: dataVideoRes?.genre1?.name ?? '',
+          //   );
+          // } else if (dataAudioRes?.genre1 != null) {
+          //   genreRes1Main = GenreRes(
+          //     id: dataAudioRes?.genre1?.id ?? 0,
+          //     name: dataAudioRes?.genre1?.name ?? '',
+          //   );
+          // }
+          else {
             genreRes1Main = cat[0];
           }
 
-          if (dataAlbumRes?.genre2 != null) {
+          if (dataAlbum?.genre2 != null) {
             genreRes2Main = GenreRes(
-              id: dataAlbumRes?.genre2?.id ?? 0,
-              name: dataAlbumRes?.genre2?.name ?? '',
+              id: dataAlbum?.genre2?.id ?? 0,
+              name: dataAlbum?.genre2?.name ?? '',
             );
-          } else if (dataVideoRes?.genre2 != null) {
-            genreRes2Main = GenreRes(
-              id: dataVideoRes?.genre2?.id ?? 0,
-              name: dataVideoRes?.genre2?.name ?? '',
-            );
-          } else if (dataAudioRes?.genre2 != null) {
-            genreRes2Main = GenreRes(
-              id: dataAudioRes?.genre2?.id ?? 0,
-              name: dataAudioRes?.genre2?.name ?? '',
-            );
-          } else {
+          }
+          // else if (dataVideoRes?.genre2 != null) {
+          //   genreRes2Main = GenreRes(
+          //     id: dataVideoRes?.genre2?.id ?? 0,
+          //     name: dataVideoRes?.genre2?.name ?? '',
+          //   );
+          // } else if (dataAudioRes?.genre2 != null) {
+          //   genreRes2Main = GenreRes(
+          //     id: dataAudioRes?.genre2?.id ?? 0,
+          //     name: dataAudioRes?.genre2?.name ?? '',
+          //   );
+          // }
+          else {
             genreRes2Main = cat[0];
           }
 
-          if (dataAlbumRes?.trackId?.genre1 != null) {
+          if (dataAlbum?.trackId?.genre1 != null) {
             genreRes1Tracks = GenreRes(
-              id: dataAlbumRes?.trackId?.genre1?.id ?? 0,
-              name: dataAlbumRes?.trackId?.genre1?.name ?? '',
+              id: dataAlbum?.trackId?.genre1?.id ?? 0,
+              name: dataAlbum?.trackId?.genre1?.name ?? '',
             );
-          } else if (dataVideoRes?.trackId?.genre1 != null) {
-            genreRes1Tracks = GenreRes(
-              id: dataVideoRes?.trackId?.genre1?.id ?? 0,
-              name: dataVideoRes?.trackId?.genre1?.name ?? '',
-            );
-          } else if (dataAudioRes?.trackId?.genre1 != null) {
-            genreRes1Tracks = GenreRes(
-              id: dataAudioRes?.trackId?.genre1?.id ?? 0,
-              name: dataAudioRes?.trackId?.genre1?.name ?? '',
-            );
-          } else {
+          }
+          // else if (dataVideoRes?.trackId?.genre1 != null) {
+          //   genreRes1Tracks = GenreRes(
+          //     id: dataVideoRes?.trackId?.genre1?.id ?? 0,
+          //     name: dataVideoRes?.trackId?.genre1?.name ?? '',
+          //   );
+          // } else if (dataAudioRes?.trackId?.genre1 != null) {
+          //   genreRes1Tracks = GenreRes(
+          //     id: dataAudioRes?.trackId?.genre1?.id ?? 0,
+          //     name: dataAudioRes?.trackId?.genre1?.name ?? '',
+          //   );
+          // }
+          else {
             genreRes1Tracks = cat[0];
           }
 
-          if (dataAlbumRes?.trackId?.genre2 != null) {
+          if (dataAlbum?.trackId?.genre2 != null) {
             genreRes2Tracks = GenreRes(
-              id: dataAlbumRes?.trackId?.genre2?.id ?? 0,
-              name: dataAlbumRes?.trackId?.genre2?.name ?? '',
+              id: dataAlbum?.trackId?.genre2?.id ?? 0,
+              name: dataAlbum?.trackId?.genre2?.name ?? '',
             );
-          } else if (dataVideoRes?.trackId?.genre2 != null) {
-            genreRes2Tracks = GenreRes(
-              id: dataVideoRes?.trackId?.genre2?.id ?? 0,
-              name: dataVideoRes?.trackId?.genre2?.name ?? '',
-            );
-          } else if (dataAudioRes?.trackId?.genre2 != null) {
-            genreRes2Tracks = GenreRes(
-              id: dataAudioRes?.trackId?.genre2?.id ?? 0,
-              name: dataAudioRes?.trackId?.genre2?.name ?? '',
-            );
-          } else {
+          }
+          // else if (dataVideoRes?.trackId?.genre2 != null) {
+          //   genreRes2Tracks = GenreRes(
+          //     id: dataVideoRes?.trackId?.genre2?.id ?? 0,
+          //     name: dataVideoRes?.trackId?.genre2?.name ?? '',
+          //   );
+          // } else if (dataAudioRes?.trackId?.genre2 != null) {
+          //   genreRes2Tracks = GenreRes(
+          //     id: dataAudioRes?.trackId?.genre2?.id ?? 0,
+          //     name: dataAudioRes?.trackId?.genre2?.name ?? '',
+          //   );
+          // }
+          else {
             genreRes2Tracks = cat[0];
           }
         } else {
@@ -304,71 +405,6 @@ class MainFormState2 extends ChangeNotifier {
           genreRes2Tracks = cat[0];
         }
         notifyListeners();
-      },
-    );
-  }
-
-  Future<void> getLabelMain() async {
-    final resStep1 = await HTTPListService().getLabelReq();
-
-    notifyListeners();
-    resStep1.fold(
-      (e) async {
-        isLoadingList = false;
-        notifyListeners();
-
-        UtilsLoading.dismiss();
-        UtilsLoading.showError(message: e);
-      },
-      (cat) async {
-        listLabelReq = cat;
-        if (dataAlbumRes?.labelName != null) {
-          mainLabel = dataAlbumRes?.labelName ??
-              const LeaderRes(
-                id: '',
-                name: '',
-                image: '',
-              );
-          trackLabel = dataAlbumRes?.labelName ??
-              const LeaderRes(
-                id: '',
-                name: '',
-                image: '',
-              );
-          notifyListeners();
-        } else if (dataVideoRes?.labelName != null) {
-          mainLabel = dataVideoRes?.labelName ??
-              const LeaderRes(
-                id: '',
-                name: '',
-                image: '',
-              );
-          trackLabel = dataAlbumRes?.labelName ??
-              const LeaderRes(
-                id: '',
-                name: '',
-                image: '',
-              );
-          notifyListeners();
-        } else if (dataAudioRes?.labelName != null) {
-          mainLabel = dataAudioRes?.labelName ??
-              const LeaderRes(
-                id: '',
-                name: '',
-                image: '',
-              );
-          trackLabel = dataAlbumRes?.labelName ??
-              const LeaderRes(
-                id: '',
-                name: '',
-                image: '',
-              );
-          notifyListeners();
-        } else {
-          mainLabel = cat[0];
-          trackLabel = cat[0];
-          notifyListeners();
-        }
       },
     );
   }
@@ -386,15 +422,18 @@ class MainFormState2 extends ChangeNotifier {
       },
       (cat) async {
         listRole = cat;
-        if (dataAlbumRes?.trackId?.contributor?.roleTrack != null) {
-          pubRoles = dataAlbumRes?.trackId?.contributor?.roleTrack;
-        } else if (dataVideoRes?.trackId?.contributor?.roleTrack != null) {
-          pubRoles = dataVideoRes?.trackId?.contributor?.roleTrack;
-        } else if (dataAudioRes?.trackId?.contributor?.roleTrack != null) {
-          pubRoles = dataAudioRes?.trackId?.contributor?.roleTrack;
-        } else {
+        if (dataAlbum?.trackId?.contributor?.roleTrack != null) {
+          pubRoles = dataAlbum?.trackId?.contributor?.roleTrack;
+        }
+        // else if (dataVideoRes?.trackId?.contributor?.roleTrack != null) {
+        //   pubRoles = dataVideoRes?.trackId?.contributor?.roleTrack;
+        // } else if (dataAudioRes?.trackId?.contributor?.roleTrack != null) {
+        //   pubRoles = dataAudioRes?.trackId?.contributor?.roleTrack;
+        // }
+        else {
           pubRoles = cat[0];
         }
+        pubRoles = cat[0];
         notifyListeners();
       },
     );
@@ -413,15 +452,18 @@ class MainFormState2 extends ChangeNotifier {
       },
       (cat) async {
         listPublishing = cat;
-        if (dataAlbumRes?.trackId?.contributor?.publising != null) {
-          pubPublishings = dataAlbumRes?.trackId?.contributor?.publising;
-        } else if (dataVideoRes?.trackId?.contributor?.publising != null) {
-          pubPublishings = dataVideoRes?.trackId?.contributor?.publising;
-        } else if (dataAudioRes?.trackId?.contributor?.publising != null) {
-          pubPublishings = dataAudioRes?.trackId?.contributor?.publising;
-        } else {
+        if (dataAlbum?.trackId?.contributor?.publising != null) {
+          pubPublishings = dataAlbum?.trackId?.contributor?.publising;
+        }
+        // else if (dataVideoRes?.trackId?.contributor?.publising != null) {
+        //   pubPublishings = dataVideoRes?.trackId?.contributor?.publising;
+        // } else if (dataAudioRes?.trackId?.contributor?.publising != null) {
+        //   pubPublishings = dataAudioRes?.trackId?.contributor?.publising;
+        // }
+        else {
           pubPublishings = cat[0];
         }
+        pubPublishings = cat[0];
         notifyListeners();
       },
     );
@@ -449,8 +491,173 @@ class MainFormState2 extends ChangeNotifier {
 
         UtilsLoading.dismiss();
         UtilsLoading.showSuccess(message: 'Berhasil disimpan');
+
+        Future.delayed(const Duration(seconds: 1), () {
+          Navigator.of(context).pop(true);
+        });
       },
     );
+  }
+
+  Future<void> editAlbum(FormData formData) async {
+    isLoadingSaveOrEdit = true;
+    notifyListeners();
+
+    UtilsLoading.showLoading(message: 'Loading');
+
+    final resStep1 = await HTTPAlbumService().editAlbum(
+      id: dataAlbum?.id ?? '',
+      data: formData,
+    );
+
+    resStep1.fold(
+      (e) async {
+        isLoadingSaveOrEdit = false;
+        notifyListeners();
+
+        UtilsLoading.dismiss();
+        UtilsLoading.showError(message: e);
+      },
+      (cat) async {
+        isLoadingSaveOrEdit = false;
+        notifyListeners();
+
+        UtilsLoading.dismiss();
+        UtilsLoading.showSuccess(message: 'Berhasil disimpan');
+
+        Future.delayed(const Duration(seconds: 1), () {
+          Navigator.of(context).pop(true);
+        });
+      },
+    );
+  }
+
+  Future<void> initEditAlbum() async {
+    if (dataAlbum != null) {
+      isEdit = true;
+
+      // main
+      coverImageEdit = dataAlbum?.cover ?? '';
+      inputTitleRelease.text = dataAlbum?.releaseTitle ?? '';
+      inputTitleVersion.text = dataAlbum?.titleVersion ?? '';
+      inputArtist.text = dataAlbum?.trackId?.artisName ?? '';
+
+      if ((dataAlbum?.spotify ?? '').isNotEmpty) {
+        inputArtistSpotify.text = dataAlbum?.spotify ?? '';
+        yesInputArtistSpotify = 1;
+        selectInputArtistSpotify = 1;
+      } else {
+        noInputArtistSpotify = 0;
+        selectInputArtistSpotify = 0;
+      }
+
+      if ((dataAlbum?.itunes ?? '').isNotEmpty) {
+        inputArtistApple.text = dataAlbum?.itunes ?? '';
+        yesInputArtistApple = 1;
+        selectInputArtistApple = 1;
+      } else {
+        noInputArtistApple = 0;
+        selectInputArtistApple = 0;
+      }
+
+      inputCopyrightP.text = dataAlbum?.pCopyright ?? '';
+      inputCopyrightC.text = dataAlbum?.cCopyright ?? '';
+
+      if ((dataAlbum?.releasedDate ?? '').isNotEmpty) {
+        inputPrevReleased.text = dataAlbum?.releasedDate ?? '';
+        selectInputPrevRelease = 1;
+        yesInputPrevRelease = 1;
+      } else {
+        selectInputPrevRelease = 0;
+        noInputPrevRelease = 0;
+      }
+
+      if (dataAlbum?.labelName != null) {
+        // inputLabelName.text = dataAlbum?.labelName ?? '';
+        inputReleaseId.text = dataAlbum?.releasedId.toString() ?? '';
+        selectInputLabel = 1;
+        yesInputLabel = 1;
+      } else {
+        selectInputLabel = 0;
+        noInputLabel = 0;
+      }
+
+      if (dataAlbum?.upc != 0) {
+        inputUpc.text = dataAlbum?.upc.toString() ?? '';
+        selectInputUPC = 1;
+        yesInputUPC = 1;
+      } else {
+        selectInputUPC = 0;
+        noInputUPC = 0;
+      }
+
+      //tracks
+      audioEdit = dataAlbum?.trackId?.cover ?? '';
+      tracksInputTitleRelease.text = dataAlbum?.trackId?.trackTitle ?? '';
+      tracksInputTitleVersion.text = dataAlbum?.trackId?.trackVersion ?? '';
+      tracksInputArtist.text = dataAlbum?.trackId?.artisName ?? '';
+
+      if ((dataAlbum?.trackId?.spotify ?? '').isNotEmpty) {
+        tracksInputArtistSpotify.text = dataAlbum?.trackId?.spotify ?? '';
+        tracksYesInputArtistSpotify = 1;
+        tracksSelectInputArtistSpotify = 1;
+      } else {
+        tracksNoInputArtistSpotify = 0;
+        tracksSelectInputArtistSpotify = 0;
+      }
+
+      if ((dataAlbum?.trackId?.itunes ?? '').isNotEmpty) {
+        tracksInputArtistApple.text = dataAlbum?.trackId?.itunes ?? '';
+        tracksYesInputArtistApple = 1;
+        tracksSelectInputArtistApple = 1;
+      } else {
+        tracksNoInputArtistApple = 0;
+        tracksSelectInputArtistApple = 0;
+      }
+
+      if (dataAlbum?.trackId?.isrc != 0) {
+        tracksInputIsrcCode.text = dataAlbum?.trackId?.isrc.toString() ?? '';
+        tracksYesInputIsrcCode = 1;
+        tracksSelectInputIsrcCode = 1;
+      } else {
+        tracksNoInputIsrcCode = 0;
+        tracksSelectInputIsrcCode = 0;
+      }
+
+      if (dataAlbum?.trackId?.explisitLyric != 0) {
+        tracksInputExplicitLyrics.text =
+            dataAlbum?.trackId?.explisitLyric.toString() ?? '';
+        tracksYesInputExplicitLyrics = 1;
+        tracksSelectInputExplicitLyrics = 1;
+      } else {
+        tracksNoInputExplicitLyrics = 0;
+        tracksSelectInputExplicitLyrics = 0;
+      }
+
+      if (dataAlbum?.trackId?.thisTrackIs == 0) {
+        tracksOriginSong = 0;
+        tracksSelectInputTrackSong = 0;
+      } else {
+        tracksPublicSong = 1;
+        tracksSelectInputTrackSong = 1;
+      }
+
+      tracksInputCopyrightP.text = dataAlbum?.trackId?.pCopyright ?? "";
+      tracksInputCopyrightC.text =
+          dataAlbum?.trackId?.previewsStartTime.toString() ?? '';
+      tracksInputLyrics.text = dataAlbum?.trackId?.lyric ?? '';
+      tracksInputInternalTracksId.text =
+          dataAlbum?.trackId?.internalTrackId.toString() ?? '';
+
+      //publishing
+
+      tracksInputContributorName.text =
+          dataAlbum?.trackId?.contributor?.name ?? '';
+      tracksInputShare.text =
+          dataAlbum?.trackId?.contributor?.share.toString() ?? '';
+
+      notifyListeners();
+    }
   }
 
   String setTextButton({
@@ -464,16 +671,17 @@ class MainFormState2 extends ChangeNotifier {
       if (isLoading == true) {
         return 'Loading...';
       } else {
-        // if (dataAlbumRes != null) {
-        //   return 'Edit Album';
-        // } else if (dataVideoRes != null) {
+        if (dataAlbum != null) {
+          return 'Edit';
+        }
+        // else if (dataVideoRes != null) {
         //   return 'Edit Video';
         // } else if (dataAudio != null) {
         //   return 'Edit Audio';
-        // } else {
-        //   return 'Approve';
         // }
-        return 'Approve';
+        else {
+          return 'Simpan';
+        }
       }
     } else {
       return 'Selanjutnya';

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:yboxv2/models/general/genre_res.dart';
 import 'package:yboxv2/models/general/language_res.dart';
 import 'package:yboxv2/models/leader/leader_res.dart';
+import 'package:yboxv2/pages/forms/main_form_state_2.dart';
 import 'package:yboxv2/pages/provider/data_album.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/utils/utils.dart';
@@ -14,19 +15,19 @@ import 'package:yboxv2/widget/v_text.dart';
 class TrackForm extends StatefulWidget {
   GenreRes? genreRes1Tracks;
   GenreRes? genreRes2Tracks;
-  LeaderRes? trackLabel;
   LanguageRes? languageResTrack;
 
   final List<GenreRes> listGenre;
   final List<LeaderRes> listLabelReq;
   final List<LanguageRes> listLanguage;
   final String formCode;
+  final MainFormState2 state;
   TrackForm({
     super.key,
     required this.formCode,
+    required this.state,
     this.genreRes1Tracks,
     this.genreRes2Tracks,
-    this.trackLabel,
     this.languageResTrack,
     this.listGenre = const [],
     this.listLabelReq = const [],
@@ -38,73 +39,49 @@ class TrackForm extends StatefulWidget {
 }
 
 class _TrackFormState extends State<TrackForm> {
-  // audio
-  PlatformFile? audio;
-  String? fileNameAudio;
-  String? sizeAudio;
-
-  // title
-  TextEditingController tracksInputTitleRelease = TextEditingController();
-  TextEditingController tracksInputTitleVersion = TextEditingController();
-
-  // artist
-  TextEditingController tracksInputArtist = TextEditingController();
-  int tracksYesInputArtistSpotify = 1;
-  int tracksYesInputArtistApple = 1;
-  int tracksNoInputArtistSpotify = 0;
-  int tracksNoInputArtistApple = 0;
-  int tracksSelectInputArtistSpotify = 0;
-  int tracksSelectInputArtistApple = 0;
-  TextEditingController tracksInputArtistSpotify = TextEditingController();
-  TextEditingController tracksInputArtistApple = TextEditingController();
-
-  // info
-  TextEditingController tracksInputLyrics = TextEditingController();
-  TextEditingController tracksInputCopyrightP = TextEditingController();
-  TextEditingController tracksInputCopyrightC = TextEditingController();
-  TextEditingController tracksInputInternalTracksId = TextEditingController();
-  TextEditingController tracksInputIsrcCode = TextEditingController();
-  TextEditingController tracksInputExplicitLyrics = TextEditingController();
-  int tracksYesInputIsrcCode = 1;
-  int tracksPublicSong = 1;
-  int tracksYesInputExplicitLyrics = 1;
-  int tracksNoInputIsrcCode = 0;
-  int tracksOriginSong = 0;
-  int tracksNoInputExplicitLyrics = 0;
-  int tracksSelectInputIsrcCode = 0;
-  int tracksSelectInputExplicitLyrics = 0;
-  int tracksSelectInputTrackSong = 0;
-
   @override
   void initState() {
     super.initState();
 
-    tracksInputTitleRelease.addListener(tracksInputTitleReleaseListener);
-    tracksInputTitleVersion.addListener(tracksInputTitleVersionListener);
-    tracksInputArtist.addListener(tracksInputArtistListener);
-    tracksInputArtistSpotify.addListener(tracksInputArtistSpotifyListener);
-    tracksInputArtistApple.addListener(tracksInputArtistAppleListener);
-    tracksInputLyrics.addListener(tracksInputLyricsListener);
-    tracksInputCopyrightP.addListener(tracksInputCopyrightPListener);
-    tracksInputCopyrightC.addListener(tracksInputCopyrightCListener);
-    tracksInputInternalTracksId
+    widget.state.tracksInputTitleRelease
+        .addListener(tracksInputTitleReleaseListener);
+    widget.state.tracksInputTitleVersion
+        .addListener(tracksInputTitleVersionListener);
+    widget.state.tracksInputArtist.addListener(tracksInputArtistListener);
+    widget.state.tracksInputArtistSpotify
+        .addListener(tracksInputArtistSpotifyListener);
+    widget.state.tracksInputArtistApple
+        .addListener(tracksInputArtistAppleListener);
+    widget.state.tracksInputLyrics.addListener(tracksInputLyricsListener);
+    widget.state.tracksInputCopyrightP
+        .addListener(tracksInputCopyrightPListener);
+    widget.state.tracksInputCopyrightC
+        .addListener(tracksInputCopyrightCListener);
+    widget.state.tracksInputInternalTracksId
         .addListener(tracksInputInternalTracksIdListener);
-    tracksInputIsrcCode.addListener(tracksInputIsrcCodeListener);
+    widget.state.tracksInputIsrcCode.addListener(tracksInputIsrcCodeListener);
   }
 
   @override
   void dispose() {
-    tracksInputTitleRelease.removeListener(tracksInputTitleReleaseListener);
-    tracksInputTitleVersion.removeListener(tracksInputTitleVersionListener);
-    tracksInputArtist.removeListener(tracksInputArtistListener);
-    tracksInputArtistSpotify.removeListener(tracksInputArtistSpotifyListener);
-    tracksInputArtistApple.removeListener(tracksInputArtistAppleListener);
-    tracksInputLyrics.removeListener(tracksInputLyricsListener);
-    tracksInputCopyrightP.removeListener(tracksInputCopyrightPListener);
-    tracksInputCopyrightC.removeListener(tracksInputCopyrightCListener);
-    tracksInputInternalTracksId
+    widget.state.tracksInputTitleRelease
+        .removeListener(tracksInputTitleReleaseListener);
+    widget.state.tracksInputTitleVersion
+        .removeListener(tracksInputTitleVersionListener);
+    widget.state.tracksInputArtist.removeListener(tracksInputArtistListener);
+    widget.state.tracksInputArtistSpotify
+        .removeListener(tracksInputArtistSpotifyListener);
+    widget.state.tracksInputArtistApple
+        .removeListener(tracksInputArtistAppleListener);
+    widget.state.tracksInputLyrics.removeListener(tracksInputLyricsListener);
+    widget.state.tracksInputCopyrightP
+        .removeListener(tracksInputCopyrightPListener);
+    widget.state.tracksInputCopyrightC
+        .removeListener(tracksInputCopyrightCListener);
+    widget.state.tracksInputInternalTracksId
         .removeListener(tracksInputInternalTracksIdListener);
-    tracksInputIsrcCode.removeListener(tracksInputIsrcCodeListener);
+    widget.state.tracksInputIsrcCode
+        .removeListener(tracksInputIsrcCodeListener);
     super.dispose();
   }
 
@@ -163,7 +140,7 @@ class _TrackFormState extends State<TrackForm> {
           hintTextColor: grey4,
           textColor: grey7,
           fillColor: Theme.of(context).colorScheme.onPrimary,
-          controller: tracksInputLyrics,
+          controller: widget.state.tracksInputLyrics,
         ),
       ],
     );
@@ -297,7 +274,7 @@ class _TrackFormState extends State<TrackForm> {
                     hintTextColor: grey4,
                     textColor: grey7,
                     fillColor: Theme.of(context).colorScheme.onPrimary,
-                    controller: tracksInputCopyrightP,
+                    controller: widget.state.tracksInputCopyrightP,
                   ),
                 ],
               ),
@@ -326,7 +303,7 @@ class _TrackFormState extends State<TrackForm> {
                     keyboardType: TextInputType.number,
                     textColor: grey7,
                     fillColor: Theme.of(context).colorScheme.onPrimary,
-                    controller: tracksInputCopyrightC,
+                    controller: widget.state.tracksInputCopyrightC,
                   ),
                 ],
               ),
@@ -339,81 +316,28 @@ class _TrackFormState extends State<TrackForm> {
               (widget.formCode == 'ringtone' || widget.formCode == 'video'),
           child: Container(
             margin: const EdgeInsets.only(top: 10.0),
-            child: Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      vText(
-                        "Label name",
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: black7,
-                      ),
-                      const SizedBox(height: 8),
-                      VDropDownLabel(
-                        radius: 8.0,
-                        fontSize: 14.0,
-                        colorText: grey7,
-                        borderColor: grey10,
-                        value: widget.trackLabel,
-                        onChanged: (LeaderRes? data) {
-                          setState(() {
-                            widget.trackLabel = data ??
-                                const LeaderRes(
-                                  id: '',
-                                  name: '',
-                                  image: '',
-                                );
-                          });
-
-                          if (data != null) {
-                            context.read<DataAlbum>().updateLabelInfo(data.id);
-                          }
-                        },
-                        items: widget.listLabelReq
-                            .map<DropdownMenuItem<LeaderRes>>(
-                                (LeaderRes value) {
-                          return DropdownMenuItem<LeaderRes>(
-                            value: value,
-                            child: Text(value.name),
-                          );
-                        }).toList(),
-                        icon: const Icon(Icons.arrow_drop_down),
-                      ),
-                    ],
-                  ),
+                vText(
+                  "Internal track ID",
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: black7,
                 ),
-                const SizedBox(width: 10),
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      vText(
-                        "Internal track ID",
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: black7,
-                      ),
-                      const SizedBox(height: 8),
-                      VInputText(
-                        'text',
-                        radius: 8,
-                        outlineColor: grey10,
-                        activeColor: grey10,
-                        fontSize: 14,
-                        hintFontSize: 14.0,
-                        hintTextColor: grey4,
-                        keyboardType: TextInputType.number,
-                        textColor: grey7,
-                        fillColor: Theme.of(context).colorScheme.onPrimary,
-                        controller: tracksInputInternalTracksId,
-                      ),
-                    ],
-                  ),
+                const SizedBox(height: 8),
+                VInputText(
+                  'text',
+                  radius: 8,
+                  outlineColor: grey10,
+                  activeColor: grey10,
+                  fontSize: 14,
+                  hintFontSize: 14.0,
+                  hintTextColor: grey4,
+                  keyboardType: TextInputType.number,
+                  textColor: grey7,
+                  fillColor: Theme.of(context).colorScheme.onPrimary,
+                  controller: widget.state.tracksInputInternalTracksId,
                 ),
               ],
             ),
@@ -453,11 +377,11 @@ class _TrackFormState extends State<TrackForm> {
             Row(
               children: [
                 Radio<int>(
-                  groupValue: tracksSelectInputIsrcCode,
-                  value: tracksNoInputIsrcCode,
+                  groupValue: widget.state.tracksSelectInputIsrcCode,
+                  value: widget.state.tracksNoInputIsrcCode,
                   onChanged: (val) {
                     setState(() {
-                      tracksSelectInputIsrcCode = val ?? 0;
+                      widget.state.tracksSelectInputIsrcCode = val ?? 0;
                     });
                   },
                   activeColor: primaryColor,
@@ -475,11 +399,11 @@ class _TrackFormState extends State<TrackForm> {
             Row(
               children: [
                 Radio<int>(
-                  groupValue: tracksSelectInputIsrcCode,
-                  value: tracksYesInputIsrcCode,
+                  groupValue: widget.state.tracksSelectInputIsrcCode,
+                  value: widget.state.tracksYesInputIsrcCode,
                   onChanged: (val) {
                     setState(() {
-                      tracksSelectInputIsrcCode = val ?? 0;
+                      widget.state.tracksSelectInputIsrcCode = val ?? 0;
                     });
                   },
                   activeColor: primaryColor,
@@ -493,7 +417,7 @@ class _TrackFormState extends State<TrackForm> {
               ],
             ),
             Visibility(
-              visible: tracksSelectInputIsrcCode == 1,
+              visible: widget.state.tracksSelectInputIsrcCode == 1,
               child: Container(
                 margin: const EdgeInsets.only(top: 5.0),
                 child: VInputText(
@@ -507,7 +431,7 @@ class _TrackFormState extends State<TrackForm> {
                   textColor: grey7,
                   keyboardType: TextInputType.number,
                   fillColor: Theme.of(context).colorScheme.onPrimary,
-                  controller: tracksInputIsrcCode,
+                  controller: widget.state.tracksInputIsrcCode,
                 ),
               ),
             ),
@@ -526,14 +450,15 @@ class _TrackFormState extends State<TrackForm> {
             Row(
               children: [
                 Radio<int>(
-                  groupValue: tracksSelectInputExplicitLyrics,
-                  value: tracksNoInputExplicitLyrics,
+                  groupValue: widget.state.tracksSelectInputExplicitLyrics,
+                  value: widget.state.tracksNoInputExplicitLyrics,
                   onChanged: (val) {
                     setState(() {
-                      tracksSelectInputExplicitLyrics = val ?? 0;
+                      widget.state.tracksSelectInputExplicitLyrics = val ?? 0;
                     });
-                    context.read<DataAlbum>().updateRdolyrics(
-                        tracksSelectInputExplicitLyrics.toString());
+                    context.read<DataAlbum>().updateRdolyrics(widget
+                        .state.tracksSelectInputExplicitLyrics
+                        .toString());
                   },
                   activeColor: primaryColor,
                 ),
@@ -550,14 +475,15 @@ class _TrackFormState extends State<TrackForm> {
             Row(
               children: [
                 Radio<int>(
-                  groupValue: tracksSelectInputExplicitLyrics,
-                  value: tracksYesInputExplicitLyrics,
+                  groupValue: widget.state.tracksSelectInputExplicitLyrics,
+                  value: widget.state.tracksYesInputExplicitLyrics,
                   onChanged: (val) {
                     setState(() {
-                      tracksSelectInputExplicitLyrics = val ?? 0;
+                      widget.state.tracksSelectInputExplicitLyrics = val ?? 0;
                     });
-                    context.read<DataAlbum>().updateRdolyrics(
-                        tracksSelectInputExplicitLyrics.toString());
+                    context.read<DataAlbum>().updateRdolyrics(widget
+                        .state.tracksSelectInputExplicitLyrics
+                        .toString());
                   },
                   activeColor: primaryColor,
                 ),
@@ -570,7 +496,7 @@ class _TrackFormState extends State<TrackForm> {
               ],
             ),
             Visibility(
-              visible: tracksSelectInputExplicitLyrics == 1,
+              visible: widget.state.tracksSelectInputExplicitLyrics == 1,
               child: Container(
                 margin: const EdgeInsets.only(top: 5.0),
                 child: VInputText(
@@ -583,7 +509,7 @@ class _TrackFormState extends State<TrackForm> {
                   hintTextColor: grey4,
                   textColor: grey7,
                   fillColor: Theme.of(context).colorScheme.onPrimary,
-                  controller: tracksInputExplicitLyrics,
+                  controller: widget.state.tracksInputExplicitLyrics,
                 ),
               ),
             ),
@@ -602,15 +528,15 @@ class _TrackFormState extends State<TrackForm> {
             Row(
               children: [
                 Radio<int>(
-                  groupValue: tracksSelectInputTrackSong,
-                  value: tracksOriginSong,
+                  groupValue: widget.state.tracksSelectInputTrackSong,
+                  value: widget.state.tracksOriginSong,
                   onChanged: (val) {
                     setState(() {
-                      tracksSelectInputTrackSong = val ?? 0;
+                      widget.state.tracksSelectInputTrackSong = val ?? 0;
                     });
 
                     context.read<DataAlbum>().updateRdothisTracks(
-                        tracksSelectInputTrackSong.toString());
+                        widget.state.tracksSelectInputTrackSong.toString());
                   },
                   activeColor: primaryColor,
                 ),
@@ -627,14 +553,14 @@ class _TrackFormState extends State<TrackForm> {
             Row(
               children: [
                 Radio<int>(
-                  groupValue: tracksSelectInputTrackSong,
-                  value: tracksPublicSong,
+                  groupValue: widget.state.tracksSelectInputTrackSong,
+                  value: widget.state.tracksPublicSong,
                   onChanged: (val) {
                     setState(() {
-                      tracksSelectInputTrackSong = val ?? 0;
+                      widget.state.tracksSelectInputTrackSong = val ?? 0;
                     });
                     context.read<DataAlbum>().updateRdothisTracks(
-                        tracksSelectInputTrackSong.toString());
+                        widget.state.tracksSelectInputTrackSong.toString());
                   },
                   activeColor: primaryColor,
                 ),
@@ -670,11 +596,11 @@ class _TrackFormState extends State<TrackForm> {
             Row(
               children: [
                 Radio<int>(
-                  groupValue: tracksSelectInputArtistSpotify,
-                  value: tracksNoInputArtistSpotify,
+                  groupValue: widget.state.tracksSelectInputArtistSpotify,
+                  value: widget.state.tracksNoInputArtistSpotify,
                   onChanged: (val) {
                     setState(() {
-                      tracksSelectInputArtistSpotify = val ?? 0;
+                      widget.state.tracksSelectInputArtistSpotify = val ?? 0;
                     });
                   },
                   activeColor: primaryColor,
@@ -692,11 +618,11 @@ class _TrackFormState extends State<TrackForm> {
             Row(
               children: [
                 Radio<int>(
-                  groupValue: tracksSelectInputArtistSpotify,
-                  value: tracksYesInputArtistSpotify,
+                  groupValue: widget.state.tracksSelectInputArtistSpotify,
+                  value: widget.state.tracksYesInputArtistSpotify,
                   onChanged: (val) {
                     setState(() {
-                      tracksSelectInputArtistSpotify = val ?? 0;
+                      widget.state.tracksSelectInputArtistSpotify = val ?? 0;
                     });
                   },
                   activeColor: primaryColor,
@@ -710,7 +636,7 @@ class _TrackFormState extends State<TrackForm> {
               ],
             ),
             Visibility(
-              visible: (tracksSelectInputArtistSpotify == 1),
+              visible: (widget.state.tracksSelectInputArtistSpotify == 1),
               child: Container(
                 margin: const EdgeInsets.only(top: 5.0),
                 child: VInputText(
@@ -723,7 +649,7 @@ class _TrackFormState extends State<TrackForm> {
                   hintTextColor: grey4,
                   textColor: grey7,
                   fillColor: Theme.of(context).colorScheme.onPrimary,
-                  controller: tracksInputArtistSpotify,
+                  controller: widget.state.tracksInputArtistSpotify,
                 ),
               ),
             ),
@@ -742,11 +668,11 @@ class _TrackFormState extends State<TrackForm> {
             Row(
               children: [
                 Radio<int>(
-                  groupValue: tracksSelectInputArtistApple,
-                  value: tracksNoInputArtistApple,
+                  groupValue: widget.state.tracksSelectInputArtistApple,
+                  value: widget.state.tracksNoInputArtistApple,
                   onChanged: (val) {
                     setState(() {
-                      tracksSelectInputArtistApple = val ?? 0;
+                      widget.state.tracksSelectInputArtistApple = val ?? 0;
                     });
                   },
                   activeColor: primaryColor,
@@ -764,11 +690,11 @@ class _TrackFormState extends State<TrackForm> {
             Row(
               children: [
                 Radio<int>(
-                  groupValue: tracksSelectInputArtistApple,
-                  value: tracksYesInputArtistApple,
+                  groupValue: widget.state.tracksSelectInputArtistApple,
+                  value: widget.state.tracksYesInputArtistApple,
                   onChanged: (val) {
                     setState(() {
-                      tracksSelectInputArtistApple = val ?? 0;
+                      widget.state.tracksSelectInputArtistApple = val ?? 0;
                     });
                   },
                   activeColor: primaryColor,
@@ -782,7 +708,7 @@ class _TrackFormState extends State<TrackForm> {
               ],
             ),
             Visibility(
-              visible: (tracksSelectInputArtistApple == 1),
+              visible: (widget.state.tracksSelectInputArtistApple == 1),
               child: Container(
                 margin: const EdgeInsets.only(top: 5.0),
                 child: VInputText(
@@ -795,7 +721,7 @@ class _TrackFormState extends State<TrackForm> {
                   hintTextColor: grey4,
                   textColor: grey7,
                   fillColor: Theme.of(context).colorScheme.onPrimary,
-                  controller: tracksInputArtistApple,
+                  controller: widget.state.tracksInputArtistApple,
                 ),
               ),
             ),
@@ -826,7 +752,7 @@ class _TrackFormState extends State<TrackForm> {
           hintTextColor: grey4,
           textColor: grey7,
           fillColor: Theme.of(context).colorScheme.onPrimary,
-          controller: tracksInputArtist,
+          controller: widget.state.tracksInputArtist,
         ),
       ],
     );
@@ -860,7 +786,7 @@ class _TrackFormState extends State<TrackForm> {
                     hintTextColor: grey4,
                     textColor: grey7,
                     fillColor: Theme.of(context).colorScheme.onPrimary,
-                    controller: tracksInputTitleRelease,
+                    controller: widget.state.tracksInputTitleRelease,
                   ),
                 ],
               ),
@@ -888,7 +814,7 @@ class _TrackFormState extends State<TrackForm> {
                     hintTextColor: grey4,
                     textColor: grey7,
                     fillColor: Theme.of(context).colorScheme.onPrimary,
-                    controller: tracksInputTitleVersion,
+                    controller: widget.state.tracksInputTitleVersion,
                   ),
                 ],
               ),
@@ -968,9 +894,9 @@ class _TrackFormState extends State<TrackForm> {
                         : '${kb.toStringAsFixed(2)} KB';
 
                     setState(() {
-                      audio = fileAudio;
-                      fileNameAudio = fileName;
-                      sizeAudio = fileSize;
+                      widget.state.audio = fileAudio;
+                      widget.state.fileNameAudio = fileName;
+                      widget.state.sizeAudio = fileSize;
                     });
 
                     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -978,12 +904,15 @@ class _TrackFormState extends State<TrackForm> {
                     });
                   }
                 },
-                child: buildAudio(fileAudio: audio),
+                child: buildAudio(
+                  fileAudio: widget.state.audio,
+                  editAudio: widget.state.audioEdit,
+                ),
               ),
             ),
             Expanded(
               flex: 2,
-              child: (audio == null)
+              child: (widget.state.audio == null)
                   ? Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -1003,13 +932,13 @@ class _TrackFormState extends State<TrackForm> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         vText(
-                          "File name : $fileNameAudio",
+                          "File name : ${widget.state.fileNameAudio}",
                           fontSize: 12,
                           maxLines: 2,
                           fontWeight: FontWeight.w500,
                         ),
                         vText(
-                          "Size : $sizeAudio",
+                          "Size : ${widget.state.sizeAudio}",
                           fontSize: 12,
                           maxLines: 2,
                           fontWeight: FontWeight.w400,
@@ -1063,68 +992,82 @@ class _TrackFormState extends State<TrackForm> {
   }
 
   void tracksInputTitleReleaseListener() {
-    if (tracksInputTitleRelease.text.isNotEmpty) {
-      context.read<DataAlbum>().updateTrackTitle(tracksInputTitleRelease.text);
+    if (widget.state.tracksInputTitleRelease.text.isNotEmpty) {
+      context
+          .read<DataAlbum>()
+          .updateTrackTitle(widget.state.tracksInputTitleRelease.text);
     }
   }
 
   void tracksInputTitleVersionListener() {
-    if (tracksInputTitleVersion.text.isNotEmpty) {
+    if (widget.state.tracksInputTitleVersion.text.isNotEmpty) {
       context
           .read<DataAlbum>()
-          .updateTitleVersionTrack(tracksInputTitleVersion.text);
+          .updateTitleVersionTrack(widget.state.tracksInputTitleVersion.text);
     }
   }
 
   void tracksInputArtistListener() {
-    if (tracksInputArtist.text.isNotEmpty) {
-      context.read<DataAlbum>().updateArtistTrack(tracksInputArtist.text);
+    if (widget.state.tracksInputArtist.text.isNotEmpty) {
+      context
+          .read<DataAlbum>()
+          .updateArtistTrack(widget.state.tracksInputArtist.text);
     }
   }
 
   void tracksInputArtistSpotifyListener() {
-    if (tracksInputArtistSpotify.text.isNotEmpty) {
+    if (widget.state.tracksInputArtistSpotify.text.isNotEmpty) {
       context
           .read<DataAlbum>()
-          .updateSpotifyTrack(tracksInputArtistSpotify.text);
+          .updateSpotifyTrack(widget.state.tracksInputArtistSpotify.text);
     }
   }
 
   void tracksInputArtistAppleListener() {
-    if (tracksInputArtistApple.text.isNotEmpty) {
-      context.read<DataAlbum>().updateItunesTrack(tracksInputArtistApple.text);
+    if (widget.state.tracksInputArtistApple.text.isNotEmpty) {
+      context
+          .read<DataAlbum>()
+          .updateItunesTrack(widget.state.tracksInputArtistApple.text);
     }
   }
 
   void tracksInputLyricsListener() {
-    if (tracksInputLyrics.text.isNotEmpty) {
-      context.read<DataAlbum>().updateLirik(tracksInputLyrics.text);
+    if (widget.state.tracksInputLyrics.text.isNotEmpty) {
+      context
+          .read<DataAlbum>()
+          .updateLirik(widget.state.tracksInputLyrics.text);
     }
   }
 
   void tracksInputCopyrightPListener() {
-    if (tracksInputCopyrightP.text.isNotEmpty) {
-      context.read<DataAlbum>().updatePCopy(tracksInputCopyrightP.text);
+    if (widget.state.tracksInputCopyrightP.text.isNotEmpty) {
+      context
+          .read<DataAlbum>()
+          .updatePCopyInfo(widget.state.tracksInputCopyrightP.text);
     }
   }
 
   void tracksInputCopyrightCListener() {
-    if (tracksInputCopyrightC.text.isNotEmpty) {
-      context.read<DataAlbum>().updateStartTime(tracksInputCopyrightC.text);
+    if (widget.state.tracksInputCopyrightC.text.isNotEmpty) {
+      context
+          .read<DataAlbum>()
+          .updateStartTime(widget.state.tracksInputCopyrightC.text);
     }
   }
 
   void tracksInputInternalTracksIdListener() {
-    if (tracksInputInternalTracksId.text.isNotEmpty) {
+    if (widget.state.tracksInputInternalTracksId.text.isNotEmpty) {
       context
           .read<DataAlbum>()
-          .updateTrackIdInfo(tracksInputInternalTracksId.text);
+          .updateTrackIdInfo(widget.state.tracksInputInternalTracksId.text);
     }
   }
 
   void tracksInputIsrcCodeListener() {
-    if (tracksInputIsrcCode.text.isNotEmpty) {
-      context.read<DataAlbum>().updateIsrc(tracksInputIsrcCode.text);
+    if (widget.state.tracksInputIsrcCode.text.isNotEmpty) {
+      context
+          .read<DataAlbum>()
+          .updateIsrc(widget.state.tracksInputIsrcCode.text);
     }
   }
 }

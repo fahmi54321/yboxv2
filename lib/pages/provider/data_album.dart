@@ -74,11 +74,6 @@ class DataAlbum extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateLabel(String label) {
-    _state = _state.copyWith(label: label);
-    notifyListeners();
-  }
-
   void updateReleaseId(String releaseId) {
     _state = _state.copyWith(releaseId: releaseId);
     notifyListeners();
@@ -156,11 +151,6 @@ class DataAlbum extends ChangeNotifier {
 
   void updateStartTime(String startTime) {
     _state = _state.copyWith(startTime: startTime);
-    notifyListeners();
-  }
-
-  void updateLabelInfo(String labelInfo) {
-    _state = _state.copyWith(labelInfo: labelInfo);
     notifyListeners();
   }
 

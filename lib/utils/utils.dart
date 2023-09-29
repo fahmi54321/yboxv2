@@ -59,6 +59,13 @@ class Utils {
     return file;
   }
 
+  static String convertImage({required String url}) {
+    String image = url.replaceAll('public', 'storage');
+    String urlImage = appUrl + image;
+
+    return urlImage;
+  }
+
   // static Future<bool> checkAndRequestCameraPermissions() async {
   //   var status = await Permission.camera.status;
   //   if (!status.isGranted) {

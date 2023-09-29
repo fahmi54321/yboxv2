@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:yboxv2/models/album/album_res.dart';
+import 'package:yboxv2/models/album/details_album_res.dart';
 import 'package:yboxv2/models/login_res.dart';
 import 'package:yboxv2/network/api_interceptor.dart';
 import 'package:yboxv2/network/api_url.dart';
@@ -39,14 +40,14 @@ class HTTPAlbumService {
   }
 
   Future<Either<String, int>> editAlbum({
-    required int id,
+    required String id,
     required FormData data,
   }) async {
     var dataToken = await SharedPreferencesUtils.getLoginPreference();
     LoginRes loginRes = LoginRes.fromJson(jsonDecode(dataToken ?? ''));
 
     final response = await WebService().client().post(
-          ApiUrl.album + id.toString(),
+          '${ApiUrl.album}/$id',
           data: data,
           options: Options(headers: {
             'Authorization': 'Bearer ${loginRes.accessToken}',
@@ -54,7 +55,7 @@ class HTTPAlbumService {
           }),
         );
 
-    debugPrint('url editAlbum : ${ApiUrl.album + id.toString()}');
+    debugPrint('url editAlbum : ${ApiUrl.album}/$id');
     debugPrint('response editAlbum : ${response.data}');
     debugPrint('params editAlbum : ${data.fields}');
 
@@ -92,25 +93,25 @@ class HTTPAlbumService {
     }
   }
 
-  Future<Either<String, DataAlbumRes>> detailsAlbum({
+  Future<Either<String, DetailsAlbumRes>> detailsAlbum({
     required String id,
   }) async {
     var dataToken = await SharedPreferencesUtils.getLoginPreference();
     LoginRes loginRes = LoginRes.fromJson(jsonDecode(dataToken ?? ''));
 
     final response = await WebService().client().get(
-          ApiUrl.album + id,
+          '${ApiUrl.album}/$id',
           options: Options(headers: {
             'Authorization': 'Bearer ${loginRes.accessToken}',
           }),
         );
-    debugPrint('url detailsAlbum : ${ApiUrl.album + id}');
+    debugPrint('url detailsAlbum : ${ApiUrl.album}/$id');
     debugPrint('parms detailsAlbum : $id');
     debugPrint('response detailsAlbum : ${response.data}');
 
     if (response.statusCode == 200) {
       final result =
-          DataAlbumRes.fromJson(response.data as Map<String, dynamic>);
+          DetailsAlbumRes.fromJson(response.data as Map<String, dynamic>);
       return Right(result);
     } else {
       return const Left('Terjadi kesalahan');

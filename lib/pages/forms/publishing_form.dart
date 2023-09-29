@@ -4,41 +4,25 @@ import 'package:provider/provider.dart';
 
 import 'package:yboxv2/models/general/publishing_res.dart';
 import 'package:yboxv2/models/general/roles_res.dart';
+import 'package:yboxv2/pages/forms/main_form_state_2.dart';
 import 'package:yboxv2/pages/provider/data_album.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/widget/v_dropdown.dart';
 import 'package:yboxv2/widget/v_text.dart';
-
-class TestHei extends StatefulWidget {
-  const TestHei({super.key});
-
-  @override
-  State<TestHei> createState() => _TestHeiState();
-}
-
-class _TestHeiState extends State<TestHei> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // buildFormTrack(),
-      ],
-    );
-  }
-}
 
 class PublishingForm extends StatefulWidget {
   RolesRes? pubRoles;
   PublishingRes? pubPublishings;
   final List<PublishingRes> listPublishing;
   final List<RolesRes> listRole;
+  final MainFormState2 state;
   PublishingForm({
     super.key,
     this.pubRoles,
     this.pubPublishings,
     this.listPublishing = const [],
     this.listRole = const [],
+    required this.state,
   });
 
   @override
@@ -46,22 +30,20 @@ class PublishingForm extends StatefulWidget {
 }
 
 class _PublishingFormState extends State<PublishingForm> {
-  TextEditingController tracksInputContributorName = TextEditingController();
-  TextEditingController tracksInputShare = TextEditingController();
-
   @override
   void initState() {
     super.initState();
 
-    tracksInputContributorName.addListener(tracksInputContributorNameListener);
-    tracksInputShare.addListener(tracksInputShareListener);
+    widget.state.tracksInputContributorName
+        .addListener(tracksInputContributorNameListener);
+    widget.state.tracksInputShare.addListener(tracksInputShareListener);
   }
 
   @override
   void dispose() {
-    tracksInputContributorName
+    widget.state.tracksInputContributorName
         .removeListener(tracksInputContributorNameListener);
-    tracksInputShare.removeListener(tracksInputShareListener);
+    widget.state.tracksInputShare.removeListener(tracksInputShareListener);
     super.dispose();
   }
 
@@ -153,7 +135,7 @@ class _PublishingFormState extends State<PublishingForm> {
           textColor: grey7,
           keyboardType: TextInputType.number,
           fillColor: Theme.of(context).colorScheme.onPrimary,
-          controller: tracksInputShare,
+          controller: widget.state.tracksInputShare,
         ),
       ],
     );
@@ -219,21 +201,23 @@ class _PublishingFormState extends State<PublishingForm> {
           hintTextColor: grey4,
           textColor: grey7,
           fillColor: Theme.of(context).colorScheme.onPrimary,
-          controller: tracksInputContributorName,
+          controller: widget.state.tracksInputContributorName,
         ),
       ],
     );
   }
 
   void tracksInputContributorNameListener() {
-    if (tracksInputContributorName.text.isNotEmpty) {
-      context.read<DataAlbum>().updateConName(tracksInputContributorName.text);
+    if (widget.state.tracksInputContributorName.text.isNotEmpty) {
+      context
+          .read<DataAlbum>()
+          .updateConName(widget.state.tracksInputContributorName.text);
     }
   }
 
   void tracksInputShareListener() {
-    if (tracksInputShare.text.isNotEmpty) {
-      context.read<DataAlbum>().updateShare(tracksInputShare.text);
+    if (widget.state.tracksInputShare.text.isNotEmpty) {
+      context.read<DataAlbum>().updateShare(widget.state.tracksInputShare.text);
     }
   }
 }

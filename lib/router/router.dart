@@ -34,7 +34,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case DetailsAlbumPage.route:
       return PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) =>
-            const DetailsAlbumPage(),
+            DetailsAlbumPage(
+          args: settings.arguments as ArgsDetailsAlbum,
+        ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           const begin = Offset(0.0, 1.0);
           const end = Offset.zero;

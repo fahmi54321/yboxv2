@@ -7,6 +7,7 @@ import 'package:yboxv2/models/general/genre_res.dart';
 
 import 'package:yboxv2/models/general/language_res.dart';
 import 'package:yboxv2/models/leader/leader_res.dart';
+import 'package:yboxv2/pages/forms/main_form_state_2.dart';
 import 'package:yboxv2/pages/forms/widget/cover_image.dart';
 import 'package:yboxv2/pages/provider/data_album.dart';
 import 'package:yboxv2/resource/CPColors.dart';
@@ -19,10 +20,10 @@ class MainForm extends StatefulWidget {
   LanguageRes? languageResTrack;
   GenreRes? genreRes1Main;
   GenreRes? genreRes2Main;
-  LeaderRes? mainLabel;
   final List<LanguageRes> listLanguage;
   final List<GenreRes> listGenre;
   final List<LeaderRes> listLabelReq;
+  final MainFormState2 state;
   MainForm({
     super.key,
     this.languageResMain,
@@ -31,8 +32,8 @@ class MainForm extends StatefulWidget {
     this.genreRes1Main,
     this.listGenre = const [],
     this.genreRes2Main,
-    this.mainLabel,
     this.listLabelReq = const [],
+    required this.state,
   });
 
   @override
@@ -68,10 +69,9 @@ class _MainFormState extends State<MainForm>
       languageResTrack: widget.languageResTrack,
       genreRes1Main: widget.genreRes1Main,
       genreRes2Main: widget.genreRes2Main,
-      mainLabel: widget.mainLabel,
       listLanguage: widget.listLanguage,
       listGenre: widget.listGenre,
-      listLabelReq: widget.listLabelReq,
+      state: widget.state,
     );
   }
 }
@@ -81,12 +81,11 @@ class MainFormWidget extends StatefulWidget {
   LanguageRes? languageResTrack;
   GenreRes? genreRes1Main;
   GenreRes? genreRes2Main;
-  LeaderRes? mainLabel;
   final List<LanguageRes> listLanguage;
   final List<GenreRes> listGenre;
-  final List<LeaderRes> listLabelReq;
   final AnimationController controller;
   final AnimationMainForm animation;
+  final MainFormState2 state;
 
   MainFormWidget({
     super.key,
@@ -96,9 +95,8 @@ class MainFormWidget extends StatefulWidget {
     this.genreRes1Main,
     this.listGenre = const [],
     this.genreRes2Main,
-    this.mainLabel,
-    this.listLabelReq = const [],
     required this.controller,
+    required this.state,
   }) : animation = AnimationMainForm(
           controller: controller,
         );
@@ -108,54 +106,6 @@ class MainFormWidget extends StatefulWidget {
 }
 
 class _MainFormWidgetState extends State<MainFormWidget> {
-  int selectInputPrevRelease = 0;
-  int yesInputPrevRelease = 1;
-  int selectInputLabel = 0;
-  int yesInputLabel = 1;
-  int selectInputUPC = 0;
-  int yesInputUPC = 1;
-  int noInputLabel = 0;
-  int noInputPrevRelease = 0;
-  int noInputUPC = 0;
-
-  File? coverImageFile;
-
-  //title
-  TextEditingController inputTitleRelease = TextEditingController();
-  TextEditingController inputTitleVersion = TextEditingController();
-
-  //artist
-  TextEditingController inputArtist = TextEditingController();
-  int yesInputArtistSpotify = 1;
-  int yesInputArtistApple = 1;
-  int noInputArtistSpotify = 0;
-  int noInputArtistApple = 0;
-  int selectInputArtistSpotify = 0;
-  int selectInputArtistApple = 0;
-  TextEditingController inputArtistSpotify = TextEditingController();
-  TextEditingController inputArtistApple = TextEditingController();
-
-  // info
-  TextEditingController inputCopyrightP = TextEditingController();
-  TextEditingController inputCopyrightC = TextEditingController();
-  TextEditingController inputPrevReleased = TextEditingController();
-  TextEditingController inputReleaseId = TextEditingController();
-  TextEditingController inputUpc = TextEditingController();
-
-  List<String> rulesOfImage = [
-    'File format: PNG, GIF, BMP, TIF, JPG or JPEG.',
-    'Color space: RGB.',
-    'Minimum dimensions: 1400x1400 pixels, but recommend 3000x3000 pixels',
-    'Square image: width and height must be the same.',
-    'Images may not contain more than 50 megapixels or be larger than 10 Mb.',
-    'Your image cannot be stretched, upscaled, or appear to be low-resolution.',
-    'The information on your cover art must match your album title and artist name.',
-    'Website addresses, social media links and contact information are not permitted on album artwork.',
-    'Your cover art may not include sexually explicit imagery.',
-    'Your cover art cannot be misleading by figuring another artists name more prominently than yours.',
-    'You may not use a third-party logo or trademark without the express written permission from the trademark holder.',
-  ];
-
   bool isLoading = false;
 
   @override
@@ -166,16 +116,16 @@ class _MainFormWidgetState extends State<MainFormWidget> {
       isLoading = true;
     });
 
-    inputTitleRelease.addListener(inputTitleReleaseListener);
-    inputTitleVersion.addListener(inputTitleVersionListener);
-    inputArtist.addListener(inputArtistListener);
-    inputArtistSpotify.addListener(inputArtistSpotifyListener);
-    inputArtistApple.addListener(inputArtistAppleListener);
-    inputCopyrightP.addListener(inputCopyrightPListener);
-    inputCopyrightC.addListener(inputCopyrightCListener);
-    inputPrevReleased.addListener(inputPrevReleasedListener);
-    inputReleaseId.addListener(inputReleaseIdListener);
-    inputUpc.addListener(inputUpcListener);
+    widget.state.inputTitleRelease.addListener(inputTitleReleaseListener);
+    widget.state.inputTitleVersion.addListener(inputTitleVersionListener);
+    widget.state.inputArtist.addListener(inputArtistListener);
+    widget.state.inputArtistSpotify.addListener(inputArtistSpotifyListener);
+    widget.state.inputArtistApple.addListener(inputArtistAppleListener);
+    widget.state.inputCopyrightP.addListener(inputCopyrightPListener);
+    widget.state.inputCopyrightC.addListener(inputCopyrightCListener);
+    widget.state.inputPrevReleased.addListener(inputPrevReleasedListener);
+    widget.state.inputReleaseId.addListener(inputReleaseIdListener);
+    widget.state.inputUpc.addListener(inputUpcListener);
 
     setState(() {
       isLoading = false;
@@ -186,16 +136,16 @@ class _MainFormWidgetState extends State<MainFormWidget> {
 
   @override
   void dispose() {
-    inputTitleRelease.removeListener(inputTitleReleaseListener);
-    inputTitleVersion.removeListener(inputTitleVersionListener);
-    inputArtist.removeListener(inputArtistListener);
-    inputArtistSpotify.removeListener(inputArtistSpotifyListener);
-    inputArtistApple.removeListener(inputArtistAppleListener);
-    inputCopyrightP.removeListener(inputCopyrightPListener);
-    inputCopyrightC.removeListener(inputCopyrightCListener);
-    inputPrevReleased.removeListener(inputPrevReleasedListener);
-    inputReleaseId.removeListener(inputReleaseIdListener);
-    inputUpc.removeListener(inputUpcListener);
+    widget.state.inputTitleRelease.removeListener(inputTitleReleaseListener);
+    widget.state.inputTitleVersion.removeListener(inputTitleVersionListener);
+    widget.state.inputArtist.removeListener(inputArtistListener);
+    widget.state.inputArtistSpotify.removeListener(inputArtistSpotifyListener);
+    widget.state.inputArtistApple.removeListener(inputArtistAppleListener);
+    widget.state.inputCopyrightP.removeListener(inputCopyrightPListener);
+    widget.state.inputCopyrightC.removeListener(inputCopyrightCListener);
+    widget.state.inputPrevReleased.removeListener(inputPrevReleasedListener);
+    widget.state.inputReleaseId.removeListener(inputReleaseIdListener);
+    widget.state.inputUpc.removeListener(inputUpcListener);
     super.dispose();
   }
 
@@ -261,7 +211,7 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                       hintTextColor: grey4,
                       textColor: grey7,
                       fillColor: Theme.of(context).colorScheme.onPrimary,
-                      controller: inputTitleRelease,
+                      controller: widget.state.inputTitleRelease,
                     ),
                   ],
                 ),
@@ -289,7 +239,7 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                       hintTextColor: grey4,
                       textColor: grey7,
                       fillColor: Theme.of(context).colorScheme.onPrimary,
-                      controller: inputTitleVersion,
+                      controller: widget.state.inputTitleVersion,
                     ),
                   ],
                 ),
@@ -383,7 +333,7 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                     File? file = await Utils.pilihFoto();
                     if (file != null) {
                       setState(() {
-                        coverImageFile = file;
+                        widget.state.coverImageFile = file;
                       });
 
                       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -392,7 +342,8 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                     }
                   },
                   child: CoverImage(
-                    inputCover: coverImageFile,
+                    inputCover: widget.state.coverImageFile,
+                    editCover: widget.state.coverImageEdit,
                   ),
                 ),
               ),
@@ -409,7 +360,7 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                           itemCount: 5,
                           itemBuilder: (context, index) {
                             return vText(
-                              '${index + 1}. ${rulesOfImage[index]}',
+                              '${index + 1}. ${widget.state.rulesOfImage[index]}',
                               fontSize: 10,
                               maxLines: 1,
                             );
@@ -556,7 +507,7 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                       hintTextColor: grey4,
                       textColor: grey7,
                       fillColor: Theme.of(context).colorScheme.onPrimary,
-                      controller: inputCopyrightP,
+                      controller: widget.state.inputCopyrightP,
                     ),
                   ],
                 ),
@@ -584,7 +535,7 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                       hintTextColor: grey4,
                       textColor: grey7,
                       fillColor: Theme.of(context).colorScheme.onPrimary,
-                      controller: inputCopyrightC,
+                      controller: widget.state.inputCopyrightC,
                     ),
                   ],
                 ),
@@ -602,11 +553,11 @@ class _MainFormWidgetState extends State<MainFormWidget> {
           Row(
             children: [
               Radio<int>(
-                groupValue: selectInputPrevRelease,
-                value: noInputPrevRelease,
+                groupValue: widget.state.selectInputPrevRelease,
+                value: widget.state.noInputPrevRelease,
                 onChanged: (val) {
                   setState(() {
-                    selectInputPrevRelease = val ?? 0;
+                    widget.state.selectInputPrevRelease = val ?? 0;
                   });
                 },
                 activeColor: primaryColor,
@@ -624,11 +575,11 @@ class _MainFormWidgetState extends State<MainFormWidget> {
           Row(
             children: [
               Radio<int>(
-                groupValue: selectInputPrevRelease,
-                value: yesInputPrevRelease,
+                groupValue: widget.state.selectInputPrevRelease,
+                value: widget.state.yesInputPrevRelease,
                 onChanged: (val) {
                   setState(() {
-                    selectInputPrevRelease = val ?? 0;
+                    widget.state.selectInputPrevRelease = val ?? 0;
                   });
                 },
                 activeColor: primaryColor,
@@ -642,7 +593,8 @@ class _MainFormWidgetState extends State<MainFormWidget> {
             ],
           ),
           Visibility(
-            visible: (selectInputPrevRelease == yesInputPrevRelease),
+            visible: (widget.state.selectInputPrevRelease ==
+                widget.state.yesInputPrevRelease),
             child: Container(
               margin: const EdgeInsets.only(top: 5.0),
               child: VInputText(
@@ -656,7 +608,7 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                 textColor: grey7,
                 readOnly: true,
                 fillColor: Theme.of(context).colorScheme.onPrimary,
-                controller: inputPrevReleased,
+                controller: widget.state.inputPrevReleased,
                 onTap: () async {
                   DateTime? newDate = await showDatePicker(
                     context: context,
@@ -687,7 +639,7 @@ class _MainFormWidgetState extends State<MainFormWidget> {
 
                   //if 'Ok' => DateTime
                   setState(() {
-                    inputPrevReleased.text = Utils.dateToString(
+                    widget.state.inputPrevReleased.text = Utils.dateToString(
                       newDate,
                       Utils.sendDateFormat2,
                     );
@@ -710,11 +662,11 @@ class _MainFormWidgetState extends State<MainFormWidget> {
               Row(
                 children: [
                   Radio<int>(
-                    groupValue: selectInputLabel,
-                    value: noInputLabel,
+                    groupValue: widget.state.selectInputLabel,
+                    value: widget.state.noInputLabel,
                     onChanged: (val) {
                       setState(() {
-                        selectInputLabel = val ?? 0;
+                        widget.state.selectInputLabel = val ?? 0;
                       });
                     },
                     activeColor: primaryColor,
@@ -732,11 +684,11 @@ class _MainFormWidgetState extends State<MainFormWidget> {
               Row(
                 children: [
                   Radio<int>(
-                    groupValue: selectInputLabel,
-                    value: yesInputLabel,
+                    groupValue: widget.state.selectInputLabel,
+                    value: widget.state.yesInputLabel,
                     onChanged: (val) {
                       setState(() {
-                        selectInputLabel = val ?? 0;
+                        widget.state.selectInputLabel = val ?? 0;
                       });
                     },
                     activeColor: primaryColor,
@@ -752,84 +704,32 @@ class _MainFormWidgetState extends State<MainFormWidget> {
             ],
           ),
           Visibility(
-            visible: (selectInputLabel == yesInputLabel),
+            visible:
+                (widget.state.selectInputLabel == widget.state.yesInputLabel),
             child: Container(
               margin: const EdgeInsets.only(top: 10.0),
-              child: Row(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    flex: 1,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        vText(
-                          "Label name",
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: black7,
-                        ),
-                        const SizedBox(height: 8),
-                        VDropDownLabel(
-                          radius: 8.0,
-                          fontSize: 14.0,
-                          colorText: grey7,
-                          borderColor: grey10,
-                          value: widget.mainLabel,
-                          onChanged: (LeaderRes? data) {
-                            setState(() {
-                              widget.mainLabel = data ??
-                                  const LeaderRes(
-                                    id: '',
-                                    name: '',
-                                    image: '',
-                                  );
-                            });
-
-                            if (data != null) {
-                              context.read<DataAlbum>().updateLabel(data.id);
-                            }
-                          },
-                          items: widget.listLabelReq
-                              .map<DropdownMenuItem<LeaderRes>>(
-                                  (LeaderRes value) {
-                            return DropdownMenuItem<LeaderRes>(
-                              value: value,
-                              child: Text(value.name),
-                            );
-                          }).toList(),
-                          icon: const Icon(Icons.arrow_drop_down),
-                        ),
-                      ],
-                    ),
+                  vText(
+                    "Internal release ID",
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: black7,
                   ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    flex: 1,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        vText(
-                          "Internal release ID",
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: black7,
-                        ),
-                        const SizedBox(height: 8),
-                        VInputText(
-                          'Input here...',
-                          radius: 8,
-                          outlineColor: grey10,
-                          activeColor: grey10,
-                          fontSize: 14,
-                          hintFontSize: 14.0,
-                          hintTextColor: grey4,
-                          textColor: grey7,
-                          fillColor: Theme.of(context).colorScheme.onPrimary,
-                          controller: inputReleaseId,
-                          keyboardType: TextInputType.number,
-                        ),
-                      ],
-                    ),
+                  const SizedBox(height: 8),
+                  VInputText(
+                    'Input here...',
+                    radius: 8,
+                    outlineColor: grey10,
+                    activeColor: grey10,
+                    fontSize: 14,
+                    hintFontSize: 14.0,
+                    hintTextColor: grey4,
+                    textColor: grey7,
+                    fillColor: Theme.of(context).colorScheme.onPrimary,
+                    controller: widget.state.inputReleaseId,
+                    keyboardType: TextInputType.number,
                   ),
                 ],
               ),
@@ -846,11 +746,11 @@ class _MainFormWidgetState extends State<MainFormWidget> {
           Row(
             children: [
               Radio<int>(
-                groupValue: selectInputUPC,
-                value: noInputUPC,
+                groupValue: widget.state.selectInputUPC,
+                value: widget.state.noInputUPC,
                 onChanged: (val) {
                   setState(() {
-                    selectInputUPC = val ?? 0;
+                    widget.state.selectInputUPC = val ?? 0;
                   });
                 },
                 activeColor: primaryColor,
@@ -868,11 +768,11 @@ class _MainFormWidgetState extends State<MainFormWidget> {
           Row(
             children: [
               Radio<int>(
-                groupValue: selectInputUPC,
-                value: yesInputUPC,
+                groupValue: widget.state.selectInputUPC,
+                value: widget.state.yesInputUPC,
                 onChanged: (val) {
                   setState(() {
-                    selectInputUPC = val ?? 0;
+                    widget.state.selectInputUPC = val ?? 0;
                   });
                 },
                 activeColor: primaryColor,
@@ -889,7 +789,7 @@ class _MainFormWidgetState extends State<MainFormWidget> {
             ],
           ),
           Visibility(
-            visible: (selectInputUPC == yesInputUPC),
+            visible: (widget.state.selectInputUPC == widget.state.yesInputUPC),
             child: Container(
               margin: const EdgeInsets.only(top: 5.0),
               child: VInputText(
@@ -902,7 +802,7 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                 hintTextColor: grey4,
                 textColor: grey7,
                 fillColor: Theme.of(context).colorScheme.onPrimary,
-                controller: inputUpc,
+                controller: widget.state.inputUpc,
                 keyboardType: TextInputType.number,
               ),
             ),
@@ -942,7 +842,7 @@ class _MainFormWidgetState extends State<MainFormWidget> {
             hintTextColor: grey4,
             textColor: grey7,
             fillColor: Theme.of(context).colorScheme.onPrimary,
-            controller: inputArtist,
+            controller: widget.state.inputArtist,
           ),
           const SizedBox(height: 15),
           vText(
@@ -955,11 +855,11 @@ class _MainFormWidgetState extends State<MainFormWidget> {
           Row(
             children: [
               Radio<int>(
-                groupValue: selectInputArtistSpotify,
-                value: noInputArtistSpotify,
+                groupValue: widget.state.selectInputArtistSpotify,
+                value: widget.state.noInputArtistSpotify,
                 onChanged: (val) {
                   setState(() {
-                    selectInputArtistSpotify = val ?? 0;
+                    widget.state.selectInputArtistSpotify = val ?? 0;
                   });
                 },
                 activeColor: primaryColor,
@@ -977,11 +877,11 @@ class _MainFormWidgetState extends State<MainFormWidget> {
           Row(
             children: [
               Radio<int>(
-                groupValue: selectInputArtistSpotify,
-                value: yesInputArtistSpotify,
+                groupValue: widget.state.selectInputArtistSpotify,
+                value: widget.state.yesInputArtistSpotify,
                 onChanged: (val) {
                   setState(() {
-                    selectInputArtistSpotify = val ?? 0;
+                    widget.state.selectInputArtistSpotify = val ?? 0;
                   });
                 },
                 activeColor: primaryColor,
@@ -995,7 +895,8 @@ class _MainFormWidgetState extends State<MainFormWidget> {
             ],
           ),
           Visibility(
-            visible: selectInputArtistSpotify == yesInputArtistSpotify,
+            visible: widget.state.selectInputArtistSpotify ==
+                widget.state.yesInputArtistSpotify,
             child: Container(
               margin: const EdgeInsets.only(top: 5.0),
               child: VInputText(
@@ -1008,7 +909,7 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                 hintTextColor: grey4,
                 textColor: grey7,
                 fillColor: Theme.of(context).colorScheme.onPrimary,
-                controller: inputArtistSpotify,
+                controller: widget.state.inputArtistSpotify,
               ),
             ),
           ),
@@ -1023,11 +924,11 @@ class _MainFormWidgetState extends State<MainFormWidget> {
           Row(
             children: [
               Radio<int>(
-                groupValue: selectInputArtistApple,
-                value: noInputArtistApple,
+                groupValue: widget.state.selectInputArtistApple,
+                value: widget.state.noInputArtistApple,
                 onChanged: (val) {
                   setState(() {
-                    selectInputArtistApple = val ?? 0;
+                    widget.state.selectInputArtistApple = val ?? 0;
                   });
                 },
                 activeColor: primaryColor,
@@ -1045,11 +946,11 @@ class _MainFormWidgetState extends State<MainFormWidget> {
           Row(
             children: [
               Radio<int>(
-                groupValue: selectInputArtistApple,
-                value: yesInputArtistApple,
+                groupValue: widget.state.selectInputArtistApple,
+                value: widget.state.yesInputArtistApple,
                 onChanged: (val) {
                   setState(() {
-                    selectInputArtistApple = val ?? 0;
+                    widget.state.selectInputArtistApple = val ?? 0;
                   });
                 },
                 activeColor: primaryColor,
@@ -1063,7 +964,8 @@ class _MainFormWidgetState extends State<MainFormWidget> {
             ],
           ),
           Visibility(
-            visible: selectInputArtistApple == yesInputArtistApple,
+            visible: widget.state.selectInputArtistApple ==
+                widget.state.yesInputArtistApple,
             child: Container(
               margin: const EdgeInsets.only(top: 5.0),
               child: VInputText(
@@ -1076,7 +978,7 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                 hintTextColor: grey4,
                 textColor: grey7,
                 fillColor: Theme.of(context).colorScheme.onPrimary,
-                controller: inputArtistApple,
+                controller: widget.state.inputArtistApple,
               ),
             ),
           ),
@@ -1086,62 +988,74 @@ class _MainFormWidgetState extends State<MainFormWidget> {
   }
 
   void inputTitleReleaseListener() {
-    if (inputTitleRelease.text.isNotEmpty) {
-      context.read<DataAlbum>().updateReleaseTitle(inputTitleRelease.text);
+    if (widget.state.inputTitleRelease.text.isNotEmpty) {
+      context
+          .read<DataAlbum>()
+          .updateReleaseTitle(widget.state.inputTitleRelease.text);
     }
   }
 
   void inputTitleVersionListener() {
-    if (inputTitleVersion.text.isNotEmpty) {
-      context.read<DataAlbum>().updateTitleVersion(inputTitleVersion.text);
+    if (widget.state.inputTitleVersion.text.isNotEmpty) {
+      context
+          .read<DataAlbum>()
+          .updateTitleVersion(widget.state.inputTitleVersion.text);
     }
   }
 
   void inputArtistListener() {
-    if (inputArtist.text.isNotEmpty) {
-      context.read<DataAlbum>().updateArtist(inputArtist.text);
+    if (widget.state.inputArtist.text.isNotEmpty) {
+      context.read<DataAlbum>().updateArtist(widget.state.inputArtist.text);
     }
   }
 
   void inputArtistSpotifyListener() {
-    if (inputArtistSpotify.text.isNotEmpty) {
-      context.read<DataAlbum>().updateSpotify(inputArtistSpotify.text);
+    if (widget.state.inputArtistSpotify.text.isNotEmpty) {
+      context
+          .read<DataAlbum>()
+          .updateSpotify(widget.state.inputArtistSpotify.text);
     }
   }
 
   void inputArtistAppleListener() {
-    if (inputArtistApple.text.isNotEmpty) {
-      context.read<DataAlbum>().updateItunes(inputArtistApple.text);
+    if (widget.state.inputArtistApple.text.isNotEmpty) {
+      context
+          .read<DataAlbum>()
+          .updateItunes(widget.state.inputArtistApple.text);
     }
   }
 
   void inputCopyrightPListener() {
-    if (inputCopyrightP.text.isNotEmpty) {
-      context.read<DataAlbum>().updatePCopy(inputCopyrightP.text);
+    if (widget.state.inputCopyrightP.text.isNotEmpty) {
+      context.read<DataAlbum>().updatePCopy(widget.state.inputCopyrightP.text);
     }
   }
 
   void inputCopyrightCListener() {
-    if (inputCopyrightC.text.isNotEmpty) {
-      context.read<DataAlbum>().updateCCopy(inputCopyrightC.text);
+    if (widget.state.inputCopyrightC.text.isNotEmpty) {
+      context.read<DataAlbum>().updateCCopy(widget.state.inputCopyrightC.text);
     }
   }
 
   void inputPrevReleasedListener() {
-    if (inputPrevReleased.text.isNotEmpty) {
-      context.read<DataAlbum>().updateRelease(inputPrevReleased.text);
+    if (widget.state.inputPrevReleased.text.isNotEmpty) {
+      context
+          .read<DataAlbum>()
+          .updateRelease(widget.state.inputPrevReleased.text);
     }
   }
 
   void inputReleaseIdListener() {
-    if (inputReleaseId.text.isNotEmpty) {
-      context.read<DataAlbum>().updateReleaseId(inputReleaseId.text);
+    if (widget.state.inputReleaseId.text.isNotEmpty) {
+      context
+          .read<DataAlbum>()
+          .updateReleaseId(widget.state.inputReleaseId.text);
     }
   }
 
   void inputUpcListener() {
-    if (inputUpc.text.isNotEmpty) {
-      context.read<DataAlbum>().updateUpc(inputUpc.text);
+    if (widget.state.inputUpc.text.isNotEmpty) {
+      context.read<DataAlbum>().updateUpc(widget.state.inputUpc.text);
     }
   }
 }

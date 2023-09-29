@@ -1,12 +1,8 @@
 import 'package:yboxv2/models/general/constributor_res.dart';
-import 'package:yboxv2/models/general/label_res.dart';
+import 'package:yboxv2/models/general/genre_res.dart';
 import 'package:yboxv2/models/general/language_res.dart';
 import 'package:yboxv2/models/general/pagination_res.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:yboxv2/models/leader/leader_res.dart';
-
-import '../general/genre_res.dart';
-import '../general/user_res.dart';
 
 part 'album_res.g.dart';
 
@@ -41,28 +37,16 @@ class DataAlbumRes with _$DataAlbumRes {
     includeIfNull: false,
   )
   const factory DataAlbumRes({
-    @JsonKey(name: 'id', defaultValue: 0) required int id,
+    @JsonKey(name: 'id', defaultValue: '') required String id,
     @JsonKey(name: 'cover', defaultValue: '') required String cover,
     @JsonKey(name: 'release_title', defaultValue: '')
     required String releaseTitle,
     @JsonKey(name: 'title_version', defaultValue: '')
     required String titleVersion,
-    @JsonKey(name: 'spotify', defaultValue: '') required String spotify,
-    @JsonKey(name: 'itunes', defaultValue: '') required String itunes,
-    @JsonKey(name: 'p_copyright', defaultValue: '') required String pCopyright,
-    @JsonKey(name: 'c_copyright', defaultValue: '') required String cCopyright,
     @JsonKey(name: 'released_date', defaultValue: '')
     required String releasedDate,
-    @JsonKey(name: 'label_name') LeaderRes? labelName,
-    @JsonKey(name: 'released_id', defaultValue: 0) required int releasedId,
-    @JsonKey(name: 'upc', defaultValue: 0) required int upc,
-    @JsonKey(name: 'is_check', defaultValue: 0) required int isCheck,
-    @JsonKey(name: 'label') LeaderRes? labelMain,
-    @JsonKey(name: 'lang_id') LanguageRes? langId,
     @JsonKey(name: 'track_id') TrackIdRes? trackId,
-    @JsonKey(name: 'genre_1') GenreRes? genre1,
-    @JsonKey(name: 'genre_2') GenreRes? genre2,
-    @JsonKey(name: 'user_id') UserRes? user,
+    @JsonKey(name: 'is_check', defaultValue: 0) required int isCheck,
   }) = _DataAlbumRes;
 
   factory DataAlbumRes.fromJson(Map<String, dynamic> json) =>
@@ -105,8 +89,8 @@ class TrackIdRes with _$TrackIdRes {
     @JsonKey(name: 'internal_track_id', defaultValue: 0)
     required int internalTrackId,
     @JsonKey(name: 'lyric', defaultValue: '') required String lyric,
-    @JsonKey(name: 'contributor_id', defaultValue: '')
-    required String contributorId,
+    @JsonKey(name: 'contributor_id', defaultValue: 0)
+    required int contributorId,
     @JsonKey(name: 'contributor') ConstributorRes? contributor,
     @JsonKey(name: 'lang') LanguageRes? lang,
     @JsonKey(name: 'genre1') GenreRes? genre1,
