@@ -9,6 +9,8 @@ class ApiUrl {
   static String count = '${appUrl}api/dashboard/count';
   static String amount = '${appUrl}api/dashboard/amount_balance';
   static String album = '${appUrl}api/album_api';
+  static String video = '${appUrl}api/video_api';
+  static String audio = '${appUrl}api/ringtone_api';
   static String language = '${appUrl}api/language';
   static String role = '${appUrl}api/roletrack';
   static String publishing = '${appUrl}api/publishing';

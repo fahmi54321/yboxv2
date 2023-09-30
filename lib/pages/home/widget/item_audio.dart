@@ -2,15 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:yboxv2/models/album/album_res.dart';
+import 'package:yboxv2/models/audio/audio_res.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/resource/strings.dart';
 import 'package:yboxv2/widget/v_text.dart';
 
-class ItemAlbum extends StatelessWidget {
-  final DataAlbumRes item;
+class ItemAudio extends StatelessWidget {
+  final DataAudioRes item;
   final Function()? onTap;
-  const ItemAlbum({
+  const ItemAudio({
     Key? key,
     required this.item,
     this.onTap,
@@ -176,7 +176,7 @@ class ItemAlbum extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   vText(
-                    item.releaseTitle.toUpperCase(),
+                    item.title.toUpperCase(),
                     fontSize: 14.0,
                     fontWeight: FontWeight.w600,
                     color: grey7,

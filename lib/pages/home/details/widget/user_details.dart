@@ -1,24 +1,23 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import 'package:yboxv2/models/album/details_album_res.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/utils/utils.dart';
 
 class UserDetails extends StatelessWidget {
-  final DetailsAlbumRes? detailsAlbumRes;
+  final String? imageUser;
   const UserDetails({
     Key? key,
-    required this.detailsAlbumRes,
+    required this.imageUser,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return (detailsAlbumRes?.user?.image ?? '').isNotEmpty
+    return (imageUser ?? '').isNotEmpty
         ? CircleAvatar(
             child: Image.network(
               Utils.convertImage(
-                url: detailsAlbumRes?.cover ?? '',
+                url: imageUser ?? '',
               ),
               width: 30.0,
               height: 30.0,

@@ -2,27 +2,27 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:yboxv2/models/album/album_res.dart';
 import 'package:yboxv2/models/login_res.dart';
-import 'package:yboxv2/network/http_album.dart';
+import 'package:yboxv2/models/video/video_res.dart';
+import 'package:yboxv2/network/http_video.dart';
 import 'package:yboxv2/utils/shared_pref.dart';
 import 'package:yboxv2/utils/utils_loading.dart';
 
-class AlbumFragmentState extends ChangeNotifier {
+class VideoFragmentStates extends ChangeNotifier {
   BuildContext context;
 
-  AlbumRes? albumRes;
+  VideoRes? videoRes;
 
-  AlbumFragmentState({required this.context}) {
+  VideoFragmentStates({required this.context}) {
     init();
   }
 
-  final PagingController<int, DataAlbumRes> pagingController =
+  final PagingController<int, DataVideoRes> pagingController =
       PagingController(firstPageKey: 1);
 
   init() async {
     pagingController.addPageRequestListener((pageKey) {
-      getAlbum(pageKey);
+      getVideo(pageKey);
     });
   }
 
@@ -30,7 +30,7 @@ class AlbumFragmentState extends ChangeNotifier {
     pagingController.refresh();
   }
 
-  Future<void> getAlbum(int page) async {
+  Future<void> getVideo(int page) async {
     var dataToken = await SharedPreferencesUtils.getLoginPreference();
     LoginRes loginRes = LoginRes.fromJson(jsonDecode(dataToken ?? ''));
 
@@ -39,7 +39,7 @@ class AlbumFragmentState extends ChangeNotifier {
       'id': loginRes.id,
     };
     try {
-      final resStep1 = await HTTPAlbumService().getAlbum(
+      final resStep1 = await HTTPVideoService().getVideo(
         data: data,
       );
 

@@ -2,22 +2,22 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:yboxv2/models/album/album_res.dart';
+import 'package:yboxv2/models/audio/audio_res.dart';
 import 'package:yboxv2/models/login_res.dart';
-import 'package:yboxv2/network/http_album.dart';
+import 'package:yboxv2/network/http_audio.dart';
 import 'package:yboxv2/utils/shared_pref.dart';
 import 'package:yboxv2/utils/utils_loading.dart';
 
-class AlbumFragmentState extends ChangeNotifier {
+class AudioFragmentState extends ChangeNotifier {
   BuildContext context;
 
-  AlbumRes? albumRes;
+  AudioRes? audioRes;
 
-  AlbumFragmentState({required this.context}) {
+  AudioFragmentState({required this.context}) {
     init();
   }
 
-  final PagingController<int, DataAlbumRes> pagingController =
+  final PagingController<int, DataAudioRes> pagingController =
       PagingController(firstPageKey: 1);
 
   init() async {
@@ -39,7 +39,7 @@ class AlbumFragmentState extends ChangeNotifier {
       'id': loginRes.id,
     };
     try {
-      final resStep1 = await HTTPAlbumService().getAlbum(
+      final resStep1 = await HTTPAudioService().getAudio(
         data: data,
       );
 

@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yboxv2/models/album/details_album_res.dart';
+import 'package:yboxv2/models/audio/details_audio_res.dart';
+import 'package:yboxv2/models/video/details_video_res.dart';
 
 import 'package:yboxv2/pages/forms/main_form_state_2.dart';
 import 'package:yboxv2/pages/forms/utils_validation_form.dart';
@@ -13,9 +15,13 @@ import 'package:yboxv2/widget/v_text.dart';
 class ArgsMainFormPage {
   final String fromCode;
   final DetailsAlbumRes? dataAlbum;
+  final DetailsVideoRes? dataVideo;
+  final DetailsAudioRes? dataAudio;
   ArgsMainFormPage({
     required this.fromCode,
     this.dataAlbum,
+    this.dataVideo,
+    this.dataAudio,
   });
 }
 
@@ -48,6 +54,8 @@ class _MainFormPageState extends State<MainFormPage> {
         context: context,
         fromCode: widget.args.fromCode,
         dataAlbum: widget.args.dataAlbum,
+        dataVideo: widget.args.dataVideo,
+        dataAudio: widget.args.dataAudio,
       ),
       child: Consumer(
         builder: (BuildContext context, MainFormState2 state, _) {
@@ -56,7 +64,7 @@ class _MainFormPageState extends State<MainFormPage> {
               foregroundColor: black2,
               backgroundColor: Theme.of(context).colorScheme.onPrimary,
               title: vText(
-                'Album',
+                widget.args.fromCode.toUpperCase(),
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 color: black2,
@@ -79,16 +87,28 @@ class _MainFormPageState extends State<MainFormPage> {
 
                       if (isLastStep) {
                         FormData? formData =
-                            await UtilsValidationForm.cekValidasiAlbum(
+                            await UtilsValidationForm.cekValidasiAlbumOrVideo(
                           data: dataAlbumProvider.state,
                           isEdit: state.isEdit,
                         );
 
                         if (formData != null) {
                           if (state.isEdit) {
-                            state.editAlbum(formData);
+                            if (widget.args.fromCode == 'album') {
+                              state.editAlbum(formData);
+                            } else if (widget.args.fromCode == 'video') {
+                              state.editVideo(formData);
+                            } else if (widget.args.fromCode == 'audio') {
+                              state.editAudio(formData);
+                            }
                           } else {
-                            state.saveAlbum(formData);
+                            if (widget.args.fromCode == 'album') {
+                              state.saveAlbum(formData);
+                            } else if (widget.args.fromCode == 'video') {
+                              state.saveVideo(formData);
+                            } else if (widget.args.fromCode == 'audio') {
+                              state.saveAudio(formData);
+                            }
                           }
                         }
                       } else {

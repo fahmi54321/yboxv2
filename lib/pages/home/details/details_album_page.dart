@@ -260,11 +260,14 @@ class _DetailsAlbumState extends State<DetailsAlbum> {
                               child: Row(
                                 children: [
                                   UserDetails(
-                                    detailsAlbumRes: widget.state.dataAlbum,
+                                    imageUser:
+                                        widget.state.dataAlbum?.user?.image,
                                   ),
                                   const SizedBox(width: 5.0),
                                   vText(
-                                    'User Test',
+                                    widget.state.dataAlbum?.user
+                                            ?.completeName ??
+                                        '-',
                                     fontWeight: FontWeight.w400,
                                     fontSize: 12.0,
                                     color: primaryColor,

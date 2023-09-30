@@ -4,7 +4,7 @@ import 'package:yboxv2/pages/provider/data_album.dart';
 import 'package:yboxv2/utils/utils_loading.dart';
 
 class UtilsValidationForm {
-  static Future<FormData?> cekValidasiAlbum({
+  static Future<FormData?> cekValidasiAlbumOrVideo({
     required DataAlbumState data,
     required bool isEdit,
   }) async {

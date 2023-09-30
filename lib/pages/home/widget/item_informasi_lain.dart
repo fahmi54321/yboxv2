@@ -7,9 +7,11 @@ import 'package:yboxv2/widget/v_text.dart';
 class ItemInformasiLain extends StatelessWidget {
   final String label;
   final Function()? onTap;
+  final double opacity;
   const ItemInformasiLain({
     Key? key,
     required this.label,
+    required this.opacity,
     this.onTap,
   }) : super(key: key);
 
@@ -18,12 +20,15 @@ class ItemInformasiLain extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: vText(
-            label,
-            fontSize: 14.0,
-            fontWeight: FontWeight.w400,
-            color: black3,
-            maxLines: 1,
+          child: Opacity(
+            opacity: opacity,
+            child: vText(
+              label,
+              fontSize: 14.0,
+              fontWeight: FontWeight.w400,
+              color: black3,
+              maxLines: 1,
+            ),
           ),
         ),
         IconButton(

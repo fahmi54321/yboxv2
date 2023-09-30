@@ -69,7 +69,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case DetailsVideoPage.route:
       return PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) =>
-            const DetailsVideoPage(),
+            DetailsVideoPage(
+          args: settings.arguments as ArgsDetailsVideo,
+        ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           const begin = Offset(0.0, 1.0);
           const end = Offset.zero;
@@ -86,7 +88,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case DetailsAudioPage.route:
       return PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) =>
-            const DetailsAudioPage(),
+            DetailsAudioPage(
+          args: settings.arguments as ArgsDetailsAudio,
+        ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           const begin = Offset(0.0, 1.0);
           const end = Offset.zero;
