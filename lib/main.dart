@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:yboxv2/pages/loading_page.dart';
-import 'package:yboxv2/pages/provider/data_album.dart';
+import 'package:yboxv2/pages/provider/data_album_video_audio.dart';
+import 'package:yboxv2/pages/provider/data_track.dart';
 import 'package:yboxv2/resource/color_schemes.g.dart';
 import 'package:yboxv2/router/router.dart' as router;
 
@@ -34,8 +35,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<DataAlbum>(
-          create: (_) => DataAlbum(),
+        ChangeNotifierProvider<DataAlbumAudioVideo>(
+          create: (_) => DataAlbumAudioVideo(),
+        ),
+        ChangeNotifierProvider<DataTrack>(
+          create: (_) => DataTrack(),
         ),
       ],
       child: MaterialApp(

@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-part of 'data_album.dart';
+part of 'data_album_video_audio.dart';
 
-class DataAlbumState extends Equatable {
+class DataAlbumAudioVideoState extends Equatable {
   final File coverImage;
   final String languageId;
   final String releaseTitle;
@@ -37,7 +37,7 @@ class DataAlbumState extends Equatable {
   final String roleTrack;
   final String share;
   final String publishing;
-  const DataAlbumState({
+  const DataAlbumAudioVideoState({
     required this.coverImage,
     required this.languageId,
     required this.releaseTitle,
@@ -74,8 +74,8 @@ class DataAlbumState extends Equatable {
     required this.publishing,
   });
 
-  factory DataAlbumState.initial() {
-    return DataAlbumState(
+  factory DataAlbumAudioVideoState.initial() {
+    return DataAlbumAudioVideoState(
       coverImage: File(''),
       languageId: '',
       releaseTitle: '',
@@ -113,7 +113,7 @@ class DataAlbumState extends Equatable {
     );
   }
 
-  DataAlbumState copyWith({
+  DataAlbumAudioVideoState copyWith({
     File? coverImage,
     String? languageId,
     String? releaseTitle,
@@ -149,7 +149,7 @@ class DataAlbumState extends Equatable {
     String? share,
     String? publishing,
   }) {
-    return DataAlbumState(
+    return DataAlbumAudioVideoState(
       coverImage: coverImage ?? this.coverImage,
       languageId: languageId ?? this.languageId,
       releaseTitle: releaseTitle ?? this.releaseTitle,

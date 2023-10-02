@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:yboxv2/anim/animation_akun.dart';
+import 'package:yboxv2/pages/home/fragment/akun_bank_fragment.dart';
 import 'package:yboxv2/pages/home/fragment/audio_fragment.dart';
 import 'package:yboxv2/pages/home/fragment/transaction_fragment.dart';
 import 'package:yboxv2/pages/home/widget/item_informasi_lain.dart';
@@ -162,6 +163,17 @@ class AkunWidget extends StatelessWidget {
                             Navigator.pushNamed(
                               context,
                               TransactionFragment.route,
+                            );
+                          },
+                        ),
+                        const Divider(color: grey8),
+                        ItemInformasiLain(
+                          label: 'Bank',
+                          opacity: animation.bankOpacity.value,
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              AkunBankFragment.route,
                             );
                           },
                         ),

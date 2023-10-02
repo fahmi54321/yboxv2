@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 
 import 'package:yboxv2/models/general/publishing_res.dart';
 import 'package:yboxv2/models/general/roles_res.dart';
-import 'package:yboxv2/pages/forms/main_form_state_2.dart';
-import 'package:yboxv2/pages/provider/data_album.dart';
+import 'package:yboxv2/pages/forms/form_album_audio_video_state.dart';
+import 'package:yboxv2/pages/provider/data_album_video_audio.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/widget/v_dropdown.dart';
 import 'package:yboxv2/widget/v_text.dart';
@@ -15,7 +15,7 @@ class PublishingForm extends StatefulWidget {
   PublishingRes? pubPublishings;
   final List<PublishingRes> listPublishing;
   final List<RolesRes> listRole;
-  final MainFormState2 state;
+  final FormAlbumAudioVideoState state;
   PublishingForm({
     super.key,
     this.pubRoles,
@@ -96,7 +96,9 @@ class _PublishingFormState extends State<PublishingForm> {
             });
 
             if (data != null) {
-              context.read<DataAlbum>().updatePublishing(data.id.toString());
+              context
+                  .read<DataAlbumAudioVideo>()
+                  .updatePublishing(data.id.toString());
             }
           },
           items: widget.listPublishing
@@ -164,7 +166,9 @@ class _PublishingFormState extends State<PublishingForm> {
             });
 
             if (data != null) {
-              context.read<DataAlbum>().updateRoleTrack(data.id.toString());
+              context
+                  .read<DataAlbumAudioVideo>()
+                  .updateRoleTrack(data.id.toString());
             }
           },
           items:
@@ -210,14 +214,16 @@ class _PublishingFormState extends State<PublishingForm> {
   void tracksInputContributorNameListener() {
     if (widget.state.tracksInputContributorName.text.isNotEmpty) {
       context
-          .read<DataAlbum>()
+          .read<DataAlbumAudioVideo>()
           .updateConName(widget.state.tracksInputContributorName.text);
     }
   }
 
   void tracksInputShareListener() {
     if (widget.state.tracksInputShare.text.isNotEmpty) {
-      context.read<DataAlbum>().updateShare(widget.state.tracksInputShare.text);
+      context
+          .read<DataAlbumAudioVideo>()
+          .updateShare(widget.state.tracksInputShare.text);
     }
   }
 }

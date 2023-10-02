@@ -4,11 +4,11 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 
-part 'data_album_state.dart';
+part 'data_album_video_audio_state.dart';
 
-class DataAlbum extends ChangeNotifier {
-  DataAlbumState _state = DataAlbumState.initial();
-  DataAlbumState get state => _state;
+class DataAlbumAudioVideo extends ChangeNotifier {
+  DataAlbumAudioVideoState _state = DataAlbumAudioVideoState.initial();
+  DataAlbumAudioVideoState get state => _state;
 
   void updateCoverImage(File coverImage) {
     _state = _state.copyWith(coverImage: coverImage);

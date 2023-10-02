@@ -35,7 +35,7 @@ class DataTransactionRes with _$DataTransactionRes {
     includeIfNull: false,
   )
   const factory DataTransactionRes({
-    @JsonKey(name: 'id', defaultValue: 0) required int id,
+    @JsonKey(name: 'id', defaultValue: '') required String id,
     @JsonKey(name: 'member', defaultValue: '') required String member,
     @JsonKey(name: 'name_on_bank', defaultValue: '') required String nameOnBank,
     @JsonKey(name: 'request_date', defaultValue: '')

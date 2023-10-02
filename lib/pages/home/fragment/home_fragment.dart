@@ -28,7 +28,7 @@ class _HomeFragmentState extends State<HomeFragment>
     _controller = AnimationController(
         vsync: this,
         duration: const Duration(
-          milliseconds: 1780,
+          milliseconds: 2000,
         ));
   }
 

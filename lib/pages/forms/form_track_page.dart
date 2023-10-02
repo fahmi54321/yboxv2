@@ -1,70 +1,58 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yboxv2/models/album/details_album_res.dart';
-import 'package:yboxv2/models/audio/details_audio_res.dart';
-import 'package:yboxv2/models/video/details_video_res.dart';
-
-import 'package:yboxv2/pages/forms/main_form_state_2.dart';
+import 'package:yboxv2/models/track/details_track_res.dart';
+import 'package:yboxv2/pages/forms/form_track_state.dart';
 import 'package:yboxv2/pages/forms/utils_validation_form.dart';
-import 'package:yboxv2/pages/provider/data_album.dart';
+import 'package:yboxv2/pages/provider/data_track.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/widget/v_text.dart';
 
-class ArgsMainFormPage {
-  final String fromCode;
-  final DetailsAlbumRes? dataAlbum;
-  final DetailsVideoRes? dataVideo;
-  final DetailsAudioRes? dataAudio;
-  ArgsMainFormPage({
-    required this.fromCode,
-    this.dataAlbum,
-    this.dataVideo,
-    this.dataAudio,
+class ArgsFormTrackPage {
+  DetailsTrackRes? dataTrackRes;
+
+  ArgsFormTrackPage({
+    this.dataTrackRes,
   });
 }
 
-class MainFormPage extends StatefulWidget {
-  final ArgsMainFormPage args;
-  static const route = 'main-form-page';
+class FormTrackPage extends StatefulWidget {
+  final ArgsFormTrackPage args;
+  static const route = 'track_form_page';
 
-  const MainFormPage({
+  const FormTrackPage({
     Key? key,
     required this.args,
   }) : super(key: key);
 
   @override
-  State<MainFormPage> createState() => _MainFormPageState();
+  State<FormTrackPage> createState() => _FormTrackPageState();
 }
 
-class _MainFormPageState extends State<MainFormPage> {
-  late DataAlbum dataAlbumProvider;
+class _FormTrackPageState extends State<FormTrackPage> {
+  late DataTrack dataTrackProvider;
 
   @override
   void initState() {
     super.initState();
-    dataAlbumProvider = context.read<DataAlbum>();
+    dataTrackProvider = context.read<DataTrack>();
   }
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => MainFormState2(
+      create: (_) => TrackFormState(
         context: context,
-        fromCode: widget.args.fromCode,
-        dataAlbum: widget.args.dataAlbum,
-        dataVideo: widget.args.dataVideo,
-        dataAudio: widget.args.dataAudio,
+        dataTrackRes: widget.args.dataTrackRes,
       ),
       child: Consumer(
-        builder: (BuildContext context, MainFormState2 state, _) {
+        builder: (BuildContext context, TrackFormState state, _) {
           return Scaffold(
             appBar: AppBar(
               foregroundColor: black2,
               backgroundColor: Theme.of(context).colorScheme.onPrimary,
               title: vText(
-                widget.args.fromCode.toUpperCase(),
+                'Track',
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 color: black2,
@@ -82,43 +70,23 @@ class _MainFormPageState extends State<MainFormPage> {
                       final isLastStep =
                           state.currentStep == state.listSteps().length - 1;
 
-                      debugPrint('isLastStep $isLastStep');
-                      debugPrint('currentStep ${state.currentStep}');
-
                       if (isLastStep) {
                         FormData? formData =
-                            await UtilsValidationForm.cekValidasiAlbumOrVideo(
-                          data: dataAlbumProvider.state,
+                            await UtilsValidationForm.cekValidasiTrack(
+                          data: dataTrackProvider.state,
                           isEdit: state.isEdit,
                         );
-
                         if (formData != null) {
                           if (state.isEdit) {
-                            if (widget.args.fromCode == 'album') {
-                              state.editAlbum(formData);
-                            } else if (widget.args.fromCode == 'video') {
-                              state.editVideo(formData);
-                            } else if (widget.args.fromCode == 'audio') {
-                              state.editAudio(formData);
-                            }
+                            state.editTrack(formData);
                           } else {
-                            if (widget.args.fromCode == 'album') {
-                              state.saveAlbum(formData);
-                            } else if (widget.args.fromCode == 'video') {
-                              state.saveVideo(formData);
-                            } else if (widget.args.fromCode == 'audio') {
-                              state.saveAudio(formData);
-                            }
+                            state.saveTrack(formData);
                           }
                         }
                       } else {
-                        try {
-                          setState(() {
-                            state.currentStep += 1;
-                          });
-                        } catch (e) {
-                          debugPrint('$e');
-                        }
+                        setState(() {
+                          state.currentStep += 1;
+                        });
                       }
                     },
                     onStepCancel: state.currentStep == 0
@@ -197,36 +165,6 @@ class _MainFormPageState extends State<MainFormPage> {
           );
         },
       ),
-    );
-  }
-
-  Widget suksesInput({required BuildContext context, required String message}) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: SizedBox(
-            width: 139,
-            height: 190,
-            child: Image.asset('images/success.png'),
-          ),
-        ),
-        const SizedBox(height: 25),
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: Center(
-            child: vText('Berhasil Disimpan', fontSize: 24),
-          ),
-        ),
-        const SizedBox(height: 10),
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: Center(
-            child: vText(message, fontSize: 14),
-          ),
-        ),
-      ],
     );
   }
 }

@@ -6,7 +6,8 @@ Future<dynamic> showDialog1({
   double? widthDialog,
   double? maxHeightDialog,
 }) async {
-  showDialog(
+  dynamic val;
+  await showDialog(
     context: context,
     builder: (BuildContext context) {
       return Dialog(
@@ -26,5 +27,11 @@ Future<dynamic> showDialog1({
         ),
       );
     },
-  ).then((value) => value);
+  ).then((value) {
+    val = value;
+    debugPrint('value args bank :$value');
+    return value;
+  });
+
+  return val;
 }

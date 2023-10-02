@@ -40,7 +40,7 @@ _$_DataTransactionRes _$$_DataTransactionResFromJson(Map json) =>
       json,
       ($checkedConvert) {
         final val = _$_DataTransactionRes(
-          id: $checkedConvert('id', (v) => v as int? ?? 0),
+          id: $checkedConvert('id', (v) => v as String? ?? ''),
           member: $checkedConvert('member', (v) => v as String? ?? ''),
           nameOnBank:
               $checkedConvert('name_on_bank', (v) => v as String? ?? ''),

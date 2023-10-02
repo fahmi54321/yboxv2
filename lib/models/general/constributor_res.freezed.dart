@@ -24,6 +24,8 @@ mixin _$ConstributorRes {
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'name', defaultValue: '')
   String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at', defaultValue: '')
+  String get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'role_id', defaultValue: 0)
   int get roleId => throw _privateConstructorUsedError;
   @JsonKey(name: 'share', defaultValue: 0)
@@ -50,6 +52,7 @@ abstract class $ConstributorResCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'id', defaultValue: 0) int id,
       @JsonKey(name: 'name', defaultValue: '') String name,
+      @JsonKey(name: 'created_at', defaultValue: '') String createdAt,
       @JsonKey(name: 'role_id', defaultValue: 0) int roleId,
       @JsonKey(name: 'share', defaultValue: 0) int share,
       @JsonKey(name: 'publishing_id', defaultValue: 0) int publishingId,
@@ -75,6 +78,7 @@ class _$ConstributorResCopyWithImpl<$Res, $Val extends ConstributorRes>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? createdAt = null,
     Object? roleId = null,
     Object? share = null,
     Object? publishingId = null,
@@ -89,6 +93,10 @@ class _$ConstributorResCopyWithImpl<$Res, $Val extends ConstributorRes>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
       roleId: null == roleId
           ? _value.roleId
@@ -149,6 +157,7 @@ abstract class _$$_ConstributorResCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'id', defaultValue: 0) int id,
       @JsonKey(name: 'name', defaultValue: '') String name,
+      @JsonKey(name: 'created_at', defaultValue: '') String createdAt,
       @JsonKey(name: 'role_id', defaultValue: 0) int roleId,
       @JsonKey(name: 'share', defaultValue: 0) int share,
       @JsonKey(name: 'publishing_id', defaultValue: 0) int publishingId,
@@ -174,6 +183,7 @@ class __$$_ConstributorResCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? createdAt = null,
     Object? roleId = null,
     Object? share = null,
     Object? publishingId = null,
@@ -188,6 +198,10 @@ class __$$_ConstributorResCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
       roleId: null == roleId
           ? _value.roleId
@@ -221,6 +235,7 @@ class _$_ConstributorRes extends _ConstributorRes {
   const _$_ConstributorRes(
       {@JsonKey(name: 'id', defaultValue: 0) required this.id,
       @JsonKey(name: 'name', defaultValue: '') required this.name,
+      @JsonKey(name: 'created_at', defaultValue: '') required this.createdAt,
       @JsonKey(name: 'role_id', defaultValue: 0) required this.roleId,
       @JsonKey(name: 'share', defaultValue: 0) required this.share,
       @JsonKey(name: 'publishing_id', defaultValue: 0)
@@ -239,6 +254,9 @@ class _$_ConstributorRes extends _ConstributorRes {
   @JsonKey(name: 'name', defaultValue: '')
   final String name;
   @override
+  @JsonKey(name: 'created_at', defaultValue: '')
+  final String createdAt;
+  @override
   @JsonKey(name: 'role_id', defaultValue: 0)
   final int roleId;
   @override
@@ -256,7 +274,7 @@ class _$_ConstributorRes extends _ConstributorRes {
 
   @override
   String toString() {
-    return 'ConstributorRes(id: $id, name: $name, roleId: $roleId, share: $share, publishingId: $publishingId, roleTrack: $roleTrack, publising: $publising)';
+    return 'ConstributorRes(id: $id, name: $name, createdAt: $createdAt, roleId: $roleId, share: $share, publishingId: $publishingId, roleTrack: $roleTrack, publising: $publising)';
   }
 
   @override
@@ -266,6 +284,8 @@ class _$_ConstributorRes extends _ConstributorRes {
             other is _$_ConstributorRes &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.roleId, roleId) || other.roleId == roleId) &&
             (identical(other.share, share) || other.share == share) &&
             (identical(other.publishingId, publishingId) ||
@@ -278,8 +298,8 @@ class _$_ConstributorRes extends _ConstributorRes {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, name, roleId, share, publishingId, roleTrack, publising);
+  int get hashCode => Object.hash(runtimeType, id, name, createdAt, roleId,
+      share, publishingId, roleTrack, publising);
 
   @JsonKey(ignore: true)
   @override
@@ -299,6 +319,8 @@ abstract class _ConstributorRes extends ConstributorRes {
   const factory _ConstributorRes(
           {@JsonKey(name: 'id', defaultValue: 0) required final int id,
           @JsonKey(name: 'name', defaultValue: '') required final String name,
+          @JsonKey(name: 'created_at', defaultValue: '')
+          required final String createdAt,
           @JsonKey(name: 'role_id', defaultValue: 0) required final int roleId,
           @JsonKey(name: 'share', defaultValue: 0) required final int share,
           @JsonKey(name: 'publishing_id', defaultValue: 0)
@@ -317,6 +339,9 @@ abstract class _ConstributorRes extends ConstributorRes {
   @override
   @JsonKey(name: 'name', defaultValue: '')
   String get name;
+  @override
+  @JsonKey(name: 'created_at', defaultValue: '')
+  String get createdAt;
   @override
   @JsonKey(name: 'role_id', defaultValue: 0)
   int get roleId;

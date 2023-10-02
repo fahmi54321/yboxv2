@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'package:yboxv2/models/audio/audio_res.dart';
-import 'package:yboxv2/pages/forms/main_form_page.dart';
+import 'package:yboxv2/pages/forms/form_album_audio_video_page.dart';
 import 'package:yboxv2/pages/home/details/details_audio_page.dart';
 import 'package:yboxv2/pages/home/fragment/audio_fragment_state.dart';
 import 'package:yboxv2/pages/home/widget/item_audio.dart';
@@ -56,18 +56,18 @@ class CartFragmentState extends State<AudioFragment> {
                       onTap: () {
                         Navigator.pushNamed(
                           context,
-                          MainFormPage.route,
-                          arguments: ArgsMainFormPage(
+                          FormAlbumAudioVideoPage.route,
+                          arguments: ArgsFormAlbumAudioVideoPage(
                             fromCode: 'audio',
                           ),
                         ).then((value) {
                           debugPrint('is refresh $value');
                           if (value is bool) {
                             if (value) {
-                              // WidgetsBinding.instance
-                              //     .addPostFrameCallback((timeStamp) {
-                              //   state.pagingController.refresh();
-                              // });
+                              WidgetsBinding.instance
+                                  .addPostFrameCallback((timeStamp) {
+                                state.pagingController.refresh();
+                              });
                             }
                           }
                         });

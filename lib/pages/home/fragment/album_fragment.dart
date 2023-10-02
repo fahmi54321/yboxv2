@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'package:yboxv2/models/album/album_res.dart';
-import 'package:yboxv2/pages/forms/main_form_page.dart';
+import 'package:yboxv2/pages/forms/form_album_audio_video_page.dart';
 import 'package:yboxv2/pages/home/details/details_album_page.dart';
 import 'package:yboxv2/pages/home/fragment/album_fragment_state.dart';
 import 'package:yboxv2/pages/home/widget/item_album.dart';
@@ -56,8 +56,8 @@ class CartFragmentState extends State<AlbumFragment> {
                       onTap: () {
                         Navigator.pushNamed(
                           context,
-                          MainFormPage.route,
-                          arguments: ArgsMainFormPage(
+                          FormAlbumAudioVideoPage.route,
+                          arguments: ArgsFormAlbumAudioVideoPage(
                             fromCode: 'album',
                           ),
                         ).then((value) {

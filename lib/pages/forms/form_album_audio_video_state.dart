@@ -24,7 +24,7 @@ import 'package:yboxv2/utils/utils_loading.dart';
 import 'package:yboxv2/widget/v_text.dart';
 import 'package:flutter/material.dart';
 
-class MainFormState2 extends ChangeNotifier {
+class FormAlbumAudioVideoState extends ChangeNotifier {
   final BuildContext context;
   final String fromCode;
 
@@ -156,7 +156,7 @@ class MainFormState2 extends ChangeNotifier {
   String coverImageEdit = '';
   String audioEdit = '';
 
-  MainFormState2({
+  FormAlbumAudioVideoState({
     required this.context,
     required this.fromCode,
     this.dataAlbum,

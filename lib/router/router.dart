@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:yboxv2/pages/forms/main_form_page.dart';
+import 'package:yboxv2/pages/forms/form_album_audio_video_page.dart';
+import 'package:yboxv2/pages/forms/form_track_page.dart';
 import 'package:yboxv2/pages/home/details/details_album_page.dart';
 import 'package:yboxv2/pages/home/details/details_audio_page.dart';
 import 'package:yboxv2/pages/home/details/details_track_page.dart';
 import 'package:yboxv2/pages/home/details/details_video_page.dart';
+import 'package:yboxv2/pages/home/fragment/akun_bank_fragment.dart';
 import 'package:yboxv2/pages/home/fragment/audio_fragment.dart';
 import 'package:yboxv2/pages/home/fragment/transaction_fragment.dart';
 import 'package:yboxv2/pages/home/home_page.dart';
@@ -52,7 +54,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case DetailsTrackPage.route:
       return PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) =>
-            const DetailsTrackPage(),
+            DetailsTrackPage(
+          args: settings.arguments as ArgsDetailsTrack,
+        ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           const begin = Offset(0.0, 1.0);
           const end = Offset.zero;
@@ -205,10 +209,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         },
       );
 
-    case MainFormPage.route:
+    case FormAlbumAudioVideoPage.route:
       return PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => MainFormPage(
-          args: settings.arguments as ArgsMainFormPage,
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            FormAlbumAudioVideoPage(
+          args: settings.arguments as ArgsFormAlbumAudioVideoPage,
         ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           const begin = Offset(0.0, 1.0);
@@ -227,6 +232,41 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const LoadingPage(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(0.0, 1.0);
+          const end = Offset.zero;
+          final tween = Tween(begin: begin, end: end);
+          final offsetAnimation = animation.drive(tween);
+
+          return SlideTransition(
+            position: offsetAnimation,
+            child: child,
+          );
+        },
+      );
+
+    case FormTrackPage.route:
+      return PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) => FormTrackPage(
+          args: settings.arguments as ArgsFormTrackPage,
+        ),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(0.0, 1.0);
+          const end = Offset.zero;
+          final tween = Tween(begin: begin, end: end);
+          final offsetAnimation = animation.drive(tween);
+
+          return SlideTransition(
+            position: offsetAnimation,
+            child: child,
+          );
+        },
+      );
+
+    case AkunBankFragment.route:
+      return PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const AkunBankFragment(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           const begin = Offset(0.0, 1.0);
           const end = Offset.zero;

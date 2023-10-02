@@ -11,6 +11,7 @@ class ApiUrl {
   static String album = '${appUrl}api/album_api';
   static String video = '${appUrl}api/video_api';
   static String audio = '${appUrl}api/ringtone_api';
+  static String track = '${appUrl}api/track_api';
   static String language = '${appUrl}api/language';
   static String role = '${appUrl}api/roletrack';
   static String publishing = '${appUrl}api/publishing';
@@ -19,4 +20,8 @@ class ApiUrl {
   static String info = '${appUrl}api/info';
   static String genre = '${appUrl}api/genre';
   static String labelTransaksi = '${appUrl}api/label_request';
+  static String transaksi = '${appUrl}api/transaction_api';
+  static String invoice = '${appUrl}api/invoice';
+  static String cekReq = '${appUrl}api/cek_request';
+  static String akunBank = '${appUrl}api/bank_acc';
 }

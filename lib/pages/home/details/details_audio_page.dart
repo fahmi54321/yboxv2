@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:yboxv2/anim/animation_details_audio.dart';
 import 'package:yboxv2/models/audio/details_audio_res.dart';
 
-import 'package:yboxv2/pages/forms/main_form_page.dart';
+import 'package:yboxv2/pages/forms/form_album_audio_video_page.dart';
 import 'package:yboxv2/pages/home/details/details_audio_state.dart';
 import 'package:yboxv2/pages/home/details/utils/utils_details.dart';
 import 'package:yboxv2/pages/home/details/widget/user_details.dart';
@@ -292,8 +292,8 @@ class _DetailsAudioState extends State<DetailsAudio> {
                                     onTap: () {
                                       Navigator.pushNamed(
                                         context,
-                                        MainFormPage.route,
-                                        arguments: ArgsMainFormPage(
+                                        FormAlbumAudioVideoPage.route,
+                                        arguments: ArgsFormAlbumAudioVideoPage(
                                           fromCode: 'audio',
                                           dataAudio: widget.state.dataAudio,
                                         ),

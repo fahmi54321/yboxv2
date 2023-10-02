@@ -25,6 +25,7 @@ class ConstributorRes with _$ConstributorRes {
   const factory ConstributorRes({
     @JsonKey(name: 'id', defaultValue: 0) required int id,
     @JsonKey(name: 'name', defaultValue: '') required String name,
+    @JsonKey(name: 'created_at', defaultValue: '') required String createdAt,
     @JsonKey(name: 'role_id', defaultValue: 0) required int roleId,
     @JsonKey(name: 'share', defaultValue: 0) required int share,
     @JsonKey(name: 'publishing_id', defaultValue: 0) required int publishingId,

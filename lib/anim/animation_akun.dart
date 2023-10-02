@@ -6,6 +6,7 @@ class AnimationAkun {
   Animation<double> informasiLainOpacity;
   Animation<double> ringtoneOpacity;
   Animation<double> transaksiOpacity;
+  Animation<double> bankOpacity;
   Animation<double> ubahKataSandiOpacity;
   Animation<double> versiOpacity;
   Animation<double> keluarOpacity;
@@ -16,7 +17,7 @@ class AnimationAkun {
             parent: controller,
             curve: const Interval(
               0.100,
-              0.250,
+              0.200,
               curve: Curves.easeIn,
             ),
           ),
@@ -25,8 +26,8 @@ class AnimationAkun {
           CurvedAnimation(
             parent: controller,
             curve: const Interval(
-              0.200,
-              0.400,
+              0.150,
+              0.300,
               curve: Curves.easeIn,
             ),
           ),
@@ -35,8 +36,8 @@ class AnimationAkun {
           CurvedAnimation(
             parent: controller,
             curve: const Interval(
-              0.350,
-              0.550,
+              0.250,
+              0.400,
               curve: Curves.easeIn,
             ),
           ),
@@ -45,8 +46,18 @@ class AnimationAkun {
           CurvedAnimation(
             parent: controller,
             curve: const Interval(
+              0.350,
               0.500,
-              0.700,
+              curve: Curves.easeIn,
+            ),
+          ),
+        ),
+        bankOpacity = Tween(begin: 0.0, end: 1.0).animate(
+          CurvedAnimation(
+            parent: controller,
+            curve: const Interval(
+              0.450,
+              0.600,
               curve: Curves.easeIn,
             ),
           ),
@@ -55,8 +66,8 @@ class AnimationAkun {
           CurvedAnimation(
             parent: controller,
             curve: const Interval(
-              0.650,
-              0.850,
+              0.550,
+              0.700,
               curve: Curves.easeIn,
             ),
           ),
@@ -65,8 +76,8 @@ class AnimationAkun {
           CurvedAnimation(
             parent: controller,
             curve: const Interval(
+              0.650,
               0.800,
-              0.900,
               curve: Curves.easeIn,
             ),
           ),
@@ -75,7 +86,7 @@ class AnimationAkun {
           CurvedAnimation(
             parent: controller,
             curve: const Interval(
-              0.850,
+              0.750,
               1.000,
               curve: Curves.easeIn,
             ),

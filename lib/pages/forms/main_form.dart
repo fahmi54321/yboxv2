@@ -7,9 +7,9 @@ import 'package:yboxv2/models/general/genre_res.dart';
 
 import 'package:yboxv2/models/general/language_res.dart';
 import 'package:yboxv2/models/leader/leader_res.dart';
-import 'package:yboxv2/pages/forms/main_form_state_2.dart';
+import 'package:yboxv2/pages/forms/form_album_audio_video_state.dart';
 import 'package:yboxv2/pages/forms/widget/cover_image.dart';
-import 'package:yboxv2/pages/provider/data_album.dart';
+import 'package:yboxv2/pages/provider/data_album_video_audio.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/utils/utils.dart';
 import 'package:yboxv2/widget/v_dropdown.dart';
@@ -23,7 +23,7 @@ class MainForm extends StatefulWidget {
   final List<LanguageRes> listLanguage;
   final List<GenreRes> listGenre;
   final List<LeaderRes> listLabelReq;
-  final MainFormState2 state;
+  final FormAlbumAudioVideoState state;
   MainForm({
     super.key,
     this.languageResMain,
@@ -85,7 +85,7 @@ class MainFormWidget extends StatefulWidget {
   final List<GenreRes> listGenre;
   final AnimationController controller;
   final AnimationMainForm animation;
-  final MainFormState2 state;
+  final FormAlbumAudioVideoState state;
 
   MainFormWidget({
     super.key,
@@ -283,7 +283,9 @@ class _MainFormWidgetState extends State<MainFormWidget> {
               });
 
               if (data != null) {
-                context.read<DataAlbum>().updateLanguageId(data.id.toString());
+                context
+                    .read<DataAlbumAudioVideo>()
+                    .updateLanguageId(data.id.toString());
               }
             },
             items: widget.listLanguage
@@ -337,7 +339,9 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                       });
 
                       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                        context.read<DataAlbum>().updateCoverImage(file);
+                        context
+                            .read<DataAlbumAudioVideo>()
+                            .updateCoverImage(file);
                       });
                     }
                   },
@@ -422,7 +426,7 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                         });
                         if (data != null) {
                           context
-                              .read<DataAlbum>()
+                              .read<DataAlbumAudioVideo>()
                               .updateGenre(data.id.toString());
                         }
                       },
@@ -464,7 +468,7 @@ class _MainFormWidgetState extends State<MainFormWidget> {
 
                         if (data != null) {
                           context
-                              .read<DataAlbum>()
+                              .read<DataAlbumAudioVideo>()
                               .updateGenre2(data.id.toString());
                         }
                       },
@@ -990,7 +994,7 @@ class _MainFormWidgetState extends State<MainFormWidget> {
   void inputTitleReleaseListener() {
     if (widget.state.inputTitleRelease.text.isNotEmpty) {
       context
-          .read<DataAlbum>()
+          .read<DataAlbumAudioVideo>()
           .updateReleaseTitle(widget.state.inputTitleRelease.text);
     }
   }
@@ -998,21 +1002,23 @@ class _MainFormWidgetState extends State<MainFormWidget> {
   void inputTitleVersionListener() {
     if (widget.state.inputTitleVersion.text.isNotEmpty) {
       context
-          .read<DataAlbum>()
+          .read<DataAlbumAudioVideo>()
           .updateTitleVersion(widget.state.inputTitleVersion.text);
     }
   }
 
   void inputArtistListener() {
     if (widget.state.inputArtist.text.isNotEmpty) {
-      context.read<DataAlbum>().updateArtist(widget.state.inputArtist.text);
+      context
+          .read<DataAlbumAudioVideo>()
+          .updateArtist(widget.state.inputArtist.text);
     }
   }
 
   void inputArtistSpotifyListener() {
     if (widget.state.inputArtistSpotify.text.isNotEmpty) {
       context
-          .read<DataAlbum>()
+          .read<DataAlbumAudioVideo>()
           .updateSpotify(widget.state.inputArtistSpotify.text);
     }
   }
@@ -1020,27 +1026,31 @@ class _MainFormWidgetState extends State<MainFormWidget> {
   void inputArtistAppleListener() {
     if (widget.state.inputArtistApple.text.isNotEmpty) {
       context
-          .read<DataAlbum>()
+          .read<DataAlbumAudioVideo>()
           .updateItunes(widget.state.inputArtistApple.text);
     }
   }
 
   void inputCopyrightPListener() {
     if (widget.state.inputCopyrightP.text.isNotEmpty) {
-      context.read<DataAlbum>().updatePCopy(widget.state.inputCopyrightP.text);
+      context
+          .read<DataAlbumAudioVideo>()
+          .updatePCopy(widget.state.inputCopyrightP.text);
     }
   }
 
   void inputCopyrightCListener() {
     if (widget.state.inputCopyrightC.text.isNotEmpty) {
-      context.read<DataAlbum>().updateCCopy(widget.state.inputCopyrightC.text);
+      context
+          .read<DataAlbumAudioVideo>()
+          .updateCCopy(widget.state.inputCopyrightC.text);
     }
   }
 
   void inputPrevReleasedListener() {
     if (widget.state.inputPrevReleased.text.isNotEmpty) {
       context
-          .read<DataAlbum>()
+          .read<DataAlbumAudioVideo>()
           .updateRelease(widget.state.inputPrevReleased.text);
     }
   }
@@ -1048,14 +1058,14 @@ class _MainFormWidgetState extends State<MainFormWidget> {
   void inputReleaseIdListener() {
     if (widget.state.inputReleaseId.text.isNotEmpty) {
       context
-          .read<DataAlbum>()
+          .read<DataAlbumAudioVideo>()
           .updateReleaseId(widget.state.inputReleaseId.text);
     }
   }
 
   void inputUpcListener() {
     if (widget.state.inputUpc.text.isNotEmpty) {
-      context.read<DataAlbum>().updateUpc(widget.state.inputUpc.text);
+      context.read<DataAlbumAudioVideo>().updateUpc(widget.state.inputUpc.text);
     }
   }
 }

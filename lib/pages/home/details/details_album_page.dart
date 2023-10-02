@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'package:yboxv2/anim/animation_details_album.dart';
 import 'package:yboxv2/models/album/details_album_res.dart';
-import 'package:yboxv2/pages/forms/main_form_page.dart';
+import 'package:yboxv2/pages/forms/form_album_audio_video_page.dart';
 import 'package:yboxv2/pages/home/details/details_album_state.dart';
 import 'package:yboxv2/pages/home/details/utils/utils_details.dart';
 import 'package:yboxv2/pages/home/details/widget/user_details.dart';
@@ -294,8 +294,8 @@ class _DetailsAlbumState extends State<DetailsAlbum> {
                                     onTap: () {
                                       Navigator.pushNamed(
                                         context,
-                                        MainFormPage.route,
-                                        arguments: ArgsMainFormPage(
+                                        FormAlbumAudioVideoPage.route,
+                                        arguments: ArgsFormAlbumAudioVideoPage(
                                           fromCode: 'album',
                                           dataAlbum: widget.state.dataAlbum,
                                         ),

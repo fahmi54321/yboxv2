@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:yboxv2/models/general/genre_res.dart';
 import 'package:yboxv2/models/general/language_res.dart';
 import 'package:yboxv2/models/leader/leader_res.dart';
-import 'package:yboxv2/pages/forms/main_form_state_2.dart';
-import 'package:yboxv2/pages/provider/data_album.dart';
+import 'package:yboxv2/pages/forms/form_album_audio_video_state.dart';
+import 'package:yboxv2/pages/provider/data_album_video_audio.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/utils/utils.dart';
 import 'package:yboxv2/widget/v_dropdown.dart';
@@ -21,7 +21,7 @@ class TrackForm extends StatefulWidget {
   final List<LeaderRes> listLabelReq;
   final List<LanguageRes> listLanguage;
   final String formCode;
-  final MainFormState2 state;
+  final FormAlbumAudioVideoState state;
   TrackForm({
     super.key,
     required this.formCode,
@@ -190,7 +190,7 @@ class _TrackFormState extends State<TrackForm> {
                       });
                       if (data != null) {
                         context
-                            .read<DataAlbum>()
+                            .read<DataAlbumAudioVideo>()
                             .updateGenreInfo(data.id.toString());
                       }
                     },
@@ -231,7 +231,7 @@ class _TrackFormState extends State<TrackForm> {
                       });
                       if (data != null) {
                         context
-                            .read<DataAlbum>()
+                            .read<DataAlbumAudioVideo>()
                             .updateGenre2Info(data.id.toString());
                       }
                     },
@@ -456,7 +456,7 @@ class _TrackFormState extends State<TrackForm> {
                     setState(() {
                       widget.state.tracksSelectInputExplicitLyrics = val ?? 0;
                     });
-                    context.read<DataAlbum>().updateRdolyrics(widget
+                    context.read<DataAlbumAudioVideo>().updateRdolyrics(widget
                         .state.tracksSelectInputExplicitLyrics
                         .toString());
                   },
@@ -481,7 +481,7 @@ class _TrackFormState extends State<TrackForm> {
                     setState(() {
                       widget.state.tracksSelectInputExplicitLyrics = val ?? 0;
                     });
-                    context.read<DataAlbum>().updateRdolyrics(widget
+                    context.read<DataAlbumAudioVideo>().updateRdolyrics(widget
                         .state.tracksSelectInputExplicitLyrics
                         .toString());
                   },
@@ -535,7 +535,7 @@ class _TrackFormState extends State<TrackForm> {
                       widget.state.tracksSelectInputTrackSong = val ?? 0;
                     });
 
-                    context.read<DataAlbum>().updateRdothisTracks(
+                    context.read<DataAlbumAudioVideo>().updateRdothisTracks(
                         widget.state.tracksSelectInputTrackSong.toString());
                   },
                   activeColor: primaryColor,
@@ -559,7 +559,7 @@ class _TrackFormState extends State<TrackForm> {
                     setState(() {
                       widget.state.tracksSelectInputTrackSong = val ?? 0;
                     });
-                    context.read<DataAlbum>().updateRdothisTracks(
+                    context.read<DataAlbumAudioVideo>().updateRdothisTracks(
                         widget.state.tracksSelectInputTrackSong.toString());
                   },
                   activeColor: primaryColor,
@@ -849,7 +849,7 @@ class _TrackFormState extends State<TrackForm> {
 
             if (data != null) {
               context
-                  .read<DataAlbum>()
+                  .read<DataAlbumAudioVideo>()
                   .updateLanguageTrackId(data.id.toString());
             }
           },
@@ -900,7 +900,9 @@ class _TrackFormState extends State<TrackForm> {
                     });
 
                     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                      context.read<DataAlbum>().updateAudio(fileAudio);
+                      context
+                          .read<DataAlbumAudioVideo>()
+                          .updateAudio(fileAudio);
                     });
                   }
                 },
@@ -994,7 +996,7 @@ class _TrackFormState extends State<TrackForm> {
   void tracksInputTitleReleaseListener() {
     if (widget.state.tracksInputTitleRelease.text.isNotEmpty) {
       context
-          .read<DataAlbum>()
+          .read<DataAlbumAudioVideo>()
           .updateTrackTitle(widget.state.tracksInputTitleRelease.text);
     }
   }
@@ -1002,7 +1004,7 @@ class _TrackFormState extends State<TrackForm> {
   void tracksInputTitleVersionListener() {
     if (widget.state.tracksInputTitleVersion.text.isNotEmpty) {
       context
-          .read<DataAlbum>()
+          .read<DataAlbumAudioVideo>()
           .updateTitleVersionTrack(widget.state.tracksInputTitleVersion.text);
     }
   }
@@ -1010,7 +1012,7 @@ class _TrackFormState extends State<TrackForm> {
   void tracksInputArtistListener() {
     if (widget.state.tracksInputArtist.text.isNotEmpty) {
       context
-          .read<DataAlbum>()
+          .read<DataAlbumAudioVideo>()
           .updateArtistTrack(widget.state.tracksInputArtist.text);
     }
   }
@@ -1018,7 +1020,7 @@ class _TrackFormState extends State<TrackForm> {
   void tracksInputArtistSpotifyListener() {
     if (widget.state.tracksInputArtistSpotify.text.isNotEmpty) {
       context
-          .read<DataAlbum>()
+          .read<DataAlbumAudioVideo>()
           .updateSpotifyTrack(widget.state.tracksInputArtistSpotify.text);
     }
   }
@@ -1026,7 +1028,7 @@ class _TrackFormState extends State<TrackForm> {
   void tracksInputArtistAppleListener() {
     if (widget.state.tracksInputArtistApple.text.isNotEmpty) {
       context
-          .read<DataAlbum>()
+          .read<DataAlbumAudioVideo>()
           .updateItunesTrack(widget.state.tracksInputArtistApple.text);
     }
   }
@@ -1034,7 +1036,7 @@ class _TrackFormState extends State<TrackForm> {
   void tracksInputLyricsListener() {
     if (widget.state.tracksInputLyrics.text.isNotEmpty) {
       context
-          .read<DataAlbum>()
+          .read<DataAlbumAudioVideo>()
           .updateLirik(widget.state.tracksInputLyrics.text);
     }
   }
@@ -1042,7 +1044,7 @@ class _TrackFormState extends State<TrackForm> {
   void tracksInputCopyrightPListener() {
     if (widget.state.tracksInputCopyrightP.text.isNotEmpty) {
       context
-          .read<DataAlbum>()
+          .read<DataAlbumAudioVideo>()
           .updatePCopyInfo(widget.state.tracksInputCopyrightP.text);
     }
   }
@@ -1050,7 +1052,7 @@ class _TrackFormState extends State<TrackForm> {
   void tracksInputCopyrightCListener() {
     if (widget.state.tracksInputCopyrightC.text.isNotEmpty) {
       context
-          .read<DataAlbum>()
+          .read<DataAlbumAudioVideo>()
           .updateStartTime(widget.state.tracksInputCopyrightC.text);
     }
   }
@@ -1058,7 +1060,7 @@ class _TrackFormState extends State<TrackForm> {
   void tracksInputInternalTracksIdListener() {
     if (widget.state.tracksInputInternalTracksId.text.isNotEmpty) {
       context
-          .read<DataAlbum>()
+          .read<DataAlbumAudioVideo>()
           .updateTrackIdInfo(widget.state.tracksInputInternalTracksId.text);
     }
   }
@@ -1066,7 +1068,7 @@ class _TrackFormState extends State<TrackForm> {
   void tracksInputIsrcCodeListener() {
     if (widget.state.tracksInputIsrcCode.text.isNotEmpty) {
       context
-          .read<DataAlbum>()
+          .read<DataAlbumAudioVideo>()
           .updateIsrc(widget.state.tracksInputIsrcCode.text);
     }
   }

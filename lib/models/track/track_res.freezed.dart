@@ -212,60 +212,22 @@ DataTrackRes _$DataTrackResFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DataTrackRes {
-  @JsonKey(name: 'id', defaultValue: 0)
-  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'id', defaultValue: '')
+  String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_check', defaultValue: 0)
   int get isCheck => throw _privateConstructorUsedError;
-  @JsonKey(name: 'artis_name', defaultValue: '')
-  String get artisName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'artis_name_another_id', defaultValue: 0)
-  int get artisNameAnotherId => throw _privateConstructorUsedError;
   @JsonKey(name: 'image', defaultValue: '')
   String get image => throw _privateConstructorUsedError;
   @JsonKey(name: 'cover', defaultValue: '')
   String get cover => throw _privateConstructorUsedError;
   @JsonKey(name: 'track_title', defaultValue: '')
   String get trackTitle => throw _privateConstructorUsedError;
+  @JsonKey(name: 'artis_name', defaultValue: '')
+  String get artisName => throw _privateConstructorUsedError;
   @JsonKey(name: 'track_version', defaultValue: '')
   String get trackVersion => throw _privateConstructorUsedError;
-  @JsonKey(name: 'track_title_another_id', defaultValue: 0)
-  int get trackTitleAnotherId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'isrc', defaultValue: 0)
-  int get isrc => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at', defaultValue: '')
   String get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'spotify', defaultValue: '')
-  String get spotify => throw _privateConstructorUsedError;
-  @JsonKey(name: 'itunes', defaultValue: '')
-  String get itunes => throw _privateConstructorUsedError;
-  @JsonKey(name: 'other_artis_id', defaultValue: 0)
-  int get otherArtisId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'explisit_lyric', defaultValue: 0)
-  int get explisitLyric => throw _privateConstructorUsedError;
-  @JsonKey(name: 'this_track_is', defaultValue: 0)
-  int get thisTrackIs => throw _privateConstructorUsedError;
-  @JsonKey(name: 'p_copyright', defaultValue: '')
-  String get pCopyright => throw _privateConstructorUsedError;
-  @JsonKey(name: 'previews_start_time', defaultValue: 0)
-  int get previewsStartTime => throw _privateConstructorUsedError;
-  @JsonKey(name: 'label_name')
-  LabelRes? get labelName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'internal_track_id', defaultValue: 0)
-  int get internalTrackId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'lyric', defaultValue: '')
-  String get lyric => throw _privateConstructorUsedError;
-  @JsonKey(name: 'contributor_id', defaultValue: '')
-  String get contributorId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'contributor')
-  ConstributorRes? get contributor => throw _privateConstructorUsedError;
-  @JsonKey(name: 'lang_lyric')
-  LanguageRes? get lang => throw _privateConstructorUsedError;
-  @JsonKey(name: 'genre_1')
-  GenreRes? get genre1 => throw _privateConstructorUsedError;
-  @JsonKey(name: 'genre_2')
-  GenreRes? get genre2 => throw _privateConstructorUsedError;
-  @JsonKey(name: 'user')
-  UserRes? get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -280,43 +242,14 @@ abstract class $DataTrackResCopyWith<$Res> {
       _$DataTrackResCopyWithImpl<$Res, DataTrackRes>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id', defaultValue: 0) int id,
+      {@JsonKey(name: 'id', defaultValue: '') String id,
       @JsonKey(name: 'is_check', defaultValue: 0) int isCheck,
-      @JsonKey(name: 'artis_name', defaultValue: '') String artisName,
-      @JsonKey(name: 'artis_name_another_id', defaultValue: 0)
-      int artisNameAnotherId,
       @JsonKey(name: 'image', defaultValue: '') String image,
       @JsonKey(name: 'cover', defaultValue: '') String cover,
       @JsonKey(name: 'track_title', defaultValue: '') String trackTitle,
+      @JsonKey(name: 'artis_name', defaultValue: '') String artisName,
       @JsonKey(name: 'track_version', defaultValue: '') String trackVersion,
-      @JsonKey(name: 'track_title_another_id', defaultValue: 0)
-      int trackTitleAnotherId,
-      @JsonKey(name: 'isrc', defaultValue: 0) int isrc,
-      @JsonKey(name: 'created_at', defaultValue: '') String createdAt,
-      @JsonKey(name: 'spotify', defaultValue: '') String spotify,
-      @JsonKey(name: 'itunes', defaultValue: '') String itunes,
-      @JsonKey(name: 'other_artis_id', defaultValue: 0) int otherArtisId,
-      @JsonKey(name: 'explisit_lyric', defaultValue: 0) int explisitLyric,
-      @JsonKey(name: 'this_track_is', defaultValue: 0) int thisTrackIs,
-      @JsonKey(name: 'p_copyright', defaultValue: '') String pCopyright,
-      @JsonKey(name: 'previews_start_time', defaultValue: 0)
-      int previewsStartTime,
-      @JsonKey(name: 'label_name') LabelRes? labelName,
-      @JsonKey(name: 'internal_track_id', defaultValue: 0) int internalTrackId,
-      @JsonKey(name: 'lyric', defaultValue: '') String lyric,
-      @JsonKey(name: 'contributor_id', defaultValue: '') String contributorId,
-      @JsonKey(name: 'contributor') ConstributorRes? contributor,
-      @JsonKey(name: 'lang_lyric') LanguageRes? lang,
-      @JsonKey(name: 'genre_1') GenreRes? genre1,
-      @JsonKey(name: 'genre_2') GenreRes? genre2,
-      @JsonKey(name: 'user') UserRes? user});
-
-  $LabelResCopyWith<$Res>? get labelName;
-  $ConstributorResCopyWith<$Res>? get contributor;
-  $LanguageResCopyWith<$Res>? get lang;
-  $GenreResCopyWith<$Res>? get genre1;
-  $GenreResCopyWith<$Res>? get genre2;
-  $UserResCopyWith<$Res>? get user;
+      @JsonKey(name: 'created_at', defaultValue: '') String createdAt});
 }
 
 /// @nodoc
@@ -334,48 +267,21 @@ class _$DataTrackResCopyWithImpl<$Res, $Val extends DataTrackRes>
   $Res call({
     Object? id = null,
     Object? isCheck = null,
-    Object? artisName = null,
-    Object? artisNameAnotherId = null,
     Object? image = null,
     Object? cover = null,
     Object? trackTitle = null,
+    Object? artisName = null,
     Object? trackVersion = null,
-    Object? trackTitleAnotherId = null,
-    Object? isrc = null,
     Object? createdAt = null,
-    Object? spotify = null,
-    Object? itunes = null,
-    Object? otherArtisId = null,
-    Object? explisitLyric = null,
-    Object? thisTrackIs = null,
-    Object? pCopyright = null,
-    Object? previewsStartTime = null,
-    Object? labelName = freezed,
-    Object? internalTrackId = null,
-    Object? lyric = null,
-    Object? contributorId = null,
-    Object? contributor = freezed,
-    Object? lang = freezed,
-    Object? genre1 = freezed,
-    Object? genre2 = freezed,
-    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       isCheck: null == isCheck
           ? _value.isCheck
           : isCheck // ignore: cast_nullable_to_non_nullable
-              as int,
-      artisName: null == artisName
-          ? _value.artisName
-          : artisName // ignore: cast_nullable_to_non_nullable
-              as String,
-      artisNameAnotherId: null == artisNameAnotherId
-          ? _value.artisNameAnotherId
-          : artisNameAnotherId // ignore: cast_nullable_to_non_nullable
               as int,
       image: null == image
           ? _value.image
@@ -389,159 +295,19 @@ class _$DataTrackResCopyWithImpl<$Res, $Val extends DataTrackRes>
           ? _value.trackTitle
           : trackTitle // ignore: cast_nullable_to_non_nullable
               as String,
+      artisName: null == artisName
+          ? _value.artisName
+          : artisName // ignore: cast_nullable_to_non_nullable
+              as String,
       trackVersion: null == trackVersion
           ? _value.trackVersion
           : trackVersion // ignore: cast_nullable_to_non_nullable
               as String,
-      trackTitleAnotherId: null == trackTitleAnotherId
-          ? _value.trackTitleAnotherId
-          : trackTitleAnotherId // ignore: cast_nullable_to_non_nullable
-              as int,
-      isrc: null == isrc
-          ? _value.isrc
-          : isrc // ignore: cast_nullable_to_non_nullable
-              as int,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
-      spotify: null == spotify
-          ? _value.spotify
-          : spotify // ignore: cast_nullable_to_non_nullable
-              as String,
-      itunes: null == itunes
-          ? _value.itunes
-          : itunes // ignore: cast_nullable_to_non_nullable
-              as String,
-      otherArtisId: null == otherArtisId
-          ? _value.otherArtisId
-          : otherArtisId // ignore: cast_nullable_to_non_nullable
-              as int,
-      explisitLyric: null == explisitLyric
-          ? _value.explisitLyric
-          : explisitLyric // ignore: cast_nullable_to_non_nullable
-              as int,
-      thisTrackIs: null == thisTrackIs
-          ? _value.thisTrackIs
-          : thisTrackIs // ignore: cast_nullable_to_non_nullable
-              as int,
-      pCopyright: null == pCopyright
-          ? _value.pCopyright
-          : pCopyright // ignore: cast_nullable_to_non_nullable
-              as String,
-      previewsStartTime: null == previewsStartTime
-          ? _value.previewsStartTime
-          : previewsStartTime // ignore: cast_nullable_to_non_nullable
-              as int,
-      labelName: freezed == labelName
-          ? _value.labelName
-          : labelName // ignore: cast_nullable_to_non_nullable
-              as LabelRes?,
-      internalTrackId: null == internalTrackId
-          ? _value.internalTrackId
-          : internalTrackId // ignore: cast_nullable_to_non_nullable
-              as int,
-      lyric: null == lyric
-          ? _value.lyric
-          : lyric // ignore: cast_nullable_to_non_nullable
-              as String,
-      contributorId: null == contributorId
-          ? _value.contributorId
-          : contributorId // ignore: cast_nullable_to_non_nullable
-              as String,
-      contributor: freezed == contributor
-          ? _value.contributor
-          : contributor // ignore: cast_nullable_to_non_nullable
-              as ConstributorRes?,
-      lang: freezed == lang
-          ? _value.lang
-          : lang // ignore: cast_nullable_to_non_nullable
-              as LanguageRes?,
-      genre1: freezed == genre1
-          ? _value.genre1
-          : genre1 // ignore: cast_nullable_to_non_nullable
-              as GenreRes?,
-      genre2: freezed == genre2
-          ? _value.genre2
-          : genre2 // ignore: cast_nullable_to_non_nullable
-              as GenreRes?,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserRes?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $LabelResCopyWith<$Res>? get labelName {
-    if (_value.labelName == null) {
-      return null;
-    }
-
-    return $LabelResCopyWith<$Res>(_value.labelName!, (value) {
-      return _then(_value.copyWith(labelName: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ConstributorResCopyWith<$Res>? get contributor {
-    if (_value.contributor == null) {
-      return null;
-    }
-
-    return $ConstributorResCopyWith<$Res>(_value.contributor!, (value) {
-      return _then(_value.copyWith(contributor: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $LanguageResCopyWith<$Res>? get lang {
-    if (_value.lang == null) {
-      return null;
-    }
-
-    return $LanguageResCopyWith<$Res>(_value.lang!, (value) {
-      return _then(_value.copyWith(lang: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $GenreResCopyWith<$Res>? get genre1 {
-    if (_value.genre1 == null) {
-      return null;
-    }
-
-    return $GenreResCopyWith<$Res>(_value.genre1!, (value) {
-      return _then(_value.copyWith(genre1: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $GenreResCopyWith<$Res>? get genre2 {
-    if (_value.genre2 == null) {
-      return null;
-    }
-
-    return $GenreResCopyWith<$Res>(_value.genre2!, (value) {
-      return _then(_value.copyWith(genre2: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserResCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
-
-    return $UserResCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
   }
 }
 
@@ -554,49 +320,14 @@ abstract class _$$_DataTrackResCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id', defaultValue: 0) int id,
+      {@JsonKey(name: 'id', defaultValue: '') String id,
       @JsonKey(name: 'is_check', defaultValue: 0) int isCheck,
-      @JsonKey(name: 'artis_name', defaultValue: '') String artisName,
-      @JsonKey(name: 'artis_name_another_id', defaultValue: 0)
-      int artisNameAnotherId,
       @JsonKey(name: 'image', defaultValue: '') String image,
       @JsonKey(name: 'cover', defaultValue: '') String cover,
       @JsonKey(name: 'track_title', defaultValue: '') String trackTitle,
+      @JsonKey(name: 'artis_name', defaultValue: '') String artisName,
       @JsonKey(name: 'track_version', defaultValue: '') String trackVersion,
-      @JsonKey(name: 'track_title_another_id', defaultValue: 0)
-      int trackTitleAnotherId,
-      @JsonKey(name: 'isrc', defaultValue: 0) int isrc,
-      @JsonKey(name: 'created_at', defaultValue: '') String createdAt,
-      @JsonKey(name: 'spotify', defaultValue: '') String spotify,
-      @JsonKey(name: 'itunes', defaultValue: '') String itunes,
-      @JsonKey(name: 'other_artis_id', defaultValue: 0) int otherArtisId,
-      @JsonKey(name: 'explisit_lyric', defaultValue: 0) int explisitLyric,
-      @JsonKey(name: 'this_track_is', defaultValue: 0) int thisTrackIs,
-      @JsonKey(name: 'p_copyright', defaultValue: '') String pCopyright,
-      @JsonKey(name: 'previews_start_time', defaultValue: 0)
-      int previewsStartTime,
-      @JsonKey(name: 'label_name') LabelRes? labelName,
-      @JsonKey(name: 'internal_track_id', defaultValue: 0) int internalTrackId,
-      @JsonKey(name: 'lyric', defaultValue: '') String lyric,
-      @JsonKey(name: 'contributor_id', defaultValue: '') String contributorId,
-      @JsonKey(name: 'contributor') ConstributorRes? contributor,
-      @JsonKey(name: 'lang_lyric') LanguageRes? lang,
-      @JsonKey(name: 'genre_1') GenreRes? genre1,
-      @JsonKey(name: 'genre_2') GenreRes? genre2,
-      @JsonKey(name: 'user') UserRes? user});
-
-  @override
-  $LabelResCopyWith<$Res>? get labelName;
-  @override
-  $ConstributorResCopyWith<$Res>? get contributor;
-  @override
-  $LanguageResCopyWith<$Res>? get lang;
-  @override
-  $GenreResCopyWith<$Res>? get genre1;
-  @override
-  $GenreResCopyWith<$Res>? get genre2;
-  @override
-  $UserResCopyWith<$Res>? get user;
+      @JsonKey(name: 'created_at', defaultValue: '') String createdAt});
 }
 
 /// @nodoc
@@ -612,48 +343,21 @@ class __$$_DataTrackResCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? isCheck = null,
-    Object? artisName = null,
-    Object? artisNameAnotherId = null,
     Object? image = null,
     Object? cover = null,
     Object? trackTitle = null,
+    Object? artisName = null,
     Object? trackVersion = null,
-    Object? trackTitleAnotherId = null,
-    Object? isrc = null,
     Object? createdAt = null,
-    Object? spotify = null,
-    Object? itunes = null,
-    Object? otherArtisId = null,
-    Object? explisitLyric = null,
-    Object? thisTrackIs = null,
-    Object? pCopyright = null,
-    Object? previewsStartTime = null,
-    Object? labelName = freezed,
-    Object? internalTrackId = null,
-    Object? lyric = null,
-    Object? contributorId = null,
-    Object? contributor = freezed,
-    Object? lang = freezed,
-    Object? genre1 = freezed,
-    Object? genre2 = freezed,
-    Object? user = freezed,
   }) {
     return _then(_$_DataTrackRes(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       isCheck: null == isCheck
           ? _value.isCheck
           : isCheck // ignore: cast_nullable_to_non_nullable
-              as int,
-      artisName: null == artisName
-          ? _value.artisName
-          : artisName // ignore: cast_nullable_to_non_nullable
-              as String,
-      artisNameAnotherId: null == artisNameAnotherId
-          ? _value.artisNameAnotherId
-          : artisNameAnotherId // ignore: cast_nullable_to_non_nullable
               as int,
       image: null == image
           ? _value.image
@@ -667,86 +371,18 @@ class __$$_DataTrackResCopyWithImpl<$Res>
           ? _value.trackTitle
           : trackTitle // ignore: cast_nullable_to_non_nullable
               as String,
+      artisName: null == artisName
+          ? _value.artisName
+          : artisName // ignore: cast_nullable_to_non_nullable
+              as String,
       trackVersion: null == trackVersion
           ? _value.trackVersion
           : trackVersion // ignore: cast_nullable_to_non_nullable
               as String,
-      trackTitleAnotherId: null == trackTitleAnotherId
-          ? _value.trackTitleAnotherId
-          : trackTitleAnotherId // ignore: cast_nullable_to_non_nullable
-              as int,
-      isrc: null == isrc
-          ? _value.isrc
-          : isrc // ignore: cast_nullable_to_non_nullable
-              as int,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
-      spotify: null == spotify
-          ? _value.spotify
-          : spotify // ignore: cast_nullable_to_non_nullable
-              as String,
-      itunes: null == itunes
-          ? _value.itunes
-          : itunes // ignore: cast_nullable_to_non_nullable
-              as String,
-      otherArtisId: null == otherArtisId
-          ? _value.otherArtisId
-          : otherArtisId // ignore: cast_nullable_to_non_nullable
-              as int,
-      explisitLyric: null == explisitLyric
-          ? _value.explisitLyric
-          : explisitLyric // ignore: cast_nullable_to_non_nullable
-              as int,
-      thisTrackIs: null == thisTrackIs
-          ? _value.thisTrackIs
-          : thisTrackIs // ignore: cast_nullable_to_non_nullable
-              as int,
-      pCopyright: null == pCopyright
-          ? _value.pCopyright
-          : pCopyright // ignore: cast_nullable_to_non_nullable
-              as String,
-      previewsStartTime: null == previewsStartTime
-          ? _value.previewsStartTime
-          : previewsStartTime // ignore: cast_nullable_to_non_nullable
-              as int,
-      labelName: freezed == labelName
-          ? _value.labelName
-          : labelName // ignore: cast_nullable_to_non_nullable
-              as LabelRes?,
-      internalTrackId: null == internalTrackId
-          ? _value.internalTrackId
-          : internalTrackId // ignore: cast_nullable_to_non_nullable
-              as int,
-      lyric: null == lyric
-          ? _value.lyric
-          : lyric // ignore: cast_nullable_to_non_nullable
-              as String,
-      contributorId: null == contributorId
-          ? _value.contributorId
-          : contributorId // ignore: cast_nullable_to_non_nullable
-              as String,
-      contributor: freezed == contributor
-          ? _value.contributor
-          : contributor // ignore: cast_nullable_to_non_nullable
-              as ConstributorRes?,
-      lang: freezed == lang
-          ? _value.lang
-          : lang // ignore: cast_nullable_to_non_nullable
-              as LanguageRes?,
-      genre1: freezed == genre1
-          ? _value.genre1
-          : genre1 // ignore: cast_nullable_to_non_nullable
-              as GenreRes?,
-      genre2: freezed == genre2
-          ? _value.genre2
-          : genre2 // ignore: cast_nullable_to_non_nullable
-              as GenreRes?,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserRes?,
     ));
   }
 }
@@ -757,59 +393,26 @@ class __$$_DataTrackResCopyWithImpl<$Res>
     anyMap: true, explicitToJson: true, checked: true, includeIfNull: false)
 class _$_DataTrackRes extends _DataTrackRes {
   const _$_DataTrackRes(
-      {@JsonKey(name: 'id', defaultValue: 0) required this.id,
+      {@JsonKey(name: 'id', defaultValue: '') required this.id,
       @JsonKey(name: 'is_check', defaultValue: 0) required this.isCheck,
-      @JsonKey(name: 'artis_name', defaultValue: '') required this.artisName,
-      @JsonKey(name: 'artis_name_another_id', defaultValue: 0)
-      required this.artisNameAnotherId,
       @JsonKey(name: 'image', defaultValue: '') required this.image,
       @JsonKey(name: 'cover', defaultValue: '') required this.cover,
       @JsonKey(name: 'track_title', defaultValue: '') required this.trackTitle,
+      @JsonKey(name: 'artis_name', defaultValue: '') required this.artisName,
       @JsonKey(name: 'track_version', defaultValue: '')
       required this.trackVersion,
-      @JsonKey(name: 'track_title_another_id', defaultValue: 0)
-      required this.trackTitleAnotherId,
-      @JsonKey(name: 'isrc', defaultValue: 0) required this.isrc,
-      @JsonKey(name: 'created_at', defaultValue: '') required this.createdAt,
-      @JsonKey(name: 'spotify', defaultValue: '') required this.spotify,
-      @JsonKey(name: 'itunes', defaultValue: '') required this.itunes,
-      @JsonKey(name: 'other_artis_id', defaultValue: 0)
-      required this.otherArtisId,
-      @JsonKey(name: 'explisit_lyric', defaultValue: 0)
-      required this.explisitLyric,
-      @JsonKey(name: 'this_track_is', defaultValue: 0)
-      required this.thisTrackIs,
-      @JsonKey(name: 'p_copyright', defaultValue: '') required this.pCopyright,
-      @JsonKey(name: 'previews_start_time', defaultValue: 0)
-      required this.previewsStartTime,
-      @JsonKey(name: 'label_name') this.labelName,
-      @JsonKey(name: 'internal_track_id', defaultValue: 0)
-      required this.internalTrackId,
-      @JsonKey(name: 'lyric', defaultValue: '') required this.lyric,
-      @JsonKey(name: 'contributor_id', defaultValue: '')
-      required this.contributorId,
-      @JsonKey(name: 'contributor') this.contributor,
-      @JsonKey(name: 'lang_lyric') this.lang,
-      @JsonKey(name: 'genre_1') this.genre1,
-      @JsonKey(name: 'genre_2') this.genre2,
-      @JsonKey(name: 'user') this.user})
+      @JsonKey(name: 'created_at', defaultValue: '') required this.createdAt})
       : super._();
 
   factory _$_DataTrackRes.fromJson(Map<String, dynamic> json) =>
       _$$_DataTrackResFromJson(json);
 
   @override
-  @JsonKey(name: 'id', defaultValue: 0)
-  final int id;
+  @JsonKey(name: 'id', defaultValue: '')
+  final String id;
   @override
   @JsonKey(name: 'is_check', defaultValue: 0)
   final int isCheck;
-  @override
-  @JsonKey(name: 'artis_name', defaultValue: '')
-  final String artisName;
-  @override
-  @JsonKey(name: 'artis_name_another_id', defaultValue: 0)
-  final int artisNameAnotherId;
   @override
   @JsonKey(name: 'image', defaultValue: '')
   final String image;
@@ -820,69 +423,18 @@ class _$_DataTrackRes extends _DataTrackRes {
   @JsonKey(name: 'track_title', defaultValue: '')
   final String trackTitle;
   @override
+  @JsonKey(name: 'artis_name', defaultValue: '')
+  final String artisName;
+  @override
   @JsonKey(name: 'track_version', defaultValue: '')
   final String trackVersion;
   @override
-  @JsonKey(name: 'track_title_another_id', defaultValue: 0)
-  final int trackTitleAnotherId;
-  @override
-  @JsonKey(name: 'isrc', defaultValue: 0)
-  final int isrc;
-  @override
   @JsonKey(name: 'created_at', defaultValue: '')
   final String createdAt;
-  @override
-  @JsonKey(name: 'spotify', defaultValue: '')
-  final String spotify;
-  @override
-  @JsonKey(name: 'itunes', defaultValue: '')
-  final String itunes;
-  @override
-  @JsonKey(name: 'other_artis_id', defaultValue: 0)
-  final int otherArtisId;
-  @override
-  @JsonKey(name: 'explisit_lyric', defaultValue: 0)
-  final int explisitLyric;
-  @override
-  @JsonKey(name: 'this_track_is', defaultValue: 0)
-  final int thisTrackIs;
-  @override
-  @JsonKey(name: 'p_copyright', defaultValue: '')
-  final String pCopyright;
-  @override
-  @JsonKey(name: 'previews_start_time', defaultValue: 0)
-  final int previewsStartTime;
-  @override
-  @JsonKey(name: 'label_name')
-  final LabelRes? labelName;
-  @override
-  @JsonKey(name: 'internal_track_id', defaultValue: 0)
-  final int internalTrackId;
-  @override
-  @JsonKey(name: 'lyric', defaultValue: '')
-  final String lyric;
-  @override
-  @JsonKey(name: 'contributor_id', defaultValue: '')
-  final String contributorId;
-  @override
-  @JsonKey(name: 'contributor')
-  final ConstributorRes? contributor;
-  @override
-  @JsonKey(name: 'lang_lyric')
-  final LanguageRes? lang;
-  @override
-  @JsonKey(name: 'genre_1')
-  final GenreRes? genre1;
-  @override
-  @JsonKey(name: 'genre_2')
-  final GenreRes? genre2;
-  @override
-  @JsonKey(name: 'user')
-  final UserRes? user;
 
   @override
   String toString() {
-    return 'DataTrackRes(id: $id, isCheck: $isCheck, artisName: $artisName, artisNameAnotherId: $artisNameAnotherId, image: $image, cover: $cover, trackTitle: $trackTitle, trackVersion: $trackVersion, trackTitleAnotherId: $trackTitleAnotherId, isrc: $isrc, createdAt: $createdAt, spotify: $spotify, itunes: $itunes, otherArtisId: $otherArtisId, explisitLyric: $explisitLyric, thisTrackIs: $thisTrackIs, pCopyright: $pCopyright, previewsStartTime: $previewsStartTime, labelName: $labelName, internalTrackId: $internalTrackId, lyric: $lyric, contributorId: $contributorId, contributor: $contributor, lang: $lang, genre1: $genre1, genre2: $genre2, user: $user)';
+    return 'DataTrackRes(id: $id, isCheck: $isCheck, image: $image, cover: $cover, trackTitle: $trackTitle, artisName: $artisName, trackVersion: $trackVersion, createdAt: $createdAt)';
   }
 
   @override
@@ -892,80 +444,22 @@ class _$_DataTrackRes extends _DataTrackRes {
             other is _$_DataTrackRes &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.isCheck, isCheck) || other.isCheck == isCheck) &&
-            (identical(other.artisName, artisName) ||
-                other.artisName == artisName) &&
-            (identical(other.artisNameAnotherId, artisNameAnotherId) ||
-                other.artisNameAnotherId == artisNameAnotherId) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.cover, cover) || other.cover == cover) &&
             (identical(other.trackTitle, trackTitle) ||
                 other.trackTitle == trackTitle) &&
+            (identical(other.artisName, artisName) ||
+                other.artisName == artisName) &&
             (identical(other.trackVersion, trackVersion) ||
                 other.trackVersion == trackVersion) &&
-            (identical(other.trackTitleAnotherId, trackTitleAnotherId) ||
-                other.trackTitleAnotherId == trackTitleAnotherId) &&
-            (identical(other.isrc, isrc) || other.isrc == isrc) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.spotify, spotify) || other.spotify == spotify) &&
-            (identical(other.itunes, itunes) || other.itunes == itunes) &&
-            (identical(other.otherArtisId, otherArtisId) ||
-                other.otherArtisId == otherArtisId) &&
-            (identical(other.explisitLyric, explisitLyric) ||
-                other.explisitLyric == explisitLyric) &&
-            (identical(other.thisTrackIs, thisTrackIs) ||
-                other.thisTrackIs == thisTrackIs) &&
-            (identical(other.pCopyright, pCopyright) ||
-                other.pCopyright == pCopyright) &&
-            (identical(other.previewsStartTime, previewsStartTime) ||
-                other.previewsStartTime == previewsStartTime) &&
-            (identical(other.labelName, labelName) ||
-                other.labelName == labelName) &&
-            (identical(other.internalTrackId, internalTrackId) ||
-                other.internalTrackId == internalTrackId) &&
-            (identical(other.lyric, lyric) || other.lyric == lyric) &&
-            (identical(other.contributorId, contributorId) ||
-                other.contributorId == contributorId) &&
-            (identical(other.contributor, contributor) ||
-                other.contributor == contributor) &&
-            (identical(other.lang, lang) || other.lang == lang) &&
-            (identical(other.genre1, genre1) || other.genre1 == genre1) &&
-            (identical(other.genre2, genre2) || other.genre2 == genre2) &&
-            (identical(other.user, user) || other.user == user));
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        id,
-        isCheck,
-        artisName,
-        artisNameAnotherId,
-        image,
-        cover,
-        trackTitle,
-        trackVersion,
-        trackTitleAnotherId,
-        isrc,
-        createdAt,
-        spotify,
-        itunes,
-        otherArtisId,
-        explisitLyric,
-        thisTrackIs,
-        pCopyright,
-        previewsStartTime,
-        labelName,
-        internalTrackId,
-        lyric,
-        contributorId,
-        contributor,
-        lang,
-        genre1,
-        genre2,
-        user
-      ]);
+  int get hashCode => Object.hash(runtimeType, id, isCheck, image, cover,
+      trackTitle, artisName, trackVersion, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -983,63 +477,29 @@ class _$_DataTrackRes extends _DataTrackRes {
 
 abstract class _DataTrackRes extends DataTrackRes {
   const factory _DataTrackRes(
-      {@JsonKey(name: 'id', defaultValue: 0) required final int id,
+      {@JsonKey(name: 'id', defaultValue: '') required final String id,
       @JsonKey(name: 'is_check', defaultValue: 0) required final int isCheck,
-      @JsonKey(name: 'artis_name', defaultValue: '')
-      required final String artisName,
-      @JsonKey(name: 'artis_name_another_id', defaultValue: 0)
-      required final int artisNameAnotherId,
       @JsonKey(name: 'image', defaultValue: '') required final String image,
       @JsonKey(name: 'cover', defaultValue: '') required final String cover,
       @JsonKey(name: 'track_title', defaultValue: '')
       required final String trackTitle,
+      @JsonKey(name: 'artis_name', defaultValue: '')
+      required final String artisName,
       @JsonKey(name: 'track_version', defaultValue: '')
       required final String trackVersion,
-      @JsonKey(name: 'track_title_another_id', defaultValue: 0)
-      required final int trackTitleAnotherId,
-      @JsonKey(name: 'isrc', defaultValue: 0) required final int isrc,
       @JsonKey(name: 'created_at', defaultValue: '')
-      required final String createdAt,
-      @JsonKey(name: 'spotify', defaultValue: '') required final String spotify,
-      @JsonKey(name: 'itunes', defaultValue: '') required final String itunes,
-      @JsonKey(name: 'other_artis_id', defaultValue: 0)
-      required final int otherArtisId,
-      @JsonKey(name: 'explisit_lyric', defaultValue: 0)
-      required final int explisitLyric,
-      @JsonKey(name: 'this_track_is', defaultValue: 0)
-      required final int thisTrackIs,
-      @JsonKey(name: 'p_copyright', defaultValue: '')
-      required final String pCopyright,
-      @JsonKey(name: 'previews_start_time', defaultValue: 0)
-      required final int previewsStartTime,
-      @JsonKey(name: 'label_name') final LabelRes? labelName,
-      @JsonKey(name: 'internal_track_id', defaultValue: 0)
-      required final int internalTrackId,
-      @JsonKey(name: 'lyric', defaultValue: '') required final String lyric,
-      @JsonKey(name: 'contributor_id', defaultValue: '')
-      required final String contributorId,
-      @JsonKey(name: 'contributor') final ConstributorRes? contributor,
-      @JsonKey(name: 'lang_lyric') final LanguageRes? lang,
-      @JsonKey(name: 'genre_1') final GenreRes? genre1,
-      @JsonKey(name: 'genre_2') final GenreRes? genre2,
-      @JsonKey(name: 'user') final UserRes? user}) = _$_DataTrackRes;
+      required final String createdAt}) = _$_DataTrackRes;
   const _DataTrackRes._() : super._();
 
   factory _DataTrackRes.fromJson(Map<String, dynamic> json) =
       _$_DataTrackRes.fromJson;
 
   @override
-  @JsonKey(name: 'id', defaultValue: 0)
-  int get id;
+  @JsonKey(name: 'id', defaultValue: '')
+  String get id;
   @override
   @JsonKey(name: 'is_check', defaultValue: 0)
   int get isCheck;
-  @override
-  @JsonKey(name: 'artis_name', defaultValue: '')
-  String get artisName;
-  @override
-  @JsonKey(name: 'artis_name_another_id', defaultValue: 0)
-  int get artisNameAnotherId;
   @override
   @JsonKey(name: 'image', defaultValue: '')
   String get image;
@@ -1050,65 +510,14 @@ abstract class _DataTrackRes extends DataTrackRes {
   @JsonKey(name: 'track_title', defaultValue: '')
   String get trackTitle;
   @override
+  @JsonKey(name: 'artis_name', defaultValue: '')
+  String get artisName;
+  @override
   @JsonKey(name: 'track_version', defaultValue: '')
   String get trackVersion;
   @override
-  @JsonKey(name: 'track_title_another_id', defaultValue: 0)
-  int get trackTitleAnotherId;
-  @override
-  @JsonKey(name: 'isrc', defaultValue: 0)
-  int get isrc;
-  @override
   @JsonKey(name: 'created_at', defaultValue: '')
   String get createdAt;
-  @override
-  @JsonKey(name: 'spotify', defaultValue: '')
-  String get spotify;
-  @override
-  @JsonKey(name: 'itunes', defaultValue: '')
-  String get itunes;
-  @override
-  @JsonKey(name: 'other_artis_id', defaultValue: 0)
-  int get otherArtisId;
-  @override
-  @JsonKey(name: 'explisit_lyric', defaultValue: 0)
-  int get explisitLyric;
-  @override
-  @JsonKey(name: 'this_track_is', defaultValue: 0)
-  int get thisTrackIs;
-  @override
-  @JsonKey(name: 'p_copyright', defaultValue: '')
-  String get pCopyright;
-  @override
-  @JsonKey(name: 'previews_start_time', defaultValue: 0)
-  int get previewsStartTime;
-  @override
-  @JsonKey(name: 'label_name')
-  LabelRes? get labelName;
-  @override
-  @JsonKey(name: 'internal_track_id', defaultValue: 0)
-  int get internalTrackId;
-  @override
-  @JsonKey(name: 'lyric', defaultValue: '')
-  String get lyric;
-  @override
-  @JsonKey(name: 'contributor_id', defaultValue: '')
-  String get contributorId;
-  @override
-  @JsonKey(name: 'contributor')
-  ConstributorRes? get contributor;
-  @override
-  @JsonKey(name: 'lang_lyric')
-  LanguageRes? get lang;
-  @override
-  @JsonKey(name: 'genre_1')
-  GenreRes? get genre1;
-  @override
-  @JsonKey(name: 'genre_2')
-  GenreRes? get genre2;
-  @override
-  @JsonKey(name: 'user')
-  UserRes? get user;
   @override
   @JsonKey(ignore: true)
   _$$_DataTrackResCopyWith<_$_DataTrackRes> get copyWith =>

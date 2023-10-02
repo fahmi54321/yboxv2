@@ -215,8 +215,8 @@ DataTransactionRes _$DataTransactionResFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DataTransactionRes {
-  @JsonKey(name: 'id', defaultValue: 0)
-  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'id', defaultValue: '')
+  String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'member', defaultValue: '')
   String get member => throw _privateConstructorUsedError;
   @JsonKey(name: 'name_on_bank', defaultValue: '')
@@ -241,7 +241,7 @@ abstract class $DataTransactionResCopyWith<$Res> {
       _$DataTransactionResCopyWithImpl<$Res, DataTransactionRes>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id', defaultValue: 0) int id,
+      {@JsonKey(name: 'id', defaultValue: '') String id,
       @JsonKey(name: 'member', defaultValue: '') String member,
       @JsonKey(name: 'name_on_bank', defaultValue: '') String nameOnBank,
       @JsonKey(name: 'request_date', defaultValue: '') String requestDate,
@@ -273,7 +273,7 @@ class _$DataTransactionResCopyWithImpl<$Res, $Val extends DataTransactionRes>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       member: null == member
           ? _value.member
           : member // ignore: cast_nullable_to_non_nullable
@@ -307,7 +307,7 @@ abstract class _$$_DataTransactionResCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id', defaultValue: 0) int id,
+      {@JsonKey(name: 'id', defaultValue: '') String id,
       @JsonKey(name: 'member', defaultValue: '') String member,
       @JsonKey(name: 'name_on_bank', defaultValue: '') String nameOnBank,
       @JsonKey(name: 'request_date', defaultValue: '') String requestDate,
@@ -337,7 +337,7 @@ class __$$_DataTransactionResCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       member: null == member
           ? _value.member
           : member // ignore: cast_nullable_to_non_nullable
@@ -368,7 +368,7 @@ class __$$_DataTransactionResCopyWithImpl<$Res>
     anyMap: true, explicitToJson: true, checked: true, includeIfNull: false)
 class _$_DataTransactionRes extends _DataTransactionRes {
   const _$_DataTransactionRes(
-      {@JsonKey(name: 'id', defaultValue: 0) required this.id,
+      {@JsonKey(name: 'id', defaultValue: '') required this.id,
       @JsonKey(name: 'member', defaultValue: '') required this.member,
       @JsonKey(name: 'name_on_bank', defaultValue: '') required this.nameOnBank,
       @JsonKey(name: 'request_date', defaultValue: '')
@@ -381,8 +381,8 @@ class _$_DataTransactionRes extends _DataTransactionRes {
       _$$_DataTransactionResFromJson(json);
 
   @override
-  @JsonKey(name: 'id', defaultValue: 0)
-  final int id;
+  @JsonKey(name: 'id', defaultValue: '')
+  final String id;
   @override
   @JsonKey(name: 'member', defaultValue: '')
   final String member;
@@ -441,7 +441,7 @@ class _$_DataTransactionRes extends _DataTransactionRes {
 
 abstract class _DataTransactionRes extends DataTransactionRes {
   const factory _DataTransactionRes(
-      {@JsonKey(name: 'id', defaultValue: 0) required final int id,
+      {@JsonKey(name: 'id', defaultValue: '') required final String id,
       @JsonKey(name: 'member', defaultValue: '') required final String member,
       @JsonKey(name: 'name_on_bank', defaultValue: '')
       required final String nameOnBank,
@@ -456,8 +456,8 @@ abstract class _DataTransactionRes extends DataTransactionRes {
       _$_DataTransactionRes.fromJson;
 
   @override
-  @JsonKey(name: 'id', defaultValue: 0)
-  int get id;
+  @JsonKey(name: 'id', defaultValue: '')
+  String get id;
   @override
   @JsonKey(name: 'member', defaultValue: '')
   String get member;
