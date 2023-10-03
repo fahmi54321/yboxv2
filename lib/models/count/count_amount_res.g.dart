@@ -12,6 +12,8 @@ _$_CountAmountRes _$$_CountAmountResFromJson(Map json) => $checkedCreate(
       ($checkedConvert) {
         final val = _$_CountAmountRes(
           count: $checkedConvert('count', (v) => v as String? ?? ''),
+          rp: $checkedConvert('rp', (v) => v as String? ?? ''),
+          usd: $checkedConvert('usd', (v) => v as int? ?? 0),
         );
         return val;
       },
@@ -20,4 +22,6 @@ _$_CountAmountRes _$$_CountAmountResFromJson(Map json) => $checkedCreate(
 Map<String, dynamic> _$$_CountAmountResToJson(_$_CountAmountRes instance) =>
     <String, dynamic>{
       'count': instance.count,
+      'rp': instance.rp,
+      'usd': instance.usd,
     };

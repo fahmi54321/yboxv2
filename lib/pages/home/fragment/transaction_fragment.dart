@@ -17,7 +17,31 @@ class TransactionFragment extends StatefulWidget {
   _TransactionFragment createState() => _TransactionFragment();
 }
 
-class _TransactionFragment extends State<TransactionFragment> {
+class _TransactionFragment extends State<TransactionFragment>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation<double> animation;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+        duration: const Duration(milliseconds: 2000), vsync: this);
+    animation = Tween(begin: 0.0, end: 1.0).animate(controller)
+      ..addListener(() {
+        setState(() {
+          // the state that has changed here is the animation object’s value
+        });
+      });
+    controller.repeat();
+  }
+
+  @override
+  void dispose() {
+    controller.stop();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -35,6 +59,7 @@ class _TransactionFragment extends State<TransactionFragment> {
               color: Theme.of(context).colorScheme.onPrimary,
             ),
           ),
+          backgroundColor: primaryColor.withOpacity(0.03),
           body: RefreshIndicator(
             onRefresh: state.pullRefresh,
             child: Padding(
@@ -49,12 +74,14 @@ class _TransactionFragment extends State<TransactionFragment> {
                     color: primaryColor,
                   ),
                   const SizedBox(height: 10),
-                  vText(
-                    'Rp. 1.796.198,18',
-                    fontSize: 24,
-                    fontWeight: FontWeight.w600,
-                    color: black2,
-                  ),
+                  state.isLoadingCekAmount
+                      ? LinearProgressIndicator(value: animation.value)
+                      : vText(
+                          state.countAmount?.rp ?? '-',
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
+                          color: black2,
+                        ),
                   Expanded(
                     child: Container(
                       margin: const EdgeInsets.only(top: 30.0),
@@ -63,143 +90,138 @@ class _TransactionFragment extends State<TransactionFragment> {
                         builderDelegate:
                             PagedChildBuilderDelegate<DataTransactionRes>(
                           itemBuilder: (context, item, index) {
-                            return Container(
-                              margin:
-                                  const EdgeInsets.symmetric(vertical: 20.0),
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 17.0,
-                                horizontal: 12.0,
-                              ),
-                              decoration: UtilsStyle.decorationGradientWhite(
-                                context: context,
-                                radius: 5.0,
-                              ),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CircleAvatar(
-                                    radius: 20,
-                                    backgroundColor: state.statusIconColorTrans(
-                                      item.status,
+                            return Stack(
+                              children: [
+                                Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  margin: const EdgeInsets.symmetric(
+                                      vertical: 20.0),
+                                  decoration:
+                                      UtilsStyle.decorationGradientWhite2(
+                                    context: context,
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                      bottom: 17.0,
+                                      left: 12.0,
+                                      right: 12.0,
+                                      top: 24.0,
                                     ),
-                                    child: state.statusIconItemTrans(
-                                      item.status,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const SizedBox(height: 10.0),
+                                        vText(
+                                          'Member name',
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                        vText(
+                                          item.name,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        const SizedBox(height: 8),
+                                        vText(
+                                          'Account name',
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                        vText(
+                                          item.nameOnBank,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        const SizedBox(height: 8),
+                                        vText(
+                                          'Request date',
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                        vText(
+                                          item.createdDate,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        const SizedBox(height: 8),
+                                        vText(
+                                          'Amount',
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                        vText(
+                                          item.amount,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  Expanded(
-                                    child: Container(
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 24.0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              const SizedBox(height: 8),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 16),
-                                                child: vText(
-                                                  'Member name',
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 16.0),
-                                                child: vText(
-                                                  item.member,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 8),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 16),
-                                                child: vText(
-                                                  'Account name',
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 16.0),
-                                                child: vText(
-                                                  item.nameOnBank,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 8),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 16),
-                                                child: vText(
-                                                  'Request date',
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 16.0),
-                                                child: vText(
-                                                  item.requestDate,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 8),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 16),
-                                                child: vText(
-                                                  'Amount',
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 16.0),
-                                                child: vText(
-                                                  item.amount,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
+                                ),
+                                Positioned(
+                                  left: 0,
+                                  top: 0,
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.30,
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0,
+                                      vertical: 8.0,
                                     ),
-                                  ),
-                                  Visibility(
-                                    visible: item.status == 2,
-                                    child: IconButton(
-                                      icon: const Icon(
-                                        Icons.print,
-                                        size: 25,
+                                    margin: const EdgeInsets.all(4.0),
+                                    decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(5.0),
+                                        bottomLeft: Radius.circular(5.0),
                                       ),
                                       color: green1,
-                                      onPressed: () async {
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.done_outline_outlined,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onPrimary,
+                                          size: 25,
+                                        ),
+                                        const SizedBox(width: 4.0),
+                                        vText(
+                                          'Dibayar',
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onPrimary,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: item.status == 1,
+                                  child: Positioned(
+                                    right: 0.0,
+                                    top: 0,
+                                    child: InkWell(
+                                      onTap: () {
                                         state.getInvoice(
                                           idTrans: item.id,
                                         );
                                       },
+                                      child: const Icon(
+                                        Icons.print,
+                                        color: green1,
+                                        size: 35,
+                                      ),
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             );
                           },
                         ),
@@ -216,8 +238,14 @@ class _TransactionFragment extends State<TransactionFragment> {
               onPressed: () {
                 showDialog1(
                   context: context,
-                  widget: AddTransactionPage(),
-                );
+                  widget: const AddTransactionPage(),
+                ).then((value) {
+                  if (value is bool) {
+                    if (value) {
+                      state.pullRefresh();
+                    }
+                  }
+                });
               },
               backgroundColor: primaryColor,
               child: Icon(

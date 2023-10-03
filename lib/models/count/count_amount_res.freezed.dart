@@ -22,6 +22,10 @@ CountAmountRes _$CountAmountResFromJson(Map<String, dynamic> json) {
 mixin _$CountAmountRes {
   @JsonKey(name: 'count', defaultValue: '')
   String get count => throw _privateConstructorUsedError;
+  @JsonKey(name: 'rp', defaultValue: '')
+  String get rp => throw _privateConstructorUsedError;
+  @JsonKey(name: 'usd', defaultValue: 0)
+  int get usd => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +39,10 @@ abstract class $CountAmountResCopyWith<$Res> {
           CountAmountRes value, $Res Function(CountAmountRes) then) =
       _$CountAmountResCopyWithImpl<$Res, CountAmountRes>;
   @useResult
-  $Res call({@JsonKey(name: 'count', defaultValue: '') String count});
+  $Res call(
+      {@JsonKey(name: 'count', defaultValue: '') String count,
+      @JsonKey(name: 'rp', defaultValue: '') String rp,
+      @JsonKey(name: 'usd', defaultValue: 0) int usd});
 }
 
 /// @nodoc
@@ -52,12 +59,22 @@ class _$CountAmountResCopyWithImpl<$Res, $Val extends CountAmountRes>
   @override
   $Res call({
     Object? count = null,
+    Object? rp = null,
+    Object? usd = null,
   }) {
     return _then(_value.copyWith(
       count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as String,
+      rp: null == rp
+          ? _value.rp
+          : rp // ignore: cast_nullable_to_non_nullable
+              as String,
+      usd: null == usd
+          ? _value.usd
+          : usd // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -70,7 +87,10 @@ abstract class _$$_CountAmountResCopyWith<$Res>
       __$$_CountAmountResCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'count', defaultValue: '') String count});
+  $Res call(
+      {@JsonKey(name: 'count', defaultValue: '') String count,
+      @JsonKey(name: 'rp', defaultValue: '') String rp,
+      @JsonKey(name: 'usd', defaultValue: 0) int usd});
 }
 
 /// @nodoc
@@ -85,12 +105,22 @@ class __$$_CountAmountResCopyWithImpl<$Res>
   @override
   $Res call({
     Object? count = null,
+    Object? rp = null,
+    Object? usd = null,
   }) {
     return _then(_$_CountAmountRes(
       count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as String,
+      rp: null == rp
+          ? _value.rp
+          : rp // ignore: cast_nullable_to_non_nullable
+              as String,
+      usd: null == usd
+          ? _value.usd
+          : usd // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -101,7 +131,9 @@ class __$$_CountAmountResCopyWithImpl<$Res>
     anyMap: true, explicitToJson: true, checked: true, includeIfNull: false)
 class _$_CountAmountRes extends _CountAmountRes {
   const _$_CountAmountRes(
-      {@JsonKey(name: 'count', defaultValue: '') required this.count})
+      {@JsonKey(name: 'count', defaultValue: '') required this.count,
+      @JsonKey(name: 'rp', defaultValue: '') required this.rp,
+      @JsonKey(name: 'usd', defaultValue: 0) required this.usd})
       : super._();
 
   factory _$_CountAmountRes.fromJson(Map<String, dynamic> json) =>
@@ -110,10 +142,16 @@ class _$_CountAmountRes extends _CountAmountRes {
   @override
   @JsonKey(name: 'count', defaultValue: '')
   final String count;
+  @override
+  @JsonKey(name: 'rp', defaultValue: '')
+  final String rp;
+  @override
+  @JsonKey(name: 'usd', defaultValue: 0)
+  final int usd;
 
   @override
   String toString() {
-    return 'CountAmountRes(count: $count)';
+    return 'CountAmountRes(count: $count, rp: $rp, usd: $usd)';
   }
 
   @override
@@ -121,12 +159,14 @@ class _$_CountAmountRes extends _CountAmountRes {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CountAmountRes &&
-            (identical(other.count, count) || other.count == count));
+            (identical(other.count, count) || other.count == count) &&
+            (identical(other.rp, rp) || other.rp == rp) &&
+            (identical(other.usd, usd) || other.usd == usd));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, count);
+  int get hashCode => Object.hash(runtimeType, count, rp, usd);
 
   @JsonKey(ignore: true)
   @override
@@ -144,8 +184,10 @@ class _$_CountAmountRes extends _CountAmountRes {
 
 abstract class _CountAmountRes extends CountAmountRes {
   const factory _CountAmountRes(
-      {@JsonKey(name: 'count', defaultValue: '')
-      required final String count}) = _$_CountAmountRes;
+      {@JsonKey(name: 'count', defaultValue: '') required final String count,
+      @JsonKey(name: 'rp', defaultValue: '') required final String rp,
+      @JsonKey(name: 'usd', defaultValue: 0)
+      required final int usd}) = _$_CountAmountRes;
   const _CountAmountRes._() : super._();
 
   factory _CountAmountRes.fromJson(Map<String, dynamic> json) =
@@ -154,6 +196,12 @@ abstract class _CountAmountRes extends CountAmountRes {
   @override
   @JsonKey(name: 'count', defaultValue: '')
   String get count;
+  @override
+  @JsonKey(name: 'rp', defaultValue: '')
+  String get rp;
+  @override
+  @JsonKey(name: 'usd', defaultValue: 0)
+  int get usd;
   @override
   @JsonKey(ignore: true)
   _$$_CountAmountResCopyWith<_$_CountAmountRes> get copyWith =>

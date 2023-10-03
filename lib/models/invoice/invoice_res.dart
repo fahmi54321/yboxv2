@@ -1,13 +1,4 @@
-import 'package:yboxv2/models/general/constributor_res.dart';
-import 'package:yboxv2/models/general/label_res.dart';
-import 'package:yboxv2/models/general/language_res.dart';
-import 'package:yboxv2/models/general/pagination_res.dart';
-import 'package:yboxv2/models/general/publishing_res.dart';
-import 'package:yboxv2/models/general/roles_res.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../general/genre_res.dart';
-import '../general/user_res.dart';
 
 part 'invoice_res.g.dart';
 

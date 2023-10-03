@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yboxv2/models/general/bank_res.dart';
+import 'package:yboxv2/models/akun_bank/akun_bank_res.dart';
 import 'package:yboxv2/pages/forms/add_transaction_state.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/widget/v_dropdown.dart';
@@ -51,36 +51,6 @@ class AddTransactionPageState extends State<AddTransactionPage> {
                     ),
                   ),
                 );
-          // return Scaffold(
-          //   body: state.isLoadingList
-          //       ?
-          // bottomNavigationBar: Padding(
-          //   padding: const EdgeInsets.all(15.0),
-          //   child: VButtonRectangle(
-          //     (state.isLoadingButton == true) ? 'Loading...' : 'Simpan',
-          //     radius: 55,
-          //     width: MediaQuery.of(context).size.width,
-          //     height: 46,
-          //     backgroundColor: Theme.of(context).colorScheme.primary,
-          //     borderColor: Theme.of(context).colorScheme.primary,
-          //     colorText: Theme.of(context).colorScheme.onPrimary,
-          //     onTap: (state.isLoadingButton == true)
-          //         ? null
-          //         : () {
-          //             state.cekValidasiTransaksiForm();
-          //           },
-          //     trailing: (state.isLoadingButton == true)
-          //         ? SizedBox(
-          //             height: 15,
-          //             width: 15,
-          //             child: CircularProgressIndicator(
-          //               color: Theme.of(context).colorScheme.onPrimary,
-          //             ),
-          //           )
-          //         : null,
-          //   ),
-          // ),
-          // );
         },
       ),
     );
@@ -96,21 +66,22 @@ class AddTransactionPageState extends State<AddTransactionPage> {
           color: black7,
         ),
         const SizedBox(height: 8),
-        VDropDownBank(
+        VDropDownBankAkun(
           radius: 8.0,
           fontSize: 14.0,
           colorText: grey7,
           borderColor: grey10,
           value: state.selectBank,
-          onChanged: (BankRes? data) {
+          onChanged: (DataBankRes? data) {
             setState(() {
               state.selectBank = data;
             });
           },
-          items: state.listBank.map<DropdownMenuItem<BankRes>>((BankRes value) {
-            return DropdownMenuItem<BankRes>(
+          items: state.listBank
+              .map<DropdownMenuItem<DataBankRes>>((DataBankRes value) {
+            return DropdownMenuItem<DataBankRes>(
               value: value,
-              child: Text(value.name),
+              child: Text(value.namaDalamRekening),
             );
           }).toList(),
           icon: const Icon(Icons.arrow_drop_down),
@@ -151,7 +122,11 @@ class AddTransactionPageState extends State<AddTransactionPage> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         OutlinedButton(
-          onPressed: () {},
+          onPressed: state.isLoadingButton
+              ? null
+              : () {
+                  state.cekValidasiTransaksiForm();
+                },
           style: OutlinedButton.styleFrom(
             alignment: Alignment.center,
             backgroundColor: primaryColor,

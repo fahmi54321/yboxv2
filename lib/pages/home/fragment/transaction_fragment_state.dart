@@ -2,24 +2,26 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:yboxv2/models/count/count_amount_res.dart';
 import 'package:yboxv2/models/invoice/invoice_res.dart';
 import 'package:yboxv2/models/transaction/transaction_res.dart';
+import 'package:yboxv2/network/http_count.dart';
 import 'package:yboxv2/network/http_transaksi.dart';
 import 'package:yboxv2/pages/home/fragment/invoice/pdf__invoice_api.dart';
 import 'package:yboxv2/pages/home/fragment/invoice/pdf_api.dart';
-import 'package:yboxv2/resource/CPColors.dart';
+import 'package:yboxv2/utils/utils_loading.dart';
 
 class TransactionState extends ChangeNotifier {
   BuildContext context;
 
   TransactionRes? transactionRes;
-  // final getAmount = gets.Get.find<AmountController>();
-  // final cekReq = gets.Get.find<CekReqController>();
 
-  bool isLoadingCekReq = false;
+  bool isLoadingCekAmount = false;
   bool isLoadingInvoice = false;
 
   int jmlCekReq = 0;
+
+  CountAmountRes? countAmount;
 
   InvoiceRes invoiceRes = const InvoiceRes(
     labelImage: '',
@@ -48,6 +50,8 @@ class TransactionState extends ChangeNotifier {
     pagingController.addPageRequestListener((pageKey) {
       getTransaction(pageKey);
     });
+
+    getAmount();
   }
 
   Future<void> pullRefresh() async {
@@ -77,6 +81,36 @@ class TransactionState extends ChangeNotifier {
     } catch (error) {
       debugPrint('$error');
       pagingController.error = error;
+    }
+  }
+
+  Future<void> getAmount() async {
+    try {
+      isLoadingCekAmount = true;
+      notifyListeners();
+
+      final resStep1 = await HTTPCountService().countAmount();
+
+      resStep1.fold(
+        (e) async {
+          UtilsLoading.dismiss();
+          UtilsLoading.showError(message: e);
+
+          isLoadingCekAmount = false;
+          notifyListeners();
+        },
+        (cat) async {
+          countAmount = cat;
+          isLoadingCekAmount = false;
+          notifyListeners();
+        },
+      );
+    } catch (e) {
+      UtilsLoading.dismiss();
+      UtilsLoading.showError(message: '$e');
+
+      isLoadingCekAmount = false;
+      notifyListeners();
     }
   }
 
@@ -112,51 +146,5 @@ class TransactionState extends ChangeNotifier {
         });
       },
     );
-  }
-
-  Widget statusIconItemTrans(int status) {
-    if (status == 0) {
-      // pending
-      return Icon(
-        Icons.pending,
-        color: Theme.of(context).colorScheme.onPrimary,
-        size: 40,
-      );
-    } else if (status == 1) {
-      // reject
-      return Icon(
-        Icons.close,
-        color: Theme.of(context).colorScheme.onPrimary,
-        size: 40,
-      );
-    } else if (status == 2) {
-      // done
-      return Icon(
-        Icons.done_outline_outlined,
-        color: Theme.of(context).colorScheme.onPrimary,
-        size: 40,
-      );
-    } else {
-      return Icon(
-        Icons.pending,
-        color: Theme.of(context).colorScheme.onPrimary,
-        size: 40,
-      );
-    }
-  }
-
-  Color statusIconColorTrans(int status) {
-    if (status == 0) {
-      // pending
-      return yellow1;
-    } else if (status == 1) {
-      // reject
-      return red1;
-    } else if (status == 2) {
-      // done
-      return green1;
-    } else {
-      return yellow1;
-    }
   }
 }

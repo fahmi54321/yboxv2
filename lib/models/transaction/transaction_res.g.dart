@@ -41,11 +41,11 @@ _$_DataTransactionRes _$$_DataTransactionResFromJson(Map json) =>
       ($checkedConvert) {
         final val = _$_DataTransactionRes(
           id: $checkedConvert('id', (v) => v as String? ?? ''),
-          member: $checkedConvert('member', (v) => v as String? ?? ''),
+          name: $checkedConvert('name', (v) => v as String? ?? ''),
           nameOnBank:
               $checkedConvert('name_on_bank', (v) => v as String? ?? ''),
-          requestDate:
-              $checkedConvert('request_date', (v) => v as String? ?? ''),
+          createdDate:
+              $checkedConvert('created_date', (v) => v as String? ?? ''),
           status: $checkedConvert('status', (v) => v as int? ?? 0),
           amount: $checkedConvert('amount', (v) => v as String? ?? ''),
         );
@@ -53,7 +53,7 @@ _$_DataTransactionRes _$$_DataTransactionResFromJson(Map json) =>
       },
       fieldKeyMap: const {
         'nameOnBank': 'name_on_bank',
-        'requestDate': 'request_date'
+        'createdDate': 'created_date'
       },
     );
 
@@ -61,9 +61,9 @@ Map<String, dynamic> _$$_DataTransactionResToJson(
         _$_DataTransactionRes instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'member': instance.member,
+      'name': instance.name,
       'name_on_bank': instance.nameOnBank,
-      'request_date': instance.requestDate,
+      'created_date': instance.createdDate,
       'status': instance.status,
       'amount': instance.amount,
     };

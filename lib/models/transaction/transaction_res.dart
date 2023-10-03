@@ -36,10 +36,10 @@ class DataTransactionRes with _$DataTransactionRes {
   )
   const factory DataTransactionRes({
     @JsonKey(name: 'id', defaultValue: '') required String id,
-    @JsonKey(name: 'member', defaultValue: '') required String member,
+    @JsonKey(name: 'name', defaultValue: '') required String name,
     @JsonKey(name: 'name_on_bank', defaultValue: '') required String nameOnBank,
-    @JsonKey(name: 'request_date', defaultValue: '')
-    required String requestDate,
+    @JsonKey(name: 'created_date', defaultValue: '')
+    required String createdDate,
     @JsonKey(name: 'status', defaultValue: 0) required int status,
     @JsonKey(name: 'amount', defaultValue: '') required String amount,
   }) = _DataTransactionRes;

@@ -1,3 +1,4 @@
+import 'package:yboxv2/models/akun_bank/akun_bank_res.dart';
 import 'package:yboxv2/models/general/bank_res.dart';
 import 'package:yboxv2/models/general/genre_res.dart';
 import 'package:yboxv2/models/general/label_res.dart';
@@ -352,6 +353,66 @@ class VDropDownBank extends StatelessWidget {
           border: Border.all(width: borderWidth, color: borderColor)),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<BankRes>(
+          isExpanded: true,
+          value: value,
+          icon: const Icon(Icons.arrow_drop_down),
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+          ),
+          onChanged: onChanged,
+          items: items,
+        ),
+      ),
+    );
+  }
+}
+
+class VDropDownBankAkun extends StatelessWidget {
+  final DataBankRes? value;
+  final ValueChanged<DataBankRes?>? onChanged;
+  final List<DropdownMenuItem<DataBankRes>> items;
+  final double fontSize;
+  final Color colorText;
+  final FontWeight fontWeight;
+  final double paddingHorizontal;
+  final double paddingVertical;
+  final double radius;
+  final double borderWidth;
+  final Color borderColor;
+  final Color bgColor;
+  final Widget icon;
+
+  const VDropDownBankAkun({
+    Key? key,
+    required this.value,
+    required this.onChanged,
+    required this.items,
+    this.fontSize = 12,
+    this.colorText = Colors.black,
+    this.fontWeight = FontWeight.w400,
+    this.paddingHorizontal = 15,
+    this.paddingVertical = 0,
+    this.radius = 0,
+    this.borderWidth = 1,
+    this.bgColor = Colors.white,
+    required this.icon,
+    required this.borderColor,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: paddingHorizontal,
+        vertical: paddingVertical,
+      ),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(radius),
+          border: Border.all(width: borderWidth, color: borderColor)),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<DataBankRes>(
           isExpanded: true,
           value: value,
           icon: const Icon(Icons.arrow_drop_down),

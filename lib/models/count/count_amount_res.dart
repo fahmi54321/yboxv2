@@ -12,6 +12,8 @@ class CountAmountRes with _$CountAmountRes {
       anyMap: true, explicitToJson: true, checked: true, includeIfNull: false)
   const factory CountAmountRes({
     @JsonKey(name: 'count', defaultValue: '') required String count,
+    @JsonKey(name: 'rp', defaultValue: '') required String rp,
+    @JsonKey(name: 'usd', defaultValue: 0) required int usd,
   }) = _CountAmountRes;
 
   factory CountAmountRes.fromJson(Map<String, dynamic> json) =>

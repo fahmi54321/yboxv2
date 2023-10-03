@@ -33,6 +33,7 @@ class _AkunBankFragment extends State<AkunBankFragment> {
               color: Theme.of(context).colorScheme.onPrimary,
             ),
           ),
+          backgroundColor: primaryColor.withOpacity(0.03),
           body: state.isLoading
               ? Container()
               : ListView.builder(

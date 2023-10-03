@@ -1,18 +1,18 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:yboxv2/models/general/bank_res.dart';
-import 'package:yboxv2/network/http_list.dart';
+import 'package:yboxv2/models/akun_bank/akun_bank_res.dart';
+import 'package:yboxv2/network/http_akun_bank.dart';
 import 'package:yboxv2/network/http_transaksi.dart';
 import 'package:yboxv2/utils/utils_loading.dart';
 
 class AddTransactionState extends ChangeNotifier {
   BuildContext context;
 
-  List<BankRes> listBank = [];
+  List<DataBankRes> listBank = [];
   bool isLoading = false;
   bool isLoadingList = false;
   bool isLoadingButton = false;
-  BankRes? selectBank;
+  DataBankRes? selectBank;
 
   TextEditingController jmlInput = TextEditingController();
 
@@ -40,7 +40,7 @@ class AddTransactionState extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
-    final resStep1 = await HTTPListService().getBank();
+    final resStep1 = await HTTPAkunBankService().getAkunBank();
     isLoading = false;
 
     notifyListeners();
@@ -68,26 +68,24 @@ class AddTransactionState extends ChangeNotifier {
       isLoadingButton = false;
       notifyListeners();
 
-      // showFlushBar('Bank tidak boleh kosong');
+      UtilsLoading.showInfo(message: 'List Bank Kosong');
+    } else if (selectBank == null) {
+      isLoadingButton = false;
+      notifyListeners();
+
+      UtilsLoading.showInfo(message: 'Bank tidak boleh kosong');
     } else if (jmlInput.text.isEmpty) {
       isLoadingButton = false;
       notifyListeners();
 
-      // showFlushBar('Account number tidak boleh kosong');
-    }
-    //  else if (accNameInputName.text.isEmpty) {
-    //   isLoadingButton = false;
-    //   notifyListeners();
-
-    //   // showFlushBar('Account name tidak boleh kosong');
-    // }
-    else {
+      UtilsLoading.showInfo(message: 'Jumlah tidak boleh kosong');
+    } else {
       isLoadingButton = true;
       notifyListeners();
 
       var formData = FormData.fromMap(
         {
-          "acc_bank": selectBank?.id.toString(),
+          "acc_bank": selectBank!.id,
           "jumlah": jmlInput.text.toString(),
         },
       );
@@ -100,6 +98,8 @@ class AddTransactionState extends ChangeNotifier {
     isLoadingButton = true;
     notifyListeners();
 
+    UtilsLoading.showLoading(message: 'Loading...');
+
     final resStep1 = await HTTPTransactionService().uploadTransaction(
       data: formData,
     );
@@ -108,12 +108,19 @@ class AddTransactionState extends ChangeNotifier {
       (e) async {
         isLoadingButton = false;
         notifyListeners();
+
+        UtilsLoading.dismiss();
+        UtilsLoading.showInfo(message: e);
       },
       (cat) async {
         isLoadingButton = false;
         notifyListeners();
 
-        Navigator.pop(context);
+        UtilsLoading.showSuccess(message: 'Berhasil disimpan');
+
+        Future.delayed(const Duration(seconds: 1), () {
+          Navigator.of(context).pop(true);
+        });
       },
     );
   }

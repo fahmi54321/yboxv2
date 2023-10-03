@@ -193,11 +193,12 @@ class _HomeState extends State<Home> {
                                 Opacity(
                                   opacity:
                                       widget.animation.gridCol3Opacity.value,
-                                  child: const Category(
+                                  child: Category(
                                     icon: 'assets/icon/ic_money.png',
                                     vector: 'assets/icon/ic_vector_money.png',
                                     label: 'Amount',
-                                    total: 'Rp. 150.000',
+                                    total:
+                                        'Rp. ${widget.state.countAmount?.rp}',
                                     isOffsetRight: false,
                                     isAmount: true,
                                   ),
