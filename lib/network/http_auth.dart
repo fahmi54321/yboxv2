@@ -69,6 +69,28 @@ class HTTPAuthService {
     }
   }
 
+  Future<Either<String, int>> logout() async {
+    var dataToken = await SharedPreferencesUtils.getLoginPreference();
+    LoginRes loginRes = LoginRes.fromJson(jsonDecode(dataToken ?? ''));
+
+    final response = await WebService().client().post(
+          ApiUrl.logout,
+          options: Options(headers: {
+            'Authorization': 'Bearer ${loginRes.accessToken}',
+            'Accept': 'application/json',
+          }),
+        );
+    debugPrint('url logout : ${ApiUrl.logout}');
+
+    if (response.statusCode == 200) {
+      return Right(
+        response.statusCode ?? 0,
+      );
+    } else {
+      return const Left('Terjadi kesalahan');
+    }
+  }
+
   // Future<Either<String, int>> ubahPassword({
   //   required Map<String, dynamic> data,
   // }) async {
@@ -87,31 +109,6 @@ class HTTPAuthService {
   //       );
   //   debugPrint('url : ${ApiUrl.ubahPass}');
   //   debugPrint('params : $data');
-  //   debugPrint(response);
-
-  //   if (response.statusCode == 200) {
-  //     return Right(
-  //       response.statusCode ?? 0,
-  //     );
-  //   } else {
-  //     return Left('Terjadi kesalahan' as String);
-  //   }
-  // }
-
-  // Future<Either<String, int>> logout() async {
-
-  //   final getUser = gets.Get.find<UserController>();
-  //   LoginRes loginRes = await getUser.getUserLogin();
-
-  //   debugPrint('HTTPLogoutService start');
-  //   final response = await WebService().client().post(
-  //     ApiUrl.logout,
-  //     options: Options(headers: {
-  //       'Authorization': 'Bearer ' + loginRes.access_token,
-  //       'Accept': 'application/json',
-  //     }),
-  //   );
-  //   debugPrint('url : ${ApiUrl.logout}');
   //   debugPrint(response);
 
   //   if (response.statusCode == 200) {

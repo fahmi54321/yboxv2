@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:yboxv2/anim/animation_akun.dart';
 import 'package:yboxv2/pages/home/fragment/akun_bank_fragment.dart';
+import 'package:yboxv2/pages/home/fragment/akun_fragment_state.dart';
 import 'package:yboxv2/pages/home/fragment/audio_fragment.dart';
 import 'package:yboxv2/pages/home/fragment/transaction_fragment.dart';
 import 'package:yboxv2/pages/home/widget/item_informasi_lain.dart';
@@ -40,8 +42,17 @@ class _AkunFragmentState extends State<AkunFragment>
 
   @override
   Widget build(BuildContext context) {
-    return AkunWidget(
-      controller: _controller,
+    return ChangeNotifierProvider(
+      create: (_) => AkunFragmentState(
+        context: context,
+      ),
+      child:
+          Consumer(builder: (BuildContext context, AkunFragmentState state, _) {
+        return AkunWidget(
+          controller: _controller,
+          state: state,
+        );
+      }),
     );
   }
 }
@@ -49,9 +60,11 @@ class _AkunFragmentState extends State<AkunFragment>
 class AkunWidget extends StatelessWidget {
   final AnimationController controller;
   final AnimationAkun animation;
+  final AkunFragmentState state;
   AkunWidget({
     super.key,
     required this.controller,
+    required this.state,
   }) : animation = AnimationAkun(controller: controller);
 
   @override
@@ -202,7 +215,11 @@ class AkunWidget extends StatelessWidget {
                   Opacity(
                     opacity: animation.keluarOpacity.value,
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: state.isLoadingLogout
+                          ? null
+                          : () {
+                              state.cekKoneksi();
+                            },
                       style: OutlinedButton.styleFrom(
                         alignment: Alignment.center,
                         fixedSize:

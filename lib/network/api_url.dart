@@ -2,6 +2,7 @@ import 'package:yboxv2/resource/strings.dart';
 
 class ApiUrl {
   static String login = '${appUrl}api/login';
+  static String logout = '${appUrl}api/logout';
   static String register = '${appUrl}api/register';
   static String leader = '${appUrl}api/leader';
   static String adminLeader = '${appUrl}api/admin_leader';
@@ -24,4 +25,5 @@ class ApiUrl {
   static String invoice = '${appUrl}api/invoice';
   static String cekReq = '${appUrl}api/cek_request';
   static String akunBank = '${appUrl}api/bank_acc';
+  static String grafikBulanan = '${appUrl}api/dashboard/grafik-bulanan';
 }
