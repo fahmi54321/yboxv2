@@ -3,18 +3,20 @@ import 'package:yboxv2/anim/animation_dialog_action_bank.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/widget/v_text.dart';
 
-class DialogActionBank extends StatefulWidget {
+class DialogAction extends StatefulWidget {
   final bool isHapus;
-  const DialogActionBank({
+  final String action;
+  const DialogAction({
     super.key,
-    required this.isHapus,
+    this.isHapus = false,
+    this.action = '',
   });
 
   @override
-  State<DialogActionBank> createState() => _DialogActionBankState();
+  State<DialogAction> createState() => _DialogActionState();
 }
 
-class _DialogActionBankState extends State<DialogActionBank>
+class _DialogActionState extends State<DialogAction>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late AnimationDialogActionBank animation;
@@ -47,7 +49,11 @@ class _DialogActionBankState extends State<DialogActionBank>
 
   @override
   Widget build(BuildContext context) {
-    final String action = widget.isHapus ? 'Hapus' : 'Edit';
+    final String action = widget.action.isNotEmpty
+        ? widget.action
+        : widget.isHapus
+            ? 'Hapus'
+            : 'Edit';
     return isLoading
         ? Container()
         : AnimatedBuilder(

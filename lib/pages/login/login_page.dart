@@ -97,8 +97,8 @@ class Login extends StatelessWidget {
                           Opacity(
                             opacity: animation.emailOpacity.value,
                             child: FormAuth(
-                              label: 'Email',
-                              hint: 'Masukkan email',
+                              label: 'Email atau username',
+                              hint: 'Masukkan email atau username',
                               deskripsi: 'Contoh: nama@gmail.com',
                               isFormPassword: false,
                               controller: state.emailController,

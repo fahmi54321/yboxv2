@@ -17,8 +17,6 @@ class LoginState extends ChangeNotifier {
   void login() async {
     if (emailController.text.isEmpty) {
       UtilsLoading.showInfo(message: 'Email tidak boleh kosong');
-    } else if (!emailController.text.contains('@')) {
-      UtilsLoading.showInfo(message: 'Email belum valid');
     } else if (passController.text.isEmpty) {
       UtilsLoading.showInfo(message: 'Password tidak boleh kosong');
     } else if (passController.text.length < 8) {

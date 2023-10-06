@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yboxv2/pages/forms/add_akun_bank_page.dart';
 import 'package:yboxv2/pages/home/fragment/akun_bank_state.dart';
-import 'package:yboxv2/pages/home/fragment/widget/dialog_action_bank.dart';
+import 'package:yboxv2/pages/widget/dialog_action.dart';
 import 'package:yboxv2/pages/home/utils/utils_style.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/widget/v_dialog.dart';
@@ -100,7 +100,7 @@ class _AkunBankFragment extends State<AkunBankFragment> {
                                   onPressed: () async {
                                     final value = await showDialog1(
                                       context: context,
-                                      widget: const DialogActionBank(
+                                      widget: const DialogAction(
                                         isHapus: false,
                                       ),
                                     );
@@ -160,7 +160,7 @@ class _AkunBankFragment extends State<AkunBankFragment> {
                                   onPressed: () {
                                     showDialog1(
                                       context: context,
-                                      widget: const DialogActionBank(
+                                      widget: const DialogAction(
                                         isHapus: true,
                                       ),
                                     ).then((value) {

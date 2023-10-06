@@ -26,4 +26,6 @@ class ApiUrl {
   static String cekReq = '${appUrl}api/cek_request';
   static String akunBank = '${appUrl}api/bank_acc';
   static String grafikBulanan = '${appUrl}api/dashboard/grafik-bulanan';
+  static String aprovedItem = '${appUrl}api/aproved_item';
+  static String rejectItem = '${appUrl}api/reject_item';
 }

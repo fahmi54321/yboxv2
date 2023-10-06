@@ -60,7 +60,7 @@ class ItemTrack extends StatelessWidget {
               ),
               const SizedBox(width: 7.0),
               vText(
-                'Menunggu',
+                'Disetujui',
                 fontSize: 11.0,
                 fontWeight: FontWeight.w400,
                 color: primaryColor,
@@ -158,12 +158,16 @@ class ItemTrack extends StatelessWidget {
                 }),
                 loadingBuilder: (context, child, loadingProgress) {
                   if (loadingProgress == null) return child;
-                  return Center(
-                    child: CircularProgressIndicator(
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes!
-                          : null,
+                  return SizedBox(
+                    width: 94.0,
+                    height: 66.0,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
                     ),
                   );
                 },

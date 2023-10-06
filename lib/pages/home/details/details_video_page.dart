@@ -11,8 +11,10 @@ import 'package:yboxv2/pages/home/details/utils/utils_details.dart';
 import 'package:yboxv2/pages/home/details/widget/user_details.dart';
 import 'package:yboxv2/pages/home/utils/utils_style.dart';
 import 'package:yboxv2/pages/home/widget/item_details.dart';
+import 'package:yboxv2/pages/widget/dialog_action.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/utils/utils.dart';
+import 'package:yboxv2/widget/v_dialog.dart';
 import 'package:yboxv2/widget/v_text.dart';
 
 class ArgsDetailsVideo {
@@ -273,117 +275,181 @@ class _DetailsVideoState extends State<DetailsVideo> {
                                 ],
                               ),
                             ),
-                            const SizedBox(height: 8.0),
                             Opacity(
                               opacity: widget.animation.iconUserOpacity.value,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  vText(
-                                    'Edit Data',
-                                    color: black2,
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.w600,
-                                    maxLines: 1,
-                                  ),
-                                  const SizedBox(width: 7.0),
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.pushNamed(
-                                        context,
-                                        FormAlbumAudioVideoPage.route,
-                                        arguments: ArgsFormAlbumAudioVideoPage(
-                                          fromCode: 'video',
-                                          dataVideo: widget.state.dataVideo,
-                                        ),
-                                      ).then((value) {
-                                        debugPrint('is refresh $value');
-                                        if (value is bool) {
-                                          if (value) {
-                                            WidgetsBinding.instance
-                                                .addPostFrameCallback(
-                                                    (timeStamp) {
-                                              widget.state.getDetailsVideo();
-                                              widget.controller.forward();
-                                            });
-                                          }
-                                        }
-                                      });
-                                    },
-                                    child: Container(
-                                      padding: const EdgeInsets.all(6.0),
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: primaryColor,
+                              child: Visibility(
+                                visible: widget.state.loginRes?.level == 3,
+                                child: Container(
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 8.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      vText(
+                                        'Edit Data',
+                                        color: black2,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w600,
+                                        maxLines: 1,
                                       ),
-                                      child: SvgPicture.asset(
-                                          'assets/icon/ic_edit.svg'),
-                                    ),
+                                      const SizedBox(width: 7.0),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                            context,
+                                            FormAlbumAudioVideoPage.route,
+                                            arguments:
+                                                ArgsFormAlbumAudioVideoPage(
+                                              fromCode: 'video',
+                                              dataVideo: widget.state.dataVideo,
+                                            ),
+                                          ).then((value) {
+                                            debugPrint('is refresh $value');
+                                            if (value is bool) {
+                                              if (value) {
+                                                WidgetsBinding.instance
+                                                    .addPostFrameCallback(
+                                                        (timeStamp) {
+                                                  widget.state
+                                                      .getDetailsVideo();
+                                                  widget.controller.forward();
+                                                });
+                                              }
+                                            }
+                                          });
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.all(6.0),
+                                          decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: primaryColor,
+                                          ),
+                                          child: SvgPicture.asset(
+                                              'assets/icon/ic_edit.svg'),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
                               ),
                             ),
-                            const SizedBox(height: 16.0),
                             Opacity(
                               opacity: widget.animation.iconUserOpacity.value,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  vText(
-                                    'Terima',
-                                    color: black2,
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.w600,
-                                    maxLines: 1,
+                              child: Visibility(
+                                visible: widget.state.loginRes?.level == 2 &&
+                                    widget.state.dataVideo?.isCheck == 0,
+                                child: Container(
+                                  margin: const EdgeInsets.symmetric(
+                                    vertical: 8.0,
                                   ),
-                                  const SizedBox(width: 7.0),
-                                  Container(
-                                    padding: const EdgeInsets.all(6.0),
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: primaryColor,
-                                    ),
-                                    child: SvgPicture.asset(
-                                        'assets/icon/ic_done.svg'),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      vText(
+                                        'Terima',
+                                        color: black2,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w600,
+                                        maxLines: 1,
+                                      ),
+                                      const SizedBox(width: 7.0),
+                                      InkWell(
+                                        onTap: widget.state.isLoadingApproved
+                                            ? null
+                                            : () {
+                                                showDialog1(
+                                                  context: context,
+                                                  widget: const DialogAction(
+                                                    action: 'terima',
+                                                    isHapus: true,
+                                                  ),
+                                                ).then((value) {
+                                                  if (value is bool) {
+                                                    if (value) {
+                                                      // terima
+                                                      widget.state
+                                                          .approveVideo();
+                                                    }
+                                                  }
+                                                });
+                                              },
+                                        child: Container(
+                                          padding: const EdgeInsets.all(6.0),
+                                          decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: primaryColor,
+                                          ),
+                                          child: SvgPicture.asset(
+                                              'assets/icon/ic_done.svg'),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
                               ),
                             ),
-                            const SizedBox(height: 16.0),
                             Opacity(
                               opacity: widget.animation.iconUserOpacity.value,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  vText(
-                                    'Tolak',
-                                    color: black2,
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.w600,
-                                    maxLines: 1,
+                              child: Visibility(
+                                visible: widget.state.loginRes?.level == 2 &&
+                                    widget.state.dataVideo?.isCheck == 0,
+                                child: Container(
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 8.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      vText(
+                                        'Tolak',
+                                        color: black2,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w600,
+                                        maxLines: 1,
+                                      ),
+                                      const SizedBox(width: 7.0),
+                                      InkWell(
+                                        onTap: widget.state.isLoadingReject
+                                            ? null
+                                            : () {
+                                                showDialog1(
+                                                  context: context,
+                                                  widget: const DialogAction(
+                                                    action: 'tolak',
+                                                    isHapus: true,
+                                                  ),
+                                                ).then((value) {
+                                                  if (value is bool) {
+                                                    if (value) {
+                                                      // terima
+                                                      widget.state
+                                                          .rejectVideo();
+                                                    }
+                                                  }
+                                                });
+                                              },
+                                        child: Container(
+                                          padding: const EdgeInsets.all(6.0),
+                                          decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: red1,
+                                          ),
+                                          child: Icon(
+                                            Icons.close,
+                                            size: 13.0,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onPrimary,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  const SizedBox(width: 7.0),
-                                  Container(
-                                    padding: const EdgeInsets.all(6.0),
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: red1,
-                                    ),
-                                    child: Icon(
-                                      Icons.close,
-                                      size: 13.0,
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onPrimary,
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
                             ),
-                            const SizedBox(height: 8.0),
                           ],
                         ),
                       ),
