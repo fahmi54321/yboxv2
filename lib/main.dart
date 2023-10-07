@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
+import 'package:yboxv2/chat/providers/auth_provider.dart';
+import 'package:yboxv2/chat/services/navigation_services.dart';
 import 'package:yboxv2/pages/loading_page.dart';
 import 'package:yboxv2/pages/provider/data_album_video_audio.dart';
 import 'package:yboxv2/pages/provider/data_track.dart';
@@ -41,9 +43,13 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<DataTrack>(
           create: (_) => DataTrack(),
         ),
+        ChangeNotifierProvider.value(
+          value: AuthenticationProvider(),
+        ),
       ],
       child: MaterialApp(
         initialRoute: LoadingPage.route,
+        navigatorKey: NavigatorServices.navigatorKey,
         onGenerateRoute: router.generateRoute,
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',

@@ -17,14 +17,14 @@ class DatabaseServices {
     String uid,
     String email,
     String name,
-    String imageUrl,
+    String leader,
   ) async {
     try {
       await _db.collection(userCollection).doc(uid).set({
         'email': email,
-        'image': imageUrl,
         'last_active': DateTime.now().toUtc(),
         'name': name,
+        'leader': leader,
       });
     } catch (e) {
       debugPrint('$e');

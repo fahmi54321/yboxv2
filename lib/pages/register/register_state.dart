@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 import 'package:yboxv2/anim/animation_register.dart';
+import 'package:yboxv2/chat/providers/auth_provider.dart';
+import 'package:yboxv2/chat/services/cloud_storage_services.dart';
+import 'package:yboxv2/chat/services/database_services.dart';
+import 'package:yboxv2/chat/services/navigation_services.dart';
 import 'package:yboxv2/models/leader/leader_res.dart';
 import 'package:yboxv2/network/http_auth.dart';
 import 'package:yboxv2/pages/register/model/pengisian_model.dart';
@@ -23,10 +29,25 @@ class RegisterState extends ChangeNotifier {
 
   DataPengisian? dataPengisian;
 
+  // firebase
+  late AuthenticationProvider auth;
+  late DatabaseServices db;
+  late CloudStorageServices cloudStorageServices;
+  late NavigatorServices navigation;
+
   RegisterState({
     required this.context,
     required this.animation,
-  });
+  }) {
+    init();
+  }
+
+  void init() {
+    auth = Provider.of<AuthenticationProvider>(context);
+    db = GetIt.instance.get<DatabaseServices>();
+    cloudStorageServices = GetIt.instance.get<CloudStorageServices>();
+    navigation = GetIt.instance.get<NavigatorServices>();
+  }
 
   String setTextButton({
     required bool isLastStep,
@@ -103,50 +124,77 @@ class RegisterState extends ChangeNotifier {
       isLoading = true;
       notifyListeners();
 
-      UtilsLoading.showLoading();
+      final uuid = await registerFirebase();
 
-      Map<String, String> data = {
-        'nama_lengkap': dataPengisian!.namaLengkap,
-        'email': dataPengisian!.email,
-        'leader': selectLeader!.id,
-        'username': dataPengisian!.email,
-        'password': dataPengisian!.kataSandi,
-      };
-      try {
-        final resStep1 = await HTTPAuthService().register(data: data);
+      if (uuid != null) {
+        UtilsLoading.showLoading();
 
-        resStep1.fold(
-          (e) async {
-            UtilsLoading.dismiss();
-            UtilsLoading.showError(message: e);
+        Map<String, String> data = {
+          'nama_lengkap': dataPengisian!.namaLengkap,
+          'email': dataPengisian!.email,
+          'leader': selectLeader!.id,
+          'username': dataPengisian!.email,
+          'password': dataPengisian!.kataSandi,
+          'uuid': uuid,
+        };
+        try {
+          final resStep1 = await HTTPAuthService().register(data: data);
 
-            isLoading = false;
-            notifyListeners();
-          },
-          (cat) async {
-            UtilsLoading.dismiss();
-            UtilsLoading.showSuccess(
-              message: 'Berhasil daftar, Ditunggu untuk diterima',
-            );
+          resStep1.fold(
+            (e) async {
+              UtilsLoading.dismiss();
+              UtilsLoading.showError(message: e);
 
-            Future.delayed(
-              const Duration(seconds: 2),
-              () {
-                isLoading = false;
-                notifyListeners();
+              isLoading = false;
+              notifyListeners();
+            },
+            (cat) async {
+              UtilsLoading.dismiss();
+              UtilsLoading.showSuccess(
+                message: 'Berhasil daftar, Ditunggu untuk diterima',
+              );
 
-                Navigator.pop(context);
-              },
-            );
-          },
-        );
-      } catch (e) {
+              Future.delayed(
+                const Duration(seconds: 2),
+                () {
+                  isLoading = false;
+                  notifyListeners();
+
+                  Navigator.pop(context);
+                },
+              );
+            },
+          );
+        } catch (e) {
+          UtilsLoading.dismiss();
+          UtilsLoading.showError(message: '$e');
+
+          isLoading = false;
+          notifyListeners();
+        }
+      } else {
         UtilsLoading.dismiss();
-        UtilsLoading.showError(message: '$e');
+        UtilsLoading.showError(message: 'Terjadi kesalahan');
 
         isLoading = false;
         notifyListeners();
       }
     }
+  }
+
+  Future<String?> registerFirebase() async {
+    String? uid = await auth.registerUserUsingEmailAndPassword(
+      dataPengisian!.email,
+      dataPengisian!.kataSandi,
+    );
+
+    await db.createUser(
+      uid ?? '',
+      dataPengisian!.email,
+      dataPengisian!.namaLengkap,
+      selectLeader!.id,
+    );
+
+    return uid;
   }
 }
