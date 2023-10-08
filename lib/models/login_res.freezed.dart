@@ -28,8 +28,14 @@ mixin _$LoginRes {
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'level', defaultValue: 0)
   int get level => throw _privateConstructorUsedError;
+  @JsonKey(name: 'uuid_msg')
+  String? get uuidMsg => throw _privateConstructorUsedError;
+  @JsonKey(name: 'uuid_msg_leader')
+  String? get uuidMsgLeader => throw _privateConstructorUsedError;
   @JsonKey(name: 'leader', defaultValue: '')
   String get leader => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name', defaultValue: '')
+  String get namaLengkap => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +53,10 @@ abstract class $LoginResCopyWith<$Res> {
       @JsonKey(name: 'access_token', defaultValue: '') String accessToken,
       @JsonKey(name: 'id', defaultValue: '') String id,
       @JsonKey(name: 'level', defaultValue: 0) int level,
-      @JsonKey(name: 'leader', defaultValue: '') String leader});
+      @JsonKey(name: 'uuid_msg') String? uuidMsg,
+      @JsonKey(name: 'uuid_msg_leader') String? uuidMsgLeader,
+      @JsonKey(name: 'leader', defaultValue: '') String leader,
+      @JsonKey(name: 'name', defaultValue: '') String namaLengkap});
 }
 
 /// @nodoc
@@ -67,7 +76,10 @@ class _$LoginResCopyWithImpl<$Res, $Val extends LoginRes>
     Object? accessToken = null,
     Object? id = null,
     Object? level = null,
+    Object? uuidMsg = freezed,
+    Object? uuidMsgLeader = freezed,
     Object? leader = null,
+    Object? namaLengkap = null,
   }) {
     return _then(_value.copyWith(
       message: null == message
@@ -86,9 +98,21 @@ class _$LoginResCopyWithImpl<$Res, $Val extends LoginRes>
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
               as int,
+      uuidMsg: freezed == uuidMsg
+          ? _value.uuidMsg
+          : uuidMsg // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uuidMsgLeader: freezed == uuidMsgLeader
+          ? _value.uuidMsgLeader
+          : uuidMsgLeader // ignore: cast_nullable_to_non_nullable
+              as String?,
       leader: null == leader
           ? _value.leader
           : leader // ignore: cast_nullable_to_non_nullable
+              as String,
+      namaLengkap: null == namaLengkap
+          ? _value.namaLengkap
+          : namaLengkap // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -106,7 +130,10 @@ abstract class _$$_LoginResCopyWith<$Res> implements $LoginResCopyWith<$Res> {
       @JsonKey(name: 'access_token', defaultValue: '') String accessToken,
       @JsonKey(name: 'id', defaultValue: '') String id,
       @JsonKey(name: 'level', defaultValue: 0) int level,
-      @JsonKey(name: 'leader', defaultValue: '') String leader});
+      @JsonKey(name: 'uuid_msg') String? uuidMsg,
+      @JsonKey(name: 'uuid_msg_leader') String? uuidMsgLeader,
+      @JsonKey(name: 'leader', defaultValue: '') String leader,
+      @JsonKey(name: 'name', defaultValue: '') String namaLengkap});
 }
 
 /// @nodoc
@@ -124,7 +151,10 @@ class __$$_LoginResCopyWithImpl<$Res>
     Object? accessToken = null,
     Object? id = null,
     Object? level = null,
+    Object? uuidMsg = freezed,
+    Object? uuidMsgLeader = freezed,
     Object? leader = null,
+    Object? namaLengkap = null,
   }) {
     return _then(_$_LoginRes(
       message: null == message
@@ -143,9 +173,21 @@ class __$$_LoginResCopyWithImpl<$Res>
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
               as int,
+      uuidMsg: freezed == uuidMsg
+          ? _value.uuidMsg
+          : uuidMsg // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uuidMsgLeader: freezed == uuidMsgLeader
+          ? _value.uuidMsgLeader
+          : uuidMsgLeader // ignore: cast_nullable_to_non_nullable
+              as String?,
       leader: null == leader
           ? _value.leader
           : leader // ignore: cast_nullable_to_non_nullable
+              as String,
+      namaLengkap: null == namaLengkap
+          ? _value.namaLengkap
+          : namaLengkap // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -162,7 +204,10 @@ class _$_LoginRes extends _LoginRes {
       required this.accessToken,
       @JsonKey(name: 'id', defaultValue: '') required this.id,
       @JsonKey(name: 'level', defaultValue: 0) required this.level,
-      @JsonKey(name: 'leader', defaultValue: '') required this.leader})
+      @JsonKey(name: 'uuid_msg') this.uuidMsg,
+      @JsonKey(name: 'uuid_msg_leader') this.uuidMsgLeader,
+      @JsonKey(name: 'leader', defaultValue: '') required this.leader,
+      @JsonKey(name: 'name', defaultValue: '') required this.namaLengkap})
       : super._();
 
   factory _$_LoginRes.fromJson(Map<String, dynamic> json) =>
@@ -181,12 +226,21 @@ class _$_LoginRes extends _LoginRes {
   @JsonKey(name: 'level', defaultValue: 0)
   final int level;
   @override
+  @JsonKey(name: 'uuid_msg')
+  final String? uuidMsg;
+  @override
+  @JsonKey(name: 'uuid_msg_leader')
+  final String? uuidMsgLeader;
+  @override
   @JsonKey(name: 'leader', defaultValue: '')
   final String leader;
+  @override
+  @JsonKey(name: 'name', defaultValue: '')
+  final String namaLengkap;
 
   @override
   String toString() {
-    return 'LoginRes(message: $message, accessToken: $accessToken, id: $id, level: $level, leader: $leader)';
+    return 'LoginRes(message: $message, accessToken: $accessToken, id: $id, level: $level, uuidMsg: $uuidMsg, uuidMsgLeader: $uuidMsgLeader, leader: $leader, namaLengkap: $namaLengkap)';
   }
 
   @override
@@ -199,13 +253,18 @@ class _$_LoginRes extends _LoginRes {
                 other.accessToken == accessToken) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.level, level) || other.level == level) &&
-            (identical(other.leader, leader) || other.leader == leader));
+            (identical(other.uuidMsg, uuidMsg) || other.uuidMsg == uuidMsg) &&
+            (identical(other.uuidMsgLeader, uuidMsgLeader) ||
+                other.uuidMsgLeader == uuidMsgLeader) &&
+            (identical(other.leader, leader) || other.leader == leader) &&
+            (identical(other.namaLengkap, namaLengkap) ||
+                other.namaLengkap == namaLengkap));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, message, accessToken, id, level, leader);
+  int get hashCode => Object.hash(runtimeType, message, accessToken, id, level,
+      uuidMsg, uuidMsgLeader, leader, namaLengkap);
 
   @JsonKey(ignore: true)
   @override
@@ -229,8 +288,11 @@ abstract class _LoginRes extends LoginRes {
       required final String accessToken,
       @JsonKey(name: 'id', defaultValue: '') required final String id,
       @JsonKey(name: 'level', defaultValue: 0) required final int level,
-      @JsonKey(name: 'leader', defaultValue: '')
-      required final String leader}) = _$_LoginRes;
+      @JsonKey(name: 'uuid_msg') final String? uuidMsg,
+      @JsonKey(name: 'uuid_msg_leader') final String? uuidMsgLeader,
+      @JsonKey(name: 'leader', defaultValue: '') required final String leader,
+      @JsonKey(name: 'name', defaultValue: '')
+      required final String namaLengkap}) = _$_LoginRes;
   const _LoginRes._() : super._();
 
   factory _LoginRes.fromJson(Map<String, dynamic> json) = _$_LoginRes.fromJson;
@@ -248,8 +310,17 @@ abstract class _LoginRes extends LoginRes {
   @JsonKey(name: 'level', defaultValue: 0)
   int get level;
   @override
+  @JsonKey(name: 'uuid_msg')
+  String? get uuidMsg;
+  @override
+  @JsonKey(name: 'uuid_msg_leader')
+  String? get uuidMsgLeader;
+  @override
   @JsonKey(name: 'leader', defaultValue: '')
   String get leader;
+  @override
+  @JsonKey(name: 'name', defaultValue: '')
+  String get namaLengkap;
   @override
   @JsonKey(ignore: true)
   _$$_LoginResCopyWith<_$_LoginRes> get copyWith =>

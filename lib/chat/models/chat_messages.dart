@@ -27,11 +27,7 @@ class ChatMessage {
           type = MessageType.TEXT;
         }
         break;
-      case 'image':
-        {
-          type = MessageType.IMAGE;
-        }
-        break;
+
       default:
         {
           type = MessageType.UNKNOWN;
@@ -54,11 +50,7 @@ class ChatMessage {
           messageType = 'text';
         }
         break;
-      case MessageType.IMAGE:
-        {
-          messageType = 'image';
-        }
-        break;
+
       default:
         {
           messageType = '';

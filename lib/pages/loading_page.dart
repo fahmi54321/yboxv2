@@ -47,10 +47,8 @@ class _LoadingPageState extends State<LoadingPage> {
       });
     } else {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        Navigator.pushReplacementNamed(
-          context,
-          HomePage.route,
-        );
+        Navigator.pushReplacementNamed(context, HomePage.route,
+            arguments: ArgsHomePage(loginRes: data));
       });
     }
   }

@@ -173,6 +173,7 @@ class _RegisterPageState extends State<RegisterPage> {
             email,
             name,
             imageUrl ?? "",
+            '1',
           );
 
           await _auth.logout();

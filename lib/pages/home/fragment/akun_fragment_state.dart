@@ -1,9 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yboxv2/chat/providers/auth_provider.dart';
 
 import 'package:yboxv2/network/http_auth.dart';
-import 'package:yboxv2/pages/login/login_page.dart';
 import 'package:yboxv2/pages/started/started_page.dart';
 import 'package:yboxv2/utils/shared_pref.dart';
 import 'package:yboxv2/utils/utils_loading.dart';
@@ -14,9 +15,13 @@ class AkunFragmentState extends ChangeNotifier {
   bool isKonek = false;
   bool isLoadingLogout = false;
 
+  late AuthenticationProvider auth;
+
   AkunFragmentState({
     required this.context,
-  });
+  }) {
+    auth = Provider.of<AuthenticationProvider>(context);
+  }
 
   void cekKoneksi() async {
     final connectivityResult = await (Connectivity().checkConnectivity());
@@ -37,7 +42,8 @@ class AkunFragmentState extends ChangeNotifier {
     } else {
       isKonek = false;
       notifyListeners();
-      await goToLogin();
+      // await goToLogin();
+      UtilsLoading.showInfo(message: 'Harap Cek koneksi');
     }
   }
 
@@ -48,6 +54,7 @@ class AkunFragmentState extends ChangeNotifier {
     notifyListeners();
 
     try {
+      await auth.logout();
       final resStep1 = await HTTPAuthService().logout();
 
       resStep1.fold(

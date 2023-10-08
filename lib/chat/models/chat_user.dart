@@ -2,15 +2,17 @@ class ChatUser {
   String uid;
   String name;
   String email;
-  String imageURL;
+  String leader;
   late DateTime lastActive;
+  String isAnggota;
 
   ChatUser({
     required this.uid,
     required this.name,
     required this.email,
-    required this.imageURL,
+    required this.leader,
     required this.lastActive,
+    required this.isAnggota,
   });
 
   factory ChatUser.fromJSON(Map<String, dynamic> json) {
@@ -18,8 +20,9 @@ class ChatUser {
       uid: json['uid'],
       name: json['name'],
       email: json['email'],
-      imageURL: json['image'],
+      leader: json['leader'],
       lastActive: json['last_active'].toDate(),
+      isAnggota: json['is_anggota'],
     );
   }
 
@@ -28,7 +31,8 @@ class ChatUser {
       'email': email,
       'name': name,
       'last_active': lastActive,
-      'image': imageURL,
+      'leader': leader,
+      'is_anggota': isAnggota,
     };
   }
 

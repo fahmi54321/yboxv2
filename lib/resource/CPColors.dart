@@ -15,6 +15,9 @@ const grey7 = Color(0xff3E4958);
 const grey8 = Color(0xffDEDEDE);
 const grey9 = Color(0xff737373);
 const grey10 = Color(0xffA3A3A3);
+const grey12 = Color(0xffEEEEEE);
+const grey13 = Color(0xff505050);
+const grey14 = Color(0xffA1A1A1);
 
 // black
 const black1 = Color(0xff3F4254);
@@ -24,6 +27,7 @@ const black4 = Color(0xff5F5F5F);
 const black5 = Color(0xff313131);
 const black6 = Color(0xff1A1A1A);
 const black7 = Color(0xff424242);
+const black8 = Color(0xff292D32);
 
 // blue
 const blue1 = Color(0xff95B6FF);

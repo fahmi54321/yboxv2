@@ -1,14 +1,31 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yboxv2/chat/models/chat.dart';
+
+import 'package:yboxv2/models/login_res.dart';
+import 'package:yboxv2/pages/chats/chat_page.dart';
+import 'package:yboxv2/pages/chats/chat_user_page.dart';
 import 'package:yboxv2/pages/home/home_state.dart';
 import 'package:yboxv2/pages/home/widget/body_bottom_bar.dart';
 import 'package:yboxv2/pages/home/widget/icon_bottombar.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 
+class ArgsHomePage {
+  final LoginRes loginRes;
+  ArgsHomePage({
+    required this.loginRes,
+  });
+}
+
 class HomePage extends StatefulWidget {
   static const route = 'home-page';
-  const HomePage({super.key});
+  final ArgsHomePage args;
+  const HomePage({
+    Key? key,
+    required this.args,
+  }) : super(key: key);
 
   @override
   _BottomNavBarState createState() => _BottomNavBarState();
@@ -76,6 +93,62 @@ class _BottomNavBarState extends State<HomePage> {
             ),
             body: BodyBottomBar(
               page: state.page,
+            ),
+            floatingActionButton: InkWell(
+              onTap: () {
+                if (widget.args.loginRes.level == 3) {
+                  // if()
+                  Navigator.pushNamed(
+                    context,
+                    ChatPage.route,
+                    arguments: ArgsChatPage(
+                      isLeader: false,
+                      loginRes: widget.args.loginRes,
+                      chat: Chat(
+                        uid: widget.args.loginRes.uuidMsgLeader!,
+                        currentUserUid: widget.args.loginRes.uuidMsg!,
+                        messages: [],
+                        members: [],
+                        group: false,
+                        activity: false,
+                      ),
+                    ),
+                  );
+                } else {
+                  Navigator.pushNamed(
+                    context,
+                    ChatUserPage.route,
+                  );
+                }
+              },
+              child: Container(
+                padding: const EdgeInsets.all(8.0),
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: primaryColor2,
+                ),
+                child: Stack(
+                  children: [
+                    Image.asset(
+                      'assets/image/img_chat.png',
+                      width: 25.0,
+                      height: 25.0,
+                    ),
+                    Positioned(
+                      right: 0,
+                      top: 2.0,
+                      child: Container(
+                        width: 7.0,
+                        height: 7.0,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: red1,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           );
         },

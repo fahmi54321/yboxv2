@@ -23,19 +23,19 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(seconds: 1)).then((_) {
+    Future.delayed(const Duration(seconds: 1)).then((_) {
       _setup().then((_) => widget.onInitializationComplete());
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
-        child: Container(
+        child: SizedBox(
           height: 200,
           width: 200,
-          child: const Icon(Icons.flutter_dash),
+          child: Icon(Icons.flutter_dash),
         ),
       ),
     );

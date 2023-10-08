@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
+import 'package:yboxv2/chat/pages/splash_page.dart';
 import 'package:yboxv2/chat/providers/auth_provider.dart';
 import 'package:yboxv2/chat/services/navigation_services.dart';
 import 'package:yboxv2/pages/loading_page.dart';
@@ -35,6 +36,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      home: SplashPage(
+        onInitializationComplete: () {
+          runApp(
+            const MainApp(),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class MainApp extends StatelessWidget {
+  const MainApp({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<DataAlbumAudioVideo>(
@@ -48,44 +67,19 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        initialRoute: LoadingPage.route,
-        navigatorKey: NavigatorServices.navigatorKey,
-        onGenerateRoute: router.generateRoute,
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
         theme: ThemeData(
           colorScheme: yboxLightColorScheme,
           useMaterial3: true,
         ),
+        initialRoute: LoadingPage.route,
+        navigatorKey: NavigatorServices.navigatorKey,
+        onGenerateRoute: router.generateRoute,
         home: const LoadingPage(),
         builder: EasyLoading.init(),
       ),
     );
   }
 }
-
-// class MainApp extends StatelessWidget {
-//   const MainApp({Key? key}) : super(key: key);
-//   @override
-//   Widget build(BuildContext context) {
-//     return MultiProvider(
-//       providers: [
-//         ChangeNotifierProvider.value(
-//           value: AuthenticationProvider(),
-//         ),
-//       ],
-//       child: MaterialApp(
-//         navigatorKey: NavigatorServices.navigatorKey,
-//         initialRoute: '/login',
-//         routes: {
-//           '/login': (BuildContext context) => LoginPage(),
-//           '/home': (BuildContext context) => HomePage(),
-//           '/register': (BuildContext context) => RegisterPage(),
-//         },
-//       ),
-//     );
-//   }
-// }
 
 // import 'package:flutter/material.dart';
 // import 'package:yboxv2/pages/onboarding/onboarding_page.dart';

@@ -2,17 +2,17 @@
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:yboxv2/chat/models/chat_messages.dart';
+import 'package:yboxv2/resource/CPColors.dart';
+import 'package:yboxv2/widget/v_text.dart';
 
 class TextMessageBubble extends StatelessWidget {
   final bool isOwnMessage;
   final ChatMessage message;
-  final double width;
   final double height;
   const TextMessageBubble({
     Key? key,
     required this.isOwnMessage,
     required this.message,
-    required this.width,
     required this.height,
   }) : super(key: key);
 
@@ -20,19 +20,27 @@ class TextMessageBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Color> colorScheme = isOwnMessage
         ? [
-            const Color.fromRGBO(0, 136, 249, 1.0),
-            const Color.fromRGBO(0, 82, 218, 1.0),
+            primaryColor,
+            primaryColor,
           ]
         : [
-            const Color.fromRGBO(51, 49, 68, 1.0),
-            const Color.fromRGBO(51, 49, 68, 1.0),
+            grey12,
+            grey12,
           ];
     return Container(
-      height: height + (message.content.length / 20 * 6.0),
-      width: width,
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      padding: EdgeInsets.only(
+        left: isOwnMessage ? 25.0 : 15.0,
+        right: isOwnMessage ? 15.0 : 25.0,
+        top: 15.0,
+        bottom: 15.0,
+      ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(isOwnMessage ? 0.0 : 25.0),
+          bottomRight: const Radius.circular(25.0),
+          topLeft: const Radius.circular(25.0),
+          bottomLeft: Radius.circular(isOwnMessage ? 25.0 : 0.0),
+        ),
         gradient: LinearGradient(
           colors: colorScheme,
           stops: const [0.30, 0.70],
@@ -43,79 +51,23 @@ class TextMessageBubble extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment:
+            isOwnMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          Text(
+          vText(
             message.content,
+            fontSize: 12.0,
+            fontWeight: FontWeight.w500,
+            color:
+                isOwnMessage ? Theme.of(context).colorScheme.onPrimary : grey13,
           ),
-          Text(
+          const SizedBox(height: 4.0),
+          vText(
             timeago.format(message.sentTime),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class ImageMessageBubble extends StatelessWidget {
-  final bool isOwnMessage;
-  final ChatMessage message;
-  final double width;
-  final double height;
-  const ImageMessageBubble({
-    Key? key,
-    required this.isOwnMessage,
-    required this.message,
-    required this.width,
-    required this.height,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    List<Color> colorScheme = isOwnMessage
-        ? [
-            const Color.fromRGBO(0, 136, 249, 1.0),
-            const Color.fromRGBO(0, 82, 218, 1.0),
-          ]
-        : [
-            const Color.fromRGBO(51, 49, 68, 1.0),
-            const Color.fromRGBO(51, 49, 68, 1.0),
-          ];
-
-    DecorationImage image = DecorationImage(
-      image: NetworkImage(message.content),
-      fit: BoxFit.cover,
-    );
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: width * 0.02,
-        vertical: height * 0.02,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15.0),
-        gradient: LinearGradient(
-          colors: colorScheme,
-          stops: const [0.30, 0.70],
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
-        ),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: height,
-            width: width,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15.0),
-              image: image,
-            ),
-          ),
-          const SizedBox(height: 0.02),
-          Text(
-            timeago.format(message.sentTime),
+            fontSize: 8.0,
+            fontWeight: FontWeight.w400,
+            color:
+                isOwnMessage ? Theme.of(context).colorScheme.onPrimary : grey13,
           ),
         ],
       ),

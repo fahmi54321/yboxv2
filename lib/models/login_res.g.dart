@@ -16,18 +16,39 @@ _$_LoginRes _$$_LoginResFromJson(Map json) => $checkedCreate(
               $checkedConvert('access_token', (v) => v as String? ?? ''),
           id: $checkedConvert('id', (v) => v as String? ?? ''),
           level: $checkedConvert('level', (v) => v as int? ?? 0),
+          uuidMsg: $checkedConvert('uuid_msg', (v) => v as String?),
+          uuidMsgLeader:
+              $checkedConvert('uuid_msg_leader', (v) => v as String?),
           leader: $checkedConvert('leader', (v) => v as String? ?? ''),
+          namaLengkap: $checkedConvert('name', (v) => v as String? ?? ''),
         );
         return val;
       },
-      fieldKeyMap: const {'accessToken': 'access_token'},
+      fieldKeyMap: const {
+        'accessToken': 'access_token',
+        'uuidMsg': 'uuid_msg',
+        'uuidMsgLeader': 'uuid_msg_leader',
+        'namaLengkap': 'name'
+      },
     );
 
-Map<String, dynamic> _$$_LoginResToJson(_$_LoginRes instance) =>
-    <String, dynamic>{
-      'message': instance.message,
-      'access_token': instance.accessToken,
-      'id': instance.id,
-      'level': instance.level,
-      'leader': instance.leader,
-    };
+Map<String, dynamic> _$$_LoginResToJson(_$_LoginRes instance) {
+  final val = <String, dynamic>{
+    'message': instance.message,
+    'access_token': instance.accessToken,
+    'id': instance.id,
+    'level': instance.level,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('uuid_msg', instance.uuidMsg);
+  writeNotNull('uuid_msg_leader', instance.uuidMsgLeader);
+  val['leader'] = instance.leader;
+  val['name'] = instance.namaLengkap;
+  return val;
+}

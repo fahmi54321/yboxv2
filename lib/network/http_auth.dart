@@ -91,6 +91,34 @@ class HTTPAuthService {
     }
   }
 
+  Future<Either<String, int>> updateUuid({
+    required String uuid,
+    required String token,
+  }) async {
+    Map<String, dynamic> params = {
+      '_method': 'PUT',
+      'uuid_msg': uuid,
+    };
+
+    final response = await WebService().client().post(
+          ApiUrl.mssgUuid,
+          data: params,
+          options: Options(headers: {
+            'Authorization': 'Bearer $token',
+          }),
+        );
+    debugPrint('url updateUuid : ${ApiUrl.mssgUuid}');
+    debugPrint('params updateUuid : $params');
+
+    if (response.statusCode == 200) {
+      return Right(
+        response.statusCode ?? 0,
+      );
+    } else {
+      return const Left('Terjadi kesalahan');
+    }
+  }
+
   // Future<Either<String, int>> ubahPassword({
   //   required Map<String, dynamic> data,
   // }) async {

@@ -122,7 +122,6 @@ class _ChatsPageState extends State<ChatsPage> {
       height: _deviceHeight * 0.10,
       title: chat.title(),
       subtitle: subtitleText,
-      imagePath: chat.imageURL(),
       isActivity: chat.activity,
       isActive: isActive,
       onTap: () {

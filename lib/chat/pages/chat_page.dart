@@ -48,7 +48,7 @@ class _ChatpageState extends State<Chatpage> {
           create: (_) => ChatPageProvider(
             auth: _auth,
             messageListViewController: _messageListViewController,
-            chatId: widget.chat.uid,
+            chatDestinationUuid: widget.chat.uid,
           ),
         ),
       ],
@@ -181,7 +181,7 @@ class _ChatpageState extends State<Chatpage> {
         onPressed: () {
           if (_messageFormState.currentState?.validate() ?? false) {
             _messageFormState.currentState?.save();
-            pageProvider.sendTextMessage();
+            // pageProvider.sendTextMessage();
             _messageFormState.currentState?.reset();
           }
         },
@@ -198,9 +198,7 @@ class _ChatpageState extends State<Chatpage> {
       height: size,
       width: size,
       child: FloatingActionButton(
-        onPressed: () {
-          pageProvider.sendImageMessage();
-        },
+        onPressed: () {},
         backgroundColor: const Color.fromRGBO(
           0,
           82,

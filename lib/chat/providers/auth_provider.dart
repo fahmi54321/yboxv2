@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,28 +21,28 @@ class AuthenticationProvider extends ChangeNotifier {
 
     _auth.authStateChanges().listen((user) {
       if (user != null) {
-        print('logged in');
+        debugPrint('logged in');
+        debugPrint('auth id ${_auth.currentUser?.uid}');
 
         _databaseServices.updateUserLastSeenTime(user.uid);
         _databaseServices.getUser(user.uid).then((snapshot) {
-          Map<String, dynamic> userData =
-              snapshot.data() as Map<String, dynamic>;
-          chatUser = ChatUser.fromJSON({
-            'uid': user.uid,
-            'name': userData['name'],
-            'email': userData['email'],
-            'last_active': userData['last_active'],
-            'image': userData['image'],
-          });
+          if (snapshot.data() != null) {
+            Map<String, dynamic> userData =
+                snapshot.data() as Map<String, dynamic>;
+            chatUser = ChatUser.fromJSON({
+              'uid': user.uid,
+              'name': userData['name'],
+              'email': userData['email'],
+              'last_active': userData['last_active'],
+              'leader': userData['leader'],
+              'is_anggota': userData['is_anggota'],
+            });
 
-          print(chatUser);
-
-          //go to home page
-          _navigatorServices.removeAndNavigateToRoute('/home');
+            debugPrint('$chatUser');
+          }
         });
       } else {
-        print('Not Authenticated');
-        _navigatorServices.removeAndNavigateToRoute('/login');
+        debugPrint('Not Authenticated');
       }
     });
   }
@@ -49,12 +50,12 @@ class AuthenticationProvider extends ChangeNotifier {
   Future<void> loginUsingEmailAndPassword(String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-      print(_auth.currentUser);
+      debugPrint('${_auth.currentUser}');
       _navigatorServices.navigateToRoute('/home');
     } on FirebaseAuthException {
-      print('error logging user into firebase');
+      debugPrint('error logging user into firebase');
     } catch (e) {
-      print(e);
+      debugPrint('$e');
     }
   }
 
@@ -63,7 +64,7 @@ class AuthenticationProvider extends ChangeNotifier {
     String email,
     String password,
   ) async {
-    print('$email $password');
+    debugPrint('$email $password');
 
     try {
       UserCredential userCredential =
@@ -73,11 +74,11 @@ class AuthenticationProvider extends ChangeNotifier {
       );
       return userCredential.user?.uid ?? '';
     } on FirebaseAuthException catch (e) {
-      print(e);
-      print('error registering user');
+      debugPrint('$e');
+      debugPrint('error registering user');
       return null;
     } catch (e) {
-      print(e);
+      debugPrint('$e');
       return null;
     }
   }
@@ -86,7 +87,7 @@ class AuthenticationProvider extends ChangeNotifier {
     try {
       _auth.signOut();
     } catch (e) {
-      print(e);
+      debugPrint('$e');
     }
   }
 }

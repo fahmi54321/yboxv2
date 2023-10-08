@@ -82,9 +82,10 @@ class Leader extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   color: primaryColor2,
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(5.0),
                 ),
                 padding: const EdgeInsets.all(8.0),
+                margin: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
                     Expanded(
@@ -93,13 +94,13 @@ class Leader extends StatelessWidget {
                         children: [
                           vText(
                             leader.name,
-                            fontSize: 14.0,
+                            fontSize: 12.0,
                             fontWeight: FontWeight.w600,
                             color: primaryColor,
                           ),
                           vText(
                             'Leader',
-                            fontSize: 12.0,
+                            fontSize: 10.0,
                             fontWeight: FontWeight.w500,
                             color: primaryColor,
                           ),

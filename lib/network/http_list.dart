@@ -11,6 +11,7 @@ import 'package:yboxv2/models/general/publishing_res.dart';
 import 'package:yboxv2/models/general/roles_res.dart';
 import 'package:yboxv2/models/leader/leader_res.dart';
 import 'package:yboxv2/models/login_res.dart';
+import 'package:yboxv2/models/user_member_res.dart';
 import 'package:yboxv2/network/api_interceptor.dart';
 import 'package:yboxv2/network/api_url.dart';
 import 'package:yboxv2/utils/shared_pref.dart';
@@ -210,6 +211,30 @@ class HTTPListService {
     if (response.statusCode == 200) {
       final result = (response.data as List<dynamic>)
           .map((e) => LabelRes.fromJson(e as Map<String, dynamic>))
+          .toList();
+      return Right(result);
+    } else {
+      return const Left('Terjadi kesalahan');
+    }
+  }
+
+  Future<Either<String, List<UserMemberRes>>> getMssgMember() async {
+    var dataToken = await SharedPreferencesUtils.getLoginPreference();
+    LoginRes loginRes = LoginRes.fromJson(jsonDecode(dataToken ?? ''));
+
+    final response = await WebService().client().get(
+          ApiUrl.mssgMember,
+          options: Options(headers: {
+            'Authorization': 'Bearer ${loginRes.accessToken}',
+          }),
+        );
+
+    debugPrint('url getMssgMember : ${ApiUrl.mssgMember}');
+    debugPrint('response getMssgMember : ${response.data}');
+
+    if (response.statusCode == 200) {
+      final result = (response.data as List<dynamic>)
+          .map((e) => UserMemberRes.fromJson(e as Map<String, dynamic>))
           .toList();
       return Right(result);
     } else {

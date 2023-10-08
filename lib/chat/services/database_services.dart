@@ -7,17 +7,19 @@ import 'package:yboxv2/chat/models/chat_messages.dart';
 const String userCollection = 'Users';
 const String chatCollection = 'Chats';
 const String messageCollection = 'messages';
+const String userSudahAda = 'User Sudah Ada';
 
 class DatabaseServices {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   DatabaseServices();
 
-  Future<void> createUser(
+  Future<bool?> createUser(
     String uid,
     String email,
     String name,
     String leader,
+    String isAnggota,
   ) async {
     try {
       await _db.collection(userCollection).doc(uid).set({
@@ -25,9 +27,12 @@ class DatabaseServices {
         'last_active': DateTime.now().toUtc(),
         'name': name,
         'leader': leader,
+        'is_anggota': isAnggota,
       });
+      return true;
     } catch (e) {
       debugPrint('$e');
+      return null;
     }
   }
 

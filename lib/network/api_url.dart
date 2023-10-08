@@ -28,4 +28,6 @@ class ApiUrl {
   static String grafikBulanan = '${appUrl}api/dashboard/grafik-bulanan';
   static String aprovedItem = '${appUrl}api/aproved_item';
   static String rejectItem = '${appUrl}api/reject_item';
+  static String mssgUuid = '${appUrl}api/mssg_uuid';
+  static String mssgMember = '${appUrl}api/mssg_member';
 }

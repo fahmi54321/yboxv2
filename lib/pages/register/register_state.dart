@@ -3,9 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:yboxv2/anim/animation_register.dart';
 import 'package:yboxv2/chat/providers/auth_provider.dart';
-import 'package:yboxv2/chat/services/cloud_storage_services.dart';
 import 'package:yboxv2/chat/services/database_services.dart';
-import 'package:yboxv2/chat/services/navigation_services.dart';
 import 'package:yboxv2/models/leader/leader_res.dart';
 import 'package:yboxv2/network/http_auth.dart';
 import 'package:yboxv2/pages/register/model/pengisian_model.dart';
@@ -32,8 +30,6 @@ class RegisterState extends ChangeNotifier {
   // firebase
   late AuthenticationProvider auth;
   late DatabaseServices db;
-  late CloudStorageServices cloudStorageServices;
-  late NavigatorServices navigation;
 
   RegisterState({
     required this.context,
@@ -45,8 +41,6 @@ class RegisterState extends ChangeNotifier {
   void init() {
     auth = Provider.of<AuthenticationProvider>(context);
     db = GetIt.instance.get<DatabaseServices>();
-    cloudStorageServices = GetIt.instance.get<CloudStorageServices>();
-    navigation = GetIt.instance.get<NavigatorServices>();
   }
 
   String setTextButton({
@@ -121,21 +115,20 @@ class RegisterState extends ChangeNotifier {
     } else if (selectLeader == null) {
       UtilsLoading.showInfo(message: 'Harap pilih leader');
     } else {
+      UtilsLoading.showLoading();
       isLoading = true;
       notifyListeners();
 
       final uuid = await registerFirebase();
 
       if (uuid != null) {
-        UtilsLoading.showLoading();
-
         Map<String, String> data = {
           'nama_lengkap': dataPengisian!.namaLengkap,
           'email': dataPengisian!.email,
           'leader': selectLeader!.id,
           'username': dataPengisian!.email,
           'password': dataPengisian!.kataSandi,
-          'uuid': uuid,
+          'uuid_msg': uuid,
         };
         try {
           final resStep1 = await HTTPAuthService().register(data: data);
@@ -193,6 +186,7 @@ class RegisterState extends ChangeNotifier {
       dataPengisian!.email,
       dataPengisian!.namaLengkap,
       selectLeader!.id,
+      '1',
     );
 
     return uid;

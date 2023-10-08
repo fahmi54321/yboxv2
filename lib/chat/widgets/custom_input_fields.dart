@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yboxv2/resource/CPColors.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final Function(String) onSaved;
@@ -6,7 +7,7 @@ class CustomTextFormField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
 
-  CustomTextFormField({
+  const CustomTextFormField({
     Key? key,
     required this.onSaved,
     required this.regEx,
@@ -17,24 +18,24 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onSaved: (_value) => onSaved(_value ?? ''),
-      cursorColor: Colors.red,
+      onSaved: (value) => onSaved(value ?? ''),
+      cursorColor: primaryColor,
       style: const TextStyle(color: Colors.black),
       obscureText: obscureText,
-      validator: (_value) {
-        return RegExp(regEx).hasMatch(_value ?? '')
+      validator: (value) {
+        return RegExp(regEx).hasMatch(value ?? '')
             ? null
             : 'Enter a valid value.';
       },
       decoration: InputDecoration(
-        fillColor: Colors.grey,
+        fillColor: Theme.of(context).colorScheme.onPrimary,
         filled: true,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,
         ),
         hintText: hintText,
-        hintStyle: const TextStyle(color: Colors.black),
+        hintStyle: const TextStyle(color: grey14),
       ),
     );
   }

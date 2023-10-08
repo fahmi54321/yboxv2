@@ -16,7 +16,10 @@ class LoginRes with _$LoginRes {
     required String accessToken,
     @JsonKey(name: 'id', defaultValue: '') required String id,
     @JsonKey(name: 'level', defaultValue: 0) required int level,
+    @JsonKey(name: 'uuid_msg') String? uuidMsg,
+    @JsonKey(name: 'uuid_msg_leader') String? uuidMsgLeader,
     @JsonKey(name: 'leader', defaultValue: '') required String leader,
+    @JsonKey(name: 'name', defaultValue: '') required String namaLengkap,
   }) = _LoginRes;
 
   factory LoginRes.fromJson(Map<String, dynamic> json) =>

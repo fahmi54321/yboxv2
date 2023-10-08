@@ -1,29 +1,24 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get_it/get_it.dart';
 import 'package:yboxv2/chat/models/chat_messages.dart';
 import 'package:yboxv2/chat/providers/auth_provider.dart';
-import 'package:yboxv2/chat/services/cloud_storage_services.dart';
 import 'package:yboxv2/chat/services/database_services.dart';
-import 'package:yboxv2/chat/services/media_services.dart';
 import 'package:yboxv2/chat/services/navigation_services.dart';
 
 class ChatPageProvider extends ChangeNotifier {
   //todo 5
   late DatabaseServices _db;
-  late CloudStorageServices _storage;
-  late MediaService _media;
   late NavigatorServices _navigation;
 
   AuthenticationProvider auth;
   ScrollController messageListViewController;
 
-  String chatId;
+  String chatDestinationUuid;
   List<ChatMessage> messages = [];
   String _message = '';
   String get message => _message;
@@ -35,12 +30,10 @@ class ChatPageProvider extends ChangeNotifier {
   ChatPageProvider({
     required this.auth,
     required this.messageListViewController,
-    required this.chatId,
+    required this.chatDestinationUuid,
   }) {
     //todo 6
     _db = GetIt.instance.get<DatabaseServices>();
-    _storage = GetIt.instance.get<CloudStorageServices>();
-    _media = GetIt.instance.get<MediaService>();
     _navigation = GetIt.instance.get<NavigatorServices>();
     _keyboardVisibilityController = KeyboardVisibilityController();
 
@@ -61,7 +54,7 @@ class ChatPageProvider extends ChangeNotifier {
   //todo 7
   void listenToMessages() {
     try {
-      _messagesStream = _db.streamMessageForChat(chatId).listen(
+      _messagesStream = _db.streamMessageForChat(chatDestinationUuid).listen(
         (snapshot) {
           List<ChatMessage> msgs = snapshot.docs.map(
             (msg) {
@@ -93,7 +86,7 @@ class ChatPageProvider extends ChangeNotifier {
     _keyboardVisibilityStream =
         _keyboardVisibilityController.onChange.listen((event) {
       _db.updateChatData(
-        chatId,
+        chatDestinationUuid,
         {
           'is_activity': event,
         },
@@ -104,42 +97,21 @@ class ChatPageProvider extends ChangeNotifier {
   //todo 8
   void deleteChat() {
     goBack();
-    _db.deleteChat(chatId);
+    _db.deleteChat(chatDestinationUuid);
   }
 
   //todo 9
-  void sendTextMessage() {
+  void sendTextMessage({
+    required String senderId,
+  }) {
     if (message.isNotEmpty) {
       ChatMessage messageToSend = ChatMessage(
-        senderID: auth.chatUser?.uid ?? '',
+        senderID: senderId,
         type: MessageType.TEXT,
         content: message,
         sentTime: DateTime.now(),
       );
-      _db.addMessageToChat(chatId, messageToSend);
-    }
-  }
-
-  //todo 10 (next chat_page.dart)
-  void sendImageMessage() async {
-    try {
-      PlatformFile? file = await _media.pickImageFromLibrary();
-      if (file != null) {
-        String? downloadUrl = await _storage.saveChatImageToStorage(
-          chatId,
-          auth.chatUser?.uid ?? '',
-          file,
-        );
-        ChatMessage messageToSend = ChatMessage(
-          senderID: auth.chatUser?.uid ?? '',
-          type: MessageType.IMAGE,
-          content: downloadUrl ?? '',
-          sentTime: DateTime.now(),
-        );
-        _db.addMessageToChat(chatId, messageToSend);
-      }
-    } catch (e) {
-      print(e);
+      _db.addMessageToChat(chatDestinationUuid, messageToSend);
     }
   }
 }

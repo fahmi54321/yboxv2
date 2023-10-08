@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yboxv2/pages/chats/chat_page.dart';
+import 'package:yboxv2/pages/chats/chat_user_page.dart';
 import 'package:yboxv2/pages/forms/form_album_audio_video_page.dart';
 import 'package:yboxv2/pages/forms/form_track_page.dart';
 import 'package:yboxv2/pages/home/details/details_album_page.dart';
@@ -194,8 +196,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case HomePage.route:
       return PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            const HomePage(),
+        pageBuilder: (context, animation, secondaryAnimation) => HomePage(
+          args: settings.arguments as ArgsHomePage,
+        ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           const begin = Offset(0.0, 1.0);
           const end = Offset.zero;
@@ -267,6 +270,41 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const AkunBankFragment(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(0.0, 1.0);
+          const end = Offset.zero;
+          final tween = Tween(begin: begin, end: end);
+          final offsetAnimation = animation.drive(tween);
+
+          return SlideTransition(
+            position: offsetAnimation,
+            child: child,
+          );
+        },
+      );
+
+    case ChatUserPage.route:
+      return PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const ChatUserPage(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(0.0, 1.0);
+          const end = Offset.zero;
+          final tween = Tween(begin: begin, end: end);
+          final offsetAnimation = animation.drive(tween);
+
+          return SlideTransition(
+            position: offsetAnimation,
+            child: child,
+          );
+        },
+      );
+
+    case ChatPage.route:
+      return PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) => ChatPage(
+          args: settings.arguments as ArgsChatPage,
+        ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           const begin = Offset(0.0, 1.0);
           const end = Offset.zero;

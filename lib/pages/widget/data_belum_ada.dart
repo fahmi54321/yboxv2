@@ -3,7 +3,11 @@ import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/widget/v_text.dart';
 
 class DataBelumAda extends StatelessWidget {
-  const DataBelumAda({super.key});
+  final String? deskripsi;
+  const DataBelumAda({
+    super.key,
+    this.deskripsi,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +15,7 @@ class DataBelumAda extends StatelessWidget {
       children: [
         Image.asset('assets/image/img_empty.jpg'),
         vText(
-          'Data belum ada',
+          deskripsi ?? 'Data belum ada',
           color: primaryColor,
           fontSize: 20.0,
         ),
