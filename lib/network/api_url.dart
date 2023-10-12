@@ -30,4 +30,5 @@ class ApiUrl {
   static String rejectItem = '${appUrl}api/reject_item';
   static String mssgUuid = '${appUrl}api/mssg_uuid';
   static String mssgMember = '${appUrl}api/mssg_member';
+  static String ubahPass = '${appUrl}api/change_password';
 }

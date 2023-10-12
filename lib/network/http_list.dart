@@ -11,6 +11,7 @@ import 'package:yboxv2/models/general/publishing_res.dart';
 import 'package:yboxv2/models/general/roles_res.dart';
 import 'package:yboxv2/models/leader/leader_res.dart';
 import 'package:yboxv2/models/login_res.dart';
+import 'package:yboxv2/models/onboarding/onboarding_res.dart';
 import 'package:yboxv2/models/user_member_res.dart';
 import 'package:yboxv2/network/api_interceptor.dart';
 import 'package:yboxv2/network/api_url.dart';
@@ -235,6 +236,24 @@ class HTTPListService {
     if (response.statusCode == 200) {
       final result = (response.data as List<dynamic>)
           .map((e) => UserMemberRes.fromJson(e as Map<String, dynamic>))
+          .toList();
+      return Right(result);
+    } else {
+      return const Left('Terjadi kesalahan');
+    }
+  }
+
+  Future<Either<String, List<OnboardingRes>>> getOnboarding() async {
+    final response = await WebService().client().get(
+          ApiUrl.info,
+        );
+
+    debugPrint('url getOnboarding : ${ApiUrl.info}');
+    debugPrint('response getOnboarding : ${response.data}');
+
+    if (response.statusCode == 200) {
+      final result = (response.data as List<dynamic>)
+          .map((e) => OnboardingRes.fromJson(e as Map<String, dynamic>))
           .toList();
       return Right(result);
     } else {

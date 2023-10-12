@@ -119,34 +119,33 @@ class HTTPAuthService {
     }
   }
 
-  // Future<Either<String, int>> ubahPassword({
-  //   required Map<String, dynamic> data,
-  // }) async {
+  Future<Either<String, int>> ubahPassword({
+    required Map<String, dynamic> data,
+  }) async {
+    var dataToken = await SharedPreferencesUtils.getLoginPreference();
+    LoginRes loginRes = LoginRes.fromJson(jsonDecode(dataToken ?? ''));
 
-  //   final getUser = gets.Get.find<UserController>();
-  //   LoginRes loginRes = await getUser.getUserLogin();
+    debugPrint('HTTPUbahPasswordService start');
+    final response = await WebService().client().post(
+          ApiUrl.ubahPass,
+          data: data,
+          options: Options(headers: {
+            'Authorization': 'Bearer ${loginRes.accessToken}',
+            'Accept': 'application/json',
+          }),
+        );
+    debugPrint('url ubahPassword : ${ApiUrl.ubahPass}');
+    debugPrint('params ubahPassword : $data');
+    debugPrint('response ubahPassword : ${response.data}');
 
-  //   debugPrint('HTTPUbahPasswordService start');
-  //   final response = await WebService().client().post(
-  //         ApiUrl.ubahPass,
-  //         data: data,
-  //         options: Options(headers: {
-  //           'Authorization': 'Bearer ' + loginRes.access_token,
-  //           'Accept': 'application/json',
-  //         }),
-  //       );
-  //   debugPrint('url : ${ApiUrl.ubahPass}');
-  //   debugPrint('params : $data');
-  //   debugPrint(response);
-
-  //   if (response.statusCode == 200) {
-  //     return Right(
-  //       response.statusCode ?? 0,
-  //     );
-  //   } else {
-  //     return Left('Terjadi kesalahan' as String);
-  //   }
-  // }
+    if (response.statusCode == 200) {
+      return Right(
+        response.statusCode ?? 0,
+      );
+    } else {
+      return const Left('Terjadi kesalahan');
+    }
+  }
 
   // Future<Either<String, int>> register({
   //   required Map<String, dynamic> data,

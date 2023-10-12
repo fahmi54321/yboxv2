@@ -1,90 +1,134 @@
 import 'package:flutter/material.dart';
+import 'package:onboarding/onboarding.dart';
+import 'package:yboxv2/models/onboarding/onboarding_res.dart';
+import 'package:yboxv2/network/http_list.dart';
+import 'package:yboxv2/pages/onboarding/widget/page_widget.dart';
+import 'package:yboxv2/pages/started/started_page.dart';
+import 'package:yboxv2/resource/CPColors.dart';
+import 'package:yboxv2/utils/utils_loading.dart';
 import 'package:yboxv2/widget/v_text.dart';
+
+extension ColorExtension on String {
+  toColor() {
+    var hexString = this;
+    final buffer = StringBuffer();
+    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
+    buffer.write(hexString.replaceFirst('#', ''));
+    debugPrint('buffer : ${int.parse(buffer.toString(), radix: 16)}');
+    return Color(int.parse(buffer.toString(), radix: 16));
+  }
+}
 
 class OnboardingState extends ChangeNotifier {
   OnboardingState({
     required this.context,
-  });
+  }) {
+    init();
+  }
+
+  bool isLoading = false;
 
   final BuildContext context;
 
-  int totalPage = 4;
+  late Material materialButton;
+  int index = 0;
 
-  List<Widget> listBackground = [
-    Image.asset(
-      'assets/image/the_band_concert.png',
-      height: 308,
-      fit: BoxFit.scaleDown,
-    ),
-    Image.asset(
-      'assets/image/the_band_musical_notes.png',
-      height: 308,
-      fit: BoxFit.scaleDown,
-    ),
-    Image.asset(
-      'assets/image/the_band_musicians.png',
-      height: 308,
-      fit: BoxFit.scaleDown,
-    ),
-    Image.asset(
-      'assets/image/the_band_party.png',
-      height: 308,
-      fit: BoxFit.scaleDown,
-    ),
-  ];
+  List<PageModel> onboardingPageList = [];
+  List<OnboardingRes> listOnBorading = [];
 
-  List<Widget> listPageBody = [
-    pageBody(
-      title: 'Keterangan dari Intro Leader',
-      subtitle: 'Melindungi lisensi dari karya anda yang distribusikan',
-    ),
-    pageBody(
-      title: 'Melindungi Hak Cipta terhadap karya anda',
-      subtitle:
-          'Akan melindungi hak cipta oleh hasil kreasi intelektual seseorang bisa diterima oleh publik.',
-    ),
-    pageBody(
-      title: 'Tujuan dari distribusi karya ',
-      subtitle: 'Kami akan membayar untuk semua karya yang distribusikan',
-    ),
-    pageBody(
-      title: 'Data oleh klien yang akan didistribusikan',
-      subtitle: 'Kita akan memilih data yang akan didistribusikan',
-    ),
-  ];
-}
+  void init() async {
+    materialButton = skipButton();
 
-Widget pageBody({
-  required String title,
-  required String subtitle,
-}) {
-  return Container(
-    padding: const EdgeInsets.symmetric(horizontal: 24.0),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const SizedBox(
-          height: 480,
+    await getOnboarding();
+  }
+
+  Future<void> getOnboarding() async {
+    isLoading = true;
+    notifyListeners();
+
+    final resStep1 = await HTTPListService().getOnboarding();
+
+    resStep1.fold(
+      (e) async {
+        isLoading = false;
+        notifyListeners();
+
+        UtilsLoading.showError(message: e);
+      },
+      (cat) async {
+        listOnBorading = cat;
+        notifyListeners();
+
+        if (cat.isNotEmpty) {
+          for (var element in cat) {
+            onboardingPageList.add(
+              PageModel(
+                widget: PageWidget(
+                  color: element.warna.toColor(),
+                  title: element.judul,
+                  subtitle:
+                      'Melindungi lisensi dari karya anda yang distribusikan',
+                  image: 'assets/image/the_band_party.png',
+                ),
+              ),
+            );
+          }
+        }
+
+        isLoading = false;
+        notifyListeners();
+      },
+    );
+  }
+
+  Material skipButton({void Function(int)? setIndex}) {
+    return Material(
+      borderRadius: defaultSkipButtonBorderRadius,
+      color: primaryColor,
+      child: InkWell(
+        borderRadius: defaultSkipButtonBorderRadius,
+        onTap: () {
+          if (setIndex != null) {
+            index = 2;
+            setIndex(2);
+          }
+        },
+        child: Padding(
+          padding: defaultSkipButtonPadding,
+          child: vText(
+            'Lewati',
+            fontSize: 12.0,
+            fontWeight: FontWeight.w400,
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
         ),
-        vText(
-          title,
-          fontSize: 28.0,
-          color: Colors.white,
-          fontWeight: FontWeight.w600,
-          maxLines: 2,
+      ),
+    );
+  }
+
+  Material get signupButton {
+    return Material(
+      borderRadius: defaultProceedButtonBorderRadius,
+      color: primaryColor,
+      child: InkWell(
+        borderRadius: defaultProceedButtonBorderRadius,
+        onTap: () {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            StartedPage.route,
+            (route) => false,
+          );
+        },
+        child: Padding(
+          padding: defaultProceedButtonPadding,
+          child: vText(
+            'Daftar',
+            fontSize: 12.0,
+            fontWeight: FontWeight.w400,
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
         ),
-        const SizedBox(
-          height: 12,
-        ),
-        vText(
-          subtitle,
-          fontSize: 18.0,
-          color: Colors.white,
-          fontWeight: FontWeight.w400,
-          maxLines: 4,
-        ),
-      ],
-    ),
-  );
+      ),
+    );
+  }
 }

@@ -23,7 +23,7 @@ class HTTPApprovedService {
           }),
         );
     debugPrint('url approveData : ${ApiUrl.aprovedItem}');
-    debugPrint('parms approveData : $id');
+    debugPrint('parms approveData : $paramsData');
     debugPrint('response approveData : ${response.data}');
 
     if (response.statusCode == 200) {
@@ -47,7 +47,7 @@ class HTTPApprovedService {
           }),
         );
     debugPrint('url rejectData : ${ApiUrl.rejectItem}');
-    debugPrint('parms rejectData : $id');
+    debugPrint('parms rejectData : $paramsData');
     debugPrint('response rejectData : ${response.data}');
 
     if (response.statusCode == 200) {

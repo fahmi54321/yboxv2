@@ -13,8 +13,8 @@ class DetailsAudioState extends ChangeNotifier {
   final String id;
 
   bool isLoading = true;
-  bool isLoadingApproved = true;
-  bool isLoadingReject = true;
+  bool isLoadingApproved = false;
+  bool isLoadingReject = false;
 
   DetailsAudioRes? dataAudio;
   LoginRes? loginRes;
@@ -40,8 +40,6 @@ class DetailsAudioState extends ChangeNotifier {
   }
 
   Future<void> getDetailsAudio() async {
-    UtilsLoading.showLoading(message: 'Loading');
-
     final resStep1 = await HTTPAudioService().detailsAudio(id: id);
 
     resStep1.fold(
@@ -49,15 +47,12 @@ class DetailsAudioState extends ChangeNotifier {
         isLoading = false;
         notifyListeners();
 
-        UtilsLoading.dismiss();
         UtilsLoading.showError(message: e);
       },
       (cat) async {
         dataAudio = cat;
         isLoading = false;
         notifyListeners();
-
-        UtilsLoading.dismiss();
       },
     );
   }

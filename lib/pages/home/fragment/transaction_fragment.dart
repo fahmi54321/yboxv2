@@ -3,8 +3,11 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'package:yboxv2/models/transaction/transaction_res.dart';
 import 'package:yboxv2/pages/forms/add_transaction_page.dart';
+import 'package:yboxv2/pages/home/fragment/shimer/list_shimer.dart';
 import 'package:yboxv2/pages/home/fragment/transaction_fragment_state.dart';
 import 'package:yboxv2/pages/home/utils/utils_style.dart';
+import 'package:yboxv2/pages/widget/data_belum_ada.dart';
+import 'package:yboxv2/pages/widget/loading_pagin.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/widget/v_dialog.dart';
 import 'package:yboxv2/widget/v_text.dart';
@@ -89,6 +92,12 @@ class _TransactionFragment extends State<TransactionFragment>
                         pagingController: state.pagingController,
                         builderDelegate:
                             PagedChildBuilderDelegate<DataTransactionRes>(
+                          noItemsFoundIndicatorBuilder: (_) {
+                            return const DataBelumAda();
+                          },
+                          firstPageProgressIndicatorBuilder: (_) {
+                            return const ListShimer();
+                          },
                           itemBuilder: (context, item, index) {
                             return Stack(
                               children: [

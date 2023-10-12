@@ -8,8 +8,10 @@ import 'package:yboxv2/models/login_res.dart';
 import 'package:yboxv2/pages/forms/form_album_audio_video_page.dart';
 import 'package:yboxv2/pages/home/details/details_album_page.dart';
 import 'package:yboxv2/pages/home/fragment/album_fragment_state.dart';
+import 'package:yboxv2/pages/home/fragment/shimer/list_shimer.dart';
 import 'package:yboxv2/pages/home/widget/item_album.dart';
 import 'package:yboxv2/pages/widget/data_belum_ada.dart';
+import 'package:yboxv2/pages/widget/loading_pagin.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/utils/shared_pref.dart';
 import 'package:yboxv2/utils/utils_loading.dart';
@@ -35,6 +37,7 @@ class CartFragmentState extends State<AlbumFragment> {
   }
 
   void init() async {
+    UtilsLoading.dismiss();
     UtilsLoading.showLoading(message: 'Loading');
 
     var dataToken = await SharedPreferencesUtils.getLoginPreference();
@@ -150,7 +153,7 @@ class CartFragmentState extends State<AlbumFragment> {
                           onRefresh: state.pullRefresh,
                           child: PagedListView(
                             pagingController: state.pagingController,
-                            shrinkWrap: true,
+                            shrinkWrap: false,
                             builderDelegate:
                                 PagedChildBuilderDelegate<DataAlbumRes>(
                               itemBuilder: (context, item, index) {
@@ -164,6 +167,9 @@ class CartFragmentState extends State<AlbumFragment> {
                                     );
                                   },
                                 );
+                              },
+                              firstPageProgressIndicatorBuilder: (_) {
+                                return const ListShimer();
                               },
                               noItemsFoundIndicatorBuilder: (context) =>
                                   const DataBelumAda(),

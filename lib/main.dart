@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
-import 'package:yboxv2/chat/pages/splash_page.dart';
+import 'package:yboxv2/pages/splash_page.dart';
 import 'package:yboxv2/chat/providers/auth_provider.dart';
 import 'package:yboxv2/chat/services/navigation_services.dart';
 import 'package:yboxv2/pages/loading_page.dart';

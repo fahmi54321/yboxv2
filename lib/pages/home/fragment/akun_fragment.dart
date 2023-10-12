@@ -7,7 +7,9 @@ import 'package:yboxv2/pages/home/fragment/akun_fragment_state.dart';
 import 'package:yboxv2/pages/home/fragment/audio_fragment.dart';
 import 'package:yboxv2/pages/home/fragment/transaction_fragment.dart';
 import 'package:yboxv2/pages/home/widget/item_informasi_lain.dart';
+import 'package:yboxv2/pages/widget/ubah_password_page.dart';
 import 'package:yboxv2/resource/CPColors.dart';
+import 'package:yboxv2/widget/v_dialog.dart';
 import 'package:yboxv2/widget/v_text.dart';
 
 class AkunFragment extends StatefulWidget {
@@ -194,7 +196,23 @@ class AkunWidget extends StatelessWidget {
                         ItemInformasiLain(
                           label: 'Ubah Kata Sandi',
                           opacity: animation.ubahKataSandiOpacity.value,
-                          onTap: () {},
+                          onTap: () {
+                            showDialog1(
+                              context: context,
+                              widget: UbahPasswordPage(),
+                            ).then(
+                              (value) {
+                                if (value is bool) {
+                                  if (value) {
+                                    WidgetsBinding.instance
+                                        .addPostFrameCallback(
+                                      (timeStamp) {},
+                                    );
+                                  }
+                                }
+                              },
+                            );
+                          },
                         ),
                       ],
                     ),

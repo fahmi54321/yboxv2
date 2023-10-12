@@ -9,6 +9,7 @@ import 'package:yboxv2/pages/forms/form_album_audio_video_page.dart';
 import 'package:yboxv2/pages/home/details/details_video_state.dart';
 import 'package:yboxv2/pages/home/details/utils/utils_details.dart';
 import 'package:yboxv2/pages/home/details/widget/user_details.dart';
+import 'package:yboxv2/pages/home/fragment/shimer/details_shimer.dart';
 import 'package:yboxv2/pages/home/utils/utils_style.dart';
 import 'package:yboxv2/pages/home/widget/item_details.dart';
 import 'package:yboxv2/pages/widget/dialog_action.dart';
@@ -68,8 +69,8 @@ class DetailsVideoPageState extends State<DetailsVideoPage>
       child: Consumer(
         builder: (BuildContext context, DetailsVideoState state, _) {
           return state.isLoading
-              ? Scaffold(
-                  body: Container(),
+              ? const Scaffold(
+                  body: DetailsShimer(),
                 )
               : DetailsVideo(
                   state: state,

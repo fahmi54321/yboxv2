@@ -7,9 +7,11 @@ import 'package:yboxv2/models/login_res.dart';
 import 'package:yboxv2/models/track/track_res.dart';
 import 'package:yboxv2/pages/forms/form_track_page.dart';
 import 'package:yboxv2/pages/home/details/details_track_page.dart';
+import 'package:yboxv2/pages/home/fragment/shimer/list_shimer.dart';
 import 'package:yboxv2/pages/home/fragment/track_fragment_state.dart';
 import 'package:yboxv2/pages/home/widget/item_track.dart';
 import 'package:yboxv2/pages/widget/data_belum_ada.dart';
+import 'package:yboxv2/pages/widget/loading_pagin.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/utils/shared_pref.dart';
 import 'package:yboxv2/utils/utils_loading.dart';
@@ -146,7 +148,6 @@ class TrackFragmentState extends State<TrackFragment> {
                           onRefresh: state.pullRefresh,
                           child: PagedListView(
                             pagingController: state.pagingController,
-                            shrinkWrap: true,
                             builderDelegate:
                                 PagedChildBuilderDelegate<DataTrackRes>(
                               itemBuilder: (context, item, index) {
@@ -160,6 +161,9 @@ class TrackFragmentState extends State<TrackFragment> {
                                     );
                                   },
                                 );
+                              },
+                              firstPageProgressIndicatorBuilder: (_) {
+                                return const ListShimer();
                               },
                               noItemsFoundIndicatorBuilder: (context) =>
                                   const DataBelumAda(),

@@ -20,11 +20,7 @@ class AkunBankState extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
-    UtilsLoading.showLoading(message: 'Loading');
-
     await getBank();
-
-    UtilsLoading.dismiss();
 
     isLoading = false;
     notifyListeners();

@@ -28,8 +28,7 @@ class _LoginPageState extends State<LoginPage>
     _controller = AnimationController(
         vsync: this,
         duration: const Duration(
-          // milliseconds: 1780,
-          milliseconds: 1000,
+          milliseconds: 1780,
         ));
 
     _controller.forward();

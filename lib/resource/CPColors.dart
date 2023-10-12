@@ -18,6 +18,7 @@ const grey10 = Color(0xffA3A3A3);
 const grey12 = Color(0xffEEEEEE);
 const grey13 = Color(0xff505050);
 const grey14 = Color(0xffA1A1A1);
+const grey15 = Color(0xffF1EFEF);
 
 // black
 const black1 = Color(0xff3F4254);

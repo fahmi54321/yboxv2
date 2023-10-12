@@ -33,6 +33,7 @@ class FormAlbumAudioVideoState extends ChangeNotifier {
   bool isLoadingList = false;
   bool isLoadingSaveOrEdit = false;
   bool isEdit = false;
+  bool isSuksesAdd = false;
 
   LanguageRes? languageResMain;
   LanguageRes? languageResTrack;
@@ -486,11 +487,9 @@ class FormAlbumAudioVideoState extends ChangeNotifier {
         notifyListeners();
 
         UtilsLoading.dismiss();
-        UtilsLoading.showSuccess(message: 'Berhasil disimpan');
 
-        Future.delayed(const Duration(seconds: 1), () {
-          Navigator.of(context).pop(true);
-        });
+        isSuksesAdd = true;
+        notifyListeners();
       },
     );
   }
@@ -516,11 +515,9 @@ class FormAlbumAudioVideoState extends ChangeNotifier {
         notifyListeners();
 
         UtilsLoading.dismiss();
-        UtilsLoading.showSuccess(message: 'Berhasil disimpan');
 
-        Future.delayed(const Duration(seconds: 1), () {
-          Navigator.of(context).pop(true);
-        });
+        isSuksesAdd = true;
+        notifyListeners();
       },
     );
   }
@@ -546,11 +543,15 @@ class FormAlbumAudioVideoState extends ChangeNotifier {
         notifyListeners();
 
         UtilsLoading.dismiss();
-        UtilsLoading.showSuccess(message: 'Berhasil disimpan');
 
-        Future.delayed(const Duration(seconds: 1), () {
-          Navigator.of(context).pop(true);
-        });
+        isSuksesAdd = true;
+        notifyListeners();
+
+        // UtilsLoading.showSuccess(message: 'Berhasil disimpan');
+
+        // Future.delayed(const Duration(seconds: 1), () {
+        //   Navigator.of(context).pop(true);
+        // });
       },
     );
   }
@@ -579,11 +580,9 @@ class FormAlbumAudioVideoState extends ChangeNotifier {
         notifyListeners();
 
         UtilsLoading.dismiss();
-        UtilsLoading.showSuccess(message: 'Berhasil disimpan');
 
-        Future.delayed(const Duration(seconds: 1), () {
-          Navigator.of(context).pop(true);
-        });
+        isSuksesAdd = true;
+        notifyListeners();
       },
     );
   }
@@ -612,11 +611,8 @@ class FormAlbumAudioVideoState extends ChangeNotifier {
         notifyListeners();
 
         UtilsLoading.dismiss();
-        UtilsLoading.showSuccess(message: 'Berhasil disimpan');
-
-        Future.delayed(const Duration(seconds: 1), () {
-          Navigator.of(context).pop(true);
-        });
+        isSuksesAdd = true;
+        notifyListeners();
       },
     );
   }
@@ -645,11 +641,9 @@ class FormAlbumAudioVideoState extends ChangeNotifier {
         notifyListeners();
 
         UtilsLoading.dismiss();
-        UtilsLoading.showSuccess(message: 'Berhasil disimpan');
 
-        Future.delayed(const Duration(seconds: 1), () {
-          Navigator.of(context).pop(true);
-        });
+        isSuksesAdd = true;
+        notifyListeners();
       },
     );
   }

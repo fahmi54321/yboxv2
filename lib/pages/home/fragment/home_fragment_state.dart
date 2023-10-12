@@ -112,8 +112,6 @@ class HomeFragmentState extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
-    UtilsLoading.showLoading();
-
     await getUser();
     await getAlbum();
     await getVideo();
@@ -125,8 +123,6 @@ class HomeFragmentState extends ChangeNotifier {
 
     isLoading = false;
     notifyListeners();
-
-    UtilsLoading.dismiss();
   }
 
   Future<void> getUser() async {
@@ -135,7 +131,6 @@ class HomeFragmentState extends ChangeNotifier {
 
       resStep1.fold(
         (e) async {
-          UtilsLoading.dismiss();
           UtilsLoading.showError(message: e);
 
           isLoading = false;
@@ -147,7 +142,6 @@ class HomeFragmentState extends ChangeNotifier {
         },
       );
     } catch (e) {
-      UtilsLoading.dismiss();
       UtilsLoading.showError(message: '$e');
 
       isLoading = false;
@@ -161,7 +155,6 @@ class HomeFragmentState extends ChangeNotifier {
 
       resStep1.fold(
         (e) async {
-          UtilsLoading.dismiss();
           UtilsLoading.showError(message: e);
 
           isLoading = false;
@@ -173,7 +166,6 @@ class HomeFragmentState extends ChangeNotifier {
         },
       );
     } catch (e) {
-      UtilsLoading.dismiss();
       UtilsLoading.showError(message: '$e');
 
       isLoading = false;
@@ -187,7 +179,6 @@ class HomeFragmentState extends ChangeNotifier {
 
       resStep1.fold(
         (e) async {
-          UtilsLoading.dismiss();
           UtilsLoading.showError(message: e);
 
           isLoading = false;
@@ -199,7 +190,6 @@ class HomeFragmentState extends ChangeNotifier {
         },
       );
     } catch (e) {
-      UtilsLoading.dismiss();
       UtilsLoading.showError(message: '$e');
 
       isLoading = false;
@@ -213,7 +203,6 @@ class HomeFragmentState extends ChangeNotifier {
 
       resStep1.fold(
         (e) async {
-          UtilsLoading.dismiss();
           UtilsLoading.showError(message: e);
 
           isLoading = false;
@@ -225,7 +214,6 @@ class HomeFragmentState extends ChangeNotifier {
         },
       );
     } catch (e) {
-      UtilsLoading.dismiss();
       UtilsLoading.showError(message: '$e');
 
       isLoading = false;
@@ -239,7 +227,6 @@ class HomeFragmentState extends ChangeNotifier {
 
       resStep1.fold(
         (e) async {
-          UtilsLoading.dismiss();
           UtilsLoading.showError(message: e);
 
           isLoading = false;
@@ -251,7 +238,6 @@ class HomeFragmentState extends ChangeNotifier {
         },
       );
     } catch (e) {
-      UtilsLoading.dismiss();
       UtilsLoading.showError(message: '$e');
 
       isLoading = false;
@@ -265,7 +251,6 @@ class HomeFragmentState extends ChangeNotifier {
 
       resStep1.fold(
         (e) async {
-          UtilsLoading.dismiss();
           UtilsLoading.showError(message: e);
 
           isLoading = false;
@@ -277,7 +262,6 @@ class HomeFragmentState extends ChangeNotifier {
         },
       );
     } catch (e) {
-      UtilsLoading.dismiss();
       UtilsLoading.showError(message: '$e');
 
       isLoading = false;
@@ -291,7 +275,6 @@ class HomeFragmentState extends ChangeNotifier {
 
       resStep1.fold(
         (e) async {
-          UtilsLoading.dismiss();
           UtilsLoading.showError(message: e);
 
           isLoading = false;
@@ -303,7 +286,6 @@ class HomeFragmentState extends ChangeNotifier {
         },
       );
     } catch (e) {
-      UtilsLoading.dismiss();
       UtilsLoading.showError(message: '$e');
 
       isLoading = false;
@@ -317,7 +299,6 @@ class HomeFragmentState extends ChangeNotifier {
     notifyListeners();
     resStep1.fold(
       (e) async {
-        UtilsLoading.dismiss();
         UtilsLoading.showError(message: e);
 
         isLoading = false;

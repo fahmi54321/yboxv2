@@ -13,7 +13,9 @@ class DataBelumAda extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.asset('assets/image/img_empty.jpg'),
+        Image.asset(
+          'assets/image/img_empty.jpg',
+        ),
         vText(
           deskripsi ?? 'Data belum ada',
           color: primaryColor,

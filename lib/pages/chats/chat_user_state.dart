@@ -26,8 +26,6 @@ class ChatUserState extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
-    UtilsLoading.showLoading(message: 'Loading...');
-
     var dataToken = await SharedPreferencesUtils.getLoginPreference();
     loginRes = LoginRes.fromJson(jsonDecode(dataToken ?? ''));
     notifyListeners();

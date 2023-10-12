@@ -74,6 +74,8 @@ dependencies:
   permission_handler: ^11.0.0
   fl_chart: ^0.63.0
   connectivity_plus: ^4.0.2
+  shimmer: ^3.0.0
+  onboarding: ^3.1.0
 
 dev_dependencies:
   flutter_test:

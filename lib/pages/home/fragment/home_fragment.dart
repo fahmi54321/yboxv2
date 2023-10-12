@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'package:yboxv2/anim/animation_home.dart';
 import 'package:yboxv2/pages/home/fragment/home_fragment_state.dart';
+import 'package:yboxv2/pages/home/fragment/shimer/home_shimer.dart';
 import 'package:yboxv2/pages/home/fragment/widget/grafik_dashboard.dart';
 import 'package:yboxv2/pages/home/widget/category.dart';
 import 'package:yboxv2/resource/CPColors.dart';
@@ -47,7 +48,7 @@ class _HomeFragmentState extends State<HomeFragment>
         _,
       ) {
         return state.isLoading
-            ? Container()
+            ? const HomeShimer()
             : Home(
                 controller: _controller,
                 state: state,

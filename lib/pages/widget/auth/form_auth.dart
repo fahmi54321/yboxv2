@@ -22,7 +22,7 @@ class FormAuth extends StatefulWidget {
 }
 
 class _FormAuthState extends State<FormAuth> {
-  bool obscureText = false;
+  bool obscureText = true;
 
   void changeObsureText() {
     setState(() {
@@ -51,7 +51,7 @@ class _FormAuthState extends State<FormAuth> {
           activeColor: primaryColor,
           outlineColor: primaryColor,
           textColor: black4,
-          obscureText: obscureText,
+          obscureText: widget.isFormPassword ? obscureText : false,
           maxLines: 1,
           controller: widget.controller,
           suffixIcon: widget.isFormPassword

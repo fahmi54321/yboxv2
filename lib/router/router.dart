@@ -13,6 +13,7 @@ import 'package:yboxv2/pages/home/fragment/transaction_fragment.dart';
 import 'package:yboxv2/pages/home/home_page.dart';
 import 'package:yboxv2/pages/loading_page.dart';
 import 'package:yboxv2/pages/login/login_page.dart';
+import 'package:yboxv2/pages/onboarding/onboarding_page.dart';
 import 'package:yboxv2/pages/register/register_page.dart';
 import 'package:yboxv2/pages/started/started_page.dart';
 import 'package:yboxv2/pages/onboarding/onboarding_page.dart';

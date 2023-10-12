@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:yboxv2/chat/models/chat.dart';
 import 'package:yboxv2/pages/chats/chat_page.dart';
 import 'package:yboxv2/pages/chats/chat_user_state.dart';
+import 'package:yboxv2/pages/home/fragment/shimer/list_shimer.dart';
 import 'package:yboxv2/pages/home/utils/utils_style.dart';
 import 'package:yboxv2/pages/widget/data_belum_ada.dart';
 import 'package:yboxv2/resource/CPColors.dart';
@@ -31,7 +32,7 @@ class ChatUserPage extends StatelessWidget {
               ),
             ),
             body: state.isLoading
-                ? Container()
+                ? const ListShimer()
                 : Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: state.listMember.isEmpty
