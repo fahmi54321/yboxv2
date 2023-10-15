@@ -28,6 +28,8 @@ mixin _$UserMemberRes {
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'image', defaultValue: '')
   String get image => throw _privateConstructorUsedError;
+  @JsonKey(name: 'token_msg_notif')
+  String? get tokenMsgNotif => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +47,8 @@ abstract class $UserMemberResCopyWith<$Res> {
       {@JsonKey(name: 'id', defaultValue: '') String id,
       @JsonKey(name: 'uuid_msg', defaultValue: '') String uuidMsg,
       @JsonKey(name: 'user', defaultValue: '') String name,
-      @JsonKey(name: 'image', defaultValue: '') String image});
+      @JsonKey(name: 'image', defaultValue: '') String image,
+      @JsonKey(name: 'token_msg_notif') String? tokenMsgNotif});
 }
 
 /// @nodoc
@@ -65,6 +68,7 @@ class _$UserMemberResCopyWithImpl<$Res, $Val extends UserMemberRes>
     Object? uuidMsg = null,
     Object? name = null,
     Object? image = null,
+    Object? tokenMsgNotif = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -83,6 +87,10 @@ class _$UserMemberResCopyWithImpl<$Res, $Val extends UserMemberRes>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      tokenMsgNotif: freezed == tokenMsgNotif
+          ? _value.tokenMsgNotif
+          : tokenMsgNotif // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -99,7 +107,8 @@ abstract class _$$_UserMemberResCopyWith<$Res>
       {@JsonKey(name: 'id', defaultValue: '') String id,
       @JsonKey(name: 'uuid_msg', defaultValue: '') String uuidMsg,
       @JsonKey(name: 'user', defaultValue: '') String name,
-      @JsonKey(name: 'image', defaultValue: '') String image});
+      @JsonKey(name: 'image', defaultValue: '') String image,
+      @JsonKey(name: 'token_msg_notif') String? tokenMsgNotif});
 }
 
 /// @nodoc
@@ -117,6 +126,7 @@ class __$$_UserMemberResCopyWithImpl<$Res>
     Object? uuidMsg = null,
     Object? name = null,
     Object? image = null,
+    Object? tokenMsgNotif = freezed,
   }) {
     return _then(_$_UserMemberRes(
       id: null == id
@@ -135,6 +145,10 @@ class __$$_UserMemberResCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      tokenMsgNotif: freezed == tokenMsgNotif
+          ? _value.tokenMsgNotif
+          : tokenMsgNotif // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -148,7 +162,8 @@ class _$_UserMemberRes extends _UserMemberRes {
       {@JsonKey(name: 'id', defaultValue: '') required this.id,
       @JsonKey(name: 'uuid_msg', defaultValue: '') required this.uuidMsg,
       @JsonKey(name: 'user', defaultValue: '') required this.name,
-      @JsonKey(name: 'image', defaultValue: '') required this.image})
+      @JsonKey(name: 'image', defaultValue: '') required this.image,
+      @JsonKey(name: 'token_msg_notif') this.tokenMsgNotif})
       : super._();
 
   factory _$_UserMemberRes.fromJson(Map<String, dynamic> json) =>
@@ -166,10 +181,13 @@ class _$_UserMemberRes extends _UserMemberRes {
   @override
   @JsonKey(name: 'image', defaultValue: '')
   final String image;
+  @override
+  @JsonKey(name: 'token_msg_notif')
+  final String? tokenMsgNotif;
 
   @override
   String toString() {
-    return 'UserMemberRes(id: $id, uuidMsg: $uuidMsg, name: $name, image: $image)';
+    return 'UserMemberRes(id: $id, uuidMsg: $uuidMsg, name: $name, image: $image, tokenMsgNotif: $tokenMsgNotif)';
   }
 
   @override
@@ -180,12 +198,15 @@ class _$_UserMemberRes extends _UserMemberRes {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.uuidMsg, uuidMsg) || other.uuidMsg == uuidMsg) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.tokenMsgNotif, tokenMsgNotif) ||
+                other.tokenMsgNotif == tokenMsgNotif));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, uuidMsg, name, image);
+  int get hashCode =>
+      Object.hash(runtimeType, id, uuidMsg, name, image, tokenMsgNotif);
 
   @JsonKey(ignore: true)
   @override
@@ -203,12 +224,13 @@ class _$_UserMemberRes extends _UserMemberRes {
 
 abstract class _UserMemberRes extends UserMemberRes {
   const factory _UserMemberRes(
-      {@JsonKey(name: 'id', defaultValue: '') required final String id,
-      @JsonKey(name: 'uuid_msg', defaultValue: '')
-      required final String uuidMsg,
-      @JsonKey(name: 'user', defaultValue: '') required final String name,
-      @JsonKey(name: 'image', defaultValue: '')
-      required final String image}) = _$_UserMemberRes;
+          {@JsonKey(name: 'id', defaultValue: '') required final String id,
+          @JsonKey(name: 'uuid_msg', defaultValue: '')
+          required final String uuidMsg,
+          @JsonKey(name: 'user', defaultValue: '') required final String name,
+          @JsonKey(name: 'image', defaultValue: '') required final String image,
+          @JsonKey(name: 'token_msg_notif') final String? tokenMsgNotif}) =
+      _$_UserMemberRes;
   const _UserMemberRes._() : super._();
 
   factory _UserMemberRes.fromJson(Map<String, dynamic> json) =
@@ -226,6 +248,9 @@ abstract class _UserMemberRes extends UserMemberRes {
   @override
   @JsonKey(name: 'image', defaultValue: '')
   String get image;
+  @override
+  @JsonKey(name: 'token_msg_notif')
+  String? get tokenMsgNotif;
   @override
   @JsonKey(ignore: true)
   _$$_UserMemberResCopyWith<_$_UserMemberRes> get copyWith =>

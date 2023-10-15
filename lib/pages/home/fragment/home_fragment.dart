@@ -41,7 +41,7 @@ class _HomeFragmentState extends State<HomeFragment>
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => HomeFragmentState(),
+      create: (_) => HomeFragmentState(context: context),
       child: Consumer(builder: (
         BuildContext context,
         HomeFragmentState state,

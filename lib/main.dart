@@ -1,5 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:yboxv2/pages/splash_page.dart';
 import 'package:yboxv2/chat/providers/auth_provider.dart';
@@ -9,10 +12,97 @@ import 'package:yboxv2/pages/provider/data_album_video_audio.dart';
 import 'package:yboxv2/pages/provider/data_track.dart';
 import 'package:yboxv2/resource/color_schemes.g.dart';
 import 'package:yboxv2/router/router.dart' as router;
+import 'package:intl/date_symbol_data_local.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+
+  debugPrint("Handling a background message: ${message.messageId}");
+}
+
+const AndroidNotificationChannel channel = AndroidNotificationChannel(
+  'high_importance_channel', // id
+  'High Importance Notifications', // title
+  importance: Importance.high,
+);
+
+/// Initialize the [FlutterLocalNotificationsPlugin] package.
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
+void main() async {
+  initializeDateFormatting('id_ID', null);
+
   configLoading();
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
+
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
+  runApp(const CheckInitFirebase());
+}
+
+class CheckInitFirebase extends StatefulWidget {
+  const CheckInitFirebase({super.key});
+
+  @override
+  _CheckInitFirebaseState createState() => _CheckInitFirebaseState();
+}
+
+class _CheckInitFirebaseState extends State<CheckInitFirebase>
+    with WidgetsBindingObserver {
+  bool _initialized = false;
+  bool _error = false;
+
+  void initializeFlutterFire() async {
+    try {
+      await Firebase.initializeApp();
+      setState(() {
+        _initialized = true;
+      });
+    } catch (e) {
+      setState(() {
+        _error = true;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    initializeFlutterFire();
+
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_error) {
+      debugPrint('$_error');
+    }
+
+    if (!_initialized) {
+      return const CircularProgressIndicator();
+    }
+
+    return const MyApp();
+  }
 }
 
 void configLoading() {
@@ -80,33 +170,3 @@ class MainApp extends StatelessWidget {
     );
   }
 }
-
-// import 'package:flutter/material.dart';
-// import 'package:yboxv2/pages/onboarding/onboarding_page.dart';
-// import 'package:yboxv2/resource/color_schemes.g.dart';
-// import 'package:yboxv2/router/router.dart' as router;
-
-// void main() {
-//   runApp(const MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       initialRoute: OnboardingPage.route,
-//       onGenerateRoute: router.generateRoute,
-//       debugShowCheckedModeBanner: false,
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         colorScheme: yboxLightColorScheme,
-//         useMaterial3: true,
-//       ),
-//       home: OnboardingPage(),
-//     );
-//   }
-// }
-
-

@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 import 'package:yboxv2/models/count/count_amount_res.dart';
@@ -10,6 +11,7 @@ import 'package:yboxv2/network/http_auth.dart';
 import 'package:yboxv2/network/http_count.dart';
 import 'package:yboxv2/network/http_grafik.dart';
 import 'package:yboxv2/resource/CPColors.dart';
+import 'package:yboxv2/service/firebase_notif.dart';
 import 'package:yboxv2/utils/utils_loading.dart';
 import 'package:yboxv2/widget/v_text.dart';
 
@@ -51,7 +53,10 @@ class ValueGrafik {
 }
 
 class HomeFragmentState extends ChangeNotifier {
-  HomeFragmentState() {
+  final BuildContext context;
+  HomeFragmentState({
+    required this.context,
+  }) {
     init();
   }
 
@@ -112,6 +117,7 @@ class HomeFragmentState extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
+    await Notif(context: context).initNotif();
     await getUser();
     await getAlbum();
     await getVideo();
@@ -120,9 +126,36 @@ class HomeFragmentState extends ChangeNotifier {
     await getAmount();
     await getProgress();
     await getGrafik();
+    await updateTokenFirebase();
 
     isLoading = false;
     notifyListeners();
+  }
+
+  Future<void> updateTokenFirebase() async {
+    try {
+      String? tokenFirebase = await FirebaseMessaging.instance.getToken();
+      debugPrint("tokenFirebase $tokenFirebase");
+
+      final resStep1 = await HTTPAuthService().updateTokenFirebase(
+        tokenFirebase: tokenFirebase ?? '',
+      );
+
+      resStep1.fold(
+        (e) async {
+          UtilsLoading.showError(message: e);
+
+          isLoading = false;
+          notifyListeners();
+        },
+        (cat) async {},
+      );
+    } catch (e) {
+      UtilsLoading.showError(message: '$e');
+
+      isLoading = false;
+      notifyListeners();
+    }
   }
 
   Future<void> getUser() async {

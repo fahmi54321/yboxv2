@@ -54,7 +54,9 @@ class AddTransactionState extends ChangeNotifier {
       },
       (cat) async {
         listBank = cat;
-        selectBank = cat[0];
+        if (cat.isNotEmpty) {
+          selectBank = cat[0];
+        }
         notifyListeners();
       },
     );

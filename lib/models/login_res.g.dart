@@ -17,8 +17,12 @@ _$_LoginRes _$$_LoginResFromJson(Map json) => $checkedCreate(
           id: $checkedConvert('id', (v) => v as String? ?? ''),
           level: $checkedConvert('level', (v) => v as int? ?? 0),
           uuidMsg: $checkedConvert('uuid_msg', (v) => v as String?),
+          tokenMssgNotif:
+              $checkedConvert('token_mssg_notif', (v) => v as String?),
           uuidMsgLeader:
               $checkedConvert('uuid_msg_leader', (v) => v as String?),
+          tokenMssgNotifLeader:
+              $checkedConvert('token_mssg_notif_leader', (v) => v as String?),
           leader: $checkedConvert('leader', (v) => v as String? ?? ''),
           namaLengkap: $checkedConvert('name', (v) => v as String? ?? ''),
         );
@@ -27,7 +31,9 @@ _$_LoginRes _$$_LoginResFromJson(Map json) => $checkedCreate(
       fieldKeyMap: const {
         'accessToken': 'access_token',
         'uuidMsg': 'uuid_msg',
+        'tokenMssgNotif': 'token_mssg_notif',
         'uuidMsgLeader': 'uuid_msg_leader',
+        'tokenMssgNotifLeader': 'token_mssg_notif_leader',
         'namaLengkap': 'name'
       },
     );
@@ -47,7 +53,9 @@ Map<String, dynamic> _$$_LoginResToJson(_$_LoginRes instance) {
   }
 
   writeNotNull('uuid_msg', instance.uuidMsg);
+  writeNotNull('token_mssg_notif', instance.tokenMssgNotif);
   writeNotNull('uuid_msg_leader', instance.uuidMsgLeader);
+  writeNotNull('token_mssg_notif_leader', instance.tokenMssgNotifLeader);
   val['leader'] = instance.leader;
   val['name'] = instance.namaLengkap;
   return val;

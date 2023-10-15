@@ -31,4 +31,6 @@ class ApiUrl {
   static String mssgUuid = '${appUrl}api/mssg_uuid';
   static String mssgMember = '${appUrl}api/mssg_member';
   static String ubahPass = '${appUrl}api/change_password';
+  static String tokenFirebase = '${appUrl}api/mssg_token';
+  static String sendNotif = 'https://fcm.googleapis.com/fcm/send';
 }

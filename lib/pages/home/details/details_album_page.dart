@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 import 'package:yboxv2/anim/animation_details_album.dart';
@@ -592,31 +593,73 @@ class _DetailsAlbumState extends State<DetailsAlbum> {
           const SizedBox(height: 8.0),
           ItemDetails(
             leftLabel: 'Audio',
-            rightWidget: InkWell(
-              splashColor: primaryColor2,
-              borderRadius: BorderRadius.circular(5.0),
-              onTap: () {},
-              child: Padding(
-                padding: const EdgeInsets.all(
-                  4.0,
+            rightWidget: Row(
+              children: [
+                Visibility(
+                  visible: widget.state.currentProgressViewInt > 0 &&
+                      widget.state.currentProgressViewInt < 100,
+                  child: Row(
+                    children: [
+                      vText(
+                        widget.state.currentProgressView,
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w400,
+                        color: red1,
+                      ),
+                      const SizedBox(width: 4.0),
+                      SizedBox(
+                        width: 20.0,
+                        height: 20.0,
+                        child: CircularProgressIndicator(
+                          value: widget.state.currentProgress(0),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 8,
-                    horizontal: 8,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.0),
-                    color: primaryColor,
-                  ),
-                  child: vText(
-                    'Download File',
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w700,
-                    color: Theme.of(context).colorScheme.onPrimary,
+                const SizedBox(width: 4.0),
+                InkWell(
+                  splashColor: primaryColor2,
+                  borderRadius: BorderRadius.circular(5.0),
+                  onTap: widget.state.isLoadingDownload
+                      ? null
+                      : () async {
+                          var status = await Permission.storage.status;
+                          if (!status.isGranted) {
+                            await Permission.storage.request();
+                          }
+                          if (status.isGranted) {
+                            widget.state.download(
+                              index: 0,
+                              urlDownload: Utils.convertImage(
+                                url: data?.trackId?.cover ?? '',
+                              ),
+                            );
+                          }
+                        },
+                  child: Padding(
+                    padding: const EdgeInsets.all(
+                      4.0,
+                    ),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8,
+                        horizontal: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.0),
+                        color: primaryColor,
+                      ),
+                      child: vText(
+                        'Download File',
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w700,
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
           ),
         ],

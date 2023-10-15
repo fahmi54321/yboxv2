@@ -10,6 +10,7 @@ import 'package:yboxv2/chat/providers/chat_page_provider.dart';
 import 'package:yboxv2/chat/widgets/custom_input_fields.dart';
 import 'package:yboxv2/chat/widgets/custom_list_view_tiles.dart';
 import 'package:yboxv2/models/login_res.dart';
+import 'package:yboxv2/models/user_member_res.dart';
 import 'package:yboxv2/pages/widget/data_belum_ada.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/widget/v_text.dart';
@@ -18,10 +19,12 @@ class ArgsChatPage {
   final Chat chat;
   final bool isLeader;
   final LoginRes? loginRes;
+  final UserMemberRes? dataMember;
   ArgsChatPage({
     required this.chat,
     required this.isLeader,
     required this.loginRes,
+    this.dataMember,
   });
 }
 
@@ -191,6 +194,10 @@ class _ChatPageState extends State<ChatPage> {
           _messageFormState.currentState?.save();
           state.sendTextMessage(
             senderId: widget.args.loginRes?.uuidMsg ?? '',
+            nameSender: widget.args.loginRes?.namaLengkap ?? '',
+            tokenRecervier: widget.args.isLeader
+                ? widget.args.dataMember?.tokenMsgNotif ?? ''
+                : widget.args.loginRes?.tokenMssgNotifLeader ?? '',
           );
           _messageFormState.currentState?.reset();
         }

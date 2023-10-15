@@ -15,6 +15,7 @@ class UserMemberRes with _$UserMemberRes {
     @JsonKey(name: 'uuid_msg', defaultValue: '') required String uuidMsg,
     @JsonKey(name: 'user', defaultValue: '') required String name,
     @JsonKey(name: 'image', defaultValue: '') required String image,
+    @JsonKey(name: 'token_msg_notif') String? tokenMsgNotif,
   }) = _UserMemberRes;
 
   factory UserMemberRes.fromJson(Map<String, dynamic> json) =>

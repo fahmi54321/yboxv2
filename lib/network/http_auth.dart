@@ -119,6 +119,36 @@ class HTTPAuthService {
     }
   }
 
+  Future<Either<String, int>> updateTokenFirebase({
+    required String tokenFirebase,
+  }) async {
+    Map<String, dynamic> params = {
+      '_method': 'PUT',
+      'token_mssg_notif': tokenFirebase,
+    };
+
+    var dataToken = await SharedPreferencesUtils.getLoginPreference();
+    LoginRes loginRes = LoginRes.fromJson(jsonDecode(dataToken ?? ''));
+
+    final response = await WebService().client().post(
+          ApiUrl.tokenFirebase,
+          data: params,
+          options: Options(headers: {
+            'Authorization': 'Bearer ${loginRes.accessToken}',
+          }),
+        );
+    debugPrint('url updateTokenFirebase : ${ApiUrl.tokenFirebase}');
+    debugPrint('params updateTokenFirebase : $params');
+
+    if (response.statusCode == 200) {
+      return Right(
+        response.statusCode ?? 0,
+      );
+    } else {
+      return const Left('Terjadi kesalahan');
+    }
+  }
+
   Future<Either<String, int>> ubahPassword({
     required Map<String, dynamic> data,
   }) async {

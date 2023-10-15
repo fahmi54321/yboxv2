@@ -19,10 +19,13 @@ class UtilsLoading {
     return EasyLoading.show(status: message ?? 'loading...');
   }
 
-  static showSuccess({String? message}) {
-    return EasyLoading.showSuccess(
-      message ?? 'Sukses',
-    );
+  static showSuccess({String? message, int? duration}) {
+    return EasyLoading.showSuccess(message ?? 'Sukses',
+        duration: duration == null
+            ? null
+            : Duration(
+                seconds: duration,
+              ));
   }
 
   static showError({String? message}) {

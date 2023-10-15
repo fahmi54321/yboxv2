@@ -51,6 +51,7 @@ class ChatUserPage extends StatelessWidget {
                                     arguments: ArgsChatPage(
                                       isLeader: true,
                                       loginRes: state.loginRes,
+                                      dataMember: item,
                                       chat: Chat(
                                         uid: item.uuidMsg,
                                         currentUserUid:

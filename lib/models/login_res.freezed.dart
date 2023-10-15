@@ -30,8 +30,12 @@ mixin _$LoginRes {
   int get level => throw _privateConstructorUsedError;
   @JsonKey(name: 'uuid_msg')
   String? get uuidMsg => throw _privateConstructorUsedError;
+  @JsonKey(name: 'token_mssg_notif')
+  String? get tokenMssgNotif => throw _privateConstructorUsedError;
   @JsonKey(name: 'uuid_msg_leader')
   String? get uuidMsgLeader => throw _privateConstructorUsedError;
+  @JsonKey(name: 'token_mssg_notif_leader')
+  String? get tokenMssgNotifLeader => throw _privateConstructorUsedError;
   @JsonKey(name: 'leader', defaultValue: '')
   String get leader => throw _privateConstructorUsedError;
   @JsonKey(name: 'name', defaultValue: '')
@@ -54,7 +58,9 @@ abstract class $LoginResCopyWith<$Res> {
       @JsonKey(name: 'id', defaultValue: '') String id,
       @JsonKey(name: 'level', defaultValue: 0) int level,
       @JsonKey(name: 'uuid_msg') String? uuidMsg,
+      @JsonKey(name: 'token_mssg_notif') String? tokenMssgNotif,
       @JsonKey(name: 'uuid_msg_leader') String? uuidMsgLeader,
+      @JsonKey(name: 'token_mssg_notif_leader') String? tokenMssgNotifLeader,
       @JsonKey(name: 'leader', defaultValue: '') String leader,
       @JsonKey(name: 'name', defaultValue: '') String namaLengkap});
 }
@@ -77,7 +83,9 @@ class _$LoginResCopyWithImpl<$Res, $Val extends LoginRes>
     Object? id = null,
     Object? level = null,
     Object? uuidMsg = freezed,
+    Object? tokenMssgNotif = freezed,
     Object? uuidMsgLeader = freezed,
+    Object? tokenMssgNotifLeader = freezed,
     Object? leader = null,
     Object? namaLengkap = null,
   }) {
@@ -102,9 +110,17 @@ class _$LoginResCopyWithImpl<$Res, $Val extends LoginRes>
           ? _value.uuidMsg
           : uuidMsg // ignore: cast_nullable_to_non_nullable
               as String?,
+      tokenMssgNotif: freezed == tokenMssgNotif
+          ? _value.tokenMssgNotif
+          : tokenMssgNotif // ignore: cast_nullable_to_non_nullable
+              as String?,
       uuidMsgLeader: freezed == uuidMsgLeader
           ? _value.uuidMsgLeader
           : uuidMsgLeader // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tokenMssgNotifLeader: freezed == tokenMssgNotifLeader
+          ? _value.tokenMssgNotifLeader
+          : tokenMssgNotifLeader // ignore: cast_nullable_to_non_nullable
               as String?,
       leader: null == leader
           ? _value.leader
@@ -131,7 +147,9 @@ abstract class _$$_LoginResCopyWith<$Res> implements $LoginResCopyWith<$Res> {
       @JsonKey(name: 'id', defaultValue: '') String id,
       @JsonKey(name: 'level', defaultValue: 0) int level,
       @JsonKey(name: 'uuid_msg') String? uuidMsg,
+      @JsonKey(name: 'token_mssg_notif') String? tokenMssgNotif,
       @JsonKey(name: 'uuid_msg_leader') String? uuidMsgLeader,
+      @JsonKey(name: 'token_mssg_notif_leader') String? tokenMssgNotifLeader,
       @JsonKey(name: 'leader', defaultValue: '') String leader,
       @JsonKey(name: 'name', defaultValue: '') String namaLengkap});
 }
@@ -152,7 +170,9 @@ class __$$_LoginResCopyWithImpl<$Res>
     Object? id = null,
     Object? level = null,
     Object? uuidMsg = freezed,
+    Object? tokenMssgNotif = freezed,
     Object? uuidMsgLeader = freezed,
+    Object? tokenMssgNotifLeader = freezed,
     Object? leader = null,
     Object? namaLengkap = null,
   }) {
@@ -177,9 +197,17 @@ class __$$_LoginResCopyWithImpl<$Res>
           ? _value.uuidMsg
           : uuidMsg // ignore: cast_nullable_to_non_nullable
               as String?,
+      tokenMssgNotif: freezed == tokenMssgNotif
+          ? _value.tokenMssgNotif
+          : tokenMssgNotif // ignore: cast_nullable_to_non_nullable
+              as String?,
       uuidMsgLeader: freezed == uuidMsgLeader
           ? _value.uuidMsgLeader
           : uuidMsgLeader // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tokenMssgNotifLeader: freezed == tokenMssgNotifLeader
+          ? _value.tokenMssgNotifLeader
+          : tokenMssgNotifLeader // ignore: cast_nullable_to_non_nullable
               as String?,
       leader: null == leader
           ? _value.leader
@@ -205,7 +233,9 @@ class _$_LoginRes extends _LoginRes {
       @JsonKey(name: 'id', defaultValue: '') required this.id,
       @JsonKey(name: 'level', defaultValue: 0) required this.level,
       @JsonKey(name: 'uuid_msg') this.uuidMsg,
+      @JsonKey(name: 'token_mssg_notif') this.tokenMssgNotif,
       @JsonKey(name: 'uuid_msg_leader') this.uuidMsgLeader,
+      @JsonKey(name: 'token_mssg_notif_leader') this.tokenMssgNotifLeader,
       @JsonKey(name: 'leader', defaultValue: '') required this.leader,
       @JsonKey(name: 'name', defaultValue: '') required this.namaLengkap})
       : super._();
@@ -229,8 +259,14 @@ class _$_LoginRes extends _LoginRes {
   @JsonKey(name: 'uuid_msg')
   final String? uuidMsg;
   @override
+  @JsonKey(name: 'token_mssg_notif')
+  final String? tokenMssgNotif;
+  @override
   @JsonKey(name: 'uuid_msg_leader')
   final String? uuidMsgLeader;
+  @override
+  @JsonKey(name: 'token_mssg_notif_leader')
+  final String? tokenMssgNotifLeader;
   @override
   @JsonKey(name: 'leader', defaultValue: '')
   final String leader;
@@ -240,7 +276,7 @@ class _$_LoginRes extends _LoginRes {
 
   @override
   String toString() {
-    return 'LoginRes(message: $message, accessToken: $accessToken, id: $id, level: $level, uuidMsg: $uuidMsg, uuidMsgLeader: $uuidMsgLeader, leader: $leader, namaLengkap: $namaLengkap)';
+    return 'LoginRes(message: $message, accessToken: $accessToken, id: $id, level: $level, uuidMsg: $uuidMsg, tokenMssgNotif: $tokenMssgNotif, uuidMsgLeader: $uuidMsgLeader, tokenMssgNotifLeader: $tokenMssgNotifLeader, leader: $leader, namaLengkap: $namaLengkap)';
   }
 
   @override
@@ -254,8 +290,12 @@ class _$_LoginRes extends _LoginRes {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.level, level) || other.level == level) &&
             (identical(other.uuidMsg, uuidMsg) || other.uuidMsg == uuidMsg) &&
+            (identical(other.tokenMssgNotif, tokenMssgNotif) ||
+                other.tokenMssgNotif == tokenMssgNotif) &&
             (identical(other.uuidMsgLeader, uuidMsgLeader) ||
                 other.uuidMsgLeader == uuidMsgLeader) &&
+            (identical(other.tokenMssgNotifLeader, tokenMssgNotifLeader) ||
+                other.tokenMssgNotifLeader == tokenMssgNotifLeader) &&
             (identical(other.leader, leader) || other.leader == leader) &&
             (identical(other.namaLengkap, namaLengkap) ||
                 other.namaLengkap == namaLengkap));
@@ -263,8 +303,18 @@ class _$_LoginRes extends _LoginRes {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, message, accessToken, id, level,
-      uuidMsg, uuidMsgLeader, leader, namaLengkap);
+  int get hashCode => Object.hash(
+      runtimeType,
+      message,
+      accessToken,
+      id,
+      level,
+      uuidMsg,
+      tokenMssgNotif,
+      uuidMsgLeader,
+      tokenMssgNotifLeader,
+      leader,
+      namaLengkap);
 
   @JsonKey(ignore: true)
   @override
@@ -289,7 +339,10 @@ abstract class _LoginRes extends LoginRes {
       @JsonKey(name: 'id', defaultValue: '') required final String id,
       @JsonKey(name: 'level', defaultValue: 0) required final int level,
       @JsonKey(name: 'uuid_msg') final String? uuidMsg,
+      @JsonKey(name: 'token_mssg_notif') final String? tokenMssgNotif,
       @JsonKey(name: 'uuid_msg_leader') final String? uuidMsgLeader,
+      @JsonKey(name: 'token_mssg_notif_leader')
+      final String? tokenMssgNotifLeader,
       @JsonKey(name: 'leader', defaultValue: '') required final String leader,
       @JsonKey(name: 'name', defaultValue: '')
       required final String namaLengkap}) = _$_LoginRes;
@@ -313,8 +366,14 @@ abstract class _LoginRes extends LoginRes {
   @JsonKey(name: 'uuid_msg')
   String? get uuidMsg;
   @override
+  @JsonKey(name: 'token_mssg_notif')
+  String? get tokenMssgNotif;
+  @override
   @JsonKey(name: 'uuid_msg_leader')
   String? get uuidMsgLeader;
+  @override
+  @JsonKey(name: 'token_mssg_notif_leader')
+  String? get tokenMssgNotifLeader;
   @override
   @JsonKey(name: 'leader', defaultValue: '')
   String get leader;

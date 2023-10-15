@@ -9,6 +9,7 @@ import 'package:yboxv2/chat/models/chat_messages.dart';
 import 'package:yboxv2/chat/providers/auth_provider.dart';
 import 'package:yboxv2/chat/services/database_services.dart';
 import 'package:yboxv2/chat/services/navigation_services.dart';
+import 'package:yboxv2/network/http_notif.dart';
 
 class ChatPageProvider extends ChangeNotifier {
   //todo 5
@@ -103,7 +104,9 @@ class ChatPageProvider extends ChangeNotifier {
   //todo 9
   void sendTextMessage({
     required String senderId,
-  }) {
+    required String tokenRecervier,
+    required String nameSender,
+  }) async {
     if (message.isNotEmpty) {
       ChatMessage messageToSend = ChatMessage(
         senderID: senderId,
@@ -111,7 +114,45 @@ class ChatPageProvider extends ChangeNotifier {
         content: message,
         sentTime: DateTime.now(),
       );
-      _db.addMessageToChat(chatDestinationUuid, messageToSend);
+      await _db.addMessageToChat(chatDestinationUuid, messageToSend);
+      await sendNotif(
+        tokenRecervier: tokenRecervier,
+        nameSender: nameSender,
+        messageSender: messageToSend.content,
+      );
+    }
+  }
+
+  Future<void> sendNotif({
+    required String tokenRecervier,
+    required String nameSender,
+    required String messageSender,
+  }) async {
+    try {
+      Map<String, dynamic> paramsData = {
+        "to": tokenRecervier,
+        "notification": {
+          "title": nameSender,
+          "body": messageSender,
+          "mutable_content": true,
+          "sound": "Tri-tone"
+        }
+      };
+
+      final resStep1 = await HTTPNotifService().sendNotif(
+        paramsData: paramsData,
+      );
+
+      resStep1.fold(
+        (e) async {
+          debugPrint('error send notif $e');
+        },
+        (cat) async {
+          debugPrint('sukses send notif $cat');
+        },
+      );
+    } catch (e) {
+      debugPrint('error send notif $e');
     }
   }
 }
