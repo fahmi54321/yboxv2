@@ -37,6 +37,7 @@ _$_TrackIdRes _$$_TrackIdResFromJson(Map json) => $checkedCreate(
           internalTrackId:
               $checkedConvert('internal_track_id', (v) => v as int? ?? 0),
           lyric: $checkedConvert('lyric', (v) => v as String? ?? ''),
+          linkYt: $checkedConvert('link_yt', (v) => v as String? ?? ''),
           contributorId:
               $checkedConvert('contributor_id', (v) => v as int? ?? 0),
           contributor: $checkedConvert(
@@ -77,6 +78,7 @@ _$_TrackIdRes _$$_TrackIdResFromJson(Map json) => $checkedCreate(
         'pCopyright': 'p_copyright',
         'previewsStartTime': 'previews_start_time',
         'internalTrackId': 'internal_track_id',
+        'linkYt': 'link_yt',
         'contributorId': 'contributor_id'
       },
     );
@@ -102,6 +104,7 @@ Map<String, dynamic> _$$_TrackIdResToJson(_$_TrackIdRes instance) {
     'previews_start_time': instance.previewsStartTime,
     'internal_track_id': instance.internalTrackId,
     'lyric': instance.lyric,
+    'link_yt': instance.linkYt,
     'contributor_id': instance.contributorId,
   };
 

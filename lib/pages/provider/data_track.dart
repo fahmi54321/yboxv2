@@ -172,4 +172,9 @@ class DataTrack extends ChangeNotifier {
     _state = _state.copyWith(publishing: publishing);
     notifyListeners();
   }
+
+  void updatePublisherTrack(String publisherTrack) {
+    _state = _state.copyWith(publisherTrack: publisherTrack);
+    notifyListeners();
+  }
 }

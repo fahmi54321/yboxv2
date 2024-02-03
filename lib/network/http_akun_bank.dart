@@ -88,6 +88,32 @@ class HTTPAkunBankService {
     }
   }
 
+  Future<Either<String, List<DataBankRes>>> getAkunMember() async {
+    var dataToken = await SharedPreferencesUtils.getLoginPreference();
+    LoginRes loginRes = LoginRes.fromJson(jsonDecode(dataToken ?? ''));
+
+    final response = await WebService().client().post(
+          ApiUrl.akunBankMember,
+          data: {
+            '_method': 'GET',
+          },
+          options: Options(headers: {
+            'Authorization': 'Bearer ${loginRes.accessToken}',
+          }),
+        );
+    debugPrint('url getAkunMember : ${ApiUrl.akunBankMember}');
+    debugPrint('response getAkunMember : ${response.data}');
+
+    if (response.statusCode == 200) {
+      final result = (response.data as List<dynamic>)
+          .map((e) => DataBankRes.fromJson(e as Map<String, dynamic>))
+          .toList();
+      return Right(result);
+    } else {
+      return const Left('Terjadi kesalahan');
+    }
+  }
+
   Future<Either<String, int>> hapusAkunBank({
     required String id,
   }) async {

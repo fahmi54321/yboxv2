@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:yboxv2/models/track/details_track_res.dart';
 import 'package:yboxv2/pages/forms/form_track_state.dart';
 import 'package:yboxv2/pages/forms/utils_validation_form.dart';
+import 'package:yboxv2/pages/home/fragment/shimer/home_shimer.dart';
 import 'package:yboxv2/pages/provider/data_track.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/widget/v_text.dart';
@@ -60,7 +61,7 @@ class _FormTrackPageState extends State<FormTrackPage> {
               elevation: 0,
             ),
             body: state.isLoadingList
-                ? Container()
+                ? const HomeShimer()
                 : Stepper(
                     type: StepperType.horizontal,
                     steps: state.listSteps(),

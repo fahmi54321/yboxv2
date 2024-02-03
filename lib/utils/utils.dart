@@ -66,6 +66,12 @@ class Utils {
     return urlImage;
   }
 
+  static String convertImage2({required String url}) {
+    String urlImage = appUrl + url;
+
+    return urlImage;
+  }
+
   // static Future<bool> checkAndRequestCameraPermissions() async {
   //   var status = await Permission.camera.status;
   //   if (!status.isGranted) {

@@ -222,8 +222,8 @@ mixin _$DataAudioRes {
   String get titleVersion => throw _privateConstructorUsedError;
   @JsonKey(name: 'released', defaultValue: '')
   String get released => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  int get isCheck => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status', defaultValue: 0)
+  int get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'track_id')
   TrackIdRes? get trackId => throw _privateConstructorUsedError;
 
@@ -245,7 +245,7 @@ abstract class $DataAudioResCopyWith<$Res> {
       @JsonKey(name: 'title', defaultValue: '') String title,
       @JsonKey(name: 'title_version', defaultValue: '') String titleVersion,
       @JsonKey(name: 'released', defaultValue: '') String released,
-      @JsonKey(name: 'is_check', defaultValue: 0) int isCheck,
+      @JsonKey(name: 'status', defaultValue: 0) int status,
       @JsonKey(name: 'track_id') TrackIdRes? trackId});
 
   $TrackIdResCopyWith<$Res>? get trackId;
@@ -269,7 +269,7 @@ class _$DataAudioResCopyWithImpl<$Res, $Val extends DataAudioRes>
     Object? title = null,
     Object? titleVersion = null,
     Object? released = null,
-    Object? isCheck = null,
+    Object? status = null,
     Object? trackId = freezed,
   }) {
     return _then(_value.copyWith(
@@ -293,9 +293,9 @@ class _$DataAudioResCopyWithImpl<$Res, $Val extends DataAudioRes>
           ? _value.released
           : released // ignore: cast_nullable_to_non_nullable
               as String,
-      isCheck: null == isCheck
-          ? _value.isCheck
-          : isCheck // ignore: cast_nullable_to_non_nullable
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as int,
       trackId: freezed == trackId
           ? _value.trackId
@@ -331,7 +331,7 @@ abstract class _$$_DataAudioResCopyWith<$Res>
       @JsonKey(name: 'title', defaultValue: '') String title,
       @JsonKey(name: 'title_version', defaultValue: '') String titleVersion,
       @JsonKey(name: 'released', defaultValue: '') String released,
-      @JsonKey(name: 'is_check', defaultValue: 0) int isCheck,
+      @JsonKey(name: 'status', defaultValue: 0) int status,
       @JsonKey(name: 'track_id') TrackIdRes? trackId});
 
   @override
@@ -354,7 +354,7 @@ class __$$_DataAudioResCopyWithImpl<$Res>
     Object? title = null,
     Object? titleVersion = null,
     Object? released = null,
-    Object? isCheck = null,
+    Object? status = null,
     Object? trackId = freezed,
   }) {
     return _then(_$_DataAudioRes(
@@ -378,9 +378,9 @@ class __$$_DataAudioResCopyWithImpl<$Res>
           ? _value.released
           : released // ignore: cast_nullable_to_non_nullable
               as String,
-      isCheck: null == isCheck
-          ? _value.isCheck
-          : isCheck // ignore: cast_nullable_to_non_nullable
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as int,
       trackId: freezed == trackId
           ? _value.trackId
@@ -402,7 +402,7 @@ class _$_DataAudioRes extends _DataAudioRes {
       @JsonKey(name: 'title_version', defaultValue: '')
       required this.titleVersion,
       @JsonKey(name: 'released', defaultValue: '') required this.released,
-      @JsonKey(name: 'is_check', defaultValue: 0) required this.isCheck,
+      @JsonKey(name: 'status', defaultValue: 0) required this.status,
       @JsonKey(name: 'track_id') this.trackId})
       : super._();
 
@@ -425,15 +425,15 @@ class _$_DataAudioRes extends _DataAudioRes {
   @JsonKey(name: 'released', defaultValue: '')
   final String released;
   @override
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  final int isCheck;
+  @JsonKey(name: 'status', defaultValue: 0)
+  final int status;
   @override
   @JsonKey(name: 'track_id')
   final TrackIdRes? trackId;
 
   @override
   String toString() {
-    return 'DataAudioRes(id: $id, cover: $cover, title: $title, titleVersion: $titleVersion, released: $released, isCheck: $isCheck, trackId: $trackId)';
+    return 'DataAudioRes(id: $id, cover: $cover, title: $title, titleVersion: $titleVersion, released: $released, status: $status, trackId: $trackId)';
   }
 
   @override
@@ -448,14 +448,14 @@ class _$_DataAudioRes extends _DataAudioRes {
                 other.titleVersion == titleVersion) &&
             (identical(other.released, released) ||
                 other.released == released) &&
-            (identical(other.isCheck, isCheck) || other.isCheck == isCheck) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.trackId, trackId) || other.trackId == trackId));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, cover, title, titleVersion, released, isCheck, trackId);
+      runtimeType, id, cover, title, titleVersion, released, status, trackId);
 
   @JsonKey(ignore: true)
   @override
@@ -480,7 +480,7 @@ abstract class _DataAudioRes extends DataAudioRes {
       required final String titleVersion,
       @JsonKey(name: 'released', defaultValue: '')
       required final String released,
-      @JsonKey(name: 'is_check', defaultValue: 0) required final int isCheck,
+      @JsonKey(name: 'status', defaultValue: 0) required final int status,
       @JsonKey(name: 'track_id') final TrackIdRes? trackId}) = _$_DataAudioRes;
   const _DataAudioRes._() : super._();
 
@@ -503,8 +503,8 @@ abstract class _DataAudioRes extends DataAudioRes {
   @JsonKey(name: 'released', defaultValue: '')
   String get released;
   @override
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  int get isCheck;
+  @JsonKey(name: 'status', defaultValue: 0)
+  int get status;
   @override
   @JsonKey(name: 'track_id')
   TrackIdRes? get trackId;

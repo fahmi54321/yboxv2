@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import 'package:yboxv2/models/general/genre_res.dart';
 import 'package:yboxv2/models/general/language_res.dart';
+import 'package:yboxv2/models/general/publisher_res.dart';
 import 'package:yboxv2/pages/forms/form_track_state.dart';
 import 'package:yboxv2/pages/forms/widget/cover_image.dart';
 import 'package:yboxv2/pages/provider/data_track.dart';
@@ -18,9 +19,11 @@ class TrackForm2 extends StatefulWidget {
   GenreRes? genreRes1Tracks;
   GenreRes? genreRes2Tracks;
   LanguageRes? languageResTrack;
+  PublisherRes? publisher;
 
   final List<GenreRes> listGenre;
   final List<LanguageRes> listLanguage;
+  final List<PublisherRes> listPubliser;
   final TrackFormState state;
   TrackForm2({
     super.key,
@@ -28,8 +31,10 @@ class TrackForm2 extends StatefulWidget {
     this.genreRes1Tracks,
     this.genreRes2Tracks,
     this.languageResTrack,
+    this.publisher,
     this.listGenre = const [],
     this.listLanguage = const [],
+    this.listPubliser = const [],
   });
 
   @override
@@ -835,6 +840,13 @@ class _TrackForm2State extends State<TrackForm2> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        vText(
+          "Title",
+          fontSize: 14,
+          fontWeight: FontWeight.w700,
+          color: black7,
+        ),
+        const SizedBox(height: 15),
         Row(
           children: [
             Expanded(
@@ -893,6 +905,39 @@ class _TrackForm2State extends State<TrackForm2> {
               ),
             ),
           ],
+        ),
+        const SizedBox(height: 15.0),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.42,
+          child: VDropDownPublisher(
+            radius: 8.0,
+            fontSize: 14.0,
+            colorText: grey7,
+            borderColor: grey10,
+            value: widget.publisher,
+            onChanged: (PublisherRes? data) {
+              setState(() {
+                widget.publisher = data;
+              });
+
+              if (data != null) {
+                context
+                    .read<DataTrack>()
+                    .updatePublisherTrack(data.id.toString());
+              }
+            },
+            items: widget.listPubliser
+                .map<DropdownMenuItem<PublisherRes>>((PublisherRes value) {
+              return DropdownMenuItem<PublisherRes>(
+                value: value,
+                child: Text(value.name),
+              );
+            }).toList(),
+            icon: const Icon(
+              Icons.arrow_drop_down,
+              color: grey10,
+            ),
+          ),
         ),
       ],
     );

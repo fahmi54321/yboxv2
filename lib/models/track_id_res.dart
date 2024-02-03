@@ -43,6 +43,7 @@ class TrackIdRes with _$TrackIdRes {
     @JsonKey(name: 'internal_track_id', defaultValue: 0)
     required int internalTrackId,
     @JsonKey(name: 'lyric', defaultValue: '') required String lyric,
+    @JsonKey(name: 'link_yt', defaultValue: '') required String linkYt,
     @JsonKey(name: 'contributor_id', defaultValue: 0)
     required int contributorId,
     @JsonKey(name: 'contributor') ConstributorRes? contributor,

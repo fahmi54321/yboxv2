@@ -38,6 +38,7 @@ class DataTrackState extends Equatable {
   final String roleTrack;
   final String share;
   final String publishing;
+  final String publisherTrack;
   const DataTrackState({
     required this.coverImage,
     required this.languageId,
@@ -73,6 +74,7 @@ class DataTrackState extends Equatable {
     required this.roleTrack,
     required this.share,
     required this.publishing,
+    required this.publisherTrack,
   });
 
   factory DataTrackState.initial() {
@@ -111,6 +113,7 @@ class DataTrackState extends Equatable {
       roleTrack: '',
       share: '',
       publishing: '',
+      publisherTrack: '',
     );
   }
 
@@ -149,6 +152,7 @@ class DataTrackState extends Equatable {
     String? roleTrack,
     String? share,
     String? publishing,
+    String? publisherTrack,
   }) {
     return DataTrackState(
       coverImage: coverImage ?? this.coverImage,
@@ -185,6 +189,7 @@ class DataTrackState extends Equatable {
       roleTrack: roleTrack ?? this.roleTrack,
       share: share ?? this.share,
       publishing: publishing ?? this.publishing,
+      publisherTrack: publisherTrack ?? this.publisherTrack,
     );
   }
 
@@ -228,6 +233,7 @@ class DataTrackState extends Equatable {
       roleTrack,
       share,
       publishing,
+      publisherTrack,
     ];
   }
 }

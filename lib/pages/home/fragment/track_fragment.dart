@@ -84,62 +84,62 @@ class TrackFragmentState extends State<TrackFragment> {
                             fontWeight: FontWeight.w600,
                             color: primaryColor,
                           ),
-                          Visibility(
-                            visible: loginRes?.level == 3,
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  FormTrackPage.route,
-                                  arguments: ArgsFormTrackPage(),
-                                ).then((value) {
-                                  debugPrint('is refresh $value');
-                                  if (value is bool) {
-                                    if (value) {
-                                      WidgetsBinding.instance
-                                          .addPostFrameCallback((timeStamp) {
-                                        state.pagingController.refresh();
-                                      });
-                                    }
-                                  }
-                                });
-                              },
-                              splashColor: primaryColor.withOpacity(0.50),
-                              borderRadius: BorderRadius.circular(10.0),
-                              child: Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 10.0,
-                                    horizontal: 13.0,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: primaryColor,
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.add,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onPrimary,
-                                      ),
-                                      const SizedBox(width: 4.0),
-                                      vText(
-                                        'Add',
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.w700,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onPrimary,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
+                          // Visibility(
+                          //   visible: loginRes?.level == 3,
+                          //   child: InkWell(
+                          //     onTap: () {
+                          //       Navigator.pushNamed(
+                          //         context,
+                          //         FormTrackPage.route,
+                          //         arguments: ArgsFormTrackPage(),
+                          //       ).then((value) {
+                          //         debugPrint('is refresh $value');
+                          //         if (value is bool) {
+                          //           if (value) {
+                          //             WidgetsBinding.instance
+                          //                 .addPostFrameCallback((timeStamp) {
+                          //               state.pagingController.refresh();
+                          //             });
+                          //           }
+                          //         }
+                          //       });
+                          //     },
+                          //     splashColor: primaryColor.withOpacity(0.50),
+                          //     borderRadius: BorderRadius.circular(10.0),
+                          //     child: Padding(
+                          //       padding: const EdgeInsets.all(4.0),
+                          //       child: Container(
+                          //         padding: const EdgeInsets.symmetric(
+                          //           vertical: 10.0,
+                          //           horizontal: 13.0,
+                          //         ),
+                          //         decoration: BoxDecoration(
+                          //           color: primaryColor,
+                          //           borderRadius: BorderRadius.circular(10.0),
+                          //         ),
+                          //         child: Row(
+                          //           children: [
+                          //             Icon(
+                          //               Icons.add,
+                          //               color: Theme.of(context)
+                          //                   .colorScheme
+                          //                   .onPrimary,
+                          //             ),
+                          //             const SizedBox(width: 4.0),
+                          //             vText(
+                          //               'Add',
+                          //               fontSize: 14.0,
+                          //               fontWeight: FontWeight.w700,
+                          //               color: Theme.of(context)
+                          //                   .colorScheme
+                          //                   .onPrimary,
+                          //             )
+                          //           ],
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                       const SizedBox(height: 13.0),

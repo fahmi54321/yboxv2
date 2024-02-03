@@ -52,10 +52,12 @@ mixin _$DetailsAlbumRes {
   int get upc => throw _privateConstructorUsedError;
   @JsonKey(name: 'track_id')
   TrackIdRes? get trackId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'publisher')
+  PublisherRes? get publisher => throw _privateConstructorUsedError;
   @JsonKey(name: 'user')
   UserRes? get user => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  int get isCheck => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status', defaultValue: 0)
+  int get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -86,14 +88,16 @@ abstract class $DetailsAlbumResCopyWith<$Res> {
       @JsonKey(name: 'released_id', defaultValue: 0) int releasedId,
       @JsonKey(name: 'upc', defaultValue: 0) int upc,
       @JsonKey(name: 'track_id') TrackIdRes? trackId,
+      @JsonKey(name: 'publisher') PublisherRes? publisher,
       @JsonKey(name: 'user') UserRes? user,
-      @JsonKey(name: 'is_check', defaultValue: 0) int isCheck});
+      @JsonKey(name: 'status', defaultValue: 0) int status});
 
   $LanguageResCopyWith<$Res>? get langId;
   $GenreResCopyWith<$Res>? get genre1;
   $GenreResCopyWith<$Res>? get genre2;
   $LabelNameResCopyWith<$Res>? get labelName;
   $TrackIdResCopyWith<$Res>? get trackId;
+  $PublisherResCopyWith<$Res>? get publisher;
   $UserResCopyWith<$Res>? get user;
 }
 
@@ -126,8 +130,9 @@ class _$DetailsAlbumResCopyWithImpl<$Res, $Val extends DetailsAlbumRes>
     Object? releasedId = null,
     Object? upc = null,
     Object? trackId = freezed,
+    Object? publisher = freezed,
     Object? user = freezed,
-    Object? isCheck = null,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -194,13 +199,17 @@ class _$DetailsAlbumResCopyWithImpl<$Res, $Val extends DetailsAlbumRes>
           ? _value.trackId
           : trackId // ignore: cast_nullable_to_non_nullable
               as TrackIdRes?,
+      publisher: freezed == publisher
+          ? _value.publisher
+          : publisher // ignore: cast_nullable_to_non_nullable
+              as PublisherRes?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserRes?,
-      isCheck: null == isCheck
-          ? _value.isCheck
-          : isCheck // ignore: cast_nullable_to_non_nullable
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -267,6 +276,18 @@ class _$DetailsAlbumResCopyWithImpl<$Res, $Val extends DetailsAlbumRes>
 
   @override
   @pragma('vm:prefer-inline')
+  $PublisherResCopyWith<$Res>? get publisher {
+    if (_value.publisher == null) {
+      return null;
+    }
+
+    return $PublisherResCopyWith<$Res>(_value.publisher!, (value) {
+      return _then(_value.copyWith(publisher: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $UserResCopyWith<$Res>? get user {
     if (_value.user == null) {
       return null;
@@ -303,8 +324,9 @@ abstract class _$$_DetailsAlbumResCopyWith<$Res>
       @JsonKey(name: 'released_id', defaultValue: 0) int releasedId,
       @JsonKey(name: 'upc', defaultValue: 0) int upc,
       @JsonKey(name: 'track_id') TrackIdRes? trackId,
+      @JsonKey(name: 'publisher') PublisherRes? publisher,
       @JsonKey(name: 'user') UserRes? user,
-      @JsonKey(name: 'is_check', defaultValue: 0) int isCheck});
+      @JsonKey(name: 'status', defaultValue: 0) int status});
 
   @override
   $LanguageResCopyWith<$Res>? get langId;
@@ -316,6 +338,8 @@ abstract class _$$_DetailsAlbumResCopyWith<$Res>
   $LabelNameResCopyWith<$Res>? get labelName;
   @override
   $TrackIdResCopyWith<$Res>? get trackId;
+  @override
+  $PublisherResCopyWith<$Res>? get publisher;
   @override
   $UserResCopyWith<$Res>? get user;
 }
@@ -347,8 +371,9 @@ class __$$_DetailsAlbumResCopyWithImpl<$Res>
     Object? releasedId = null,
     Object? upc = null,
     Object? trackId = freezed,
+    Object? publisher = freezed,
     Object? user = freezed,
-    Object? isCheck = null,
+    Object? status = null,
   }) {
     return _then(_$_DetailsAlbumRes(
       id: null == id
@@ -415,13 +440,17 @@ class __$$_DetailsAlbumResCopyWithImpl<$Res>
           ? _value.trackId
           : trackId // ignore: cast_nullable_to_non_nullable
               as TrackIdRes?,
+      publisher: freezed == publisher
+          ? _value.publisher
+          : publisher // ignore: cast_nullable_to_non_nullable
+              as PublisherRes?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserRes?,
-      isCheck: null == isCheck
-          ? _value.isCheck
-          : isCheck // ignore: cast_nullable_to_non_nullable
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -452,8 +481,9 @@ class _$_DetailsAlbumRes extends _DetailsAlbumRes {
       @JsonKey(name: 'released_id', defaultValue: 0) required this.releasedId,
       @JsonKey(name: 'upc', defaultValue: 0) required this.upc,
       @JsonKey(name: 'track_id') this.trackId,
+      @JsonKey(name: 'publisher') this.publisher,
       @JsonKey(name: 'user') this.user,
-      @JsonKey(name: 'is_check', defaultValue: 0) required this.isCheck})
+      @JsonKey(name: 'status', defaultValue: 0) required this.status})
       : super._();
 
   factory _$_DetailsAlbumRes.fromJson(Map<String, dynamic> json) =>
@@ -508,15 +538,18 @@ class _$_DetailsAlbumRes extends _DetailsAlbumRes {
   @JsonKey(name: 'track_id')
   final TrackIdRes? trackId;
   @override
+  @JsonKey(name: 'publisher')
+  final PublisherRes? publisher;
+  @override
   @JsonKey(name: 'user')
   final UserRes? user;
   @override
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  final int isCheck;
+  @JsonKey(name: 'status', defaultValue: 0)
+  final int status;
 
   @override
   String toString() {
-    return 'DetailsAlbumRes(id: $id, cover: $cover, langId: $langId, releaseTitle: $releaseTitle, titleVersion: $titleVersion, spotify: $spotify, itunes: $itunes, genre1: $genre1, genre2: $genre2, pCopyright: $pCopyright, cCopyright: $cCopyright, releasedDate: $releasedDate, labelName: $labelName, releasedId: $releasedId, upc: $upc, trackId: $trackId, user: $user, isCheck: $isCheck)';
+    return 'DetailsAlbumRes(id: $id, cover: $cover, langId: $langId, releaseTitle: $releaseTitle, titleVersion: $titleVersion, spotify: $spotify, itunes: $itunes, genre1: $genre1, genre2: $genre2, pCopyright: $pCopyright, cCopyright: $cCopyright, releasedDate: $releasedDate, labelName: $labelName, releasedId: $releasedId, upc: $upc, trackId: $trackId, publisher: $publisher, user: $user, status: $status)';
   }
 
   @override
@@ -547,32 +580,36 @@ class _$_DetailsAlbumRes extends _DetailsAlbumRes {
                 other.releasedId == releasedId) &&
             (identical(other.upc, upc) || other.upc == upc) &&
             (identical(other.trackId, trackId) || other.trackId == trackId) &&
+            (identical(other.publisher, publisher) ||
+                other.publisher == publisher) &&
             (identical(other.user, user) || other.user == user) &&
-            (identical(other.isCheck, isCheck) || other.isCheck == isCheck));
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      cover,
-      langId,
-      releaseTitle,
-      titleVersion,
-      spotify,
-      itunes,
-      genre1,
-      genre2,
-      pCopyright,
-      cCopyright,
-      releasedDate,
-      labelName,
-      releasedId,
-      upc,
-      trackId,
-      user,
-      isCheck);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        cover,
+        langId,
+        releaseTitle,
+        titleVersion,
+        spotify,
+        itunes,
+        genre1,
+        genre2,
+        pCopyright,
+        cCopyright,
+        releasedDate,
+        labelName,
+        releasedId,
+        upc,
+        trackId,
+        publisher,
+        user,
+        status
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -612,9 +649,10 @@ abstract class _DetailsAlbumRes extends DetailsAlbumRes {
       required final int releasedId,
       @JsonKey(name: 'upc', defaultValue: 0) required final int upc,
       @JsonKey(name: 'track_id') final TrackIdRes? trackId,
+      @JsonKey(name: 'publisher') final PublisherRes? publisher,
       @JsonKey(name: 'user') final UserRes? user,
-      @JsonKey(name: 'is_check', defaultValue: 0)
-      required final int isCheck}) = _$_DetailsAlbumRes;
+      @JsonKey(name: 'status', defaultValue: 0)
+      required final int status}) = _$_DetailsAlbumRes;
   const _DetailsAlbumRes._() : super._();
 
   factory _DetailsAlbumRes.fromJson(Map<String, dynamic> json) =
@@ -669,11 +707,14 @@ abstract class _DetailsAlbumRes extends DetailsAlbumRes {
   @JsonKey(name: 'track_id')
   TrackIdRes? get trackId;
   @override
+  @JsonKey(name: 'publisher')
+  PublisherRes? get publisher;
+  @override
   @JsonKey(name: 'user')
   UserRes? get user;
   @override
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  int get isCheck;
+  @JsonKey(name: 'status', defaultValue: 0)
+  int get status;
   @override
   @JsonKey(ignore: true)
   _$$_DetailsAlbumResCopyWith<_$_DetailsAlbumRes> get copyWith =>

@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:yboxv2/anim/animation_akun.dart';
+import 'package:yboxv2/models/login_res.dart';
 import 'package:yboxv2/pages/home/fragment/akun_bank_fragment.dart';
 import 'package:yboxv2/pages/home/fragment/akun_fragment_state.dart';
 import 'package:yboxv2/pages/home/fragment/audio_fragment.dart';
@@ -9,6 +12,7 @@ import 'package:yboxv2/pages/home/fragment/transaction_fragment.dart';
 import 'package:yboxv2/pages/home/widget/item_informasi_lain.dart';
 import 'package:yboxv2/pages/widget/ubah_password_page.dart';
 import 'package:yboxv2/resource/CPColors.dart';
+import 'package:yboxv2/utils/shared_pref.dart';
 import 'package:yboxv2/widget/v_dialog.dart';
 import 'package:yboxv2/widget/v_text.dart';
 
@@ -22,10 +26,28 @@ class AkunFragment extends StatefulWidget {
 class _AkunFragmentState extends State<AkunFragment>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  late LoginRes loginRes;
+
+  bool isLoading = false;
 
   @override
   void initState() {
     super.initState();
+
+    init();
+  }
+
+  void init() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    var dataToken = await SharedPreferencesUtils.getLoginPreference();
+    loginRes = LoginRes.fromJson(jsonDecode(dataToken ?? ''));
+
+    setState(() {
+      isLoading = false;
+    });
 
     _controller = AnimationController(
         vsync: this,
@@ -50,10 +72,13 @@ class _AkunFragmentState extends State<AkunFragment>
       ),
       child:
           Consumer(builder: (BuildContext context, AkunFragmentState state, _) {
-        return AkunWidget(
-          controller: _controller,
-          state: state,
-        );
+        return isLoading
+            ? Container()
+            : AkunWidget(
+                controller: _controller,
+                state: state,
+                loginRes: loginRes,
+              );
       }),
     );
   }
@@ -63,10 +88,12 @@ class AkunWidget extends StatelessWidget {
   final AnimationController controller;
   final AnimationAkun animation;
   final AkunFragmentState state;
+  final LoginRes loginRes;
   AkunWidget({
     super.key,
     required this.controller,
     required this.state,
+    required this.loginRes,
   }) : animation = AnimationAkun(controller: controller);
 
   @override
@@ -122,16 +149,18 @@ class AkunWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             vText(
-                              'Vita',
+                              loginRes.namaLengkap.toUpperCase(),
                               fontSize: 18.0,
                               fontWeight: FontWeight.w400,
                               color: black6,
+                              maxLines: 1,
                             ),
                             vText(
-                              'Song Writer',
+                              loginRes.level == 3 ? 'Anggota' : 'Leader',
                               fontSize: 12.0,
                               fontWeight: FontWeight.w400,
                               color: primaryColor,
+                              maxLines: 1,
                             ),
                           ],
                         ),

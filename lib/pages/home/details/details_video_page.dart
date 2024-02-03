@@ -9,14 +9,14 @@ import 'package:yboxv2/models/video/details_video_res.dart';
 import 'package:yboxv2/pages/forms/form_album_audio_video_page.dart';
 import 'package:yboxv2/pages/home/details/details_video_state.dart';
 import 'package:yboxv2/pages/home/details/utils/utils_details.dart';
+import 'package:yboxv2/pages/home/details/widget/platform_approval_video.dart';
 import 'package:yboxv2/pages/home/details/widget/user_details.dart';
 import 'package:yboxv2/pages/home/fragment/shimer/details_shimer.dart';
 import 'package:yboxv2/pages/home/utils/utils_style.dart';
 import 'package:yboxv2/pages/home/widget/item_details.dart';
-import 'package:yboxv2/pages/widget/dialog_action.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/utils/utils.dart';
-import 'package:yboxv2/widget/v_dialog.dart';
+import 'package:yboxv2/widget/v_pop_up.dart';
 import 'package:yboxv2/widget/v_text.dart';
 
 class ArgsDetailsVideo {
@@ -339,18 +339,19 @@ class _DetailsVideoState extends State<DetailsVideo> {
                             Opacity(
                               opacity: widget.animation.iconUserOpacity.value,
                               child: Visibility(
-                                visible: widget.state.loginRes?.level == 2 &&
-                                    widget.state.dataVideo?.isCheck == 0,
+                                visible: widget.state.loginRes?.level == 2,
                                 child: Container(
                                   margin: const EdgeInsets.symmetric(
-                                    vertical: 8.0,
+                                    vertical: 16.0,
                                   ),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       vText(
-                                        'Terima',
+                                        widget.state.dataVideo?.status == 0
+                                            ? 'Kirim Data'
+                                            : 'Lihat Data',
                                         color: black2,
                                         fontSize: 16.0,
                                         fontWeight: FontWeight.w600,
@@ -358,89 +359,34 @@ class _DetailsVideoState extends State<DetailsVideo> {
                                       ),
                                       const SizedBox(width: 7.0),
                                       InkWell(
-                                        onTap: widget.state.isLoadingApproved
-                                            ? null
-                                            : () {
-                                                showDialog1(
-                                                  context: context,
-                                                  widget: const DialogAction(
-                                                    action: 'terima',
-                                                    isHapus: true,
-                                                  ),
-                                                ).then((value) {
-                                                  if (value is bool) {
-                                                    if (value) {
-                                                      // terima
-                                                      widget.state
-                                                          .approveVideo();
-                                                    }
-                                                  }
-                                                });
-                                              },
+                                        onTap: () {
+                                          popUpCustom(
+                                            context: context,
+                                            widget: PlatformApprovalVideo(
+                                              idDetails: widget.state.id,
+                                              statusFromDetails: widget.state
+                                                      .dataVideo?.status ??
+                                                  0,
+                                            ),
+                                          ).then((value) {
+                                            if (value is bool) {
+                                              if (value) {
+                                                widget.state.getDetailsVideo();
+                                              }
+                                            }
+                                          });
+                                        },
                                         child: Container(
                                           padding: const EdgeInsets.all(6.0),
                                           decoration: const BoxDecoration(
                                             shape: BoxShape.circle,
                                             color: primaryColor,
                                           ),
-                                          child: SvgPicture.asset(
-                                              'assets/icon/ic_done.svg'),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Opacity(
-                              opacity: widget.animation.iconUserOpacity.value,
-                              child: Visibility(
-                                visible: widget.state.loginRes?.level == 2 &&
-                                    widget.state.dataVideo?.isCheck == 0,
-                                child: Container(
-                                  margin:
-                                      const EdgeInsets.symmetric(vertical: 8.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      vText(
-                                        'Tolak',
-                                        color: black2,
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.w600,
-                                        maxLines: 1,
-                                      ),
-                                      const SizedBox(width: 7.0),
-                                      InkWell(
-                                        onTap: widget.state.isLoadingReject
-                                            ? null
-                                            : () {
-                                                showDialog1(
-                                                  context: context,
-                                                  widget: const DialogAction(
-                                                    action: 'tolak',
-                                                    isHapus: true,
-                                                  ),
-                                                ).then((value) {
-                                                  if (value is bool) {
-                                                    if (value) {
-                                                      // terima
-                                                      widget.state
-                                                          .rejectVideo();
-                                                    }
-                                                  }
-                                                });
-                                              },
-                                        child: Container(
-                                          padding: const EdgeInsets.all(6.0),
-                                          decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: red1,
-                                          ),
                                           child: Icon(
-                                            Icons.close,
-                                            size: 13.0,
+                                            widget.state.dataVideo?.status == 0
+                                                ? Icons.send
+                                                : Icons.remove_red_eye,
+                                            size: 15.0,
                                             color: Theme.of(context)
                                                 .colorScheme
                                                 .onPrimary,
@@ -583,6 +529,12 @@ class _DetailsVideoState extends State<DetailsVideo> {
           ItemDetails(
             leftLabel: 'Artist',
             rightLabel: data?.trackId?.artisName,
+          ),
+          const SizedBox(height: 8.0),
+          ItemDetails(
+            leftLabel: 'Link Youtube',
+            rightLabel: data?.trackId?.linkYt.toString(),
+            isUrlLauncher: true,
           ),
           const SizedBox(height: 8.0),
           ItemDetails(

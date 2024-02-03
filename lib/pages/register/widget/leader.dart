@@ -113,7 +113,7 @@ class Leader extends StatelessWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Theme.of(context).colorScheme.onPrimary,
-                        border: Border.all(width: 4.0, color: green2),
+                        border: Border.all(width: 4.0, color: secondaryColor),
                       ),
                     ),
                   ],

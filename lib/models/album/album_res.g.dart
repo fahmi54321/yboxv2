@@ -52,7 +52,7 @@ _$_DataAlbumRes _$$_DataAlbumResFromJson(Map json) => $checkedCreate(
               (v) => v == null
                   ? null
                   : TrackIdRes.fromJson(Map<String, dynamic>.from(v as Map))),
-          isCheck: $checkedConvert('is_check', (v) => v as int? ?? 0),
+          status: $checkedConvert('status', (v) => v as int? ?? 0),
         );
         return val;
       },
@@ -60,8 +60,7 @@ _$_DataAlbumRes _$$_DataAlbumResFromJson(Map json) => $checkedCreate(
         'releaseTitle': 'release_title',
         'titleVersion': 'title_version',
         'releasedDate': 'released_date',
-        'trackId': 'track_id',
-        'isCheck': 'is_check'
+        'trackId': 'track_id'
       },
     );
 
@@ -81,6 +80,6 @@ Map<String, dynamic> _$$_DataAlbumResToJson(_$_DataAlbumRes instance) {
   }
 
   writeNotNull('track_id', instance.trackId?.toJson());
-  val['is_check'] = instance.isCheck;
+  val['status'] = instance.status;
   return val;
 }

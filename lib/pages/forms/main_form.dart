@@ -6,6 +6,7 @@ import 'package:yboxv2/anim/animation_main_form.dart';
 import 'package:yboxv2/models/general/genre_res.dart';
 
 import 'package:yboxv2/models/general/language_res.dart';
+import 'package:yboxv2/models/general/publisher_res.dart';
 import 'package:yboxv2/models/leader/leader_res.dart';
 import 'package:yboxv2/pages/forms/form_album_audio_video_state.dart';
 import 'package:yboxv2/pages/forms/widget/cover_image.dart';
@@ -20,19 +21,23 @@ class MainForm extends StatefulWidget {
   LanguageRes? languageResTrack;
   GenreRes? genreRes1Main;
   GenreRes? genreRes2Main;
+  PublisherRes? publisher;
   final List<LanguageRes> listLanguage;
   final List<GenreRes> listGenre;
   final List<LeaderRes> listLabelReq;
+  final List<PublisherRes> listPublisher;
   final FormAlbumAudioVideoState state;
   MainForm({
     super.key,
     this.languageResMain,
     this.languageResTrack,
+    this.publisher,
     this.listLanguage = const [],
     this.genreRes1Main,
     this.listGenre = const [],
     this.genreRes2Main,
     this.listLabelReq = const [],
+    this.listPublisher = const [],
     required this.state,
   });
 
@@ -69,8 +74,10 @@ class _MainFormState extends State<MainForm>
       languageResTrack: widget.languageResTrack,
       genreRes1Main: widget.genreRes1Main,
       genreRes2Main: widget.genreRes2Main,
+      publisher: widget.publisher,
       listLanguage: widget.listLanguage,
       listGenre: widget.listGenre,
+      listPublisher: widget.listPublisher,
       state: widget.state,
     );
   }
@@ -81,8 +88,10 @@ class MainFormWidget extends StatefulWidget {
   LanguageRes? languageResTrack;
   GenreRes? genreRes1Main;
   GenreRes? genreRes2Main;
+  PublisherRes? publisher;
   final List<LanguageRes> listLanguage;
   final List<GenreRes> listGenre;
+  final List<PublisherRes> listPublisher;
   final AnimationController controller;
   final AnimationMainForm animation;
   final FormAlbumAudioVideoState state;
@@ -91,7 +100,9 @@ class MainFormWidget extends StatefulWidget {
     super.key,
     this.languageResMain,
     this.languageResTrack,
+    this.publisher,
     this.listLanguage = const [],
+    this.listPublisher = const [],
     this.genreRes1Main,
     this.listGenre = const [],
     this.genreRes2Main,
@@ -245,6 +256,39 @@ class _MainFormWidgetState extends State<MainFormWidget> {
                 ),
               ),
             ],
+          ),
+          const SizedBox(height: 15.0),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.42,
+            child: VDropDownPublisher(
+              radius: 8.0,
+              fontSize: 14.0,
+              colorText: grey7,
+              borderColor: grey10,
+              value: widget.publisher,
+              onChanged: (PublisherRes? data) {
+                setState(() {
+                  widget.publisher = data;
+                });
+
+                if (data != null) {
+                  context
+                      .read<DataAlbumAudioVideo>()
+                      .updatePublisher(data.id.toString());
+                }
+              },
+              items: widget.listPublisher
+                  .map<DropdownMenuItem<PublisherRes>>((PublisherRes value) {
+                return DropdownMenuItem<PublisherRes>(
+                  value: value,
+                  child: Text(value.name),
+                );
+              }).toList(),
+              icon: const Icon(
+                Icons.arrow_drop_down,
+                color: grey10,
+              ),
+            ),
           ),
         ],
       ),

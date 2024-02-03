@@ -1,9 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:yboxv2/models/general/constributor_res.dart';
 import 'package:yboxv2/models/general/genre_res.dart';
-import 'package:yboxv2/models/general/label_name_res.dart';
 import 'package:yboxv2/models/general/language_res.dart';
-import 'package:yboxv2/models/track_id_res.dart';
+import 'package:yboxv2/models/general/publisher_res.dart';
 import 'package:yboxv2/models/user_res.dart';
 
 part 'details_track_res.g.dart';
@@ -42,8 +41,10 @@ class DetailsTrackRes with _$DetailsTrackRes {
     @JsonKey(name: 'internal_track_id', defaultValue: 0)
     required int internalTrackId,
     @JsonKey(name: 'lyric', defaultValue: '') required String lyric,
-    @JsonKey(name: 'is_check', defaultValue: 0) required int isCheck,
+    @JsonKey(name: 'status', defaultValue: 0) required int status,
+    @JsonKey(name: 'link_yt', defaultValue: '') required String linkYt,
     @JsonKey(name: 'contributor') ConstributorRes? contributor,
+    @JsonKey(name: 'publisher') PublisherRes? publisher,
   }) = _DetailsTrackRes;
 
   factory DetailsTrackRes.fromJson(Map<String, dynamic> json) =>

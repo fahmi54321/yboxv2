@@ -19,7 +19,10 @@ class AuthenticationProvider extends ChangeNotifier {
     _navigatorServices = GetIt.instance.get<NavigatorServices>();
     _databaseServices = GetIt.instance.get<DatabaseServices>();
 
+    debugPrint('AuthenticationProvider');
+
     _auth.authStateChanges().listen((user) {
+      debugPrint('userrr : $user');
       if (user != null) {
         debugPrint('logged in');
         debugPrint('auth id ${_auth.currentUser?.uid}');
@@ -39,6 +42,7 @@ class AuthenticationProvider extends ChangeNotifier {
             });
 
             debugPrint('$chatUser');
+            debugPrint('activee : ${chatUser?.wasRecentlyActive()}');
           }
         });
       } else {

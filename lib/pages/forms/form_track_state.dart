@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:yboxv2/models/general/genre_res.dart';
 import 'package:yboxv2/models/general/label_res.dart';
 import 'package:yboxv2/models/general/language_res.dart';
+import 'package:yboxv2/models/general/publisher_res.dart';
 import 'package:yboxv2/models/general/publishing_res.dart';
 import 'package:yboxv2/models/general/roles_res.dart';
 import 'package:yboxv2/models/track/details_track_res.dart';
@@ -51,6 +52,7 @@ class TrackFormState extends ChangeNotifier {
   List<LabelRes> listLabel = [];
   List<RolesRes> listRole = [];
   List<PublishingRes> listPublishing = [];
+  List<PublisherRes> listPublisher = [];
 
   TextEditingController inputRecordLabel = TextEditingController();
   TextEditingController inputPrevReleased = TextEditingController();
@@ -113,8 +115,12 @@ class TrackFormState extends ChangeNotifier {
   RolesRes? pubRoles;
   String pubPublishing = 'Select publishing';
   PublishingRes? pubPublishings;
+  PublisherRes? publisher;
   TextEditingController tracksInputContributorName = TextEditingController();
   TextEditingController tracksInputShare = TextEditingController();
+
+  // link yt
+  TextEditingController tracksLinkYt = TextEditingController();
 
   bool isLoading = false;
 
@@ -139,14 +145,15 @@ class TrackFormState extends ChangeNotifier {
     isLoadingList = true;
     notifyListeners();
 
-    UtilsLoading.showLoading(message: 'Loading');
+    // UtilsLoading.showLoading(message: 'Loading');
 
     await getLanguage();
     await getGenre();
     await getRoles();
     await getPublishing();
+    await getPublisher();
 
-    UtilsLoading.dismiss();
+    // UtilsLoading.dismiss();
 
     isLoadingList = false;
     notifyListeners();
@@ -166,8 +173,10 @@ class TrackFormState extends ChangeNotifier {
           genreRes1Tracks: genreRes1Tracks,
           genreRes2Tracks: genreRes2Tracks,
           languageResTrack: languageResTrack,
+          publisher: publisher,
           listGenre: listGenre,
           listLanguage: listLanguage,
+          listPubliser: listPublisher,
           state: this,
         ),
       ),
@@ -259,6 +268,9 @@ class TrackFormState extends ChangeNotifier {
 
       tracksInputContributorName.text = dataTrackRes?.contributor?.name ?? '';
       tracksInputShare.text = dataTrackRes?.contributor?.share.toString() ?? '';
+
+      // link yt
+      tracksLinkYt.text = dataTrackRes?.linkYt ?? '';
 
       notifyListeners();
     }
@@ -390,6 +402,32 @@ class TrackFormState extends ChangeNotifier {
           notifyListeners();
         } else {
           pubPublishings = cat[0];
+          notifyListeners();
+        }
+      },
+    );
+  }
+
+  Future<void> getPublisher() async {
+    final resStep1 = await HTTPListService().getPubliser();
+
+    resStep1.fold(
+      (e) async {
+        isLoadingList = false;
+        notifyListeners();
+
+        UtilsLoading.dismiss();
+        UtilsLoading.showError(message: e);
+      },
+      (cat) async {
+        listPublisher = cat;
+        notifyListeners();
+
+        if (dataTrackRes?.publisher != null) {
+          publisher = dataTrackRes?.publisher;
+          notifyListeners();
+        } else {
+          publisher = cat[0];
           notifyListeners();
         }
       },

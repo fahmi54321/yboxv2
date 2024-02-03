@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:yboxv2/models/general/genre_res.dart';
 import 'package:yboxv2/models/general/label_name_res.dart';
 import 'package:yboxv2/models/general/language_res.dart';
+import 'package:yboxv2/models/general/publisher_res.dart';
 import 'package:yboxv2/models/track_id_res.dart';
 import 'package:yboxv2/models/user_res.dart';
 
@@ -39,8 +40,9 @@ class DetailsAlbumRes with _$DetailsAlbumRes {
     @JsonKey(name: 'released_id', defaultValue: 0) required int releasedId,
     @JsonKey(name: 'upc', defaultValue: 0) required int upc,
     @JsonKey(name: 'track_id') TrackIdRes? trackId,
+    @JsonKey(name: 'publisher') PublisherRes? publisher,
     @JsonKey(name: 'user') UserRes? user,
-    @JsonKey(name: 'is_check', defaultValue: 0) required int isCheck,
+    @JsonKey(name: 'status', defaultValue: 0) required int status,
   }) = _DetailsAlbumRes;
 
   factory DetailsAlbumRes.fromJson(Map<String, dynamic> json) =>

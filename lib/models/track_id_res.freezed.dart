@@ -58,6 +58,8 @@ mixin _$TrackIdRes {
   int get internalTrackId => throw _privateConstructorUsedError;
   @JsonKey(name: 'lyric', defaultValue: '')
   String get lyric => throw _privateConstructorUsedError;
+  @JsonKey(name: 'link_yt', defaultValue: '')
+  String get linkYt => throw _privateConstructorUsedError;
   @JsonKey(name: 'contributor_id', defaultValue: 0)
   int get contributorId => throw _privateConstructorUsedError;
   @JsonKey(name: 'contributor')
@@ -104,6 +106,7 @@ abstract class $TrackIdResCopyWith<$Res> {
       int previewsStartTime,
       @JsonKey(name: 'internal_track_id', defaultValue: 0) int internalTrackId,
       @JsonKey(name: 'lyric', defaultValue: '') String lyric,
+      @JsonKey(name: 'link_yt', defaultValue: '') String linkYt,
       @JsonKey(name: 'contributor_id', defaultValue: 0) int contributorId,
       @JsonKey(name: 'contributor') ConstributorRes? contributor,
       @JsonKey(name: 'lang') LanguageRes? lang,
@@ -148,6 +151,7 @@ class _$TrackIdResCopyWithImpl<$Res, $Val extends TrackIdRes>
     Object? previewsStartTime = null,
     Object? internalTrackId = null,
     Object? lyric = null,
+    Object? linkYt = null,
     Object? contributorId = null,
     Object? contributor = freezed,
     Object? lang = freezed,
@@ -230,6 +234,10 @@ class _$TrackIdResCopyWithImpl<$Res, $Val extends TrackIdRes>
       lyric: null == lyric
           ? _value.lyric
           : lyric // ignore: cast_nullable_to_non_nullable
+              as String,
+      linkYt: null == linkYt
+          ? _value.linkYt
+          : linkYt // ignore: cast_nullable_to_non_nullable
               as String,
       contributorId: null == contributorId
           ? _value.contributorId
@@ -334,6 +342,7 @@ abstract class _$$_TrackIdResCopyWith<$Res>
       int previewsStartTime,
       @JsonKey(name: 'internal_track_id', defaultValue: 0) int internalTrackId,
       @JsonKey(name: 'lyric', defaultValue: '') String lyric,
+      @JsonKey(name: 'link_yt', defaultValue: '') String linkYt,
       @JsonKey(name: 'contributor_id', defaultValue: 0) int contributorId,
       @JsonKey(name: 'contributor') ConstributorRes? contributor,
       @JsonKey(name: 'lang') LanguageRes? lang,
@@ -380,6 +389,7 @@ class __$$_TrackIdResCopyWithImpl<$Res>
     Object? previewsStartTime = null,
     Object? internalTrackId = null,
     Object? lyric = null,
+    Object? linkYt = null,
     Object? contributorId = null,
     Object? contributor = freezed,
     Object? lang = freezed,
@@ -463,6 +473,10 @@ class __$$_TrackIdResCopyWithImpl<$Res>
           ? _value.lyric
           : lyric // ignore: cast_nullable_to_non_nullable
               as String,
+      linkYt: null == linkYt
+          ? _value.linkYt
+          : linkYt // ignore: cast_nullable_to_non_nullable
+              as String,
       contributorId: null == contributorId
           ? _value.contributorId
           : contributorId // ignore: cast_nullable_to_non_nullable
@@ -520,6 +534,7 @@ class _$_TrackIdRes extends _TrackIdRes {
       @JsonKey(name: 'internal_track_id', defaultValue: 0)
       required this.internalTrackId,
       @JsonKey(name: 'lyric', defaultValue: '') required this.lyric,
+      @JsonKey(name: 'link_yt', defaultValue: '') required this.linkYt,
       @JsonKey(name: 'contributor_id', defaultValue: 0)
       required this.contributorId,
       @JsonKey(name: 'contributor') this.contributor,
@@ -589,6 +604,9 @@ class _$_TrackIdRes extends _TrackIdRes {
   @JsonKey(name: 'lyric', defaultValue: '')
   final String lyric;
   @override
+  @JsonKey(name: 'link_yt', defaultValue: '')
+  final String linkYt;
+  @override
   @JsonKey(name: 'contributor_id', defaultValue: 0)
   final int contributorId;
   @override
@@ -606,7 +624,7 @@ class _$_TrackIdRes extends _TrackIdRes {
 
   @override
   String toString() {
-    return 'TrackIdRes(artisName: $artisName, artisNameAnotherId: $artisNameAnotherId, image: $image, cover: $cover, trackTitle: $trackTitle, trackVersion: $trackVersion, trackTitleAnotherId: $trackTitleAnotherId, isrc: $isrc, langYyric: $langYyric, createdAt: $createdAt, spotify: $spotify, itunes: $itunes, otherArtisId: $otherArtisId, explisitLyric: $explisitLyric, thisTrackIs: $thisTrackIs, pCopyright: $pCopyright, previewsStartTime: $previewsStartTime, internalTrackId: $internalTrackId, lyric: $lyric, contributorId: $contributorId, contributor: $contributor, lang: $lang, genre1: $genre1, genre2: $genre2)';
+    return 'TrackIdRes(artisName: $artisName, artisNameAnotherId: $artisNameAnotherId, image: $image, cover: $cover, trackTitle: $trackTitle, trackVersion: $trackVersion, trackTitleAnotherId: $trackTitleAnotherId, isrc: $isrc, langYyric: $langYyric, createdAt: $createdAt, spotify: $spotify, itunes: $itunes, otherArtisId: $otherArtisId, explisitLyric: $explisitLyric, thisTrackIs: $thisTrackIs, pCopyright: $pCopyright, previewsStartTime: $previewsStartTime, internalTrackId: $internalTrackId, lyric: $lyric, linkYt: $linkYt, contributorId: $contributorId, contributor: $contributor, lang: $lang, genre1: $genre1, genre2: $genre2)';
   }
 
   @override
@@ -646,6 +664,7 @@ class _$_TrackIdRes extends _TrackIdRes {
             (identical(other.internalTrackId, internalTrackId) ||
                 other.internalTrackId == internalTrackId) &&
             (identical(other.lyric, lyric) || other.lyric == lyric) &&
+            (identical(other.linkYt, linkYt) || other.linkYt == linkYt) &&
             (identical(other.contributorId, contributorId) ||
                 other.contributorId == contributorId) &&
             (identical(other.contributor, contributor) ||
@@ -678,6 +697,7 @@ class _$_TrackIdRes extends _TrackIdRes {
         previewsStartTime,
         internalTrackId,
         lyric,
+        linkYt,
         contributorId,
         contributor,
         lang,
@@ -733,6 +753,7 @@ abstract class _TrackIdRes extends TrackIdRes {
       @JsonKey(name: 'internal_track_id', defaultValue: 0)
       required final int internalTrackId,
       @JsonKey(name: 'lyric', defaultValue: '') required final String lyric,
+      @JsonKey(name: 'link_yt', defaultValue: '') required final String linkYt,
       @JsonKey(name: 'contributor_id', defaultValue: 0)
       required final int contributorId,
       @JsonKey(name: 'contributor') final ConstributorRes? contributor,
@@ -801,6 +822,9 @@ abstract class _TrackIdRes extends TrackIdRes {
   @override
   @JsonKey(name: 'lyric', defaultValue: '')
   String get lyric;
+  @override
+  @JsonKey(name: 'link_yt', defaultValue: '')
+  String get linkYt;
   @override
   @JsonKey(name: 'contributor_id', defaultValue: 0)
   int get contributorId;

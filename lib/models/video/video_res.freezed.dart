@@ -224,8 +224,8 @@ mixin _$DataVideoRes {
   String get released => throw _privateConstructorUsedError;
   @JsonKey(name: 'track_id')
   TrackIdRes? get trackId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  int get isCheck => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status', defaultValue: 0)
+  int get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -246,7 +246,7 @@ abstract class $DataVideoResCopyWith<$Res> {
       @JsonKey(name: 'title_version', defaultValue: '') String titleVersion,
       @JsonKey(name: 'released', defaultValue: '') String released,
       @JsonKey(name: 'track_id') TrackIdRes? trackId,
-      @JsonKey(name: 'is_check', defaultValue: 0) int isCheck});
+      @JsonKey(name: 'status', defaultValue: 0) int status});
 
   $TrackIdResCopyWith<$Res>? get trackId;
 }
@@ -270,7 +270,7 @@ class _$DataVideoResCopyWithImpl<$Res, $Val extends DataVideoRes>
     Object? titleVersion = null,
     Object? released = null,
     Object? trackId = freezed,
-    Object? isCheck = null,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -297,9 +297,9 @@ class _$DataVideoResCopyWithImpl<$Res, $Val extends DataVideoRes>
           ? _value.trackId
           : trackId // ignore: cast_nullable_to_non_nullable
               as TrackIdRes?,
-      isCheck: null == isCheck
-          ? _value.isCheck
-          : isCheck // ignore: cast_nullable_to_non_nullable
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -332,7 +332,7 @@ abstract class _$$_DataVideoResCopyWith<$Res>
       @JsonKey(name: 'title_version', defaultValue: '') String titleVersion,
       @JsonKey(name: 'released', defaultValue: '') String released,
       @JsonKey(name: 'track_id') TrackIdRes? trackId,
-      @JsonKey(name: 'is_check', defaultValue: 0) int isCheck});
+      @JsonKey(name: 'status', defaultValue: 0) int status});
 
   @override
   $TrackIdResCopyWith<$Res>? get trackId;
@@ -355,7 +355,7 @@ class __$$_DataVideoResCopyWithImpl<$Res>
     Object? titleVersion = null,
     Object? released = null,
     Object? trackId = freezed,
-    Object? isCheck = null,
+    Object? status = null,
   }) {
     return _then(_$_DataVideoRes(
       id: null == id
@@ -382,9 +382,9 @@ class __$$_DataVideoResCopyWithImpl<$Res>
           ? _value.trackId
           : trackId // ignore: cast_nullable_to_non_nullable
               as TrackIdRes?,
-      isCheck: null == isCheck
-          ? _value.isCheck
-          : isCheck // ignore: cast_nullable_to_non_nullable
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -403,7 +403,7 @@ class _$_DataVideoRes extends _DataVideoRes {
       required this.titleVersion,
       @JsonKey(name: 'released', defaultValue: '') required this.released,
       @JsonKey(name: 'track_id') this.trackId,
-      @JsonKey(name: 'is_check', defaultValue: 0) required this.isCheck})
+      @JsonKey(name: 'status', defaultValue: 0) required this.status})
       : super._();
 
   factory _$_DataVideoRes.fromJson(Map<String, dynamic> json) =>
@@ -428,12 +428,12 @@ class _$_DataVideoRes extends _DataVideoRes {
   @JsonKey(name: 'track_id')
   final TrackIdRes? trackId;
   @override
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  final int isCheck;
+  @JsonKey(name: 'status', defaultValue: 0)
+  final int status;
 
   @override
   String toString() {
-    return 'DataVideoRes(id: $id, cover: $cover, title: $title, titleVersion: $titleVersion, released: $released, trackId: $trackId, isCheck: $isCheck)';
+    return 'DataVideoRes(id: $id, cover: $cover, title: $title, titleVersion: $titleVersion, released: $released, trackId: $trackId, status: $status)';
   }
 
   @override
@@ -449,13 +449,13 @@ class _$_DataVideoRes extends _DataVideoRes {
             (identical(other.released, released) ||
                 other.released == released) &&
             (identical(other.trackId, trackId) || other.trackId == trackId) &&
-            (identical(other.isCheck, isCheck) || other.isCheck == isCheck));
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, cover, title, titleVersion, released, trackId, isCheck);
+      runtimeType, id, cover, title, titleVersion, released, trackId, status);
 
   @JsonKey(ignore: true)
   @override
@@ -481,8 +481,8 @@ abstract class _DataVideoRes extends DataVideoRes {
       @JsonKey(name: 'released', defaultValue: '')
       required final String released,
       @JsonKey(name: 'track_id') final TrackIdRes? trackId,
-      @JsonKey(name: 'is_check', defaultValue: 0)
-      required final int isCheck}) = _$_DataVideoRes;
+      @JsonKey(name: 'status', defaultValue: 0)
+      required final int status}) = _$_DataVideoRes;
   const _DataVideoRes._() : super._();
 
   factory _DataVideoRes.fromJson(Map<String, dynamic> json) =
@@ -507,8 +507,8 @@ abstract class _DataVideoRes extends DataVideoRes {
   @JsonKey(name: 'track_id')
   TrackIdRes? get trackId;
   @override
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  int get isCheck;
+  @JsonKey(name: 'status', defaultValue: 0)
+  int get status;
   @override
   @JsonKey(ignore: true)
   _$$_DataVideoResCopyWith<_$_DataVideoRes> get copyWith =>

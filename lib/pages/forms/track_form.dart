@@ -60,6 +60,7 @@ class _TrackFormState extends State<TrackForm> {
     widget.state.tracksInputInternalTracksId
         .addListener(tracksInputInternalTracksIdListener);
     widget.state.tracksInputIsrcCode.addListener(tracksInputIsrcCodeListener);
+    widget.state.tracksLinkYt.addListener(tracksLinkYtListener);
   }
 
   @override
@@ -82,6 +83,7 @@ class _TrackFormState extends State<TrackForm> {
         .removeListener(tracksInputInternalTracksIdListener);
     widget.state.tracksInputIsrcCode
         .removeListener(tracksInputIsrcCodeListener);
+    widget.state.tracksLinkYt.removeListener(tracksLinkYtListener);
     super.dispose();
   }
 
@@ -115,6 +117,35 @@ class _TrackFormState extends State<TrackForm> {
         const SizedBox(height: 15.0),
         lyricsWidget(),
         const SizedBox(height: 15.0),
+        linkYtWidget(),
+        const SizedBox(height: 15.0),
+      ],
+    );
+  }
+
+  Widget linkYtWidget() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        vText(
+          "Link Youtube",
+          fontSize: 14,
+          fontWeight: FontWeight.w700,
+          color: black7,
+        ),
+        const SizedBox(height: 16),
+        VInputText(
+          'Input here...',
+          radius: 8,
+          outlineColor: grey10,
+          activeColor: grey10,
+          fontSize: 14,
+          hintFontSize: 14.0,
+          hintTextColor: grey4,
+          textColor: grey7,
+          fillColor: Theme.of(context).colorScheme.onPrimary,
+          controller: widget.state.tracksLinkYt,
+        ),
       ],
     );
   }
@@ -1070,6 +1101,14 @@ class _TrackFormState extends State<TrackForm> {
       context
           .read<DataAlbumAudioVideo>()
           .updateIsrc(widget.state.tracksInputIsrcCode.text);
+    }
+  }
+
+  void tracksLinkYtListener() {
+    if (widget.state.tracksLinkYt.text.isNotEmpty) {
+      context
+          .read<DataAlbumAudioVideo>()
+          .updateLinkYt(widget.state.tracksLinkYt.text);
     }
   }
 }

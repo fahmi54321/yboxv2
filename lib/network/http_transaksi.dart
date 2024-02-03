@@ -97,16 +97,20 @@ class HTTPTransactionService {
     var dataToken = await SharedPreferencesUtils.getLoginPreference();
     LoginRes loginRes = LoginRes.fromJson(jsonDecode(dataToken ?? ''));
 
+    Map<String, dynamic> params = {
+      '_method': 'GET',
+      'id': id,
+    };
+
     final response = await WebService().client().get(
           ApiUrl.invoice,
-          data: {
-            'id': id,
-          },
+          data: params,
           options: Options(headers: {
             'Authorization': 'Bearer ${loginRes.accessToken}',
           }),
         );
-    debugPrint('url invoice : ${ApiUrl.invoice + id}');
+    debugPrint('url invoice : ${ApiUrl.invoice}');
+    debugPrint('params invoice : $params');
     debugPrint('response invoice : ${response.data}');
 
     if (response.statusCode == 200) {

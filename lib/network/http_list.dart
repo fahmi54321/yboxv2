@@ -7,11 +7,13 @@ import 'package:yboxv2/models/general/bank_res.dart';
 import 'package:yboxv2/models/general/genre_res.dart';
 import 'package:yboxv2/models/general/label_res.dart';
 import 'package:yboxv2/models/general/language_res.dart';
+import 'package:yboxv2/models/general/publisher_res.dart';
 import 'package:yboxv2/models/general/publishing_res.dart';
 import 'package:yboxv2/models/general/roles_res.dart';
 import 'package:yboxv2/models/leader/leader_res.dart';
 import 'package:yboxv2/models/login_res.dart';
 import 'package:yboxv2/models/onboarding/onboarding_res.dart';
+import 'package:yboxv2/models/platform/platform_res.dart';
 import 'package:yboxv2/models/user_member_res.dart';
 import 'package:yboxv2/network/api_interceptor.dart';
 import 'package:yboxv2/network/api_url.dart';
@@ -254,6 +256,81 @@ class HTTPListService {
     if (response.statusCode == 200) {
       final result = (response.data as List<dynamic>)
           .map((e) => OnboardingRes.fromJson(e as Map<String, dynamic>))
+          .toList();
+      return Right(result);
+    } else {
+      return const Left('Terjadi kesalahan');
+    }
+  }
+
+  Future<Either<String, List<PublisherRes>>> getPubliser() async {
+    var dataToken = await SharedPreferencesUtils.getLoginPreference();
+    LoginRes loginRes = LoginRes.fromJson(jsonDecode(dataToken ?? ''));
+    final response = await WebService().client().get(
+          ApiUrl.publisher,
+          options: Options(headers: {
+            'Authorization': 'Bearer ${loginRes.accessToken}',
+          }),
+        );
+
+    debugPrint('url getPubliser : ${ApiUrl.publisher}');
+    debugPrint('response getPubliser : ${response.data}');
+
+    if (response.statusCode == 200) {
+      final result = (response.data as List<dynamic>)
+          .map((e) => PublisherRes.fromJson(e as Map<String, dynamic>))
+          .toList();
+      return Right(result);
+    } else {
+      return const Left('Terjadi kesalahan');
+    }
+  }
+
+  Future<Either<String, List<PlatformRes>>> getPlatform({
+    required Map<String, dynamic> paramsData,
+  }) async {
+    var dataToken = await SharedPreferencesUtils.getLoginPreference();
+    LoginRes loginRes = LoginRes.fromJson(jsonDecode(dataToken ?? ''));
+    final response = await WebService().client().get(
+          ApiUrl.platform,
+          queryParameters: paramsData,
+          options: Options(headers: {
+            'Authorization': 'Bearer ${loginRes.accessToken}',
+          }),
+        );
+
+    debugPrint('url getPlatform : ${ApiUrl.platform}');
+    debugPrint('response getPlatform : ${response.data}');
+
+    if (response.statusCode == 200) {
+      final result = (response.data as List<dynamic>)
+          .map((e) => PlatformRes.fromJson(e as Map<String, dynamic>))
+          .toList();
+      return Right(result);
+    } else {
+      return const Left('Terjadi kesalahan');
+    }
+  }
+
+  Future<Either<String, List<PlatformRes>>> getPlatformProses({
+    required Map<String, dynamic> paramsData,
+  }) async {
+    var dataToken = await SharedPreferencesUtils.getLoginPreference();
+    LoginRes loginRes = LoginRes.fromJson(jsonDecode(dataToken ?? ''));
+    final response = await WebService().client().get(
+          ApiUrl.platformProses,
+          queryParameters: paramsData,
+          options: Options(headers: {
+            'Authorization': 'Bearer ${loginRes.accessToken}',
+          }),
+        );
+
+    debugPrint('url getPlatformProses : ${ApiUrl.platformProses}');
+    debugPrint('response getPlatformProses : ${response.data}');
+
+    if (response.statusCode == 200) {
+      final result = (response.data as List<dynamic>)
+          .map((e) => PlatformRes.fromJson(e as Map<String, dynamic>))
           .toList();
       return Right(result);
     } else {

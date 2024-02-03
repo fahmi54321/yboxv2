@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ class LoginState extends ChangeNotifier {
 
   // firebase
   late AuthenticationProvider auth;
+  late FirebaseAuth firebaseAuth;
   late DatabaseServices db;
   late NavigatorServices navigation;
 
@@ -29,6 +31,7 @@ class LoginState extends ChangeNotifier {
   }
 
   void init() {
+    firebaseAuth = FirebaseAuth.instance;
     auth = Provider.of<AuthenticationProvider>(context);
     db = GetIt.instance.get<DatabaseServices>();
     navigation = GetIt.instance.get<NavigatorServices>();
@@ -65,26 +68,51 @@ class LoginState extends ChangeNotifier {
             notifyListeners();
           },
           (cat) async {
-            if (cat.uuidMsg == null) {
-              final uuid = await registerFirebase(
-                email: emailController.text,
-                nama: cat.namaLengkap,
-                password: passController.text,
-                idLeader: cat.id,
-                isAnggota: cat.level == 3 ? true : false,
-                token: cat.accessToken,
-              );
-              if (uuid != null) {
-                await goToHome(data: cat);
+            final loginFirebase = await loginUsingEmailAndPassword(
+              emailController.text.toString(),
+              passController.text.toString(),
+            );
+
+            if (loginFirebase) {
+              if (cat.level == 3 || cat.level == 2) {
+                if (cat.uuidMsg == null) {
+                  final uuid = await registerFirebase(
+                    email: emailController.text,
+                    nama: cat.namaLengkap,
+                    password: passController.text,
+                    idLeader: cat.id,
+                    isAnggota: cat.level == 3 ? true : false,
+                    token: cat.accessToken,
+                  );
+                  if (uuid != null) {
+                    await goToHome(data: cat);
+                  } else {
+                    UtilsLoading.dismiss();
+                    UtilsLoading.showError(message: 'Terjadi kesalahan');
+
+                    isLoading = false;
+                    notifyListeners();
+                  }
+                } else {
+                  await goToHome(data: cat);
+                }
               } else {
                 UtilsLoading.dismiss();
-                UtilsLoading.showError(message: 'Terjadi kesalahan');
+                UtilsLoading.showInfo(
+                  message: 'Hanya bisa akses Leader dan Member',
+                );
 
                 isLoading = false;
                 notifyListeners();
               }
             } else {
-              await goToHome(data: cat);
+              UtilsLoading.dismiss();
+              UtilsLoading.showInfo(
+                message: 'Terjadi kesalahan',
+              );
+
+              isLoading = false;
+              notifyListeners();
             }
           },
         );
@@ -208,6 +236,26 @@ class LoginState extends ChangeNotifier {
 
       debugPrint('hasil2 updateUuid : $e');
 
+      return false;
+    }
+  }
+
+  Future<bool> loginUsingEmailAndPassword(String email, String password) async {
+    try {
+      final user = await firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
+      debugPrint('${firebaseAuth.currentUser}');
+
+      if (user.user != null) {
+        return true;
+      } else {
+        return false;
+      }
+    } on FirebaseAuthException {
+      debugPrint('error logging user into firebase');
+      return false;
+    } catch (e) {
+      debugPrint('$e');
       return false;
     }
   }

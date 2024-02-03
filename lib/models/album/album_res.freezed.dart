@@ -224,8 +224,8 @@ mixin _$DataAlbumRes {
   String get releasedDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'track_id')
   TrackIdRes? get trackId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  int get isCheck => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status', defaultValue: 0)
+  int get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -246,7 +246,7 @@ abstract class $DataAlbumResCopyWith<$Res> {
       @JsonKey(name: 'title_version', defaultValue: '') String titleVersion,
       @JsonKey(name: 'released_date', defaultValue: '') String releasedDate,
       @JsonKey(name: 'track_id') TrackIdRes? trackId,
-      @JsonKey(name: 'is_check', defaultValue: 0) int isCheck});
+      @JsonKey(name: 'status', defaultValue: 0) int status});
 
   $TrackIdResCopyWith<$Res>? get trackId;
 }
@@ -270,7 +270,7 @@ class _$DataAlbumResCopyWithImpl<$Res, $Val extends DataAlbumRes>
     Object? titleVersion = null,
     Object? releasedDate = null,
     Object? trackId = freezed,
-    Object? isCheck = null,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -297,9 +297,9 @@ class _$DataAlbumResCopyWithImpl<$Res, $Val extends DataAlbumRes>
           ? _value.trackId
           : trackId // ignore: cast_nullable_to_non_nullable
               as TrackIdRes?,
-      isCheck: null == isCheck
-          ? _value.isCheck
-          : isCheck // ignore: cast_nullable_to_non_nullable
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -332,7 +332,7 @@ abstract class _$$_DataAlbumResCopyWith<$Res>
       @JsonKey(name: 'title_version', defaultValue: '') String titleVersion,
       @JsonKey(name: 'released_date', defaultValue: '') String releasedDate,
       @JsonKey(name: 'track_id') TrackIdRes? trackId,
-      @JsonKey(name: 'is_check', defaultValue: 0) int isCheck});
+      @JsonKey(name: 'status', defaultValue: 0) int status});
 
   @override
   $TrackIdResCopyWith<$Res>? get trackId;
@@ -355,7 +355,7 @@ class __$$_DataAlbumResCopyWithImpl<$Res>
     Object? titleVersion = null,
     Object? releasedDate = null,
     Object? trackId = freezed,
-    Object? isCheck = null,
+    Object? status = null,
   }) {
     return _then(_$_DataAlbumRes(
       id: null == id
@@ -382,9 +382,9 @@ class __$$_DataAlbumResCopyWithImpl<$Res>
           ? _value.trackId
           : trackId // ignore: cast_nullable_to_non_nullable
               as TrackIdRes?,
-      isCheck: null == isCheck
-          ? _value.isCheck
-          : isCheck // ignore: cast_nullable_to_non_nullable
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -405,7 +405,7 @@ class _$_DataAlbumRes extends _DataAlbumRes {
       @JsonKey(name: 'released_date', defaultValue: '')
       required this.releasedDate,
       @JsonKey(name: 'track_id') this.trackId,
-      @JsonKey(name: 'is_check', defaultValue: 0) required this.isCheck})
+      @JsonKey(name: 'status', defaultValue: 0) required this.status})
       : super._();
 
   factory _$_DataAlbumRes.fromJson(Map<String, dynamic> json) =>
@@ -430,12 +430,12 @@ class _$_DataAlbumRes extends _DataAlbumRes {
   @JsonKey(name: 'track_id')
   final TrackIdRes? trackId;
   @override
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  final int isCheck;
+  @JsonKey(name: 'status', defaultValue: 0)
+  final int status;
 
   @override
   String toString() {
-    return 'DataAlbumRes(id: $id, cover: $cover, releaseTitle: $releaseTitle, titleVersion: $titleVersion, releasedDate: $releasedDate, trackId: $trackId, isCheck: $isCheck)';
+    return 'DataAlbumRes(id: $id, cover: $cover, releaseTitle: $releaseTitle, titleVersion: $titleVersion, releasedDate: $releasedDate, trackId: $trackId, status: $status)';
   }
 
   @override
@@ -452,13 +452,13 @@ class _$_DataAlbumRes extends _DataAlbumRes {
             (identical(other.releasedDate, releasedDate) ||
                 other.releasedDate == releasedDate) &&
             (identical(other.trackId, trackId) || other.trackId == trackId) &&
-            (identical(other.isCheck, isCheck) || other.isCheck == isCheck));
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, cover, releaseTitle,
-      titleVersion, releasedDate, trackId, isCheck);
+      titleVersion, releasedDate, trackId, status);
 
   @JsonKey(ignore: true)
   @override
@@ -485,8 +485,8 @@ abstract class _DataAlbumRes extends DataAlbumRes {
       @JsonKey(name: 'released_date', defaultValue: '')
       required final String releasedDate,
       @JsonKey(name: 'track_id') final TrackIdRes? trackId,
-      @JsonKey(name: 'is_check', defaultValue: 0)
-      required final int isCheck}) = _$_DataAlbumRes;
+      @JsonKey(name: 'status', defaultValue: 0)
+      required final int status}) = _$_DataAlbumRes;
   const _DataAlbumRes._() : super._();
 
   factory _DataAlbumRes.fromJson(Map<String, dynamic> json) =
@@ -511,8 +511,8 @@ abstract class _DataAlbumRes extends DataAlbumRes {
   @JsonKey(name: 'track_id')
   TrackIdRes? get trackId;
   @override
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  int get isCheck;
+  @JsonKey(name: 'status', defaultValue: 0)
+  int get status;
   @override
   @JsonKey(ignore: true)
   _$$_DataAlbumResCopyWith<_$_DataAlbumRes> get copyWith =>

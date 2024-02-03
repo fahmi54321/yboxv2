@@ -48,13 +48,19 @@ _$_DetailsTrackRes _$$_DetailsTrackResFromJson(Map json) => $checkedCreate(
           internalTrackId:
               $checkedConvert('internal_track_id', (v) => v as int? ?? 0),
           lyric: $checkedConvert('lyric', (v) => v as String? ?? ''),
-          isCheck: $checkedConvert('is_check', (v) => v as int? ?? 0),
+          status: $checkedConvert('status', (v) => v as int? ?? 0),
+          linkYt: $checkedConvert('link_yt', (v) => v as String? ?? ''),
           contributor: $checkedConvert(
               'contributor',
               (v) => v == null
                   ? null
                   : ConstributorRes.fromJson(
                       Map<String, dynamic>.from(v as Map))),
+          publisher: $checkedConvert(
+              'publisher',
+              (v) => v == null
+                  ? null
+                  : PublisherRes.fromJson(Map<String, dynamic>.from(v as Map))),
         );
         return val;
       },
@@ -69,7 +75,7 @@ _$_DetailsTrackRes _$$_DetailsTrackResFromJson(Map json) => $checkedCreate(
         'thisTrackIs': 'this_track_is',
         'previewsStartTime': 'previews_start_time',
         'internalTrackId': 'internal_track_id',
-        'isCheck': 'is_check'
+        'linkYt': 'link_yt'
       },
     );
 
@@ -101,7 +107,9 @@ Map<String, dynamic> _$$_DetailsTrackResToJson(_$_DetailsTrackRes instance) {
   val['previews_start_time'] = instance.previewsStartTime;
   val['internal_track_id'] = instance.internalTrackId;
   val['lyric'] = instance.lyric;
-  val['is_check'] = instance.isCheck;
+  val['status'] = instance.status;
+  val['link_yt'] = instance.linkYt;
   writeNotNull('contributor', instance.contributor?.toJson());
+  writeNotNull('publisher', instance.publisher?.toJson());
   return val;
 }

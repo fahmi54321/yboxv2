@@ -48,12 +48,17 @@ _$_DetailsAudioRes _$$_DetailsAudioResFromJson(Map json) => $checkedCreate(
               (v) => v == null
                   ? null
                   : TrackIdRes.fromJson(Map<String, dynamic>.from(v as Map))),
+          publisher: $checkedConvert(
+              'publisher',
+              (v) => v == null
+                  ? null
+                  : PublisherRes.fromJson(Map<String, dynamic>.from(v as Map))),
           user: $checkedConvert(
               'user',
               (v) => v == null
                   ? null
                   : UserRes.fromJson(Map<String, dynamic>.from(v as Map))),
-          isCheck: $checkedConvert('is_check', (v) => v as int? ?? 0),
+          status: $checkedConvert('status', (v) => v as int? ?? 0),
         );
         return val;
       },
@@ -66,8 +71,7 @@ _$_DetailsAudioRes _$$_DetailsAudioResFromJson(Map json) => $checkedCreate(
         'cCopyright': 'c_copyright',
         'labelName': 'label_name',
         'releasedId': 'released_id',
-        'trackId': 'track_id',
-        'isCheck': 'is_check'
+        'trackId': 'track_id'
       },
     );
 
@@ -97,7 +101,8 @@ Map<String, dynamic> _$$_DetailsAudioResToJson(_$_DetailsAudioRes instance) {
   val['released_id'] = instance.releasedId;
   val['upc'] = instance.upc;
   writeNotNull('track_id', instance.trackId?.toJson());
+  writeNotNull('publisher', instance.publisher?.toJson());
   writeNotNull('user', instance.user?.toJson());
-  val['is_check'] = instance.isCheck;
+  val['status'] = instance.status;
   return val;
 }

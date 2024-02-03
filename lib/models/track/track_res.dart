@@ -35,7 +35,7 @@ class DataTrackRes with _$DataTrackRes {
   )
   const factory DataTrackRes({
     @JsonKey(name: 'id', defaultValue: '') required String id,
-    @JsonKey(name: 'is_check', defaultValue: 0) required int isCheck,
+    @JsonKey(name: 'status', defaultValue: 0) required int status,
     @JsonKey(name: 'image', defaultValue: '') required String image,
     @JsonKey(name: 'cover', defaultValue: '') required String cover,
     @JsonKey(name: 'track_title', defaultValue: '') required String trackTitle,

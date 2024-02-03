@@ -25,6 +25,7 @@ class ApiUrl {
   static String invoice = '${appUrl}api/invoice';
   static String cekReq = '${appUrl}api/cek_request';
   static String akunBank = '${appUrl}api/bank_acc';
+  static String akunBankMember = '${appUrl}api/bank_acc_member';
   static String grafikBulanan = '${appUrl}api/dashboard/grafik-bulanan';
   static String aprovedItem = '${appUrl}api/aproved_item';
   static String rejectItem = '${appUrl}api/reject_item';
@@ -32,5 +33,9 @@ class ApiUrl {
   static String mssgMember = '${appUrl}api/mssg_member';
   static String ubahPass = '${appUrl}api/change_password';
   static String tokenFirebase = '${appUrl}api/mssg_token';
+  static String publisher = '${appUrl}api/publisher';
+  static String platform = '${appUrl}api/platform';
+  static String platformProses = '${appUrl}api/platform_process';
+  static String sendItem = '${appUrl}api/send_item';
   static String sendNotif = 'https://fcm.googleapis.com/fcm/send';
 }

@@ -11,7 +11,6 @@ import 'package:yboxv2/pages/home/fragment/album_fragment_state.dart';
 import 'package:yboxv2/pages/home/fragment/shimer/list_shimer.dart';
 import 'package:yboxv2/pages/home/widget/item_album.dart';
 import 'package:yboxv2/pages/widget/data_belum_ada.dart';
-import 'package:yboxv2/pages/widget/loading_pagin.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/utils/shared_pref.dart';
 import 'package:yboxv2/utils/utils_loading.dart';

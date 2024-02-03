@@ -56,10 +56,14 @@ mixin _$DetailsTrackRes {
   int get internalTrackId => throw _privateConstructorUsedError;
   @JsonKey(name: 'lyric', defaultValue: '')
   String get lyric => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  int get isCheck => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status', defaultValue: 0)
+  int get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'link_yt', defaultValue: '')
+  String get linkYt => throw _privateConstructorUsedError;
   @JsonKey(name: 'contributor')
   ConstributorRes? get contributor => throw _privateConstructorUsedError;
+  @JsonKey(name: 'publisher')
+  PublisherRes? get publisher => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -93,14 +97,17 @@ abstract class $DetailsTrackResCopyWith<$Res> {
       int previewsStartTime,
       @JsonKey(name: 'internal_track_id', defaultValue: 0) int internalTrackId,
       @JsonKey(name: 'lyric', defaultValue: '') String lyric,
-      @JsonKey(name: 'is_check', defaultValue: 0) int isCheck,
-      @JsonKey(name: 'contributor') ConstributorRes? contributor});
+      @JsonKey(name: 'status', defaultValue: 0) int status,
+      @JsonKey(name: 'link_yt', defaultValue: '') String linkYt,
+      @JsonKey(name: 'contributor') ConstributorRes? contributor,
+      @JsonKey(name: 'publisher') PublisherRes? publisher});
 
   $LanguageResCopyWith<$Res>? get langLyric;
   $GenreResCopyWith<$Res>? get genre1;
   $GenreResCopyWith<$Res>? get genre2;
   $UserResCopyWith<$Res>? get user;
   $ConstributorResCopyWith<$Res>? get contributor;
+  $PublisherResCopyWith<$Res>? get publisher;
 }
 
 /// @nodoc
@@ -134,8 +141,10 @@ class _$DetailsTrackResCopyWithImpl<$Res, $Val extends DetailsTrackRes>
     Object? previewsStartTime = null,
     Object? internalTrackId = null,
     Object? lyric = null,
-    Object? isCheck = null,
+    Object? status = null,
+    Object? linkYt = null,
     Object? contributor = freezed,
+    Object? publisher = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -210,14 +219,22 @@ class _$DetailsTrackResCopyWithImpl<$Res, $Val extends DetailsTrackRes>
           ? _value.lyric
           : lyric // ignore: cast_nullable_to_non_nullable
               as String,
-      isCheck: null == isCheck
-          ? _value.isCheck
-          : isCheck // ignore: cast_nullable_to_non_nullable
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as int,
+      linkYt: null == linkYt
+          ? _value.linkYt
+          : linkYt // ignore: cast_nullable_to_non_nullable
+              as String,
       contributor: freezed == contributor
           ? _value.contributor
           : contributor // ignore: cast_nullable_to_non_nullable
               as ConstributorRes?,
+      publisher: freezed == publisher
+          ? _value.publisher
+          : publisher // ignore: cast_nullable_to_non_nullable
+              as PublisherRes?,
     ) as $Val);
   }
 
@@ -280,6 +297,18 @@ class _$DetailsTrackResCopyWithImpl<$Res, $Val extends DetailsTrackRes>
       return _then(_value.copyWith(contributor: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PublisherResCopyWith<$Res>? get publisher {
+    if (_value.publisher == null) {
+      return null;
+    }
+
+    return $PublisherResCopyWith<$Res>(_value.publisher!, (value) {
+      return _then(_value.copyWith(publisher: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -310,8 +339,10 @@ abstract class _$$_DetailsTrackResCopyWith<$Res>
       int previewsStartTime,
       @JsonKey(name: 'internal_track_id', defaultValue: 0) int internalTrackId,
       @JsonKey(name: 'lyric', defaultValue: '') String lyric,
-      @JsonKey(name: 'is_check', defaultValue: 0) int isCheck,
-      @JsonKey(name: 'contributor') ConstributorRes? contributor});
+      @JsonKey(name: 'status', defaultValue: 0) int status,
+      @JsonKey(name: 'link_yt', defaultValue: '') String linkYt,
+      @JsonKey(name: 'contributor') ConstributorRes? contributor,
+      @JsonKey(name: 'publisher') PublisherRes? publisher});
 
   @override
   $LanguageResCopyWith<$Res>? get langLyric;
@@ -323,6 +354,8 @@ abstract class _$$_DetailsTrackResCopyWith<$Res>
   $UserResCopyWith<$Res>? get user;
   @override
   $ConstributorResCopyWith<$Res>? get contributor;
+  @override
+  $PublisherResCopyWith<$Res>? get publisher;
 }
 
 /// @nodoc
@@ -354,8 +387,10 @@ class __$$_DetailsTrackResCopyWithImpl<$Res>
     Object? previewsStartTime = null,
     Object? internalTrackId = null,
     Object? lyric = null,
-    Object? isCheck = null,
+    Object? status = null,
+    Object? linkYt = null,
     Object? contributor = freezed,
+    Object? publisher = freezed,
   }) {
     return _then(_$_DetailsTrackRes(
       id: null == id
@@ -430,14 +465,22 @@ class __$$_DetailsTrackResCopyWithImpl<$Res>
           ? _value.lyric
           : lyric // ignore: cast_nullable_to_non_nullable
               as String,
-      isCheck: null == isCheck
-          ? _value.isCheck
-          : isCheck // ignore: cast_nullable_to_non_nullable
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as int,
+      linkYt: null == linkYt
+          ? _value.linkYt
+          : linkYt // ignore: cast_nullable_to_non_nullable
+              as String,
       contributor: freezed == contributor
           ? _value.contributor
           : contributor // ignore: cast_nullable_to_non_nullable
               as ConstributorRes?,
+      publisher: freezed == publisher
+          ? _value.publisher
+          : publisher // ignore: cast_nullable_to_non_nullable
+              as PublisherRes?,
     ));
   }
 }
@@ -470,8 +513,10 @@ class _$_DetailsTrackRes extends _DetailsTrackRes {
       @JsonKey(name: 'internal_track_id', defaultValue: 0)
       required this.internalTrackId,
       @JsonKey(name: 'lyric', defaultValue: '') required this.lyric,
-      @JsonKey(name: 'is_check', defaultValue: 0) required this.isCheck,
-      @JsonKey(name: 'contributor') this.contributor})
+      @JsonKey(name: 'status', defaultValue: 0) required this.status,
+      @JsonKey(name: 'link_yt', defaultValue: '') required this.linkYt,
+      @JsonKey(name: 'contributor') this.contributor,
+      @JsonKey(name: 'publisher') this.publisher})
       : super._();
 
   factory _$_DetailsTrackRes.fromJson(Map<String, dynamic> json) =>
@@ -532,15 +577,21 @@ class _$_DetailsTrackRes extends _DetailsTrackRes {
   @JsonKey(name: 'lyric', defaultValue: '')
   final String lyric;
   @override
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  final int isCheck;
+  @JsonKey(name: 'status', defaultValue: 0)
+  final int status;
+  @override
+  @JsonKey(name: 'link_yt', defaultValue: '')
+  final String linkYt;
   @override
   @JsonKey(name: 'contributor')
   final ConstributorRes? contributor;
+  @override
+  @JsonKey(name: 'publisher')
+  final PublisherRes? publisher;
 
   @override
   String toString() {
-    return 'DetailsTrackRes(id: $id, cover: $cover, image: $image, langLyric: $langLyric, title: $title, artisName: $artisName, spotify: $spotify, itunes: $itunes, genre1: $genre1, genre2: $genre2, pCopyright: $pCopyright, user: $user, isrc: $isrc, explisitLyric: $explisitLyric, thisTrackIs: $thisTrackIs, previewsStartTime: $previewsStartTime, internalTrackId: $internalTrackId, lyric: $lyric, isCheck: $isCheck, contributor: $contributor)';
+    return 'DetailsTrackRes(id: $id, cover: $cover, image: $image, langLyric: $langLyric, title: $title, artisName: $artisName, spotify: $spotify, itunes: $itunes, genre1: $genre1, genre2: $genre2, pCopyright: $pCopyright, user: $user, isrc: $isrc, explisitLyric: $explisitLyric, thisTrackIs: $thisTrackIs, previewsStartTime: $previewsStartTime, internalTrackId: $internalTrackId, lyric: $lyric, status: $status, linkYt: $linkYt, contributor: $contributor, publisher: $publisher)';
   }
 
   @override
@@ -573,9 +624,12 @@ class _$_DetailsTrackRes extends _DetailsTrackRes {
             (identical(other.internalTrackId, internalTrackId) ||
                 other.internalTrackId == internalTrackId) &&
             (identical(other.lyric, lyric) || other.lyric == lyric) &&
-            (identical(other.isCheck, isCheck) || other.isCheck == isCheck) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.linkYt, linkYt) || other.linkYt == linkYt) &&
             (identical(other.contributor, contributor) ||
-                other.contributor == contributor));
+                other.contributor == contributor) &&
+            (identical(other.publisher, publisher) ||
+                other.publisher == publisher));
   }
 
   @JsonKey(ignore: true)
@@ -600,8 +654,10 @@ class _$_DetailsTrackRes extends _DetailsTrackRes {
         previewsStartTime,
         internalTrackId,
         lyric,
-        isCheck,
-        contributor
+        status,
+        linkYt,
+        contributor,
+        publisher
       ]);
 
   @JsonKey(ignore: true)
@@ -645,9 +701,11 @@ abstract class _DetailsTrackRes extends DetailsTrackRes {
       @JsonKey(name: 'internal_track_id', defaultValue: 0)
       required final int internalTrackId,
       @JsonKey(name: 'lyric', defaultValue: '') required final String lyric,
-      @JsonKey(name: 'is_check', defaultValue: 0) required final int isCheck,
-      @JsonKey(name: 'contributor')
-      final ConstributorRes? contributor}) = _$_DetailsTrackRes;
+      @JsonKey(name: 'status', defaultValue: 0) required final int status,
+      @JsonKey(name: 'link_yt', defaultValue: '') required final String linkYt,
+      @JsonKey(name: 'contributor') final ConstributorRes? contributor,
+      @JsonKey(name: 'publisher')
+      final PublisherRes? publisher}) = _$_DetailsTrackRes;
   const _DetailsTrackRes._() : super._();
 
   factory _DetailsTrackRes.fromJson(Map<String, dynamic> json) =
@@ -708,11 +766,17 @@ abstract class _DetailsTrackRes extends DetailsTrackRes {
   @JsonKey(name: 'lyric', defaultValue: '')
   String get lyric;
   @override
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  int get isCheck;
+  @JsonKey(name: 'status', defaultValue: 0)
+  int get status;
+  @override
+  @JsonKey(name: 'link_yt', defaultValue: '')
+  String get linkYt;
   @override
   @JsonKey(name: 'contributor')
   ConstributorRes? get contributor;
+  @override
+  @JsonKey(name: 'publisher')
+  PublisherRes? get publisher;
   @override
   @JsonKey(ignore: true)
   _$$_DetailsTrackResCopyWith<_$_DetailsTrackRes> get copyWith =>

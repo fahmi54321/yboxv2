@@ -54,8 +54,10 @@ mixin _$DetailsVideoRes {
   TrackIdRes? get trackId => throw _privateConstructorUsedError;
   @JsonKey(name: 'user')
   UserRes? get user => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  int get isCheck => throw _privateConstructorUsedError;
+  @JsonKey(name: 'publisher')
+  PublisherRes? get publisher => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status', defaultValue: 0)
+  int get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -87,7 +89,8 @@ abstract class $DetailsVideoResCopyWith<$Res> {
       @JsonKey(name: 'upc', defaultValue: 0) int upc,
       @JsonKey(name: 'track_id') TrackIdRes? trackId,
       @JsonKey(name: 'user') UserRes? user,
-      @JsonKey(name: 'is_check', defaultValue: 0) int isCheck});
+      @JsonKey(name: 'publisher') PublisherRes? publisher,
+      @JsonKey(name: 'status', defaultValue: 0) int status});
 
   $LanguageResCopyWith<$Res>? get langId;
   $GenreResCopyWith<$Res>? get genre1;
@@ -95,6 +98,7 @@ abstract class $DetailsVideoResCopyWith<$Res> {
   $LabelNameResCopyWith<$Res>? get labelName;
   $TrackIdResCopyWith<$Res>? get trackId;
   $UserResCopyWith<$Res>? get user;
+  $PublisherResCopyWith<$Res>? get publisher;
 }
 
 /// @nodoc
@@ -127,7 +131,8 @@ class _$DetailsVideoResCopyWithImpl<$Res, $Val extends DetailsVideoRes>
     Object? upc = null,
     Object? trackId = freezed,
     Object? user = freezed,
-    Object? isCheck = null,
+    Object? publisher = freezed,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -198,9 +203,13 @@ class _$DetailsVideoResCopyWithImpl<$Res, $Val extends DetailsVideoRes>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserRes?,
-      isCheck: null == isCheck
-          ? _value.isCheck
-          : isCheck // ignore: cast_nullable_to_non_nullable
+      publisher: freezed == publisher
+          ? _value.publisher
+          : publisher // ignore: cast_nullable_to_non_nullable
+              as PublisherRes?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -276,6 +285,18 @@ class _$DetailsVideoResCopyWithImpl<$Res, $Val extends DetailsVideoRes>
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PublisherResCopyWith<$Res>? get publisher {
+    if (_value.publisher == null) {
+      return null;
+    }
+
+    return $PublisherResCopyWith<$Res>(_value.publisher!, (value) {
+      return _then(_value.copyWith(publisher: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -304,7 +325,8 @@ abstract class _$$_DetailsVideoResCopyWith<$Res>
       @JsonKey(name: 'upc', defaultValue: 0) int upc,
       @JsonKey(name: 'track_id') TrackIdRes? trackId,
       @JsonKey(name: 'user') UserRes? user,
-      @JsonKey(name: 'is_check', defaultValue: 0) int isCheck});
+      @JsonKey(name: 'publisher') PublisherRes? publisher,
+      @JsonKey(name: 'status', defaultValue: 0) int status});
 
   @override
   $LanguageResCopyWith<$Res>? get langId;
@@ -318,6 +340,8 @@ abstract class _$$_DetailsVideoResCopyWith<$Res>
   $TrackIdResCopyWith<$Res>? get trackId;
   @override
   $UserResCopyWith<$Res>? get user;
+  @override
+  $PublisherResCopyWith<$Res>? get publisher;
 }
 
 /// @nodoc
@@ -348,7 +372,8 @@ class __$$_DetailsVideoResCopyWithImpl<$Res>
     Object? upc = null,
     Object? trackId = freezed,
     Object? user = freezed,
-    Object? isCheck = null,
+    Object? publisher = freezed,
+    Object? status = null,
   }) {
     return _then(_$_DetailsVideoRes(
       id: null == id
@@ -419,9 +444,13 @@ class __$$_DetailsVideoResCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserRes?,
-      isCheck: null == isCheck
-          ? _value.isCheck
-          : isCheck // ignore: cast_nullable_to_non_nullable
+      publisher: freezed == publisher
+          ? _value.publisher
+          : publisher // ignore: cast_nullable_to_non_nullable
+              as PublisherRes?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -451,7 +480,8 @@ class _$_DetailsVideoRes extends _DetailsVideoRes {
       @JsonKey(name: 'upc', defaultValue: 0) required this.upc,
       @JsonKey(name: 'track_id') this.trackId,
       @JsonKey(name: 'user') this.user,
-      @JsonKey(name: 'is_check', defaultValue: 0) required this.isCheck})
+      @JsonKey(name: 'publisher') this.publisher,
+      @JsonKey(name: 'status', defaultValue: 0) required this.status})
       : super._();
 
   factory _$_DetailsVideoRes.fromJson(Map<String, dynamic> json) =>
@@ -509,12 +539,15 @@ class _$_DetailsVideoRes extends _DetailsVideoRes {
   @JsonKey(name: 'user')
   final UserRes? user;
   @override
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  final int isCheck;
+  @JsonKey(name: 'publisher')
+  final PublisherRes? publisher;
+  @override
+  @JsonKey(name: 'status', defaultValue: 0)
+  final int status;
 
   @override
   String toString() {
-    return 'DetailsVideoRes(id: $id, cover: $cover, langId: $langId, title: $title, titleVersion: $titleVersion, spotify: $spotify, itunes: $itunes, genre1: $genre1, genre2: $genre2, pCopyright: $pCopyright, cCopyright: $cCopyright, released: $released, labelName: $labelName, releasedId: $releasedId, upc: $upc, trackId: $trackId, user: $user, isCheck: $isCheck)';
+    return 'DetailsVideoRes(id: $id, cover: $cover, langId: $langId, title: $title, titleVersion: $titleVersion, spotify: $spotify, itunes: $itunes, genre1: $genre1, genre2: $genre2, pCopyright: $pCopyright, cCopyright: $cCopyright, released: $released, labelName: $labelName, releasedId: $releasedId, upc: $upc, trackId: $trackId, user: $user, publisher: $publisher, status: $status)';
   }
 
   @override
@@ -545,31 +578,35 @@ class _$_DetailsVideoRes extends _DetailsVideoRes {
             (identical(other.upc, upc) || other.upc == upc) &&
             (identical(other.trackId, trackId) || other.trackId == trackId) &&
             (identical(other.user, user) || other.user == user) &&
-            (identical(other.isCheck, isCheck) || other.isCheck == isCheck));
+            (identical(other.publisher, publisher) ||
+                other.publisher == publisher) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      cover,
-      langId,
-      title,
-      titleVersion,
-      spotify,
-      itunes,
-      genre1,
-      genre2,
-      pCopyright,
-      cCopyright,
-      released,
-      labelName,
-      releasedId,
-      upc,
-      trackId,
-      user,
-      isCheck);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        cover,
+        langId,
+        title,
+        titleVersion,
+        spotify,
+        itunes,
+        genre1,
+        genre2,
+        pCopyright,
+        cCopyright,
+        released,
+        labelName,
+        releasedId,
+        upc,
+        trackId,
+        user,
+        publisher,
+        status
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -609,8 +646,9 @@ abstract class _DetailsVideoRes extends DetailsVideoRes {
       @JsonKey(name: 'upc', defaultValue: 0) required final int upc,
       @JsonKey(name: 'track_id') final TrackIdRes? trackId,
       @JsonKey(name: 'user') final UserRes? user,
-      @JsonKey(name: 'is_check', defaultValue: 0)
-      required final int isCheck}) = _$_DetailsVideoRes;
+      @JsonKey(name: 'publisher') final PublisherRes? publisher,
+      @JsonKey(name: 'status', defaultValue: 0)
+      required final int status}) = _$_DetailsVideoRes;
   const _DetailsVideoRes._() : super._();
 
   factory _DetailsVideoRes.fromJson(Map<String, dynamic> json) =
@@ -668,8 +706,11 @@ abstract class _DetailsVideoRes extends DetailsVideoRes {
   @JsonKey(name: 'user')
   UserRes? get user;
   @override
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  int get isCheck;
+  @JsonKey(name: 'publisher')
+  PublisherRes? get publisher;
+  @override
+  @JsonKey(name: 'status', defaultValue: 0)
+  int get status;
   @override
   @JsonKey(ignore: true)
   _$$_DetailsVideoResCopyWith<_$_DetailsVideoRes> get copyWith =>

@@ -8,6 +8,7 @@ import 'package:yboxv2/models/audio/audio_res.dart';
 import 'package:yboxv2/models/audio/details_audio_res.dart';
 import 'package:yboxv2/models/general/genre_res.dart';
 import 'package:yboxv2/models/general/language_res.dart';
+import 'package:yboxv2/models/general/publisher_res.dart';
 import 'package:yboxv2/models/general/publishing_res.dart';
 import 'package:yboxv2/models/general/roles_res.dart';
 import 'package:yboxv2/models/leader/leader_res.dart';
@@ -43,6 +44,7 @@ class FormAlbumAudioVideoState extends ChangeNotifier {
   GenreRes? genreRes2Tracks;
   RolesRes? pubRoles;
   PublishingRes? pubPublishings;
+  PublisherRes? publisher;
   LeaderRes mainLabel = const LeaderRes(
     id: '',
     name: '',
@@ -58,6 +60,7 @@ class FormAlbumAudioVideoState extends ChangeNotifier {
   List<GenreRes> listGenre = [];
   List<RolesRes> listRole = [];
   List<PublishingRes> listPublishing = [];
+  List<PublisherRes> listPublisher = [];
 
   // main
   int selectInputPrevRelease = 0;
@@ -131,6 +134,7 @@ class FormAlbumAudioVideoState extends ChangeNotifier {
 
   // info
   TextEditingController tracksInputLyrics = TextEditingController();
+  TextEditingController tracksLinkYt = TextEditingController();
   TextEditingController tracksInputCopyrightP = TextEditingController();
   TextEditingController tracksInputCopyrightC = TextEditingController();
   TextEditingController tracksInputInternalTracksId = TextEditingController();
@@ -171,7 +175,7 @@ class FormAlbumAudioVideoState extends ChangeNotifier {
     isLoadingList = true;
     notifyListeners();
 
-    UtilsLoading.showLoading(message: 'Loading');
+    // UtilsLoading.showLoading(message: 'Loading');
 
     await initEditAlbum();
     await initEditVideo();
@@ -180,8 +184,9 @@ class FormAlbumAudioVideoState extends ChangeNotifier {
     await getGenre();
     await getRoles();
     await getPublishing();
+    await getPublisher();
 
-    UtilsLoading.dismiss();
+    // UtilsLoading.dismiss();
 
     isLoadingList = false;
     notifyListeners();
@@ -202,7 +207,9 @@ class FormAlbumAudioVideoState extends ChangeNotifier {
           languageResTrack: languageResTrack,
           genreRes1Main: genreRes1Main,
           genreRes2Main: genreRes2Main,
+          publisher: publisher,
           listLanguage: listLanguage,
+          listPublisher: listPublisher,
           listGenre: listGenre,
           state: this,
         ),
@@ -432,7 +439,6 @@ class FormAlbumAudioVideoState extends ChangeNotifier {
         } else {
           pubRoles = cat[0];
         }
-        pubRoles = cat[0];
         notifyListeners();
       },
     );
@@ -460,7 +466,33 @@ class FormAlbumAudioVideoState extends ChangeNotifier {
         } else {
           pubPublishings = cat[0];
         }
-        pubPublishings = cat[0];
+        notifyListeners();
+      },
+    );
+  }
+
+  Future<void> getPublisher() async {
+    final resStep1 = await HTTPListService().getPubliser();
+
+    resStep1.fold(
+      (e) async {
+        isLoadingList = false;
+        notifyListeners();
+
+        UtilsLoading.dismiss();
+        UtilsLoading.showError(message: e);
+      },
+      (cat) async {
+        listPublisher = cat;
+        if (dataAlbum?.publisher != null) {
+          publisher = dataAlbum?.publisher;
+        } else if (dataVideo?.publisher != null) {
+          publisher = dataVideo?.publisher;
+        } else if (dataAudio?.publisher != null) {
+          publisher = dataAudio?.publisher;
+        } else {
+          publisher = cat[0];
+        }
         notifyListeners();
       },
     );
@@ -762,6 +794,7 @@ class FormAlbumAudioVideoState extends ChangeNotifier {
       tracksInputCopyrightC.text =
           dataAlbum?.trackId?.previewsStartTime.toString() ?? '';
       tracksInputLyrics.text = dataAlbum?.trackId?.lyric ?? '';
+      tracksLinkYt.text = dataAlbum?.trackId?.linkYt ?? '';
       tracksInputInternalTracksId.text =
           dataAlbum?.trackId?.internalTrackId.toString() ?? '';
 
@@ -890,6 +923,7 @@ class FormAlbumAudioVideoState extends ChangeNotifier {
       tracksInputCopyrightC.text =
           dataVideo?.trackId?.previewsStartTime.toString() ?? '';
       tracksInputLyrics.text = dataVideo?.trackId?.lyric ?? '';
+      tracksLinkYt.text = dataVideo?.trackId?.linkYt ?? '';
       tracksInputInternalTracksId.text =
           dataVideo?.trackId?.internalTrackId.toString() ?? '';
 
@@ -1018,6 +1052,7 @@ class FormAlbumAudioVideoState extends ChangeNotifier {
       tracksInputCopyrightC.text =
           dataAudio?.trackId?.previewsStartTime.toString() ?? '';
       tracksInputLyrics.text = dataAudio?.trackId?.lyric ?? '';
+      tracksLinkYt.text = dataAudio?.trackId?.linkYt ?? '';
       tracksInputInternalTracksId.text =
           dataAudio?.trackId?.internalTrackId.toString() ?? '';
 

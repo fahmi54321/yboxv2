@@ -53,7 +53,12 @@ _$_DetailsVideoRes _$$_DetailsVideoResFromJson(Map json) => $checkedCreate(
               (v) => v == null
                   ? null
                   : UserRes.fromJson(Map<String, dynamic>.from(v as Map))),
-          isCheck: $checkedConvert('is_check', (v) => v as int? ?? 0),
+          publisher: $checkedConvert(
+              'publisher',
+              (v) => v == null
+                  ? null
+                  : PublisherRes.fromJson(Map<String, dynamic>.from(v as Map))),
+          status: $checkedConvert('status', (v) => v as int? ?? 0),
         );
         return val;
       },
@@ -66,8 +71,7 @@ _$_DetailsVideoRes _$$_DetailsVideoResFromJson(Map json) => $checkedCreate(
         'cCopyright': 'c_copyright',
         'labelName': 'label_name',
         'releasedId': 'released_id',
-        'trackId': 'track_id',
-        'isCheck': 'is_check'
+        'trackId': 'track_id'
       },
     );
 
@@ -98,6 +102,7 @@ Map<String, dynamic> _$$_DetailsVideoResToJson(_$_DetailsVideoRes instance) {
   val['upc'] = instance.upc;
   writeNotNull('track_id', instance.trackId?.toJson());
   writeNotNull('user', instance.user?.toJson());
-  val['is_check'] = instance.isCheck;
+  writeNotNull('publisher', instance.publisher?.toJson());
+  val['status'] = instance.status;
   return val;
 }

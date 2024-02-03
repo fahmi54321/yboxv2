@@ -37,13 +37,8 @@ class _SplashPageState extends State<SplashPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/image/icon.png',
-              height: 150.0,
-            ),
-            Image.asset(
-              'assets/image/label.png',
-              height: 100.0,
-              width: 200.0,
+              'assets/icon/ic_ybox2.png',
+              height: 200.0,
             ),
           ],
         ),

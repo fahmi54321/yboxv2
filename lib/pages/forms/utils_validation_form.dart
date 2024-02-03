@@ -1,3 +1,6 @@
+import 'dart:math' as math;
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:yboxv2/pages/provider/data_album_video_audio.dart';
@@ -5,11 +8,18 @@ import 'package:yboxv2/pages/provider/data_track_state.dart';
 import 'package:yboxv2/utils/utils_loading.dart';
 
 class UtilsValidationForm {
+  static Future<double> getFileSize(String filepath) async {
+    var file = File(filepath);
+    int bytes = await file.length();
+    if (bytes <= 0) return 0;
+    var i = (math.log(bytes) / math.log(1024)).floor();
+    return ((bytes / math.pow(1024, i)));
+  }
+
   static Future<FormData?> cekValidasiAlbumOrVideo({
     required DataAlbumAudioVideoState data,
     required bool isEdit,
   }) async {
-    debugPrint('coverImage :  ${data.coverImage.path}');
     if (!isEdit && data.coverImage.path.isEmpty) {
       UtilsLoading.showInfo(message: 'Gambar tidak boleh kosong');
       return null;
@@ -63,6 +73,8 @@ class UtilsValidationForm {
             "role_track": data.roleTrack,
             "share": data.share,
             "publishing": data.publishing,
+            "publisher": data.publisher,
+            "link_yt_track": data.linkYt,
           },
         );
         return formData;
@@ -114,6 +126,8 @@ class UtilsValidationForm {
             "role_track": data.roleTrack,
             "share": data.share,
             "publishing": data.publishing,
+            "publisher": data.publisher,
+            "link_yt_track": data.linkYt,
           },
         );
 
@@ -167,6 +181,7 @@ class UtilsValidationForm {
             "role_track": data.roleTrack,
             "share": data.share,
             "publishing": data.publishing,
+            "publisher_track": data.publisherTrack,
           },
         );
         return formData;
@@ -205,6 +220,7 @@ class UtilsValidationForm {
             "role_track": data.roleTrack,
             "share": data.share,
             "publishing": data.publishing,
+            "publisher_track": data.publisherTrack,
           },
         );
 

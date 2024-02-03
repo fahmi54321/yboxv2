@@ -214,8 +214,8 @@ DataTrackRes _$DataTrackResFromJson(Map<String, dynamic> json) {
 mixin _$DataTrackRes {
   @JsonKey(name: 'id', defaultValue: '')
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  int get isCheck => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status', defaultValue: 0)
+  int get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'image', defaultValue: '')
   String get image => throw _privateConstructorUsedError;
   @JsonKey(name: 'cover', defaultValue: '')
@@ -243,7 +243,7 @@ abstract class $DataTrackResCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id', defaultValue: '') String id,
-      @JsonKey(name: 'is_check', defaultValue: 0) int isCheck,
+      @JsonKey(name: 'status', defaultValue: 0) int status,
       @JsonKey(name: 'image', defaultValue: '') String image,
       @JsonKey(name: 'cover', defaultValue: '') String cover,
       @JsonKey(name: 'track_title', defaultValue: '') String trackTitle,
@@ -266,7 +266,7 @@ class _$DataTrackResCopyWithImpl<$Res, $Val extends DataTrackRes>
   @override
   $Res call({
     Object? id = null,
-    Object? isCheck = null,
+    Object? status = null,
     Object? image = null,
     Object? cover = null,
     Object? trackTitle = null,
@@ -279,9 +279,9 @@ class _$DataTrackResCopyWithImpl<$Res, $Val extends DataTrackRes>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      isCheck: null == isCheck
-          ? _value.isCheck
-          : isCheck // ignore: cast_nullable_to_non_nullable
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as int,
       image: null == image
           ? _value.image
@@ -321,7 +321,7 @@ abstract class _$$_DataTrackResCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'id', defaultValue: '') String id,
-      @JsonKey(name: 'is_check', defaultValue: 0) int isCheck,
+      @JsonKey(name: 'status', defaultValue: 0) int status,
       @JsonKey(name: 'image', defaultValue: '') String image,
       @JsonKey(name: 'cover', defaultValue: '') String cover,
       @JsonKey(name: 'track_title', defaultValue: '') String trackTitle,
@@ -342,7 +342,7 @@ class __$$_DataTrackResCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? isCheck = null,
+    Object? status = null,
     Object? image = null,
     Object? cover = null,
     Object? trackTitle = null,
@@ -355,9 +355,9 @@ class __$$_DataTrackResCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      isCheck: null == isCheck
-          ? _value.isCheck
-          : isCheck // ignore: cast_nullable_to_non_nullable
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as int,
       image: null == image
           ? _value.image
@@ -394,7 +394,7 @@ class __$$_DataTrackResCopyWithImpl<$Res>
 class _$_DataTrackRes extends _DataTrackRes {
   const _$_DataTrackRes(
       {@JsonKey(name: 'id', defaultValue: '') required this.id,
-      @JsonKey(name: 'is_check', defaultValue: 0) required this.isCheck,
+      @JsonKey(name: 'status', defaultValue: 0) required this.status,
       @JsonKey(name: 'image', defaultValue: '') required this.image,
       @JsonKey(name: 'cover', defaultValue: '') required this.cover,
       @JsonKey(name: 'track_title', defaultValue: '') required this.trackTitle,
@@ -411,8 +411,8 @@ class _$_DataTrackRes extends _DataTrackRes {
   @JsonKey(name: 'id', defaultValue: '')
   final String id;
   @override
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  final int isCheck;
+  @JsonKey(name: 'status', defaultValue: 0)
+  final int status;
   @override
   @JsonKey(name: 'image', defaultValue: '')
   final String image;
@@ -434,7 +434,7 @@ class _$_DataTrackRes extends _DataTrackRes {
 
   @override
   String toString() {
-    return 'DataTrackRes(id: $id, isCheck: $isCheck, image: $image, cover: $cover, trackTitle: $trackTitle, artisName: $artisName, trackVersion: $trackVersion, createdAt: $createdAt)';
+    return 'DataTrackRes(id: $id, status: $status, image: $image, cover: $cover, trackTitle: $trackTitle, artisName: $artisName, trackVersion: $trackVersion, createdAt: $createdAt)';
   }
 
   @override
@@ -443,7 +443,7 @@ class _$_DataTrackRes extends _DataTrackRes {
         (other.runtimeType == runtimeType &&
             other is _$_DataTrackRes &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.isCheck, isCheck) || other.isCheck == isCheck) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.cover, cover) || other.cover == cover) &&
             (identical(other.trackTitle, trackTitle) ||
@@ -458,7 +458,7 @@ class _$_DataTrackRes extends _DataTrackRes {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, isCheck, image, cover,
+  int get hashCode => Object.hash(runtimeType, id, status, image, cover,
       trackTitle, artisName, trackVersion, createdAt);
 
   @JsonKey(ignore: true)
@@ -478,7 +478,7 @@ class _$_DataTrackRes extends _DataTrackRes {
 abstract class _DataTrackRes extends DataTrackRes {
   const factory _DataTrackRes(
       {@JsonKey(name: 'id', defaultValue: '') required final String id,
-      @JsonKey(name: 'is_check', defaultValue: 0) required final int isCheck,
+      @JsonKey(name: 'status', defaultValue: 0) required final int status,
       @JsonKey(name: 'image', defaultValue: '') required final String image,
       @JsonKey(name: 'cover', defaultValue: '') required final String cover,
       @JsonKey(name: 'track_title', defaultValue: '')
@@ -498,8 +498,8 @@ abstract class _DataTrackRes extends DataTrackRes {
   @JsonKey(name: 'id', defaultValue: '')
   String get id;
   @override
-  @JsonKey(name: 'is_check', defaultValue: 0)
-  int get isCheck;
+  @JsonKey(name: 'status', defaultValue: 0)
+  int get status;
   @override
   @JsonKey(name: 'image', defaultValue: '')
   String get image;

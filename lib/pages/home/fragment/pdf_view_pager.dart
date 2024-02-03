@@ -31,7 +31,12 @@ class _PDFViewPagerState extends State<PDFViewPager> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('transaction${widget.invoiceRes.id}.pdf'),
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
+        title: vText(
+          'transaction${widget.invoiceRes.id}.pdf',
+          color: Theme.of(context).colorScheme.onPrimary,
+          maxLines: 1,
+        ),
         actions: [
           IconButton(
             onPressed: () async {
@@ -52,7 +57,7 @@ class _PDFViewPagerState extends State<PDFViewPager> {
             icon: (isLoadingButton == false)
                 ? Icon(
                     Icons.download,
-                    color: Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.onPrimary,
                   )
                 : const SizedBox(
                     height: 25,
@@ -141,6 +146,6 @@ class _PDFViewPagerState extends State<PDFViewPager> {
               ),
             );
           }),
-    )..show(context);
+    ).show(context);
   }
 }

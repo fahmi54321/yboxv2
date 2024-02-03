@@ -50,14 +50,13 @@ _$_DataVideoRes _$$_DataVideoResFromJson(Map json) => $checkedCreate(
               (v) => v == null
                   ? null
                   : TrackIdRes.fromJson(Map<String, dynamic>.from(v as Map))),
-          isCheck: $checkedConvert('is_check', (v) => v as int? ?? 0),
+          status: $checkedConvert('status', (v) => v as int? ?? 0),
         );
         return val;
       },
       fieldKeyMap: const {
         'titleVersion': 'title_version',
-        'trackId': 'track_id',
-        'isCheck': 'is_check'
+        'trackId': 'track_id'
       },
     );
 
@@ -77,6 +76,6 @@ Map<String, dynamic> _$$_DataVideoResToJson(_$_DataVideoRes instance) {
   }
 
   writeNotNull('track_id', instance.trackId?.toJson());
-  val['is_check'] = instance.isCheck;
+  val['status'] = instance.status;
   return val;
 }

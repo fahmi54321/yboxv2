@@ -44,7 +44,7 @@ class DataAlbumRes with _$DataAlbumRes {
     @JsonKey(name: 'released_date', defaultValue: '')
     required String releasedDate,
     @JsonKey(name: 'track_id') TrackIdRes? trackId,
-    @JsonKey(name: 'is_check', defaultValue: 0) required int isCheck,
+    @JsonKey(name: 'status', defaultValue: 0) required int status,
   }) = _DataAlbumRes;
 
   factory DataAlbumRes.fromJson(Map<String, dynamic> json) =>

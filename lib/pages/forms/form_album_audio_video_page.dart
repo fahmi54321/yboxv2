@@ -7,6 +7,7 @@ import 'package:yboxv2/models/video/details_video_res.dart';
 
 import 'package:yboxv2/pages/forms/form_album_audio_video_state.dart';
 import 'package:yboxv2/pages/forms/utils_validation_form.dart';
+import 'package:yboxv2/pages/home/fragment/shimer/home_shimer.dart';
 import 'package:yboxv2/pages/provider/data_album_video_audio.dart';
 import 'package:yboxv2/pages/widget/sukses_add.dart';
 import 'package:yboxv2/resource/CPColors.dart';
@@ -73,7 +74,7 @@ class _FormAlbumAudioVideoPageState extends State<FormAlbumAudioVideoPage> {
               elevation: 0,
             ),
             body: state.isLoadingList
-                ? Container()
+                ? const HomeShimer()
                 : state.isSuksesAdd
                     ? SuksesPage(form: widget.args.fromCode)
                     : Stepper(

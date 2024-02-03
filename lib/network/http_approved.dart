@@ -56,4 +56,28 @@ class HTTPApprovedService {
       return const Left('Terjadi kesalahan');
     }
   }
+
+  Future<Either<String, bool>> sendData({
+    required Map<String, dynamic> paramsData,
+  }) async {
+    var dataToken = await SharedPreferencesUtils.getLoginPreference();
+    LoginRes loginRes = LoginRes.fromJson(jsonDecode(dataToken ?? ''));
+
+    final response = await WebService().client().post(
+          ApiUrl.sendItem,
+          data: paramsData,
+          options: Options(headers: {
+            'Authorization': 'Bearer ${loginRes.accessToken}',
+          }),
+        );
+    debugPrint('url sendData : ${ApiUrl.sendItem}');
+    debugPrint('parms sendData : $paramsData');
+    debugPrint('response sendData : ${response.data}');
+
+    if (response.statusCode == 200) {
+      return const Right(true);
+    } else {
+      return const Left('Terjadi kesalahan');
+    }
+  }
 }

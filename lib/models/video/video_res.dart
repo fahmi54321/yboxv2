@@ -42,7 +42,7 @@ class DataVideoRes with _$DataVideoRes {
     required String titleVersion,
     @JsonKey(name: 'released', defaultValue: '') required String released,
     @JsonKey(name: 'track_id') TrackIdRes? trackId,
-    @JsonKey(name: 'is_check', defaultValue: 0) required int isCheck,
+    @JsonKey(name: 'status', defaultValue: 0) required int status,
   }) = _DataVideoRes;
 
   factory DataVideoRes.fromJson(Map<String, dynamic> json) =>

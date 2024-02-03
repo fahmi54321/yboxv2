@@ -41,7 +41,7 @@ class DataAudioRes with _$DataAudioRes {
     @JsonKey(name: 'title_version', defaultValue: '')
     required String titleVersion,
     @JsonKey(name: 'released', defaultValue: '') required String released,
-    @JsonKey(name: 'is_check', defaultValue: 0) required int isCheck,
+    @JsonKey(name: 'status', defaultValue: 0) required int status,
     @JsonKey(name: 'track_id') TrackIdRes? trackId,
   }) = _DataAudioRes;
 

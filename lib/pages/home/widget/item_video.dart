@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:yboxv2/models/video/video_res.dart';
+import 'package:yboxv2/pages/home/details/utils/utils_details.dart';
 import 'package:yboxv2/resource/CPColors.dart';
 import 'package:yboxv2/resource/strings.dart';
 import 'package:yboxv2/widget/v_text.dart';
@@ -15,90 +15,6 @@ class ItemVideo extends StatelessWidget {
     required this.item,
     this.onTap,
   }) : super(key: key);
-
-  Widget statusData({
-    required int isCheck,
-    required BuildContext context,
-  }) {
-    switch (isCheck) {
-      // pending
-      case 0:
-        {
-          return Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(4.0),
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: yellow1,
-                ),
-                child: SvgPicture.asset('assets/icon/ic_pending.svg'),
-              ),
-              const SizedBox(width: 7.0),
-              vText(
-                'Menunggu',
-                fontSize: 11.0,
-                fontWeight: FontWeight.w400,
-                color: yellow1,
-              ),
-            ],
-          );
-        }
-
-      // approved
-      case 1:
-        {
-          return Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(4.0),
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: primaryColor,
-                ),
-                child: SvgPicture.asset('assets/icon/ic_done.svg'),
-              ),
-              const SizedBox(width: 7.0),
-              vText(
-                'Disetujui',
-                fontSize: 11.0,
-                fontWeight: FontWeight.w400,
-                color: primaryColor,
-              ),
-            ],
-          );
-        }
-
-      // di tolak
-      case 2:
-        {
-          return Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(4.0),
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: red1,
-                ),
-                child: Icon(
-                  Icons.close,
-                  color: Theme.of(context).colorScheme.onPrimary,
-                ),
-              ),
-              const SizedBox(width: 7.0),
-              vText(
-                'Ditolak',
-                fontSize: 11.0,
-                fontWeight: FontWeight.w400,
-                color: red1,
-              ),
-            ],
-          );
-        }
-      default:
-        return Container();
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -195,9 +111,35 @@ class ItemVideo extends StatelessWidget {
                     maxLines: 1,
                   ),
                   const SizedBox(height: 7.0),
-                  statusData(
-                    isCheck: item.isCheck,
-                    context: context,
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(4.0),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: UtilsDetails.getBgColor(
+                            status: item.status,
+                          ),
+                        ),
+                        child: Icon(
+                          UtilsDetails.getIconStatus(
+                            status: item.status,
+                          ),
+                          color: UtilsDetails.getTextColor(
+                            status: item.status,
+                            context: context,
+                          ),
+                          size: 20.0,
+                        ),
+                      ),
+                      const SizedBox(width: 7.0),
+                      vText(
+                        UtilsDetails.getTextStatus(status: item.status),
+                        fontSize: 11.0,
+                        fontWeight: FontWeight.w400,
+                        color: grey7,
+                      ),
+                    ],
                   ),
                 ],
               ),

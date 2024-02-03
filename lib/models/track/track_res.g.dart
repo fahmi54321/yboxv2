@@ -40,7 +40,7 @@ _$_DataTrackRes _$$_DataTrackResFromJson(Map json) => $checkedCreate(
       ($checkedConvert) {
         final val = _$_DataTrackRes(
           id: $checkedConvert('id', (v) => v as String? ?? ''),
-          isCheck: $checkedConvert('is_check', (v) => v as int? ?? 0),
+          status: $checkedConvert('status', (v) => v as int? ?? 0),
           image: $checkedConvert('image', (v) => v as String? ?? ''),
           cover: $checkedConvert('cover', (v) => v as String? ?? ''),
           trackTitle: $checkedConvert('track_title', (v) => v as String? ?? ''),
@@ -52,7 +52,6 @@ _$_DataTrackRes _$$_DataTrackResFromJson(Map json) => $checkedCreate(
         return val;
       },
       fieldKeyMap: const {
-        'isCheck': 'is_check',
         'trackTitle': 'track_title',
         'artisName': 'artis_name',
         'trackVersion': 'track_version',
@@ -63,7 +62,7 @@ _$_DataTrackRes _$$_DataTrackResFromJson(Map json) => $checkedCreate(
 Map<String, dynamic> _$$_DataTrackResToJson(_$_DataTrackRes instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'is_check': instance.isCheck,
+      'status': instance.status,
       'image': instance.image,
       'cover': instance.cover,
       'track_title': instance.trackTitle,

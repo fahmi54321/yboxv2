@@ -40,7 +40,7 @@ class AddTransactionState extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
-    final resStep1 = await HTTPAkunBankService().getAkunBank();
+    final resStep1 = await HTTPAkunBankService().getAkunMember();
     isLoading = false;
 
     notifyListeners();

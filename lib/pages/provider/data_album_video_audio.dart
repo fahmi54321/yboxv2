@@ -183,4 +183,14 @@ class DataAlbumAudioVideo extends ChangeNotifier {
     _state = _state.copyWith(publishing: publishing);
     notifyListeners();
   }
+
+  void updatePublisher(String publisher) {
+    _state = _state.copyWith(publisher: publisher);
+    notifyListeners();
+  }
+
+  void updateLinkYt(String linkYt) {
+    _state = _state.copyWith(linkYt: linkYt);
+    notifyListeners();
+  }
 }

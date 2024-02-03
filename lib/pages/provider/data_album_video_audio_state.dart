@@ -37,6 +37,8 @@ class DataAlbumAudioVideoState extends Equatable {
   final String roleTrack;
   final String share;
   final String publishing;
+  final String publisher;
+  final String linkYt;
   const DataAlbumAudioVideoState({
     required this.coverImage,
     required this.languageId,
@@ -72,6 +74,8 @@ class DataAlbumAudioVideoState extends Equatable {
     required this.roleTrack,
     required this.share,
     required this.publishing,
+    required this.publisher,
+    required this.linkYt,
   });
 
   factory DataAlbumAudioVideoState.initial() {
@@ -110,6 +114,8 @@ class DataAlbumAudioVideoState extends Equatable {
       roleTrack: '',
       share: '',
       publishing: '',
+      publisher: '',
+      linkYt: '',
     );
   }
 
@@ -148,6 +154,8 @@ class DataAlbumAudioVideoState extends Equatable {
     String? roleTrack,
     String? share,
     String? publishing,
+    String? publisher,
+    String? linkYt,
   }) {
     return DataAlbumAudioVideoState(
       coverImage: coverImage ?? this.coverImage,
@@ -184,6 +192,8 @@ class DataAlbumAudioVideoState extends Equatable {
       roleTrack: roleTrack ?? this.roleTrack,
       share: share ?? this.share,
       publishing: publishing ?? this.publishing,
+      publisher: publisher ?? this.publisher,
+      linkYt: linkYt ?? this.linkYt,
     );
   }
 
@@ -227,6 +237,8 @@ class DataAlbumAudioVideoState extends Equatable {
       roleTrack,
       share,
       publishing,
+      publisher,
+      linkYt,
     ];
   }
 }

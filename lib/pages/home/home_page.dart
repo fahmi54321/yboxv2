@@ -63,8 +63,8 @@ class _BottomNavBarState extends State<HomePage> {
                 IconButtonBar(
                   page: state.page,
                   currentPage: 2,
-                  label: 'Track',
-                  icon: Icons.audiotrack_outlined,
+                  label: 'Aset',
+                  icon: Icons.assessment,
                 ),
                 IconButtonBar(
                   page: state.page,
@@ -123,9 +123,10 @@ class _BottomNavBarState extends State<HomePage> {
               },
               child: Container(
                 padding: const EdgeInsets.all(8.0),
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: primaryColor2,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                  border: Border.all(color: primaryColor2),
                 ),
                 child: Stack(
                   children: [

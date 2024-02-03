@@ -45,7 +45,7 @@ _$_DataAudioRes _$$_DataAudioResFromJson(Map json) => $checkedCreate(
           titleVersion:
               $checkedConvert('title_version', (v) => v as String? ?? ''),
           released: $checkedConvert('released', (v) => v as String? ?? ''),
-          isCheck: $checkedConvert('is_check', (v) => v as int? ?? 0),
+          status: $checkedConvert('status', (v) => v as int? ?? 0),
           trackId: $checkedConvert(
               'track_id',
               (v) => v == null
@@ -56,7 +56,6 @@ _$_DataAudioRes _$$_DataAudioResFromJson(Map json) => $checkedCreate(
       },
       fieldKeyMap: const {
         'titleVersion': 'title_version',
-        'isCheck': 'is_check',
         'trackId': 'track_id'
       },
     );
@@ -68,7 +67,7 @@ Map<String, dynamic> _$$_DataAudioResToJson(_$_DataAudioRes instance) {
     'title': instance.title,
     'title_version': instance.titleVersion,
     'released': instance.released,
-    'is_check': instance.isCheck,
+    'status': instance.status,
   };
 
   void writeNotNull(String key, dynamic value) {
